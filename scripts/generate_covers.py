@@ -367,13 +367,30 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
     ts, ss = pf["title_size"], pf["subtitle_size"]
     es1, es2 = int(ts*1.3), int(ts*1.0)  # iconfont 图标可以更大一些
 
+    # ===== 大卡通角色元素 =====
+    # 根据 iconfont SVG 生成大卡通角色（占封面 30-40% 面积）
+    mascot_url = da1_url
+    mascot_name = da1_name
+    # 大卡通尺寸：根据平台调整
+    mw = int(pf["width"] * 0.32)  # 宽度占封面32%
+    mh = mw  # 正方形
+    mascot_right = int(pf["width"] * 0.03)  # 右边距
+    mascot_bottom = int(pf["height"] * 0.05)  # 底部距
+    mascot_opacity = 0.18  # 大卡通半透明背景装饰
+    mascot_solid_opacity = 0.92  # 实体卡通的不透明度
+
     return f'''<div class="cover-card cover-{pf_key} theme-{theme}" data-platform="{pf['name']}" data-index="{index+1}" style="--bg-color:{bg};--accent1:{a1};--accent2:{a2};--text-color:{text_color};">
   <div class="cv-bg-decoration">
     <div class="cv-bg-circle" style="width:{350+index*20}px;height:{350+index*20}px;background:{a1};top:-{80+index*10}px;left:-{80+index*10}px;"></div>
     <div class="cv-bg-circle" style="width:{260+index*15}px;height:{260+index*15}px;background:{a2};bottom:-60px;right:-60px;"></div>
+    <!-- 大卡通角色：半透明背景装饰 -->
+    <img class="cv-mascot-bg" src="{mascot_url}" alt="{mascot_name}" style="position:absolute;right:{mascot_right}px;bottom:{mascot_bottom}px;width:{mw}px;height:{mh}px;opacity:{mascot_opacity};z-index:0;filter:blur(1px);" onerror="this.style.display='none'">
+    <!-- 小装饰图标：左上角 -->
     <img class="cv-emoji-deco cv-emoji-1 cv-iconfont-deco" src="{da1_url}" alt="{da1_name}" style="top:{12+index*3}%;left:4%;width:{es1}px;height:{es1}px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
     <img class="cv-emoji-deco cv-emoji-2 cv-iconfont-deco" src="{da2_url}" alt="{da2_name}" style="bottom:{10+index*3}%;right:5%;width:{es2}px;height:{es2}px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
   </div>
+  <!-- 大卡通角色：实体（右侧） -->
+  <img class="cv-mascot" src="{mascot_url}" alt="{mascot_name}" onerror="this.style.display='none'">
   <div class="cv-content">
     <div class="cv-badge" style="background:rgba({hex_to_rgb(a1)},0.2);color:{a1};border:1px solid rgba({hex_to_rgb(a1)},0.4);">{da1_name} {badge}</div>
     <div class="cv-main-title" style="font-size:{ts}px;color:{text_color};">{dt}</div>
@@ -395,6 +412,57 @@ THEME_FONT_CSS = """
 .theme-fresh .cv-iconfont-deco { opacity: 0.95; filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.18)) !important; }
 .theme-funny .cv-iconfont-deco { animation: icon-bounce 3s ease-in-out infinite; }
 @keyframes icon-bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px); } }
+
+/* ===== 大卡通角色（Mascot） ===== */
+.cv-mascot {
+  position: absolute;
+  right: 3%;
+  bottom: 12%;
+  width: 32%;
+  height: auto;
+  z-index: 2;
+  opacity: 0.92;
+  filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.25));
+  transition: transform 0.4s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+.cover-card:hover .cv-mascot {
+  transform: scale(1.05) rotate(-2deg);
+  opacity: 1;
+}
+/* 竖版封面：卡通角色放底部居中 */
+.cover-wechat .cv-mascot,
+.cover-mobile .cv-mascot {
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 8%;
+  width: 28%;
+}
+.cover-wechat:hover .cv-mascot,
+.cover-mobile:hover .cv-mascot {
+  transform: translateX(-50%) scale(1.05) rotate(-2deg);
+}
+/* 小红书：卡通角色右下角稍小 */
+.cover-xiaohongshu .cv-mascot {
+  width: 26%;
+  bottom: 10%;
+}
+/* 各风格卡通角色差异化 */
+.theme-cute .cv-mascot,
+.theme-animal .cv-mascot { opacity: 1; filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.2)); }
+.theme-funny .cv-mascot { animation: mascot-wobble 4s ease-in-out infinite; }
+@keyframes mascot-wobble { 0%,100%{transform:rotate(0deg);} 25%{transform:rotate(3deg);} 75%{transform:rotate(-3deg);} }
+.theme-cyber .cv-mascot { filter: drop-shadow(0 0 12px var(--accent1)) drop-shadow(0 0 24px var(--accent2)); opacity: 0.85; }
+.theme-bold .cv-mascot { opacity: 0.75; }
+.theme-luxury .cv-mascot { filter: drop-shadow(0 0 8px rgba(212,175,55,0.4)); opacity: 0.8; }
+.theme-gaming .cv-mascot { filter: drop-shadow(0 0 10px var(--accent1)) brightness(1.1); }
+.theme-food .cv-mascot { opacity: 0.95; }
+.theme-fresh .cv-mascot { opacity: 0.9; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1)); }
+.theme-paper .cv-mascot { transform: rotate(-5deg); filter: drop-shadow(3px 3px 0 rgba(0,0,0,0.2)); }
+.theme-variety .cv-mascot { animation: mascot-pop 2s ease-in-out infinite; }
+@keyframes mascot-pop { 0%,100%{transform:scale(1);} 50%{transform:scale(1.06);} }
+.theme-doodle .cv-mascot { filter: drop-shadow(2px 2px 0 #000); opacity: 0.88; }
 
 /* ===== bold: 大字醒目风 v3.2 描边增强 ===== */
 .theme-bold .cv-main-title { font-weight: 900; letter-spacing: 0; line-height: 1.05; text-shadow: none; -webkit-text-stroke: 1px rgba(0,0,0,0.1); }

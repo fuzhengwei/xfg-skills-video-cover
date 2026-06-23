@@ -14,6 +14,7 @@ from generate_covers import (
     detect_theme, get_scheme_by_theme, get_emojis,
     apply_highlights, hex_to_rgb, TWEMOJI_CDN,
     THEME_FONT_CSS, generate_single_cover,
+    get_decoration_assets,
 )
 
 THEME_INFO = {
@@ -40,9 +41,9 @@ def make_mini_card(theme, title, subtitle, tags, badge, quote, highlights):
     text_color = sc.get("text_color", "#ffffff")
     is_gradient = sc.get("is_gradient", False)
 
-    e1, e2 = get_emojis(theme, 0)
-    ec1, ec2 = e1[1], e2[1]
-    eu1, eu2 = f"{TWEMOJI_CDN}/{e1[0]}.svg", f"{TWEMOJI_CDN}/{e2[0]}.svg"
+    # 使用 iconfont 卡通素材
+    deco_assets = get_decoration_assets(theme, 0)
+    (da1_url, da1_name), (da2_url, da2_name) = deco_assets[0], deco_assets[1] if len(deco_assets) > 1 else (deco_assets[0][0], deco_assets[0][1])
 
     dt = apply_highlights(title, highlights, theme, a1, a2)
 
@@ -60,11 +61,13 @@ def make_mini_card(theme, title, subtitle, tags, badge, quote, highlights):
     <div class="cv-bg-decoration">
       <div class="cv-bg-circle" style="width:180px;height:180px;background:{a1};top:-40px;left:-40px;"></div>
       <div class="cv-bg-circle" style="width:140px;height:140px;background:{a2};bottom:-30px;right:-30px;"></div>
-      <img class="cv-emoji-deco" src="{eu1}" alt="{ec1}" style="top:8%;left:4%;width:36px;height:36px;" onerror="this.style.display='none'">
-      <img class="cv-emoji-deco" src="{eu2}" alt="{ec2}" style="bottom:8%;right:4%;width:28px;height:28px;" onerror="this.style.display='none'">
+      <img class="cv-emoji-deco cv-iconfont-deco" src="{da1_url}" alt="{da1_name}" style="top:8%;left:4%;width:36px;height:36px;filter:drop-shadow(1px 1px 2px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
+      <img class="cv-emoji-deco cv-iconfont-deco" src="{da2_url}" alt="{da2_name}" style="bottom:8%;right:4%;width:28px;height:28px;filter:drop-shadow(1px 1px 2px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
+      <!-- 迷你卡通角色预览 -->
+      <img class="cv-mascot" src="{da1_url}" alt="{da1_name}" style="right:2%;bottom:8%;width:25%;height:auto;opacity:0.88;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2));" onerror="this.style.display='none'">
     </div>
     <div class="cv-content">
-      <div class="cv-badge" style="background:rgba({hex_to_rgb(a1)},0.2);color:{a1};border:1px solid rgba({hex_to_rgb(a1)},0.4);">{ec1} {badge}</div>
+      <div class="cv-badge" style="background:rgba({hex_to_rgb(a1)},0.2);color:{a1};border:1px solid rgba({hex_to_rgb(a1)},0.4);">{da1_name} {badge}</div>
       <div class="cv-main-title" style="font-size:22px;color:{text_color};">{dt}</div>
       <div class="cv-sub-title" style="font-size:11px;color:{text_color};">{subtitle}</div>
       <div class="cv-tag-row">{th}</div>
