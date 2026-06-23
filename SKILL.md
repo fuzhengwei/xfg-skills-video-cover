@@ -177,7 +177,7 @@ python3 scripts/theme_picker.py \
 | bilibili | 16:9 | 1200×675 | B站视频封面标准尺寸 |
 | xiaohongshu | 3:4 | 900×1200 | 小红书笔记封面 |
 | wechat | 9:16 | 1080×1920 | 微信视频号封面 |
-| mobile | 9:19.5 | 1284×2778 | 手机竖版（iPhone Pro Max 原生分辨率） |
+| mobile | ~9:14.5 | 440×710 | 手机竖版封面 |
 
 使用 `--platform all` 时，4个平台各生成一页，底部缩略图标注平台名，键盘←→翻页。
 
