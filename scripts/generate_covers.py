@@ -25,7 +25,7 @@ PLATFORMS = {
                      "title_size": 64, "subtitle_size": 24, "tag_size": 14, "badge_size": 13},
     "wechat": {"name": "微信视频号", "icon": "📱", "ratio": "9 / 16", "width": 1080, "height": 1920,
                "title_size": 56, "subtitle_size": 22, "tag_size": 13, "badge_size": 12},
-    "mobile": {"name": "手机竖版", "icon": "📲", "ratio": "9 / 19.5", "width": 1080, "height": 2106,
+    "mobile": {"name": "手机竖版", "icon": "📲", "ratio": "1284 / 2778", "width": 1284, "height": 2778,
              "title_size": 52, "subtitle_size": 20, "tag_size": 12, "badge_size": 11},
 }
 
