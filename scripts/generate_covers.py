@@ -428,12 +428,12 @@ THEME_FONT_CSS = """
 /* ===== 大卡通角色（Mascot） ===== */
 .cv-mascot {
   position: absolute;
-  right: 3%;
-  bottom: 12%;
-  width: 32%;
+  right: 2%;
+  bottom: 8%;
+  width: 28%;
   height: auto;
   z-index: 2;
-  opacity: 0.92;
+  opacity: 0.85;
   filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.25));
   transition: transform 0.4s ease, opacity 0.3s ease;
   pointer-events: none;
@@ -480,7 +480,7 @@ THEME_FONT_CSS = """
 .theme-bold .cv-main-title { font-weight: 900; letter-spacing: 0; line-height: 1.05; text-shadow: none; -webkit-text-stroke: 1px rgba(0,0,0,0.1); }
 .theme-bold .cv-main-title .hl-bold { display: inline; transform: none; }
 .theme-bold .cv-badge { border-radius: 0; border: 2px solid currentColor; background: transparent; }
-.theme-bold .cv-content { align-items: flex-start; text-align: left; }
+.theme-bold .cv-content { align-items: center; text-align: center; }
 .theme-bold .cv-content::after { content: '→'; position: absolute; bottom: 50px; right: 40px; font-size: 48px; color: var(--accent2); opacity: 0.3; font-weight: 900; }
 
 /* ===== cyber: 赛博朋克风 v3.2 网格线增强 ===== */
@@ -531,7 +531,7 @@ THEME_FONT_CSS = """
 .theme-gaming .cv-main-title { font-weight: 900; letter-spacing: 1px; line-height: 1.05; text-shadow: 2px 2px 0 #000, 0 0 15px rgba(255,255,255,0.2); }
 .theme-gaming .cv-main-title .hl-gaming { display: inline-block; }
 .theme-gaming .cv-badge { clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); border: none; }
-.theme-gaming .cv-content { align-items: flex-start; text-align: left; }
+.theme-gaming .cv-content { align-items: center; text-align: center; }
 .theme-gaming .cv-bg-decoration::after {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
   background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent1));
@@ -579,7 +579,7 @@ THEME_FONT_CSS = """
 .theme-paper .cv-main-title .hl-paper { display: inline-block; }
 .theme-paper .cv-badge { border-radius: 0; clip-path: polygon(2% 0, 98% 0, 100% 50%, 98% 100%, 2% 100%, 0 50%); border: none; }
 .theme-paper .cv-tag { clip-path: polygon(3% 0, 97% 0, 100% 50%, 97% 100%, 3% 100%, 0 50%); border: none; }
-.theme-paper .cv-content { align-items: flex-start; text-align: left; }
+.theme-paper .cv-content { align-items: center; text-align: center; }
 .theme-paper .cv-bg-decoration::after {
   content: ''; position: absolute; inset: 0; z-index: 0;
   background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,0,0,0.02) 20px, rgba(0,0,0,0.02) 21px);
@@ -700,15 +700,15 @@ body{{
 .cv-badge{{
   display:inline-flex;align-items:center;gap:6px;
   padding:6px 18px;border-radius:20px;
-  font-size:14px;font-weight:700;letter-spacing:1px;margin-bottom:16px;
+  font-size:14px;font-weight:700;letter-spacing:1px;margin-bottom:16px;margin-left:auto;margin-right:auto;
 }}
 .cv-main-title{{
   font-weight:900;line-height:1.08;letter-spacing:2px;margin-bottom:10px;
-  text-shadow:0 4px 20px rgba(0,0,0,.4);max-width:90%;color:var(--text-color,#fff);
+  text-shadow:0 4px 20px rgba(0,0,0,.4);max-width:88%;margin-left:auto;margin-right:auto;text-align:center;color:var(--text-color,#fff);
 }}
 .cv-main-title .highlight{{display:inline-block;transform:rotate(-3deg);text-shadow:none;}}
-.cv-sub-title{{font-weight:600;margin-bottom:16px;letter-spacing:1px;max-width:85%;color:var(--text-color,#fff);opacity:0.8;}}
-.cv-tag-row{{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px;}}
+.cv-sub-title{{font-weight:600;margin-bottom:16px;letter-spacing:1px;max-width:82%;margin-left:auto;margin-right:auto;text-align:center;color:var(--text-color,#fff);opacity:0.8;}}
+.cv-tag-row{{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px;max-width:88%;margin-left:auto;margin-right:auto;}}
 .cv-tag{{padding:6px 18px;border-radius:16px;font-size:15px;font-weight:700;letter-spacing:.5px;}}
 .cv-emoji-deco{{position:absolute;opacity:.10;z-index:1;object-fit:contain;}}
 .cv-bottom-bar{{
