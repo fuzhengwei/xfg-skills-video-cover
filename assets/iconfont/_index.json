@@ -179,6 +179,18 @@
       "file": "iconfont/animal/考拉_28727115.svg",
       "keyword": "考拉",
       "id": 28727115
+    },
+    {
+      "name": "小狗兽",
+      "file": "iconfont/animal/小狗兽_26878058.svg",
+      "keyword": "小狗",
+      "id": 26878058
+    },
+    {
+      "name": "小狗",
+      "file": "iconfont/animal/小狗_43246323.svg",
+      "keyword": "小狗",
+      "id": 43246323
     }
   ],
   "coder": [
