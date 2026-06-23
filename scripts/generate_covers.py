@@ -139,6 +139,61 @@ COLOR_SCHEMES = {
     "journal_2": {"bg": "#e0f2fe", "accent1": "#0c4a6e", "accent2": "#0ea5e9", "name": "方格纸手账", "theme": "journal", "text_color": "#0c4a6e"},
     "journal_3": {"bg": "#f0fdf4", "accent1": "#14532d", "accent2": "#16a34a", "name": "绿格手账", "theme": "journal", "text_color": "#14532d"},
     "journal_4": {"bg": "#fdf2f8", "accent1": "#831843", "accent2": "#ec4899", "name": "粉白手账", "theme": "journal", "text_color": "#831843"},
+    # ===== 20. vaporwave 蒙汽波风 =====
+    "vaporwave_1": {"bg": "linear-gradient(135deg,#ff6ec7,#7873f5)", "accent1": "#00ffff", "accent2": "#ff00ff", "name": "粉紫蒸汽波", "theme": "vaporwave"},
+    "vaporwave_2": {"bg": "#1a0a2e", "accent1": "#ff6ec7", "accent2": "#00ffff", "name": "暗夜蒸汽波", "theme": "vaporwave"},
+    "vaporwave_3": {"bg": "linear-gradient(180deg,#2d1b4e,#ff6ec7,#feca57)", "accent1": "#00ffff", "accent2": "#ff00ff", "name": "日落蒸汽波", "theme": "vaporwave"},
+    "vaporwave_4": {"bg": "#0d0221", "accent1": "#d1009c", "accent2": "#00e5ff", "name": "深紫蒸汽波", "theme": "vaporwave"},
+    # ===== 21. acid 酸性设计 =====
+    "acid_1": {"bg": "#0a0a0a", "accent1": "#aaff00", "accent2": "#ff00aa", "name": "黑白酸", "theme": "acid"},
+    "acid_2": {"bg": "#1a0033", "accent1": "#00ff88", "accent2": "#ff6600", "name": "紫绿酸", "theme": "acid"},
+    "acid_3": {"bg": "#0d0d0d", "accent1": "#e6ff00", "accent2": "#ff006e", "name": "荧光酸", "theme": "acid"},
+    "acid_4": {"bg": "linear-gradient(135deg,#0a0a0a,#1a0033)", "accent1": "#aaff00", "accent2": "#00e5ff", "name": "液态金属酸", "theme": "acid"},
+    # ===== 22. memphis 孟菲斯风 =====
+    "memphis_1": {"bg": "#fef3c7", "accent1": "#7c3aed", "accent2": "#ec4899", "name": "黄紫粉孟菲", "theme": "memphis", "text_color": "#1a1a2e"},
+    "memphis_2": {"bg": "#e0f2fe", "accent1": "#f97316", "accent2": "#22c55e", "name": "蓝橙绿孟菲", "theme": "memphis", "text_color": "#1a1a2e"},
+    "memphis_3": {"bg": "#fdf2f8", "accent1": "#0ea5e9", "accent2": "#fbbf24", "name": "粉蓝黄孟菲", "theme": "memphis", "text_color": "#1a1a2e"},
+    "memphis_4": {"bg": "#f0fdf4", "accent1": "#dc2626", "accent2": "#7c3aed", "name": "绿红紫孟菲", "theme": "memphis", "text_color": "#1a1a2e"},
+    # ===== 23. clay 黏土风 =====
+    "clay_1": {"bg": "linear-gradient(135deg,#ffd6a5,#ff9aa2)", "accent1": "#6c5ce7", "accent2": "#fd79a8", "name": "暖粉黏土", "theme": "clay"},
+    "clay_2": {"bg": "linear-gradient(135deg,#a8e6cf,#dcedc1)", "accent1": "#ff8b94", "accent2": "#aaa1c8", "name": "清爽黏土", "theme": "clay"},
+    "clay_3": {"bg": "linear-gradient(135deg,#ffb5a7,#fcd5ce)", "accent1": "#a86a8e", "accent2": "#547aa5", "name": "柔和黏土", "theme": "clay"},
+    "clay_4": {"bg": "linear-gradient(135deg,#b5eaea,#edf6e9)", "accent1": "#ff686b", "accent2": "#79bd9a", "name": "薄荷黏土", "theme": "clay"},
+    # ===== 24. glass 玻璃拟态 =====
+    "glass_1": {"bg": "linear-gradient(135deg,rgba(255,255,255,0.2),rgba(255,255,255,0.05))", "accent1": "#60a5fa", "accent2": "#a78bfa", "name": "蓝紫玻璃", "theme": "glass"},
+    "glass_2": {"bg": "linear-gradient(135deg,rgba(34,197,94,0.15),rgba(59,130,246,0.1))", "accent1": "#22c55e", "accent2": "#3b82f6", "name": "青绿玻璃", "theme": "glass"},
+    "glass_3": {"bg": "linear-gradient(135deg,rgba(236,72,153,0.15),rgba(168,85,247,0.1))", "accent1": "#ec4899", "accent2": "#a855f7", "name": "粉紫玻璃", "theme": "glass"},
+    "glass_4": {"bg": "linear-gradient(135deg,rgba(251,191,36,0.15),rgba(239,68,68,0.1))", "accent1": "#fbbf24", "accent2": "#ef4444", "name": "金红玻璃", "theme": "glass"},
+    # ===== 25. sticker 贴纸风 =====
+    "sticker_1": {"bg": "#ffffff", "accent1": "#ff6b9d", "accent2": "#4ecdc4", "name": "白底彩贴纸", "theme": "sticker", "text_color": "#1a1a2e"},
+    "sticker_2": {"bg": "#fef3c7", "accent1": "#f97316", "accent2": "#7c3aed", "name": "黄橙紫贴纸", "theme": "sticker", "text_color": "#1a1a2e"},
+    "sticker_3": {"bg": "#e0f2fe", "accent1": "#0ea5e9", "accent2": "#ec4899", "name": "蓝粉贴纸", "theme": "sticker", "text_color": "#1a1a2e"},
+    "sticker_4": {"bg": "#f0fdf4", "accent1": "#16a34a", "accent2": "#fbbf24", "name": "绿黄贴纸", "theme": "sticker", "text_color": "#1a1a2e"},
+    # ===== 26. comic 漫画风 =====
+    "comic_1": {"bg": "#fbbf24", "accent1": "#1a1a1a", "accent2": "#ef4444", "name": "黄金黑红漫画", "theme": "comic", "text_color": "#1a1a1a"},
+    "comic_2": {"bg": "#ffffff", "accent1": "#1a1a1a", "accent2": "#2563eb", "name": "白底黑蓝漫画", "theme": "comic", "text_color": "#1a1a1a"},
+    "comic_3": {"bg": "#ef4444", "accent1": "#ffffff", "accent2": "#1a1a1a", "name": "红白黑漫画", "theme": "comic"},
+    "comic_4": {"bg": "#1a1a2e", "accent1": "#fbbf24", "accent2": "#ef4444", "name": "暗金红漫画", "theme": "comic"},
+    # ===== 27. neon 霓虹灯风 =====
+    "neon_1": {"bg": "#0a0a0a", "accent1": "#ff006e", "accent2": "#00ffff", "name": "粉青霓虹", "theme": "neon"},
+    "neon_2": {"bg": "#0d0221", "accent1": "#ff6ec7", "accent2": "#aaff00", "name": "粉绿霓虹", "theme": "neon"},
+    "neon_3": {"bg": "#000000", "accent1": "#fbbf24", "accent2": "#a855f7", "name": "金紫霓虹", "theme": "neon"},
+    "neon_4": {"bg": "#0a0a0a", "accent1": "#06b6d4", "accent2": "#f97316", "name": "青橙霓虹", "theme": "neon"},
+    # ===== 28. retro 复古风 =====
+    "retro_1": {"bg": "linear-gradient(135deg,#d4a373,#e9c46a)", "accent1": "#264653", "accent2": "#e76f51", "name": "暖调复古", "theme": "retro"},
+    "retro_2": {"bg": "linear-gradient(135deg,#a98467,#dde5b6)", "accent1": "#3a5a40", "accent2": "#a3b18a", "name": "棕绿复古", "theme": "retro"},
+    "retro_3": {"bg": "#2a1810", "accent1": "#d4a373", "accent2": "#e9c46a", "name": "暗调复古", "theme": "retro"},
+    "retro_4": {"bg": "linear-gradient(135deg,#cc9966,#ffcc99)", "accent1": "#663300", "accent2": "#996633", "name": "胶片复古", "theme": "retro"},
+    # ===== 29. collage 拼贴风 =====
+    "collage_1": {"bg": "#f5f5dc", "accent1": "#d2691e", "accent2": "#2e8b57", "name": "米棕绿拼贴", "theme": "collage", "text_color": "#1a1a1a"},
+    "collage_2": {"bg": "#faf0e6", "accent1": "#8b4513", "accent2": "#ff6347", "name": "暖调拼贴", "theme": "collage", "text_color": "#1a1a1a"},
+    "collage_3": {"bg": "#e8e8e8", "accent1": "#2f4f4f", "accent2": "#dc143c", "name": "灰红黑拼贴", "theme": "collage", "text_color": "#1a1a1a"},
+    "collage_4": {"bg": "#fffacd", "accent1": "#4b0082", "accent2": "#ff8c00", "name": "黄紫橙拼贴", "theme": "collage", "text_color": "#1a1a1a"},
+    # ===== 30. aurora 弥散光/极光风 =====
+    "aurora_1": {"bg": "linear-gradient(135deg,#0f0c29,#302b63,#24243e)", "accent1": "#00ff88", "accent2": "#00d4ff", "name": "深空极光", "theme": "aurora"},
+    "aurora_2": {"bg": "linear-gradient(135deg,#1a0033,#336699,#00cccc)", "accent1": "#ff66cc", "accent2": "#66ff99", "name": "紫蓝绿极光", "theme": "aurora"},
+    "aurora_3": {"bg": "linear-gradient(180deg,#0d1b2a,#1b3a4b,#2d6a7e)", "accent1": "#7fc8f8", "accent2": "#e8b4d8", "name": "海洋极光", "theme": "aurora"},
+    "aurora_4": {"bg": "linear-gradient(135deg,#1a0a2e,#16213e,#0f3460)", "accent1": "#e94560", "accent2": "#00d9ff", "name": "星空极光", "theme": "aurora"},
 }
 
 # ===== 风格结构分类 =====
@@ -146,22 +201,22 @@ THEME_CATEGORIES = {
     "科技知识": {
         "icon": "🚀",
         "desc": "适合编程、AI、技术教程、知识科普",
-        "themes": ["bold", "cyber", "minimal", "magazine", "pixel"],
+        "themes": ["bold", "cyber", "minimal", "magazine", "pixel", "glass", "aurora"],
     },
     "生活娱乐": {
         "icon": "🎉",
         "desc": "适合搞笑、美食、游戏、综艺、宠物",
-        "themes": ["funny", "food", "gaming", "variety", "cute"],
+        "themes": ["funny", "food", "gaming", "variety", "cute", "clay"],
     },
     "视觉冲击": {
         "icon": "💥",
-        "desc": "适合热点、评测、开箱、撕纸拼贴",
-        "themes": ["paper", "dopamine", "doodle", "luxury"],
+        "desc": "适合热点、评测、开箱、撕纸拼贴、潮流",
+        "themes": ["paper", "dopamine", "doodle", "luxury", "vaporwave", "acid", "memphis", "comic", "neon"],
     },
     "文艺清新": {
         "icon": "🍃",
-        "desc": "适合Vlog、旅行、动漫、手账、国风",
-        "themes": ["fresh", "anime", "cinema", "journal", "guochao"],
+        "desc": "适合Vlog、旅行、动漫、手账、国风、复古",
+        "themes": ["fresh", "anime", "cinema", "journal", "guochao", "sticker", "retro", "collage"],
     },
 }
 
@@ -192,6 +247,17 @@ THEME_KEYWORDS = {
     "dark": ["安全","黑客","高级","硬核","渗透","密码"],
     "gradient": ["时尚","创意","爆款","热门","推荐"],
     "animal": ["萌","可爱","治愈","动物","宠物","猫","狗","熊猫","狐狸","卡通"],
+    "vaporwave": ["蒸汽波","vaporwave","复古","迷幻","故障","80s","90s","怀旧","录像带"],
+    "acid": ["酸性","acid","液态","金属","荧光","扭曲","实验","前卫","赛博","y2k"],
+    "memphis": ["孟菲斯","memphis","几何","波点","折线","色块","活泼","拼接","撞色"],
+    "clay": ["黏土","clay","3D","立体","圆润","柔软","手工","童趣","可爱","捏"],
+    "glass": ["玻璃","glass","拟态","模糊","半透明","毛玻璃","高级感","质感","通透"],
+    "sticker": ["贴纸","sticker","手绘","可爱","拼贴","白边","卡通","贴画","装饰"],
+    "comic": ["漫画","comic","描边","气泡","网点","美漫","日漫","热血","格斗"],
+    "neon": ["霓虹","neon","灯管","发光","荧光","暗夜","招牌","夜店","赛博"],
+    "retro": ["复古","retro","怀旧","胶片","做旧","80年代","90年代","复古风","老照片"],
+    "collage": ["拼贴","collage","剪报","胶带","混合","材质","手做","文艺","剪贴"],
+    "aurora": ["极光","弥散光","光晕","梦幻","渐变","模糊","光影","星空","深空","弥散"],
 }
 
 THEME_EMOJIS = {
@@ -221,6 +287,17 @@ THEME_EMOJIS = {
     "dark": [("1f576","🕶️"),("1f512","🔒"),("1f480","💀"),("1f451","👑"),("1f9e0","🧠")],
     "gradient": [("2728","✨"),("1f308","🌈"),("1f4ab","💫"),("1f31f","🌟"),("1f48e","💎")],
     "animal": [("1f431","🐱"),("1f436","🐶"),("1f98a","🦊"),("1f43c","🐼"),("1f428","🐨"),("1f42f","🐯"),("1f981","🦁"),("1f438","🐸"),("1f419","🐙"),("1f989","🦉"),("1f984","🦄"),("1f41d","🐝"),("1f98b","🦋")],
+    "vaporwave": [("1f47e","👾"),("1f3a8","🎨"),("1f31f","🌟"),("1f4a5","💥"),("1f300","🌀"),("1f47b","👻"),("1f3b5","🎵")],
+    "acid": [("1f4a5","💥"),("1f300","🌀"),("1f4ab","💫"),("1f7e1","🟡"),("1f7e2","🟢"),("1f7e3","🟣"),("1f525","🔥")],
+    "memphis": [("1f3a8","🎨"),("2b50","⭐"),("1f4ab","💫"),("1f380","🎀"),("26ab","⚫"),("1f7e0","🟠"),("1f7e1","🟡")],
+    "clay": [("1f476","👶"),("1f388","🎈"),("1f370","🍰"),("1f47d","👽"),("1f434","🐴"),("1f431","🐱"),("1f436","🐶")],
+    "glass": [("1f539","🔹"),("1f53a","🔺"),("1f300","🌀"),("26aa","⚪"),("1f4ab","💫"),("2728","✨")],
+    "sticker": [("1f389","🎉"),("2b50","⭐"),("1f380","🎀"),("1f496","💖"),("1f3a8","🎨"),("1f4ab","💫")],
+    "comic": [("1f4ac","💬"),("1f4a5","💥"),("2753","❓"),("2764","❤️"),("1f621","😡"),("1f606","😆"),("1f4f0","📰")],
+    "neon": [("1f3a8","🎨"),("26a1","⚡"),("1f50c","🔌"),("1f4a5","💥"),("1f525","🔥"),("1f31f","🌟")],
+    "retro": [("1f4f7","📷"),("1f3a8","🎨"),("1f4c4","📄"),("1f451","👑"),("1f3b5","🎵"),("1f4fb","📻")],
+    "collage": [("1f4cc","📌"),("2702","✂️"),("1f4dd","📝"),("1f4c4","📄"),("1f3a8","🎨"),("1f4bc","💼")],
+    "aurora": [("1f30c","🌌"),("2728","✨"),("1f4ab","💫"),("1f31f","🌟"),("1f300","🌀"),("1f315","🌕")],
 }
 
 GENERAL_EMOJIS = [("1f680","🚀"),("26a1","⚡"),("1f4bb","💻"),("1f310","🌐"),
@@ -260,6 +337,17 @@ THEME_ICONFONT_MAP = {
     "guochao":  "animal",
     "pixel":    "tech",
     "journal":  "emoji",
+    "vaporwave": "tech",
+    "acid":      "tech",
+    "memphis":   "emoji",
+    "clay":      "animal",
+    "glass":     "tech",
+    "sticker":   "emoji",
+    "comic":     "emoji",
+    "neon":      "tech",
+    "retro":     "animal",
+    "collage":   "coder",
+    "aurora":    "tech",
 }
 
 def get_iconfont_svgs(theme, count=2):
@@ -301,7 +389,13 @@ def hex_to_rgb(h):
 
 def detect_theme(title, tags=None):
     text = ((title or "") + " " + (tags and " ".join(tags) or "")).lower()
-    for theme in ["bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute","paper","variety","doodle"]:
+    # 先匹配新11种风格（更具体）
+    for theme in ["vaporwave","acid","memphis","clay","glass","sticker","comic","neon","retro","collage","aurora"]:
+        kws = THEME_KEYWORDS.get(theme, [])
+        if any(kw.lower() in text for kw in kws):
+            return theme
+    # 再匹配原有19种风格
+    for theme in ["bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute","paper","variety","doodle","magazine","minimal","dopamine","guochao","pixel","journal"]:
         kws = THEME_KEYWORDS.get(theme, [])
         if any(kw.lower() in text for kw in kws):
             return theme
@@ -429,6 +523,41 @@ def apply_highlights(title, highlights, theme, a1, a2):
         elif theme == "journal":
             # 手账风：手写体 + 胶带下划线
             dt = dt.replace(w, f'<span class="hl-journal" style="color:{c};border-bottom:3px solid {c};font-family:ZCOOL KuaiLe,sans-serif;position:relative;display:inline-block;">{w}<span style="position:absolute;bottom:-3px;left:-2px;right:-2px;height:6px;background:{c};opacity:0.2;border-radius:2px;"></span></span>')
+        elif theme == "vaporwave":
+            # 蒸汽波：渐变文字 + 发光
+            dt = dt.replace(w, f'<span class="hl-vaporwave" style="background:linear-gradient(90deg,{a1},{a2});-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 0 8px {a1});">{w}</span>')
+        elif theme == "acid":
+            # 酸性设计：荧光色 + 扭曲 + 描边
+            dt = dt.replace(w, f'<span class="hl-acid" style="color:{c};-webkit-text-stroke:2px {a2};text-stroke:2px {a2};filter:drop-shadow(2px 2px 0 {a2}) drop-shadow(0 0 6px {c});transform:skewX(-3deg);display:inline-block;">{w}</span>')
+        elif theme == "memphis":
+            # 孟菲斯：色块背景 + 几何感
+            dt = dt.replace(w, f'<span class="hl-memphis" style="background:{c};color:#fff;padding:2px 10px;border-radius:0;transform:rotate(-2deg);display:inline-block;box-shadow:3px 3px 0 {a2};">{w}</span>')
+        elif theme == "clay":
+            # 黏土风：柔和阴影 + 圆角
+            dt = dt.replace(w, f'<span class="hl-clay" style="background:{c};color:#fff;padding:3px 12px;border-radius:20px;box-shadow:2px 4px 8px rgba(0,0,0,0.15),inset 1px 1px 2px rgba(255,255,255,0.3);display:inline-block;">{w}</span>')
+        elif theme == "glass":
+            # 玻璃拟态：半透明背景 + 模糊
+            dt = dt.replace(w, f'<span class="hl-glass" style="background:rgba({hex_to_rgb(c)},0.15);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:{c};padding:2px 10px;border-radius:8px;border:1px solid rgba({hex_to_rgb(c)},0.3);">{w}</span>')
+        elif theme == "sticker":
+            # 贴纸风：白边 + 阴影 + 旋转
+            rot = -3 if i%2==0 else 3
+            dt = dt.replace(w, f'<span class="hl-sticker" style="background:{c};color:#fff;padding:2px 10px;border-radius:6px;border:2px solid #fff;box-shadow:2px 2px 0 rgba(0,0,0,0.2);transform:rotate({rot}deg);display:inline-block;">{w}</span>')
+        elif theme == "comic":
+            # 漫画风：粗黑描边 + 倾斜
+            dt = dt.replace(w, f'<span class="hl-comic" style="color:{c};-webkit-text-stroke:3px #000;text-stroke:3px #000;font-weight:900;transform:rotate(-2deg);display:inline-block;filter:drop-shadow(2px 2px 0 #000);">{w}</span>')
+        elif theme == "neon":
+            # 霓虹灯：多层发光
+            dt = dt.replace(w, f'<span class="hl-neon" style="color:{c};text-shadow:0 0 5px {c},0 0 10px {c},0 0 20px {c},0 0 40px {c};font-weight:900;">{w}</span>')
+        elif theme == "retro":
+            # 复古：做旧色调 + 下划线
+            dt = dt.replace(w, f'<span class="hl-retro" style="color:{c};border-bottom:3px double {c};letter-spacing:2px;opacity:0.9;">{w}</span>')
+        elif theme == "collage":
+            # 拼贴：剪报感 + 胶带
+            rot = 2 if i%2==0 else -2
+            dt = dt.replace(w, f'<span class="hl-collage" style="background:rgba({hex_to_rgb(c)},0.12);color:{c};padding:2px 8px;border:1px dashed {c};transform:rotate({rot}deg);display:inline-block;position:relative;">{w}<span style="position:absolute;top:-4px;left:30%;width:20px;height:6px;background:{a2};opacity:0.5;"></span></span>')
+        elif theme == "aurora":
+            # 极光弥散光：渐变 + 光晕
+            dt = dt.replace(w, f'<span class="hl-aurora" style="background:linear-gradient(90deg,{a1},{a2});-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 6px {a1}) drop-shadow(0 0 12px {a2});">{w}</span>')
         else:
             dt = dt.replace(w, f'<span class="highlight" style="color:{c};">{w}</span>')
     return dt
@@ -785,6 +914,200 @@ THEME_FONT_CSS = """
   content: '📌'; position: absolute; top: 15px; right: 25px; font-size: 20px; opacity: 0.5; z-index: 1;
 }
 .theme-journal .cv-mascot { filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.15)); opacity: 0.8; transform: rotate(-3deg); }
+
+/* ===== 20. vaporwave: 蒸汽波风 ===== */
+.theme-vaporwave .cv-main-title { font-weight: 900; letter-spacing: 4px; line-height: 1.1; font-family: 'Noto Sans SC', sans-serif; text-shadow: 2px 2px 0 rgba(255,0,255,0.3), -2px -2px 0 rgba(0,255,255,0.3); }
+.theme-vaporwave .cv-main-title .hl-vaporwave { display: inline-block; }
+.theme-vaporwave .cv-badge { border-radius: 0; border: 1px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.2); letter-spacing: 3px; }
+.theme-vaporwave .cv-tag { border-radius: 0; border: 1px solid rgba(255,255,255,0.2); }
+.theme-vaporwave .cv-bg-decoration::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,0,255,0.03) 2px, rgba(255,0,255,0.03) 3px),
+    linear-gradient(180deg, transparent 60%, rgba(255,110,199,0.15) 100%);
+  pointer-events: none;
+}
+.theme-vaporwave .cv-bg-decoration::after {
+  content: '▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  font-size: 120px; color: rgba(255,255,255,0.04); z-index: 0; pointer-events: none;
+}
+.theme-vaporwave .cv-content::before {
+  content: 'ＡＥＳＴＨＥＴＩＣ'; position: absolute; bottom: 50px; right: 30px;
+  font-size: 10px; letter-spacing: 4px; color: var(--accent1); opacity: 0.4; z-index: 1;
+}
+.theme-vaporwave .cv-mascot { filter: drop-shadow(0 0 10px var(--accent1)) drop-shadow(0 0 20px var(--accent2)); opacity: 0.8; }
+
+/* ===== 21. acid: 酸性设计 ===== */
+.theme-acid .cv-main-title { font-weight: 900; letter-spacing: 1px; line-height: 1.1; text-shadow: none; font-family: 'Noto Sans SC', sans-serif; }
+.theme-acid .cv-main-title .hl-acid { display: inline-block; }
+.theme-acid .cv-badge { border-radius: 0; border: none; background: var(--accent1); color: #000; font-weight: 900; clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%); }
+.theme-acid .cv-tag { border-radius: 0; border: 1px solid var(--accent1); background: transparent; }
+.theme-acid .cv-bg-decoration::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(circle at 20% 30%, var(--accent1) 0%, transparent 25%),
+    radial-gradient(circle at 80% 70%, var(--accent2) 0%, transparent 25%);
+  opacity: 0.08; pointer-events: none;
+}
+.theme-acid .cv-bg-decoration::after {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 80px, rgba(255,255,255,0.02) 80px, rgba(255,255,255,0.02) 82px);
+  pointer-events: none;
+}
+.theme-acid .cv-mascot { filter: drop-shadow(0 0 8px var(--accent1)) contrast(1.2) saturate(1.3); opacity: 0.85; }
+
+/* ===== 22. memphis: 孟菲斯风 ===== */
+.theme-memphis .cv-main-title { font-weight: 900; letter-spacing: 1px; line-height: 1.15; text-shadow: none; }
+.theme-memphis .cv-main-title .hl-memphis { display: inline-block; }
+.theme-memphis .cv-badge { border-radius: 0; border: 2px solid var(--accent1); background: transparent; }
+.theme-memphis .cv-tag { border-radius: 0; border: 2px solid currentColor; background: transparent; }
+.theme-memphis .cv-bg-decoration::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(circle at 10% 15%, var(--accent1) 6px, transparent 7px),
+    radial-gradient(circle at 85% 85%, var(--accent2) 8px, transparent 9px),
+    repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(0,0,0,0.03) 30px, rgba(0,0,0,0.03) 32px);
+  background-size: 60px 60px, 80px 80px, auto; opacity: 0.3; pointer-events: none;
+}
+.theme-memphis .cv-bg-decoration::after {
+  content: '◢◣'; position: absolute; bottom: 40px; left: 30px;
+  font-size: 40px; color: var(--accent1); opacity: 0.15; z-index: 0;
+}
+.theme-memphis .cv-mascot { filter: drop-shadow(3px 3px 0 rgba(0,0,0,0.2)); opacity: 0.9; }
+
+/* ===== 23. clay: 黏土风 ===== */
+.theme-clay .cv-main-title { font-weight: 800; letter-spacing: 1px; line-height: 1.15; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+.theme-clay .cv-main-title .hl-clay { display: inline-block; }
+.theme-clay .cv-badge { border-radius: 50px; border: none; background: rgba(255,255,255,0.6); box-shadow: 2px 4px 8px rgba(0,0,0,0.1), inset 1px 1px 2px rgba(255,255,255,0.5); }
+.theme-clay .cv-tag { border-radius: 50px; border: none; background: rgba(255,255,255,0.5); box-shadow: 1px 2px 4px rgba(0,0,0,0.08); }
+.theme-clay .cv-bg-circle { filter: blur(30px); opacity: 0.2; }
+.theme-clay .cv-mascot { filter: drop-shadow(4px 6px 8px rgba(0,0,0,0.15)) brightness(1.05); opacity: 0.95; }
+
+/* ===== 24. glass: 玻璃拟态 ===== */
+.theme-glass .cv-main-title { font-weight: 700; letter-spacing: 2px; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.theme-glass .cv-main-title .hl-glass { display: inline-block; }
+.theme-glass .cv-badge {
+  border-radius: 12px; border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.theme-glass .cv-tag {
+  border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.theme-glass .cv-bg-decoration::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(circle at 20% 20%, var(--accent1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, var(--accent2) 0%, transparent 40%);
+  opacity: 0.15; filter: blur(40px); pointer-events: none;
+}
+.theme-glass .cv-mascot { filter: drop-shadow(0 0 10px rgba(255,255,255,0.3)); opacity: 0.8; }
+
+/* ===== 25. sticker: 贴纸风 ===== */
+.theme-sticker .cv-main-title { font-weight: 800; letter-spacing: 1px; line-height: 1.15; text-shadow: 1px 1px 0 #fff, 2px 2px 0 rgba(0,0,0,0.1); }
+.theme-sticker .cv-main-title .hl-sticker { display: inline-block; }
+.theme-sticker .cv-badge { border-radius: 8px; border: 2px solid #fff; box-shadow: 2px 2px 0 rgba(0,0,0,0.15); }
+.theme-sticker .cv-tag { border-radius: 6px; border: 2px solid #fff; box-shadow: 1px 1px 0 rgba(0,0,0,0.1); }
+.theme-sticker .cv-bg-decoration::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(circle at 15% 20%, var(--accent1) 3px, transparent 4px),
+              radial-gradient(circle at 70% 60%, var(--accent2) 4px, transparent 5px),
+              radial-gradient(circle at 40% 85%, var(--accent1) 2px, transparent 3px);
+  background-size: 50px 50px, 70px 70px, 40px 40px; opacity: 0.12; pointer-events: none;
+}
+.theme-sticker .cv-mascot { filter: drop-shadow(3px 3px 0 #fff) drop-shadow(4px 4px 0 rgba(0,0,0,0.1)); opacity: 0.95; }
+
+/* ===== 26. comic: 漫画风 ===== */
+.theme-comic .cv-main-title { font-weight: 900; letter-spacing: 0; line-height: 1.1; text-shadow: 3px 3px 0 #000; font-family: 'Noto Sans SC', sans-serif; }
+.theme-comic .cv-main-title .hl-comic { display: inline-block; }
+.theme-comic .cv-badge { border-radius: 0; border: 3px solid #000; background: #fff; color: #000; font-weight: 900; }
+.theme-comic .cv-tag { border-radius: 0; border: 2px solid #000; background: #fff; color: #000; font-weight: 700; }
+.theme-comic .cv-bg-decoration::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: repeating-radial-gradient(circle at 50% 50%, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 5px);
+  pointer-events: none;
+}
+.theme-comic .cv-bg-decoration::after {
+  content: 'POW!'; position: absolute; top: 20px; right: 30px;
+  font-size: 24px; font-weight: 900; color: var(--accent2);
+  -webkit-text-stroke: 2px #000; text-stroke: 2px #000;
+  transform: rotate(-15deg); opacity: 0.3; z-index: 0;
+}
+.theme-comic .cv-content::before {
+  content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+  border: 3px solid #000; border-radius: 8px; pointer-events: none; z-index: 1;
+}
+.theme-comic .cv-mascot { filter: drop-shadow(3px 3px 0 #000); opacity: 0.9; }
+
+/* ===== 27. neon: 霓虹灯风 ===== */
+.theme-neon .cv-main-title { font-weight: 900; letter-spacing: 2px; line-height: 1.1; font-family: 'Noto Sans SC', sans-serif; }
+.theme-neon .cv-main-title .hl-neon { display: inline-block; }
+.theme-neon .cv-badge { border-radius: 50px; border: 2px solid var(--accent1); background: transparent; box-shadow: 0 0 10px var(--accent1), inset 0 0 10px rgba(255,0,110,0.1); }
+.theme-neon .cv-tag { border-radius: 50px; border: 1px solid var(--accent2); background: transparent; box-shadow: 0 0 8px var(--accent2); }
+.theme-neon .cv-bg-decoration::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.3) 100%);
+  pointer-events: none;
+}
+.theme-neon .cv-content::before {
+  content: 'ＮＥＯＮ'; position: absolute; top: 15px; right: 25px;
+  font-size: 11px; letter-spacing: 4px; color: var(--accent1); opacity: 0.3;
+  text-shadow: 0 0 5px var(--accent1); z-index: 1;
+}
+.theme-neon .cv-mascot { filter: drop-shadow(0 0 8px var(--accent1)) drop-shadow(0 0 16px var(--accent2)) brightness(1.2); opacity: 0.85; }
+
+/* ===== 28. retro: 复古风 ===== */
+.theme-retro .cv-main-title { font-weight: 800; letter-spacing: 2px; line-height: 1.15; font-family: 'Noto Serif SC', serif; text-shadow: 1px 1px 2px rgba(0,0,0,0.15); }
+.theme-retro .cv-main-title .hl-retro { display: inline-block; }
+.theme-retro .cv-badge { border-radius: 0; border: 2px solid currentColor; background: transparent; letter-spacing: 3px; font-family: 'Noto Serif SC', serif; }
+.theme-retro .cv-tag { border-radius: 0; border: 1px solid currentColor; background: transparent; }
+.theme-retro .cv-bg-decoration::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.02) 3px, rgba(0,0,0,0.02) 4px);
+  pointer-events: none;
+}
+.theme-retro .cv-bg-decoration::after {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.1) 100%);
+  pointer-events: none;
+}
+.theme-retro .cv-mascot { filter: sepia(0.3) contrast(0.95) drop-shadow(2px 2px 4px rgba(0,0,0,0.2)); opacity: 0.82; }
+
+/* ===== 29. collage: 拼贴风 ===== */
+.theme-collage .cv-main-title { font-weight: 800; letter-spacing: 1px; line-height: 1.2; text-shadow: 1px 1px 0 rgba(0,0,0,0.1); }
+.theme-collage .cv-main-title .hl-collage { display: inline-block; }
+.theme-collage .cv-badge { border-radius: 0; border: 1px dashed currentColor; background: rgba(255,255,255,0.5); transform: rotate(-1deg); }
+.theme-collage .cv-tag { border-radius: 0; border: 1px solid currentColor; background: rgba(255,255,255,0.3); transform: rotate(1deg); }
+.theme-collage .cv-bg-decoration::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(0,0,0,0.03) 24px, rgba(0,0,0,0.03) 25px);
+  pointer-events: none;
+}
+.theme-collage .cv-bg-decoration::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 15px;
+  background: var(--accent2); opacity: 0.15; z-index: 0;
+}
+.theme-collage .cv-content::before {
+  content: '📰'; position: absolute; top: 12px; right: 20px; font-size: 18px; opacity: 0.3; z-index: 1;
+}
+.theme-collage .cv-mascot { filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2)); opacity: 0.85; transform: rotate(2deg); }
+
+/* ===== 30. aurora: 弥散光/极光风 ===== */
+.theme-aurora .cv-main-title { font-weight: 700; letter-spacing: 3px; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.theme-aurora .cv-main-title .hl-aurora { display: inline-block; }
+.theme-aurora .cv-badge { border-radius: 50px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.theme-aurora .cv-tag { border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.theme-aurora .cv-bg-decoration::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse at 20% 30%, var(--accent1) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 60%, var(--accent2) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 100%, var(--accent1) 0%, transparent 50%);
+  opacity: 0.2; filter: blur(30px); pointer-events: none;
+}
+.theme-aurora .cv-bg-circle { filter: blur(40px); opacity: 0.15; }
+.theme-aurora .cv-mascot { filter: drop-shadow(0 0 8px var(--accent1)) drop-shadow(0 0 16px var(--accent2)); opacity: 0.82; }
 """
 
 

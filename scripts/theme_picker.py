@@ -41,6 +41,18 @@ THEME_INFO = {
     "cinema":  {"name": "影视悬疑", "desc": "影视/悬疑/解说", "icon": "🎬", "best": "电影解说、悬疑、剧情", "category": "文艺清新"},
     "journal": {"name": "手账风", "desc": "笔记/记录/手写", "icon": "📓", "best": "手账、笔记、日记、打卡", "category": "文艺清新"},
     "guochao": {"name": "国潮风", "desc": "国风/传统/文化", "icon": "🏮", "best": "国风、汉服、传统文化、非遗", "category": "文艺清新"},
+    # ===== 新增11种风格 =====
+    "vaporwave": {"name": "蒸汽波", "desc": "复古/迷幻/80s", "icon": "👾", "best": "复古、迷幻、音乐、80s怀旧", "category": "视觉冲击"},
+    "acid":      {"name": "酸性设计", "desc": "液态/荧光/前卫", "icon": "💥", "best": "前卫艺术、音乐、潮流、实验", "category": "视觉冲击"},
+    "memphis":   {"name": "孟菲斯", "desc": "几何/波点/撞色", "icon": "🎨", "best": "活泼、卡通、教育、年轻化", "category": "视觉冲击"},
+    "comic":     {"name": "漫画风", "desc": "描边/气泡/热血", "icon": "💬", "best": "漫画解说、热血、战斗、搞笑", "category": "视觉冲击"},
+    "neon":      {"name": "霓虹灯", "desc": "暗夜/发光/荧光", "icon": "⚡", "best": "夜店、音乐、赛博、暗夜", "category": "视觉冲击"},
+    "clay":      {"name": "黏土风", "desc": "3D/圆润/童趣", "icon": "👶", "best": "儿童、萌系、教程、可爱", "category": "生活娱乐"},
+    "glass":     {"name": "玻璃拟态", "desc": "模糊/半透/质感", "icon": "🔹", "best": "科技、产品、高端、设计", "category": "科技知识"},
+    "aurora":    {"name": "弥散光", "desc": "极光/光晕/梦幻", "icon": "🌌", "best": "梦幻、星空、科幻、宇宙", "category": "科技知识"},
+    "sticker":   {"name": "贴纸风", "desc": "白边/手绘/可爱", "icon": "🎀", "best": "手绘、可爱、装饰、日记", "category": "文艺清新"},
+    "retro":     {"name": "复古风", "desc": "胶片/做旧/怀旧", "icon": "📷", "best": "怀旧、老歌、胶片、回忆", "category": "文艺清新"},
+    "collage":   {"name": "拼贴风", "desc": "剪报/胶带/混合", "icon": "📌", "best": "文艺、剪报、手做、混搭", "category": "文艺清新"},
 }
 
 
@@ -101,10 +113,10 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights):
     """生成主题选择首页 + 所有风格详情页（单文件）"""
 
     # 生成19个主题卡片，按分类分组
-    all_themes = ["bold","cyber","minimal","magazine","pixel",
-                  "funny","food","gaming","variety","cute",
-                  "paper","dopamine","doodle","luxury",
-                  "fresh","anime","cinema","journal","guochao"]
+    all_themes = ["bold","cyber","minimal","magazine","pixel","glass","aurora",
+                  "funny","food","gaming","variety","cute","clay",
+                  "paper","dopamine","doodle","luxury","vaporwave","acid","memphis","comic","neon",
+                  "fresh","anime","cinema","journal","guochao","sticker","retro","collage"]
     # 按分类分组
     categories = {}
     for theme in all_themes:
@@ -456,7 +468,7 @@ body {{
 <div id="picker-page">
   <div class="header">
     <h1>🎨 选择封面风格</h1>
-    <p>19大B站爆款风格 · 4大分类 · 点击卡片查看4平台详细效果</p>
+    <p>30大B站爆款风格 · 4大分类 · 点击卡片查看4平台详细效果</p>
     <div class="auto-match">🤖 自动推荐：<strong>{auto_info["icon"]} {auto_info["name"]}</strong>（基于标题关键词检测）</div>
   </div>
 
@@ -553,4 +565,4 @@ if __name__ == "__main__":
     with open(a.output,"w",encoding="utf-8") as f:
         f.write(html)
     print(f"✅ 主题选择器已生成 → {a.output}")
-    print(f"   19大风格 · 4大分类 · 点击卡片跳转4平台详情页")
+    print(f"   30大风格 · 4大分类 · 点击卡片跳转4平台详情页")
