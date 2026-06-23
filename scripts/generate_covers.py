@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-视频封面生成器 v2.2 - 主脚本
-PPT风格底部缩略图导航 · 多平台/24套配色/Twemoji素材
+视频封面生成器 v3.0 - 主脚本
+PPT风格底部缩略图导航 · 4平台/40+套B站爆款风格/Twemoji素材
 """
 
 import argparse
@@ -29,35 +29,84 @@ PLATFORMS = {
              "title_size": 52, "subtitle_size": 20, "tag_size": 12, "badge_size": 11},
 }
 
-# ========== 24套爆款配色 ==========
+# ========== 40+套B站爆款配色 ==========
 COLOR_SCHEMES = {
+    # --- 1. 大字醒目风（bold）---
+    "bold_1": {"bg": "#ffffff", "accent1": "#000000", "accent2": "#ff0000", "name": "纯白黑字", "theme": "bold", "text_color": "#000000"},
+    "bold_2": {"bg": "#0a0a0a", "accent1": "#ffffff", "accent2": "#fbbf24", "name": "纯黑白字", "theme": "bold"},
+    "bold_3": {"bg": "#fbbf24", "accent1": "#000000", "accent2": "#ef4444", "name": "亮黄黑字", "theme": "bold", "text_color": "#000000"},
+    "bold_4": {"bg": "#dc2626", "accent1": "#ffffff", "accent2": "#fbbf24", "name": "亮红白字", "theme": "bold"},
+    "bold_5": {"bg": "#2563eb", "accent1": "#ffffff", "accent2": "#fde047", "name": "亮蓝白字", "theme": "bold"},
+    # --- 2. 赛博朋克风（cyber）---
+    "cyber_1": {"bg": "#1a0a2e", "accent1": "#ff00ff", "accent2": "#00ffff", "name": "霓虹紫粉", "theme": "cyber"},
+    "cyber_2": {"bg": "#0d1117", "accent1": "#00ff41", "accent2": "#0080ff", "name": "电子蓝绿", "theme": "cyber"},
+    "cyber_3": {"bg": "#0a0a0a", "accent1": "#ff006e", "accent2": "#3a86ff", "name": "故障红蓝", "theme": "cyber"},
+    "cyber_4": {"bg": "#0a0e27", "accent1": "#00d9ff", "accent2": "#9d4edd", "name": "暗夜电光", "theme": "cyber"},
+    # --- 3. 二次元动漫风（anime）---
+    "anime_1": {"bg": "#fff0f5", "accent1": "#ff69b4", "accent2": "#9370db", "name": "樱花粉白", "theme": "anime", "text_color": "#1a1a2e"},
+    "anime_2": {"bg": "#1a1a3e", "accent1": "#ffd700", "accent2": "#ff85a2", "name": "夜空星空", "theme": "anime"},
+    "anime_3": {"bg": "linear-gradient(135deg,#f093fb 0%,#f5576c 100%)", "accent1": "#ffffff", "accent2": "#ffd700", "name": "渐变梦幻", "theme": "anime", "is_gradient": True},
+    "anime_4": {"bg": "#2d1b69", "accent1": "#a78bfa", "accent2": "#f0abfc", "name": "蓝紫二次元", "theme": "anime"},
+    # --- 4. 搞笑整活风（funny）---
+    "funny_1": {"bg": "#fbbf24", "accent1": "#7c3aed", "accent2": "#ef4444", "name": "撞色黄紫", "theme": "funny", "text_color": "#1a1a2e"},
+    "funny_2": {"bg": "#ef4444", "accent1": "#22c55e", "accent2": "#fbbf24", "name": "红绿撞色", "theme": "funny"},
+    "funny_3": {"bg": "#0ea5e9", "accent1": "#f97316", "accent2": "#ffffff", "name": "蓝橙撞色", "theme": "funny"},
+    "funny_4": {"bg": "#1a1a2e", "accent1": "#fbbf24", "accent2": "#ef4444", "name": "彩虹拼贴", "theme": "funny"},
+    # --- 5. 黑金奢华风（luxury）---
+    "luxury_1": {"bg": "#0a0a0a", "accent1": "#fbbf24", "accent2": "#ffffff", "name": "经典黑金", "theme": "luxury"},
+    "luxury_2": {"bg": "#1c1410", "accent1": "#d4af37", "accent2": "#c0c0c0", "name": "深棕金", "theme": "luxury"},
+    "luxury_3": {"bg": "#0d2818", "accent1": "#d4af37", "accent2": "#ffffff", "name": "墨绿金", "theme": "luxury"},
+    "luxury_4": {"bg": "#1a0a2e", "accent1": "#ffd700", "accent2": "#c084fc", "name": "暗紫金", "theme": "luxury"},
+    # --- 6. 清新治愈风（fresh）---
+    "fresh_1": {"bg": "#e0f2fe", "accent1": "#0284c7", "accent2": "#fbbf24", "name": "天空蓝白", "theme": "fresh", "text_color": "#0c4a6e"},
+    "fresh_2": {"bg": "#f0fdf4", "accent1": "#16a34a", "accent2": "#f59e0b", "name": "薄荷绿白", "theme": "fresh", "text_color": "#14532d"},
+    "fresh_3": {"bg": "#fefce8", "accent1": "#ca8a04", "accent2": "#ec4899", "name": "暖白米色", "theme": "fresh", "text_color": "#422006"},
+    "fresh_4": {"bg": "#fff7ed", "accent1": "#ea580c", "accent2": "#ec4899", "name": "黄昏橙粉", "theme": "fresh", "text_color": "#7c2d12"},
+    # --- 7. 游戏电竞风（gaming）---
+    "gaming_1": {"bg": "#1a0505", "accent1": "#ef4444", "accent2": "#fbbf24", "name": "暗红电竞", "theme": "gaming"},
+    "gaming_2": {"bg": "#0a0e27", "accent1": "#3b82f6", "accent2": "#fbbf24", "name": "暗蓝电竞", "theme": "gaming"},
+    "gaming_3": {"bg": "#13091e", "accent1": "#a855f7", "accent2": "#22d3ee", "name": "暗紫电竞", "theme": "gaming"},
+    "gaming_4": {"bg": "#0a1a0a", "accent1": "#22c55e", "accent2": "#fbbf24", "name": "暗绿电竞", "theme": "gaming"},
+    # --- 8. 美食暖调风（food）---
+    "food_1": {"bg": "#2a0a0a", "accent1": "#f97316", "accent2": "#fbbf24", "name": "暖橙红", "theme": "food"},
+    "food_2": {"bg": "#451a03", "accent1": "#fde047", "accent2": "#fb923c", "name": "奶油棕", "theme": "food"},
+    "food_3": {"bg": "#ea580c", "accent1": "#ffffff", "accent2": "#fbbf24", "name": "鲜橙亮黄", "theme": "food"},
+    "food_4": {"bg": "#7f1d1d", "accent1": "#fbbf24", "accent2": "#ef4444", "name": "红锅辣味", "theme": "food"},
+    # --- 9. 影视悬疑风（cinema）---
+    "cinema_1": {"bg": "#0a0a0a", "accent1": "#dc2626", "accent2": "#6b7280", "name": "暗红悬疑", "theme": "cinema"},
+    "cinema_2": {"bg": "#0c1820", "accent1": "#06b6d4", "accent2": "#fbbf24", "name": "暗青电影", "theme": "cinema"},
+    "cinema_3": {"bg": "#1a1410", "accent1": "#d4a373", "accent2": "#fefae0", "name": "复古胶片", "theme": "cinema"},
+    "cinema_4": {"bg": "#0a1008", "accent1": "#22c55e", "accent2": "#ef4444", "name": "惊悚暗绿", "theme": "cinema"},
+    # --- 10. 萌宠可爱风（cute）---
+    "cute_1": {"bg": "#fdf2f8", "accent1": "#ec4899", "accent2": "#a78bfa", "name": "粉白萌系", "theme": "cute", "text_color": "#831843"},
+    "cute_2": {"bg": "#fefce8", "accent1": "#f59e0b", "accent2": "#ec4899", "name": "奶黄萌系", "theme": "cute", "text_color": "#422006"},
+    "cute_3": {"bg": "#ecfeff", "accent1": "#06b6d4", "accent2": "#fbbf24", "name": "薄荷蓝萌", "theme": "cute", "text_color": "#164e63"},
+    "cute_4": {"bg": "linear-gradient(135deg,#fbcfe8 0%,#c4b5fd 100%)", "accent1": "#7c3aed", "accent2": "#ec4899", "name": "渐变粉紫", "theme": "cute", "is_gradient": True, "text_color": "#581c87"},
+    # --- 兼容旧主题 ---
     "tech_1": {"bg": "#0f0e17", "accent1": "#ff8906", "accent2": "#f25f4c", "name": "暗夜火焰", "theme": "tech"},
-    "tech_2": {"bg": "#1a1a2e", "accent1": "#e94560", "accent2": "#0f3460", "name": "赛博朋克", "theme": "tech"},
     "tech_3": {"bg": "#0d1117", "accent1": "#58a6ff", "accent2": "#7ee787", "name": "极客绿", "theme": "tech"},
-    "tech_4": {"bg": "#1a1a2e", "accent1": "#e74c3c", "accent2": "#f39c12", "name": "科技红橙", "theme": "tech"},
     "tech_5": {"bg": "#0a0e27", "accent1": "#00d9ff", "accent2": "#9d4edd", "name": "电光紫蓝", "theme": "tech"},
     "hot_1": {"bg": "#2d0a0a", "accent1": "#fbbf24", "accent2": "#f87171", "name": "火焰金红", "theme": "hot"},
-    "hot_2": {"bg": "#3d0a0a", "accent1": "#ff6b6b", "accent2": "#ffd93d", "name": "热情黄红", "theme": "hot"},
-    "hot_3": {"bg": "#2a0a0a", "accent1": "#fb923c", "accent2": "#f97316", "name": "压测火焰", "theme": "hot"},
     "hot_4": {"bg": "#1a0505", "accent1": "#ef4444", "accent2": "#f59e0b", "name": "爆裂红金", "theme": "hot"},
     "cool_1": {"bg": "#0d1b2a", "accent1": "#00b4d8", "accent2": "#90e0ef", "name": "深海蓝青", "theme": "cool"},
-    "cool_2": {"bg": "#0a2e0a", "accent1": "#4ade80", "accent2": "#86efac", "name": "森林绿", "theme": "cool"},
-    "cool_3": {"bg": "#0f1c2e", "accent1": "#06b6d4", "accent2": "#67e8f9", "name": "冰蓝青", "theme": "cool"},
-    "cool_4": {"bg": "#0d2818", "accent1": "#10b981", "accent2": "#6ee7b7", "name": "翡翠绿", "theme": "cool"},
     "warm_1": {"bg": "#2e0a1a", "accent1": "#f9a8d4", "accent2": "#ec4899", "name": "玫瑰粉", "theme": "warm"},
-    "warm_2": {"bg": "#1a0a2e", "accent1": "#f72585", "accent2": "#4cc9f0", "name": "品红蓝紫", "theme": "warm"},
-    "warm_3": {"bg": "#2e1a0a", "accent1": "#fbbf24", "accent2": "#fb7185", "name": "暖阳金粉", "theme": "warm"},
-    "warm_4": {"bg": "#1e1b4b", "accent1": "#fbbf24", "accent2": "#818cf8", "name": "靛蓝紫金", "theme": "warm"},
-    "dark_1": {"bg": "#0a0a0a", "accent1": "#fbbf24", "accent2": "#ffffff", "name": "黑金奢华", "theme": "dark"},
-    "dark_2": {"bg": "#111111", "accent1": "#ef4444", "accent2": "#6b7280", "name": "暗血红灰", "theme": "dark"},
-    "dark_3": {"bg": "#0a0a0a", "accent1": "#22d3ee", "accent2": "#a3e635", "name": "黑客霓虹", "theme": "dark"},
+    "dark_1": {"bg": "#0a0a0a", "accent1": "#fbbf24", "accent2": "#ffffff", "name": "黑金奢华旧", "theme": "dark"},
     "gradient_1": {"bg": "linear-gradient(135deg,#667eea 0%,#764ba2 100%)", "accent1": "#ffd700", "accent2": "#fff", "name": "紫金渐变", "theme": "gradient", "is_gradient": True},
-    "gradient_2": {"bg": "linear-gradient(135deg,#f093fb 0%,#f5576c 100%)", "accent1": "#ffd700", "accent2": "#fff", "name": "粉红渐变", "theme": "gradient", "is_gradient": True},
     "gradient_3": {"bg": "linear-gradient(135deg,#4facfe 0%,#00f2fe 100%)", "accent1": "#fff", "accent2": "#ffe066", "name": "天蓝渐变", "theme": "gradient", "is_gradient": True},
-    "gradient_4": {"bg": "linear-gradient(135deg,#fa709a 0%,#fee140 100%)", "accent1": "#fff", "accent2": "#7c2d12", "name": "日落渐变", "theme": "gradient", "is_gradient": True},
 }
 
 THEME_KEYWORDS = {
+    "bold": ["干货","教程","知识","必看","入门","指南","科普","总结","万字","硬核"],
+    "cyber": ["AI","赛博","未来","霓虹","代码","编程","程序","服务器","Shell","API","CLI","Key","密钥","模型","Ollama","qwen","GPT","IDE","云"],
+    "anime": ["二次元","动漫","番剧","虚拟","萌","动画","日漫","cosplay"],
+    "funny": ["搞笑","整活","沙雕","表情包","吐槽","鬼畜","名场面","爆笑"],
+    "luxury": ["评测","高端","旗舰","Pro","Max","豪华","奢华","开箱","体验","深度"],
+    "fresh": ["Vlog","生活","旅行","日常","治愈","清新","慢生活","记录"],
+    "gaming": ["游戏","电竞","对战","吃鸡","王者","原神","Steam","FPS","MOBA","通关"],
+    "food": ["美食","探店","烹饪","吃","做饭","料理","烘焙","食谱","吃货"],
+    "cinema": ["电影","影视","悬疑","恐怖","解说","剧情","惊悚","科幻","影评"],
+    "cute": ["可爱","宠物","猫","狗","熊猫","狐狸","卡通","萌宠","治愈系","手帐"],
+    # 兼容旧
     "tech": ["AI","Shell","API","代码","编程","程序","服务器","云","IDE","CLI","Key","密钥","模型","Ollama","qwen","GPT"],
     "hot": ["教程","入门","实战","安装","部署","上线","新手","快速"],
     "cool": ["Docker","容器","MySQL","Redis","数据库","缓存","Portainer","Nginx"],
@@ -68,6 +117,16 @@ THEME_KEYWORDS = {
 }
 
 THEME_EMOJIS = {
+    "bold": [("1f4a1","💡"),("2b50","⭐"),("1f3af","🎯"),("1f4da","📚")],
+    "cyber": [("1f680","🚀"),("26a1","⚡"),("1f4bb","💻"),("1f310","🌐"),("1f527","🔧"),("1f4e1","📡"),("1f916","🤖")],
+    "anime": [("1f31f","🌟"),("2728","✨"),("1f4ab","💫"),("1f308","🌈"),("1f496","💖")],
+    "funny": [("1f602","😂"),("1f44c","👌"),("1f923","🤣"),("1f644","🙄"),("1f4a5","💥"),("1f389","🎉")],
+    "luxury": [("1f451","👑"),("1f48e","💎"),("1f576","🕶️"),("1f3a9","🎩")],
+    "fresh": [("1f343","🍃"),("2600","☀️"),("1f33b","🌻"),("1f4ab","💫"),("1f319","🌙")],
+    "gaming": [("1f3ae","🎮"),("1f476","👶"),("1f3c6","🏆"),("1f525","🔥"),("26a1","⚡"),("1f4a5","💥")],
+    "food": [("1f371","🍱"),("1f35a","🍚"),("1f35c","🍜"),("1f36a","🍪"),("1f37a","🍺"),("1f36d","🍬")],
+    "cinema": [("1f3ac","🎬"),("1f39e","🎞️"),("1f4f7","📷"),("1f3a4","🎤"),("1f4fd","📽️")],
+    "cute": [("1f431","🐱"),("1f436","🐶"),("1f98a","🦊"),("1f43c","🐼"),("1f428","🐨"),("1f42f","🐯"),("1f981","🦁"),("1f438","🐸"),("1f419","🐙"),("1f989","🦉"),("1f984","🦄"),("1f41d","🐝"),("1f98b","🦋")],
     "tech": [("1f680","🚀"),("26a1","⚡"),("1f4bb","💻"),("1f310","🌐"),("1f527","🔧"),("1f4e1","📡")],
     "hot": [("1f525","🔥"),("2b50","⭐"),("1f4a5","💥"),("1f3af","🎯"),("1f389","🎉")],
     "cool": [("1f433","🐳"),("1f4e6","📦"),("1f5c3","🗄️"),("1f510","🔐"),("1f4be","💾")],
@@ -76,6 +135,7 @@ THEME_EMOJIS = {
     "gradient": [("2728","✨"),("1f308","🌈"),("1f4ab","💫"),("1f31f","🌟"),("1f48e","💎")],
     "animal": [("1f431","🐱"),("1f436","🐶"),("1f98a","🦊"),("1f43c","🐼"),("1f428","🐨"),("1f42f","🐯"),("1f981","🦁"),("1f438","🐸"),("1f419","🐙"),("1f989","🦉"),("1f984","🦄"),("1f41d","🐝"),("1f98b","🦋")],
 }
+
 GENERAL_EMOJIS = [("1f680","🚀"),("26a1","⚡"),("1f4bb","💻"),("1f310","🌐"),
                   ("1f525","🔥"),("2b50","⭐"),("2728","✨"),("1f4a1","💡"),
                   ("1f3af","🎯"),("1f389","🎉"),("1f4aa","💪")]
@@ -91,13 +151,23 @@ def hex_to_rgb(h):
 
 def detect_theme(title, tags=None):
     text = ((title or "") + " " + (tags and " ".join(tags) or "")).lower()
-    scores = {t: sum(1 for k in kw if k.lower() in text) for t, kw in THEME_KEYWORDS.items()}
-    return max(scores, key=scores.get) if any(scores.values()) else "tech"
+    # 优先匹配新主题
+    for theme in ["bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute"]:
+        kws = THEME_KEYWORDS.get(theme, [])
+        if any(kw.lower() in text for kw in kws):
+            return theme
+    # 兼容旧主题
+    for theme in ["tech","hot","cool","warm","dark","gradient","animal"]:
+        kws = THEME_KEYWORDS.get(theme, [])
+        if any(kw.lower() in text for kw in kws):
+            return theme
+    return "cyber"
 
 
 def get_scheme_by_theme(theme, idx=0):
     ss = [k for k,v in COLOR_SCHEMES.items() if v["theme"]==theme]
-    return ss[idx % len(ss)] if ss else list(COLOR_SCHEMES.keys())[idx % len(COLOR_SCHEMES)]
+    if not ss: ss = [k for k,v in COLOR_SCHEMES.items() if v["theme"] in ("cyber","tech")]
+    return ss[idx % len(ss)] if ss else "cyber_1"
 
 
 def get_emojis(theme, idx=0):
@@ -128,6 +198,7 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
     bg = cfg.get("bg_color", sc["bg"])
     a1 = cfg.get("accent1", sc["accent1"])
     a2 = cfg.get("accent2", sc["accent2"])
+    text_color = sc.get("text_color", "#ffffff")
 
     e1, e2 = get_emojis(theme, index)
     ec1, ec2 = e1[1], e2[1]
@@ -147,7 +218,7 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
     ts, ss = pf["title_size"], pf["subtitle_size"]
     es1, es2 = int(ts*1.1), int(ts*0.8)
 
-    return f'''<div class="cover-card cover-{pf_key}" data-platform="{pf['name']}" data-index="{index+1}" style="--bg-color:{bg};--accent1:{a1};--accent2:{a2};">
+    return f'''<div class="cover-card cover-{pf_key}" data-platform="{pf['name']}" data-index="{index+1}" style="--bg-color:{bg};--accent1:{a1};--accent2:{a2};--text-color:{text_color};">
   <div class="cv-bg-decoration">
     <div class="cv-bg-circle" style="width:{350+index*20}px;height:{350+index*20}px;background:{a1};top:-{80+index*10}px;left:-{80+index*10}px;"></div>
     <div class="cv-bg-circle" style="width:{260+index*15}px;height:{260+index*15}px;background:{a2};bottom:-60px;right:-60px;"></div>
@@ -156,8 +227,8 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
   </div>
   <div class="cv-content">
     <div class="cv-badge" style="background:rgba({hex_to_rgb(a1)},0.2);color:{a1};border:1px solid rgba({hex_to_rgb(a1)},0.4);">{ec1} {badge}</div>
-    <div class="cv-main-title" style="font-size:{ts}px;">{dt}</div>
-    <div class="cv-sub-title" style="font-size:{ss}px;">{subtitle}</div>
+    <div class="cv-main-title" style="font-size:{ts}px;color:{text_color};">{dt}</div>
+    <div class="cv-sub-title" style="font-size:{ss}px;color:{text_color};">{subtitle}</div>
     <div class="cv-tag-row">
 {th}    </div>
   </div>
@@ -166,7 +237,6 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
 
 
 def generate_full_html(covers, platform="bilibili", theme="auto"):
-    """生成 PPT 风格：顶部标题栏 + 中间大图 + 底部缩略图导航条"""
     pks = ["bilibili","xiaohongshu","wechat","mobile"] if platform == "all" else [platform]
 
     slides = []
@@ -176,18 +246,11 @@ def generate_full_html(covers, platform="bilibili", theme="auto"):
 
     for pk in pks:
         pf = PLATFORMS[pk]
-        pn = pf["name"]
         for ci, c in enumerate(covers):
             si += 1
             first = si == 1
-            # 缩略图标签 = 平台名
-            t = c.get("title", f"{pn}{ci+1}")
-            label = pf.get("icon", "📄") + " " + pf["name"]
-            # 获取配色用于缩略图边框色
-            th = c.get("theme", "auto")
-            if th == "auto": th = detect_theme(t, c.get("tags"))
-            sk = get_scheme_by_theme(th, ci)
-            sc = COLOR_SCHEMES[sk]
+            t = c.get("title", f"{pf['name']}{ci+1}")
+            label = pf.get("icon","📄") + " " + pf["name"]
 
             act = ' active' if first else ''
             slides.append(f'      <div class="slide{act}" data-slide="{si}">\n{generate_single_cover(c, pk, ci)}\n      </div>')
@@ -219,7 +282,6 @@ body{{
   height:100vh;width:100vw;overflow:hidden;
 }}
 
-/* ===== 顶部标题栏 ===== */
 .topbar{{
   flex-shrink:0;
   display:flex;align-items:center;justify-content:space-between;
@@ -231,7 +293,6 @@ body{{
 .topbar-title{{font-weight:600;color:rgba(255,255,255,0.85);font-size:14px;}}
 .topbar-page{{font-family:'SF Mono',Monaco,monospace;font-size:12px;color:rgba(255,255,255,0.35);}}
 
-/* ===== 中间幻灯片区域 ===== */
 .stage{{
   flex:1;display:flex;align-items:center;justify-content:center;
   padding:20px 40px;overflow:hidden;position:relative;
@@ -240,7 +301,6 @@ body{{
 .slide.active{{display:flex;}}
 @keyframes slideIn{{from{{opacity:0;transform:scale(.96)}}to{{opacity:1;transform:scale(1)}}}}
 
-/* ===== 封面卡片 ===== */
 .cover-card{{
   width:94%;max-height:92%;
   border-radius:8px;overflow:hidden;position:relative;
@@ -263,10 +323,10 @@ body{{
 }}
 .cv-main-title{{
   font-weight:900;line-height:1.08;letter-spacing:2px;margin-bottom:10px;
-  text-shadow:0 4px 20px rgba(0,0,0,.4);max-width:90%;
+  text-shadow:0 4px 20px rgba(0,0,0,.4);max-width:90%;color:var(--text-color,#fff);
 }}
-.cv-main-title .highlight{{display:inline-block;transform:rotate(-3deg);}}
-.cv-sub-title{{font-weight:600;margin-bottom:16px;letter-spacing:1px;max-width:85%;}}
+.cv-main-title .highlight{{display:inline-block;transform:rotate(-3deg);text-shadow:none;}}
+.cv-sub-title{{font-weight:600;margin-bottom:16px;letter-spacing:1px;max-width:85%;color:var(--text-color,#fff);opacity:0.8;}}
 .cv-tag-row{{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px;}}
 .cv-tag{{padding:6px 18px;border-radius:16px;font-size:15px;font-weight:700;letter-spacing:.5px;}}
 .cv-emoji-deco{{position:absolute;opacity:.10;z-index:1;object-fit:contain;}}
@@ -288,7 +348,19 @@ body{{
 .cover-mobile .cv-tag{{padding:5px 14px;font-size:13px;}}
 .cover-card[style*="linear-gradient"]{{background:var(--bg-color);}}
 
-/* ===== 底部缩略图导航条（PPT风格）===== */
+/* 浅色背景适配 */
+.cover-card[style*="#fff"] .cv-bottom-bar,
+.cover-card[style*="#fbbf24"] .cv-bottom-bar,
+.cover-card[style*="#e0f2fe"] .cv-bottom-bar,
+.cover-card[style*="#f0fdf4"] .cv-bottom-bar,
+.cover-card[style*="#fefce8"] .cv-bottom-bar,
+.cover-card[style*="#fff7ed"] .cv-bottom-bar,
+.cover-card[style*="#fdf2f8"] .cv-bottom-bar,
+.cover-card[style*="#ecfeff"] .cv-bottom-bar,
+.cover-card[style*="#fff0f5"] .cv-bottom-bar{{
+  background:rgba(0,0,0,.12);color:rgba(0,0,0,.4);
+}}
+
 .navbar{{
   flex-shrink:0;
   display:flex;align-items:center;gap:6px;
@@ -309,7 +381,6 @@ body{{
   color:rgba(255,255,255,.55);
   font-family:inherit;font-size:12px;font-weight:600;
   cursor:pointer;transition:all .2s ease;white-space:nowrap;
-  min-width:0;
 }}
 .thumb-btn:hover{{
   background:rgba(255,255,255,.08);
@@ -339,18 +410,15 @@ body{{
 </head>
 <body>
 
-<!-- 顶部标题栏 -->
 <div class="topbar">
   <span class="topbar-title">视频封面预览</span>
   <span class="topbar-page"><span id="curPage">1</span> / {total}</span>
 </div>
 
-<!-- 幻灯片区域 -->
 <div class="stage">
 {slide_html}
 </div>
 
-<!-- 底部缩略图导航条 -->
 <nav class="navbar">
 {thumb_html}
 </nav>
@@ -366,7 +434,6 @@ function goSlide(n){{
   document.querySelectorAll('.thumb-btn')[n-1].classList.add('active');
   document.getElementById('curPage').textContent=n;
 }}
-// 键盘左右切换
 document.addEventListener('keydown',function(e){{
   if(e.key==='ArrowLeft'||e.key==='ArrowUp') goSlide(cur-1);
   if(e.key==='ArrowRight'||e.key==='ArrowDown') goSlide(cur+1);
@@ -390,15 +457,24 @@ def covers_from_chapters(chapters, theme="auto"):
 
 
 def main():
+    all_themes = ["auto","bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute",
+                  "tech","hot","cool","warm","dark","gradient","animal"]
     p = argparse.ArgumentParser(
-        description="视频封面生成器 v2.2 - PPT风格底部缩略图导航",
+        description="视频封面生成器 v3.0 - 40+套B站爆款风格",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="\n示例:\n  python3 generate_covers.py --title 'Docker一装，运维轻松10倍'\n  python3 generate_covers.py --title '给爷来个Key' --platform all\n  python3 generate_covers.py --input ppt.html --output covers.html --platform all\n  python3 generate_covers.py --config covers.json")
+        epilog="\n示例:\n"
+               "  python3 generate_covers.py --title 'Docker一装，运维轻松10倍' --theme cyber\n"
+               "  python3 generate_covers.py --title '给爷来个Key' --platform all --theme bold\n"
+               "  python3 generate_covers.py --title '猫猫编程日记' --theme cute --platform all\n"
+               "  python3 generate_covers.py --input ppt.html --output covers.html --platform all\n"
+               "  python3 generate_covers.py --config covers.json\n\n"
+               "B站爆款风格: bold/cyber/anime/funny/luxury/fresh/gaming/food/cinema/cute")
     p.add_argument("--input","-i")
     p.add_argument("--output","-o",default="video-covers.html")
     p.add_argument("--config","-c")
     p.add_argument("--platform","-p",default="bilibili",choices=["bilibili","xiaohongshu","wechat","mobile","all"])
-    p.add_argument("--theme",default="auto",choices=["auto","tech","hot","cool","warm","dark","gradient","animal"])
+    p.add_argument("--theme",default="auto",choices=all_themes)
+    p.add_argument("--scheme",help="指定具体配色ID (如 bold_3, cyber_1, cute_2)")
     p.add_argument("--extract-only",action="store_true")
     p.add_argument("--title","-t")
     p.add_argument("--subtitle")
@@ -440,6 +516,7 @@ def main():
         tg = [t.strip() for t in a.tags.split(",")] if a.tags else []
         cover = {"title":a.title,"highlight_words":hw,"subtitle":a.subtitle or "",
                  "tags":tg,"badge":a.badge or "","quote":a.quote or "","theme":a.theme}
+        if a.scheme: cover["scheme"] = a.scheme
         if a.bg_color: cover["bg_color"]=a.bg_color
         if a.accent_color: cover["accent1"]=a.accent_color
         html = generate_full_html([cover], a.platform, a.theme)
