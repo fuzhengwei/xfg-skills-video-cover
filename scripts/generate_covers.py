@@ -103,6 +103,66 @@ COLOR_SCHEMES = {
     "dark_1": {"bg": "#0a0a0a", "accent1": "#fbbf24", "accent2": "#ffffff", "name": "黑金奢华旧", "theme": "dark"},
     "gradient_1": {"bg": "linear-gradient(135deg,#667eea 0%,#764ba2 100%)", "accent1": "#ffd700", "accent2": "#fff", "name": "紫金渐变", "theme": "gradient", "is_gradient": True},
     "gradient_3": {"bg": "linear-gradient(135deg,#4facfe 0%,#00f2fe 100%)", "accent1": "#fff", "accent2": "#ffe066", "name": "天蓝渐变", "theme": "gradient", "is_gradient": True},
+
+    # ===== 14. 杂志风（magazine）— 评测/深度/商业/高端 =====
+    "magazine_1": {"bg": "#fafafa", "accent1": "#1a1a1a", "accent2": "#dc2626", "name": "黑白红杂志", "theme": "magazine", "text_color": "#1a1a1a"},
+    "magazine_2": {"bg": "#0a0a0a", "accent1": "#ffffff", "accent2": "#dc2626", "name": "暗黑杂志", "theme": "magazine"},
+    "magazine_3": {"bg": "#f5f5f0", "accent1": "#1e3a5f", "accent2": "#c9a96e", "name": "米色蓝金杂志", "theme": "magazine", "text_color": "#1e3a5f"},
+    "magazine_4": {"bg": "#1e3a5f", "accent1": "#ffffff", "accent2": "#c9a96e", "name": "深蓝杂志", "theme": "magazine"},
+
+    # ===== 15. 极简风（minimal）— 知识/科普/商务 =====
+    "minimal_1": {"bg": "#ffffff", "accent1": "#000000", "accent2": "#3b82f6", "name": "纯黑白蓝", "theme": "minimal", "text_color": "#000000"},
+    "minimal_2": {"bg": "#000000", "accent1": "#ffffff", "accent2": "#6b7280", "name": "暗夜极简", "theme": "minimal"},
+    "minimal_3": {"bg": "#f8f8f8", "accent1": "#333333", "accent2": "#10b981", "name": "灰白绿极简", "theme": "minimal", "text_color": "#333333"},
+    "minimal_4": {"bg": "#fafaf5", "accent1": "#1a1a1a", "accent2": "#f59e0b", "name": "米黄极简", "theme": "minimal", "text_color": "#1a1a1a"},
+
+    # ===== 16. 多巴胺（dopamine）— 撞色/潮流/快乐 =====
+    "dopamine_1": {"bg": "linear-gradient(135deg,#ff6b6b 0%,#feca57 50%,#48dbfb 100%)", "accent1": "#ffffff", "accent2": "#5f27cd", "name": "彩虹多巴胺", "theme": "dopamine", "is_gradient": True},
+    "dopamine_2": {"bg": "#ff6b6b", "accent1": "#feca57", "accent2": "#48dbfb", "name": "红黄蓝多巴胺", "theme": "dopamine", "text_color": "#ffffff"},
+    "dopamine_3": {"bg": "#a29bfe", "accent1": "#fd79a8", "accent2": "#fdcb6e", "name": "紫粉黄多巴胺", "theme": "dopamine"},
+    "dopamine_4": {"bg": "linear-gradient(135deg,#00cec9 0%,#a29bfe 100%)", "accent1": "#ffffff", "accent2": "#e84393", "name": "青紫多巴胺", "theme": "dopamine", "is_gradient": True},
+
+    # ===== 17. 国潮风（guochao）— 国风/传统/文化 =====
+    "guochao_1": {"bg": "#8b0000", "accent1": "#ffd700", "accent2": "#ffffff", "name": "中国红金", "theme": "guochao"},
+    "guochao_2": {"bg": "#1a1a2e", "accent1": "#e94560", "accent2": "#ffd700", "name": "暗夜国风", "theme": "guochao"},
+    "guochao_3": {"bg": "#f5e6d3", "accent1": "#8b0000", "accent2": "#1a1a2e", "name": "宣纸红黑", "theme": "guochao", "text_color": "#1a1a2e"},
+    "guochao_4": {"bg": "#0d2818", "accent1": "#d4af37", "accent2": "#e94560", "name": "墨绿国风", "theme": "guochao"},
+
+    # ===== 18. 像素风（pixel）— 复古/游戏/极客 =====
+    "pixel_1": {"bg": "#1a1a2e", "accent1": "#00ff41", "accent2": "#ff006e", "name": "像素霓虹", "theme": "pixel"},
+    "pixel_2": {"bg": "#0a0a0a", "accent1": "#fbbf24", "accent2": "#3b82f6", "name": "像素金蓝", "theme": "pixel"},
+    "pixel_3": {"bg": "#1e3a5f", "accent1": "#fbbf24", "accent2": "#ef4444", "name": "8bit红金蓝", "theme": "pixel"},
+    "pixel_4": {"bg": "#2d1b69", "accent1": "#00ffff", "accent2": "#fbbf24", "name": "复古像素", "theme": "pixel"},
+
+    # ===== 19. 手账风（journal）— 笔记/记录/手写 =====
+    "journal_1": {"bg": "#fef3c7", "accent1": "#92400e", "accent2": "#dc2626", "name": "牛皮纸手账", "theme": "journal", "text_color": "#451a03"},
+    "journal_2": {"bg": "#e0f2fe", "accent1": "#0c4a6e", "accent2": "#0ea5e9", "name": "方格纸手账", "theme": "journal", "text_color": "#0c4a6e"},
+    "journal_3": {"bg": "#f0fdf4", "accent1": "#14532d", "accent2": "#16a34a", "name": "绿格手账", "theme": "journal", "text_color": "#14532d"},
+    "journal_4": {"bg": "#fdf2f8", "accent1": "#831843", "accent2": "#ec4899", "name": "粉白手账", "theme": "journal", "text_color": "#831843"},
+}
+
+# ===== 风格结构分类 =====
+THEME_CATEGORIES = {
+    "科技知识": {
+        "icon": "🚀",
+        "desc": "适合编程、AI、技术教程、知识科普",
+        "themes": ["bold", "cyber", "minimal", "magazine", "pixel"],
+    },
+    "生活娱乐": {
+        "icon": "🎉",
+        "desc": "适合搞笑、美食、游戏、综艺、宠物",
+        "themes": ["funny", "food", "gaming", "variety", "cute"],
+    },
+    "视觉冲击": {
+        "icon": "💥",
+        "desc": "适合热点、评测、开箱、撕纸拼贴",
+        "themes": ["paper", "dopamine", "doodle", "luxury"],
+    },
+    "文艺清新": {
+        "icon": "🍃",
+        "desc": "适合Vlog、旅行、动漫、手账、国风",
+        "themes": ["fresh", "anime", "cinema", "journal", "guochao"],
+    },
 }
 
 THEME_KEYWORDS = {
@@ -111,14 +171,20 @@ THEME_KEYWORDS = {
     "anime": ["二次元","动漫","番剧","虚拟","萌","动画","日漫","cosplay"],
     "funny": ["搞笑","整活","沙雕","表情包","吐槽","鬼畜","名场面","爆笑","离谱","抽象"],
     "luxury": ["评测","高端","旗舰","Pro","Max","豪华","奢华","开箱","体验","深度","测评"],
-    "fresh": ["Vlog","生活","旅行","日常","治愈","清新","慢生活","记录","日常"],
+    "fresh": ["Vlog","生活","旅行","日常","治愈","清新","慢生活","记录"],
     "gaming": ["游戏","电竞","对战","吃鸡","王者","原神","Steam","FPS","MOBA","通关","攻略"],
     "food": ["美食","探店","烹饪","吃","做饭","料理","烘焙","食谱","吃货","外卖"],
     "cinema": ["电影","影视","悬疑","恐怖","解说","剧情","惊悚","科幻","影评","拆解"],
     "cute": ["可爱","宠物","猫","狗","熊猫","狐狸","卡通","萌宠","治愈系","手帐","动物"],
-    "paper": ["安利","推荐","攻略","评测","对比","排行","盘点","合集","总结","撕"],
-    "variety": ["热点","事件","吃瓜","反转","震惊","绝了","崩溃","反应","名场面","弹幕"],
+    "paper": ["安利","推荐","攻略","评测","对比","排行","盘点","合集","总结","撕","拼贴"],
+    "variety": ["热点","吃瓜","反转","震惊","弹幕","名场面","反应","绝了","崩溃"],
     "doodle": ["手帐","手绘","涂鸦","文创","日记","笔记","创意","DIY","手作","画"],
+    "magazine": ["商业","财经","深度","报道","访谈","专题","周刊","趋势","分析","白皮书","行业"],
+    "minimal": ["极简","简约","设计","美学","留白","高级感","性冷感","黑白","商务","专业"],
+    "dopamine": ["多巴胺","撞色","潮流","快乐","元气","夏日","色彩","穿搭","活力","开心"],
+    "guochao": ["国潮","国风","传统","文化","汉服","古风","中国","非遗","东方","水墨"],
+    "pixel": ["像素","复古","8bit","游戏","街机","红白机","怀旧","极客","像素画","像素风"],
+    "journal": ["手账","手帐","笔记","日记","记录","计划","打卡","日程","规划","手写"],
     "tech": ["AI","Shell","API","代码","编程","程序","服务器","云","IDE","CLI","Key","密钥","模型","Ollama","qwen","GPT"],
     "hot": ["教程","入门","实战","安装","部署","上线","新手","快速"],
     "cool": ["Docker","容器","MySQL","Redis","数据库","缓存","Portainer","Nginx"],
@@ -126,9 +192,6 @@ THEME_KEYWORDS = {
     "dark": ["安全","黑客","高级","硬核","渗透","密码"],
     "gradient": ["时尚","创意","爆款","热门","推荐"],
     "animal": ["萌","可爱","治愈","动物","宠物","猫","狗","熊猫","狐狸","卡通"],
-    "paper": ["安利","推荐","攻略","评测","对比","排行","盘点","合集","撕","拼贴"],
-    "variety": ["热点","吃瓜","反转","震惊","弹幕","名场面","反应","绝了"],
-    "doodle": ["手帐","手绘","涂鸦","文创","笔记","创意","DIY","手作"],
 }
 
 THEME_EMOJIS = {
@@ -145,6 +208,12 @@ THEME_EMOJIS = {
     "paper": [("2702","✂️"),("1f4c4","📄"),("1f4dd","📝"),("1f3af","🎯"),("2753","❓"),("2764","❤️"),("1f525","🔥")],
     "variety": [("1f4ac","💬"),("1f631","😱"),("1f62d","😭"),("1f60d","😍"),("1f633","😳"),("1f44f","👏"),("1f525","🔥"),("1f4a5","💥")],
     "doodle": [("1f58d","🖍️"),("270f","✏️"),("1f4d0","📐"),("1f3a8","🎨"),("2b50","⭐"),("1f4ab","💫"),("1f388","🎈")],
+    "magazine": [("1f4f0","📰"),("1f4d0","📐"),("1f3a8","🎨"),("1f451","👑"),("1f4ca","📊")],
+    "minimal": [("26aa","⚪"),("26ab","⚫"),("25fc","◼️"),("25fb","◻️"),("1f539","🔹")],
+    "dopamine": [("1f308","🌈"),("1f389","🎉"),("1f31f","🌟"),("2728","✨"),("1f4ab","💫"),("1f3c6","🏆")],
+    "guochao": [("1f380","🎴"),("1f534","🔴"),("1f4e0","🎏"),("1f3a8","🎨"),("1f31e","🌕")],
+    "pixel": [("1f3ae","🎮"),("1f47e","👾"),("1f3a8","🎨"),("1f4a5","💥"),("26a1","⚡")],
+    "journal": [("1f4d3","📓"),("1f4dd","📝"),("270f","✏️"),("1f4cc","📌"),("1f4c4","📄"),("1f3a8","🎨")],
     "tech": [("1f680","🚀"),("26a1","⚡"),("1f4bb","💻"),("1f310","🌐"),("1f527","🔧"),("1f4e1","📡")],
     "hot": [("1f525","🔥"),("2b50","⭐"),("1f4a5","💥"),("1f3af","🎯"),("1f389","🎉")],
     "cool": [("1f433","🐳"),("1f4e6","📦"),("1f5c3","🗄️"),("1f510","🔐"),("1f4be","💾")],
@@ -165,26 +234,32 @@ ICONFONT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__fi
 
 # 风格 → iconfont 分类映射
 THEME_ICONFONT_MAP = {
-    "cute":     "animal",   # 萌宠风格用动物卡通
+    "cute":     "animal",
     "animal":   "animal",
-    "funny":    "animal",   # 搞笑风格也用动物增加趣味
-    "cyber":    "coder",    # 赛博/科技用程序员图标
-    "tech":     "tech",      # 科技用科技图标
-    "bold":     "coder",     # 大字醒目用程序员图标（知识区）
-    "gaming":   "tech",      # 游戏用科技图标
-    "dark":     "coder",     # 黑暗风用黑客/代码图标
-    "food":     "food",      # 美食用食物图标
-    "fresh":    "animal",    # 清新用动物
-    "doodle":   "emoji",     # 手绘用表情
-    "variety":  "emoji",     # 综艺弹幕用表情
-    "anime":    "animal",    # 二次元用动物
-    "luxury":   "tech",      # 奢华用科技/芯片
-    "cinema":   "tech",      # 影视用科技
-    "paper":    "coder",     # 撕纸用代码
-    "hot":      "tech",      # 热门用火箭等
-    "cool":     "coder",     # 极客用服务器
-    "warm":     "animal",    # 温暖用动物
-    "gradient": "animal",    # 渐变用动物
+    "funny":    "animal",
+    "cyber":    "coder",
+    "tech":     "tech",
+    "bold":     "coder",
+    "gaming":   "tech",
+    "dark":     "coder",
+    "food":     "food",
+    "fresh":    "animal",
+    "doodle":   "emoji",
+    "variety":  "emoji",
+    "anime":    "animal",
+    "luxury":   "tech",
+    "cinema":   "tech",
+    "paper":    "coder",
+    "hot":      "tech",
+    "cool":     "coder",
+    "warm":     "animal",
+    "gradient": "animal",
+    "magazine": "coder",
+    "minimal":  "tech",
+    "dopamine": "emoji",
+    "guochao":  "animal",
+    "pixel":    "tech",
+    "journal":  "emoji",
 }
 
 def get_iconfont_svgs(theme, count=2):
@@ -335,6 +410,25 @@ def apply_highlights(title, highlights, theme, a1, a2):
         elif theme == "doodle":
             # 手绘涂鸦：手写体 + 波浪下划线 + 圆圈标注
             dt = dt.replace(w, f'<span class="hl-doodle" style="color:{c};border-bottom:3px dashed {c};text-decoration:none;position:relative;display:inline-block;">{w}<span style="position:absolute;top:-6px;left:-4px;right:-4px;bottom:-6px;border:2px solid {c};border-radius:8px;opacity:0.4;pointer-events:none;"></span></span>')
+        elif theme == "magazine":
+            # 杂志风：衬线字体 + 上边框线 + 字间距
+            dt = dt.replace(w, f'<span class="hl-magazine" style="color:{c};border-top:3px solid {c};letter-spacing:2px;padding-top:2px;font-family:Noto Serif SC,serif;font-style:italic;">{w}</span>')
+        elif theme == "minimal":
+            # 极简：加粗 + 颜色对比
+            dt = dt.replace(w, f'<span class="hl-minimal" style="color:{c};font-weight:700;">{w}</span>')
+        elif theme == "dopamine":
+            # 多巴胺：渐变背景 + 白色文字 + 旋转
+            rot = -3 if i%2==0 else 3
+            dt = dt.replace(w, f'<span class="hl-dopamine" style="background:linear-gradient(135deg,{a1},{a2});color:#fff;padding:2px 12px;border-radius:20px;transform:rotate({rot}deg);display:inline-block;">{w}</span>')
+        elif theme == "guochao":
+            # 国潮：金色描边 + 印章风
+            dt = dt.replace(w, f'<span class="hl-guochao" style="color:{c};-webkit-text-stroke:1px {a2};text-stroke:1px {a2};letter-spacing:4px;border:1px solid {c};padding:2px 8px;">{w}</span>')
+        elif theme == "pixel":
+            # 像素风：方块背景 + 等宽字体
+            dt = dt.replace(w, f'<span class="hl-pixel" style="background:{c};color:var(--bg);padding:0 6px;font-family:monospace;font-weight:900;">{w}</span>')
+        elif theme == "journal":
+            # 手账风：手写体 + 胶带下划线
+            dt = dt.replace(w, f'<span class="hl-journal" style="color:{c};border-bottom:3px solid {c};font-family:ZCOOL KuaiLe,sans-serif;position:relative;display:inline-block;">{w}<span style="position:absolute;bottom:-3px;left:-2px;right:-2px;height:6px;background:{c};opacity:0.2;border-radius:2px;"></span></span>')
         else:
             dt = dt.replace(w, f'<span class="highlight" style="color:{c};">{w}</span>')
     return dt
@@ -614,6 +708,83 @@ THEME_FONT_CSS = """
   opacity: 0.08; pointer-events: none;
 }
 .theme-doodle .cv-bg-circle { border-style: dashed; }
+
+/* ===== 14. magazine: 杂志风 ===== */
+.theme-magazine .cv-main-title { font-weight: 900; letter-spacing: -1px; line-height: 1.0; font-family: 'Noto Serif SC', 'Playfair Display', serif; text-shadow: none; }
+.theme-magazine .cv-main-title .hl-magazine { display: inline-block; }
+.theme-magazine .cv-badge { border-radius: 0; border: none; border-top: 3px solid currentColor; border-bottom: 1px solid currentColor; background: transparent; letter-spacing: 4px; font-size: 12px; text-transform: uppercase; }
+.theme-magazine .cv-tag { border-radius: 0; border: 1px solid currentColor; background: transparent; letter-spacing: 2px; }
+.theme-magazine .cv-content::before {
+  content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
+  background: var(--accent2); z-index: 3;
+}
+.theme-magazine .cv-sub-title { font-family: 'Noto Serif SC', serif; font-style: italic; }
+.theme-magazine .cv-bottom-bar { letter-spacing: 3px; font-size: 11px; text-transform: uppercase; }
+
+/* ===== 15. minimal: 极简风 ===== */
+.theme-minimal .cv-main-title { font-weight: 300; letter-spacing: 4px; line-height: 1.25; text-shadow: none; font-family: 'Noto Sans SC', sans-serif; }
+.theme-minimal .cv-main-title .hl-minimal { display: inline; font-weight: 700; }
+.theme-minimal .cv-badge { border-radius: 0; border: 1px solid currentColor; background: transparent; letter-spacing: 3px; font-size: 11px; }
+.theme-minimal .cv-tag { border-radius: 0; border: 1px solid currentColor; background: transparent; font-size: 12px; }
+.theme-minimal .cv-content { align-items: center; text-align: center; }
+.theme-minimal .cv-bg-circle { display: none; }
+.theme-minimal .cv-emoji-deco { display: none; }
+.theme-minimal .cv-mascot { opacity: 0.5; }
+.theme-minimal .cv-bottom-bar { letter-spacing: 2px; font-size: 11px; }
+
+/* ===== 16. dopamine: 多巴胺撞色风 ===== */
+.theme-dopamine .cv-main-title { font-weight: 900; letter-spacing: 1px; line-height: 1.1; text-shadow: 2px 2px 0 rgba(0,0,0,0.15); }
+.theme-dopamine .cv-main-title .hl-dopamine { display: inline-block; }
+.theme-dopamine .cv-badge { border-radius: 50px; border: 2px solid rgba(255,255,255,0.8); }
+.theme-dopamine .cv-tag { border-radius: 50px; border: 2px solid rgba(255,255,255,0.6); }
+.theme-dopamine .cv-bg-circle { filter: blur(30px); opacity: 0.3; }
+.theme-dopamine .cv-emoji-deco { opacity: 0.25 !important; }
+.theme-dopamine .cv-mascot { filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.2)) drop-shadow(0 0 10px rgba(255,255,255,0.3)); }
+
+/* ===== 17. guochao: 国潮风 ===== */
+.theme-guochao .cv-main-title { font-weight: 900; letter-spacing: 6px; line-height: 1.15; font-family: 'Noto Serif SC', 'ZCOOL XiaoWei', serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+.theme-guochao .cv-main-title .hl-guochao { display: inline-block; }
+.theme-guochao .cv-badge { border-radius: 0; border: 2px solid currentColor; background: transparent; letter-spacing: 4px; }
+.theme-guochao .cv-tag { border-radius: 0; border: 1px solid currentColor; background: transparent; letter-spacing: 2px; }
+.theme-guochao .cv-content::before {
+  content: ''; position: absolute; top: 15px; right: 15px; width: 60px; height: 60px;
+  border: 2px solid currentColor; border-radius: 50%; opacity: 0.15; z-index: 1;
+}
+.theme-guochao .cv-content::after {
+  content: ''; position: absolute; bottom: 50px; left: 30px; width: 40px; height: 40px;
+  border: 1px solid currentColor; transform: rotate(45deg); opacity: 0.1; z-index: 1;
+}
+.theme-guochao .cv-bottom-bar { letter-spacing: 4px; }
+
+/* ===== 18. pixel: 像素风 ===== */
+.theme-pixel .cv-main-title { font-weight: 900; letter-spacing: 0; line-height: 1.1; font-family: 'Press Start 2P', 'Noto Sans SC', monospace; text-shadow: 3px 3px 0 var(--accent2); image-rendering: pixelated; }
+.theme-pixel .cv-main-title .hl-pixel { display: inline-block; }
+.theme-pixel .cv-badge { border-radius: 0; border: none; background: var(--accent1); color: var(--bg); padding: 4px 8px; font-family: monospace; font-size: 11px; }
+.theme-pixel .cv-tag { border-radius: 0; border: none; background: var(--accent2); color: var(--bg); font-family: monospace; }
+.theme-pixel .cv-bg-decoration::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(255,255,255,0.03) 4px, rgba(255,255,255,0.03) 8px);
+  pointer-events: none;
+}
+.theme-pixel .cv-content::before {
+  content: '▶'; position: absolute; top: 20px; left: 30px; font-size: 16px; color: var(--accent1); font-family: monospace;
+}
+.theme-pixel .cv-mascot { image-rendering: pixelated; filter: drop-shadow(2px 2px 0 #000); }
+
+/* ===== 19. journal: 手账风 ===== */
+.theme-journal .cv-main-title { font-weight: 700; letter-spacing: 1px; line-height: 1.2; font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif; text-shadow: none; }
+.theme-journal .cv-main-title .hl-journal { display: inline; border-bottom: 2px solid var(--accent2); }
+.theme-journal .cv-badge { border-radius: 0; border: 1px solid currentColor; background: transparent; font-family: 'ZCOOL KuaiLe', sans-serif; }
+.theme-journal .cv-tag { border-radius: 0; border: 1px dashed currentColor; background: transparent; }
+.theme-journal .cv-bg-decoration::after {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(0,0,0,0.04) 24px, rgba(0,0,0,0.04) 25px);
+  pointer-events: none;
+}
+.theme-journal .cv-content::before {
+  content: '📌'; position: absolute; top: 15px; right: 25px; font-size: 20px; opacity: 0.5; z-index: 1;
+}
+.theme-journal .cv-mascot { filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.15)); opacity: 0.8; transform: rotate(-3deg); }
 """
 
 

@@ -18,16 +18,29 @@ from generate_covers import (
 )
 
 THEME_INFO = {
-    "bold":    {"name": "大字醒目", "desc": "知识区/教程/干货", "icon": "📢", "best": "编程教程、知识科普、硬核干货"},
-    "cyber":   {"name": "赛博朋克", "desc": "数码/科技/AI", "icon": "🌃", "best": "AI、编程、科技、服务器"},
-    "anime":   {"name": "二次元动漫", "desc": "ACG/番剧/虚拟主播", "icon": "🌸", "best": "动漫、番剧、虚拟主播"},
-    "funny":   {"name": "搞笑整活", "desc": "搞笑/整活/表情包", "icon": "😂", "best": "搞笑、沙雕、吐槽、鬼畜"},
-    "luxury":  {"name": "黑金奢华", "desc": "评测/高端/开箱", "icon": "👑", "best": "数码评测、开箱、高端体验"},
-    "fresh":   {"name": "清新治愈", "desc": "Vlog/生活/旅行", "icon": "🍃", "best": "Vlog、旅行、生活记录"},
-    "gaming":  {"name": "游戏电竞", "desc": "游戏/电竞/直播", "icon": "🎮", "best": "游戏、电竞、通关攻略"},
-    "food":    {"name": "美食暖调", "desc": "美食/探店/烹饪", "icon": "🍜", "best": "美食、探店、烹饪教程"},
-    "cinema":  {"name": "影视悬疑", "desc": "影视/悬疑/解说", "icon": "🎬", "best": "电影解说、悬疑、剧情"},
-    "cute":    {"name": "萌宠可爱", "desc": "宠物/萌系/卡通", "icon": "🐱", "best": "宠物、萌系、卡通、手帐"},
+    # ===== 科技知识类 =====
+    "bold":    {"name": "大字醒目", "desc": "知识区/教程/干货", "icon": "📢", "best": "编程教程、知识科普、硬核干货", "category": "科技知识"},
+    "cyber":   {"name": "赛博朋克", "desc": "数码/科技/AI", "icon": "🌃", "best": "AI、编程、科技、服务器", "category": "科技知识"},
+    "minimal": {"name": "极简主义", "desc": "设计/商务/美学", "icon": "⬜", "best": "知识科普、商务、设计美学", "category": "科技知识"},
+    "magazine":{"name": "杂志风", "desc": "商业/深度/报道", "icon": "📰", "best": "商业财经、深度报道、行业分析", "category": "科技知识"},
+    "pixel":   {"name": "像素复古", "desc": "复古/游戏/极客", "icon": "👾", "best": "复古游戏、极客、街机怀旧", "category": "科技知识"},
+    # ===== 生活娱乐类 =====
+    "funny":   {"name": "搞笑整活", "desc": "搞笑/整活/表情包", "icon": "😂", "best": "搞笑、沙雕、吐槽、鬼畜", "category": "生活娱乐"},
+    "food":    {"name": "美食暖调", "desc": "美食/探店/烹饪", "icon": "🍜", "best": "美食、探店、烹饪教程", "category": "生活娱乐"},
+    "gaming":  {"name": "游戏电竞", "desc": "游戏/电竞/直播", "icon": "🎮", "best": "游戏、电竞、通关攻略", "category": "生活娱乐"},
+    "variety": {"name": "综艺弹幕", "desc": "热点/吐槽/反应", "icon": "💬", "best": "热点、吃瓜、名场面、反应", "category": "生活娱乐"},
+    "cute":    {"name": "萌宠可爱", "desc": "宠物/萌系/卡通", "icon": "🐱", "best": "宠物、萌系、卡通、手帐", "category": "生活娱乐"},
+    # ===== 视觉冲击类 =====
+    "paper":   {"name": "撕纸拼贴", "desc": "评测/攻略/安利", "icon": "✂️", "best": "安利推荐、攻略对比、排行盘点", "category": "视觉冲击"},
+    "dopamine":{"name": "多巴胺撞色", "desc": "潮流/撞色/快乐", "icon": "🌈", "best": "潮流穿搭、夏日、元气活力", "category": "视觉冲击"},
+    "doodle":  {"name": "手绘涂鸦", "desc": "文创/手绘/创意", "icon": "🖍️", "best": "文创、手绘、创意DIY", "category": "视觉冲击"},
+    "luxury":  {"name": "黑金奢华", "desc": "评测/高端/开箱", "icon": "👑", "best": "数码评测、开箱、高端体验", "category": "视觉冲击"},
+    # ===== 文艺清新类 =====
+    "fresh":   {"name": "清新治愈", "desc": "Vlog/生活/旅行", "icon": "🍃", "best": "Vlog、旅行、生活记录", "category": "文艺清新"},
+    "anime":   {"name": "二次元动漫", "desc": "ACG/番剧/虚拟主播", "icon": "🌸", "best": "动漫、番剧、虚拟主播", "category": "文艺清新"},
+    "cinema":  {"name": "影视悬疑", "desc": "影视/悬疑/解说", "icon": "🎬", "best": "电影解说、悬疑、剧情", "category": "文艺清新"},
+    "journal": {"name": "手账风", "desc": "笔记/记录/手写", "icon": "📓", "best": "手账、笔记、日记、打卡", "category": "文艺清新"},
+    "guochao": {"name": "国潮风", "desc": "国风/传统/文化", "icon": "🏮", "best": "国风、汉服、传统文化、非遗", "category": "文艺清新"},
 }
 
 
@@ -87,11 +100,28 @@ def make_mini_card(theme, title, subtitle, tags, badge, quote, highlights):
 def generate_picker_html(title, subtitle, tags, badge, quote, highlights):
     """生成主题选择首页 + 所有风格详情页（单文件）"""
 
-    # 生成13个主题卡片
-    cards = []
-    for theme in ["bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute","paper","variety","doodle"]:
-        cards.append(make_mini_card(theme, title, subtitle, tags, badge, quote, highlights))
-    cards_html = "\n".join(cards)
+    # 生成19个主题卡片，按分类分组
+    all_themes = ["bold","cyber","minimal","magazine","pixel",
+                  "funny","food","gaming","variety","cute",
+                  "paper","dopamine","doodle","luxury",
+                  "fresh","anime","cinema","journal","guochao"]
+    # 按分类分组
+    categories = {}
+    for theme in all_themes:
+        info = THEME_INFO.get(theme, {})
+        cat = info.get("category", "其他")
+        if cat not in categories:
+            categories[cat] = []
+        categories[cat].append(theme)
+    
+    cards_html = ""
+    cat_icons = {"科技知识":"🚀","生活娱乐":"🎉","视觉冲击":"💥","文艺清新":"🍃"}
+    for cat, themes in categories.items():
+        icon = cat_icons.get(cat, "📄")
+        cards_html += f'    <div class="category-section">\n      <div class="category-title">{icon} {cat}</div>\n      <div class="category-grid">\n'
+        for theme in themes:
+            cards_html += make_mini_card(theme, title, subtitle, tags, badge, quote, highlights) + "\n"
+        cards_html += '      </div>\n    </div>\n'
 
     # 自动匹配
     auto_theme = detect_theme(title, tags)
@@ -99,7 +129,7 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights):
 
     # 为每个主题生成4平台详情页的HTML（内嵌为隐藏div）
     detail_pages = []
-    for theme in ["bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute","paper","variety","doodle"]:
+    for theme in all_themes:
         cover_cfg = {
             "title": title, "highlight_words": highlights,
             "subtitle": subtitle, "tags": tags,
@@ -187,6 +217,20 @@ body {{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
   gap:20px; max-width:1400px; margin:0 auto;
+}}
+
+/* ===== 分类区块 ===== */
+.category-section {{
+  max-width:1400px; margin:0 auto 36px; width:100%;
+}}
+.category-title {{
+  font-size:18px; font-weight:800; color:#f59e0b; margin-bottom:16px; padding-left:4px;
+  border-left:3px solid #f59e0b; padding-left:12px;
+}}
+.category-grid {{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:20px;
 }}
 
 .theme-card {{
@@ -412,16 +456,16 @@ body {{
 <div id="picker-page">
   <div class="header">
     <h1>🎨 选择封面风格</h1>
-    <p>13大B站爆款风格，点击卡片查看4平台详细效果</p>
+    <p>19大B站爆款风格 · 4大分类 · 点击卡片查看4平台详细效果</p>
     <div class="auto-match">🤖 自动推荐：<strong>{auto_info["icon"]} {auto_info["name"]}</strong>（基于标题关键词检测）</div>
   </div>
 
-  <div class="grid">
+  <div class="grid-container">
 {cards_html}
   </div>
 
   <div class="footer">
-    点击任意风格卡片 → 查看 B站 / 小红书 / 微信视频号 / 手机竖版 4种尺寸效果
+    点击任意风格卡片 → 查看 B站 / 小红书 / 微信视频号 / 手机竖版 4种尺寸效果\n    · 键盘 ← → 翻页 · ESC 返回选择
   </div>
 </div>
 
@@ -509,4 +553,4 @@ if __name__ == "__main__":
     with open(a.output,"w",encoding="utf-8") as f:
         f.write(html)
     print(f"✅ 主题选择器已生成 → {a.output}")
-    print(f"   点击任意风格卡片 → 直接跳转4平台详情页")
+    print(f"   19大风格 · 4大分类 · 点击卡片跳转4平台详情页")
