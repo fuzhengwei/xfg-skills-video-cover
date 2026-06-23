@@ -19,12 +19,14 @@ except ImportError:
 
 # ========== 平台尺寸 ==========
 PLATFORMS = {
-    "bilibili": {"name": "B站", "ratio": "16 / 9", "width": 1200, "height": 675,
+    "bilibili": {"name": "B站", "icon": "📺", "ratio": "16 / 9", "width": 1200, "height": 675,
                  "title_size": 82, "subtitle_size": 28, "tag_size": 15, "badge_size": 14},
-    "xiaohongshu": {"name": "小红书", "ratio": "3 / 4", "width": 900, "height": 1200,
+    "xiaohongshu": {"name": "小红书", "icon": "📕", "ratio": "3 / 4", "width": 900, "height": 1200,
                      "title_size": 64, "subtitle_size": 24, "tag_size": 14, "badge_size": 13},
-    "wechat": {"name": "视频号", "ratio": "9 / 16", "width": 1080, "height": 1920,
+    "wechat": {"name": "微信视频号", "icon": "📱", "ratio": "9 / 16", "width": 1080, "height": 1920,
                "title_size": 56, "subtitle_size": 22, "tag_size": 13, "badge_size": 12},
+    "mobile": {"name": "手机竖版", "icon": "📲", "ratio": "9 / 19.5", "width": 1080, "height": 2106,
+             "title_size": 52, "subtitle_size": 20, "tag_size": 12, "badge_size": 11},
 }
 
 # ========== 24套爆款配色 ==========
@@ -163,7 +165,7 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
 
 def generate_full_html(covers, platform="bilibili", theme="auto"):
     """生成 PPT 风格：顶部标题栏 + 中间大图 + 底部缩略图导航条"""
-    pks = ["bilibili","xiaohongshu","wechat"] if platform == "all" else [platform]
+    pks = ["bilibili","xiaohongshu","wechat","mobile"] if platform == "all" else [platform]
 
     slides = []
     thumbs = []
@@ -176,9 +178,9 @@ def generate_full_html(covers, platform="bilibili", theme="auto"):
         for ci, c in enumerate(covers):
             si += 1
             first = si == 1
-            # 缩略图标签文字（取标题前6字）
+            # 缩略图标签 = 平台名
             t = c.get("title", f"{pn}{ci+1}")
-            label = t[:6] if len(t)>6 else t
+            label = pf.get("icon", "📄") + " " + pf["name"]
             # 获取配色用于缩略图边框色
             th = c.get("theme", "auto")
             if th == "auto": th = detect_theme(t, c.get("tags"))
@@ -277,6 +279,11 @@ body{{
 .cover-wechat .cv-content{{padding:32px 28px;}}
 .cover-wechat .cv-main-title{{line-height:1.15;}}
 .cover-wechat .cv-badge{{margin-bottom:24px;}}
+.cover-mobile .cv-content{{padding:28px 24px;}}
+.cover-mobile .cv-main-title{{line-height:1.18;letter-spacing:1px;}}
+.cover-mobile .cv-badge{{margin-bottom:28px;padding:5px 14px;font-size:12px;}}
+.cover-mobile .cv-sub-title{{font-size:19px;margin-bottom:12px;}}
+.cover-mobile .cv-tag{{padding:5px 14px;font-size:13px;}}
 .cover-card[style*="linear-gradient"]{{background:var(--bg-color);}}
 
 /* ===== 底部缩略图导航条（PPT风格）===== */
@@ -313,7 +320,7 @@ body{{
   border-color:rgba(245,158,11,.5);
   box-shadow:0 0 12px rgba(245,158,11,.15);
 }}
-.thumb-label{{font-weight:700;overflow:hidden;text-overflow:ellipsis;}}
+.thumb-label{{font-weight:700;white-space:nowrap;}}
 .thumb-num{{
   font-size:10px;font-weight:600;
   min-width:16px;height:16px;line-height:16px;
@@ -388,7 +395,7 @@ def main():
     p.add_argument("--input","-i")
     p.add_argument("--output","-o",default="video-covers.html")
     p.add_argument("--config","-c")
-    p.add_argument("--platform","-p",default="bilibili",choices=["bilibili","xiaohongshu","wechat","all"])
+    p.add_argument("--platform","-p",default="bilibili",choices=["bilibili","xiaohongshu","wechat","mobile","all"])
     p.add_argument("--theme",default="auto",choices=["auto","tech","hot","cool","warm","dark","gradient"])
     p.add_argument("--extract-only",action="store_true")
     p.add_argument("--title","-t")
@@ -410,7 +417,7 @@ def main():
         covers = covers_from_chapters(chapters, a.theme)
         html = generate_full_html(covers, a.platform, a.theme)
         with open(a.output,"w",encoding="utf-8") as f: f.write(html)
-        pc = 3 if a.platform=="all" else 1
+        pc = 4 if a.platform=="all" else 1
         print(f"✅ 成功生成 {len(covers)} 个封面 × {pc} 平台 → {a.output}")
         return
 
@@ -422,7 +429,7 @@ def main():
         if not covers: print("错误：配置文件中没有 covers",file=sys.stderr); sys.exit(1)
         html = generate_full_html(covers, pl, th)
         with open(a.output,"w",encoding="utf-8") as f: f.write(html)
-        pc = 3 if pl=="all" else 1
+        pc = 4 if pl=="all" else 1
         print(f"✅ 成功生成 {len(covers)} 个封面 × {pc} 平台 → {a.output}")
         return
 
@@ -435,7 +442,7 @@ def main():
         if a.accent_color: cover["accent1"]=a.accent_color
         html = generate_full_html([cover], a.platform, a.theme)
         with open(a.output,"w",encoding="utf-8") as f: f.write(html)
-        pc = 3 if a.platform=="all" else 1
+        pc = 4 if a.platform=="all" else 1
         print(f"✅ 成功生成 1 个封面 × {pc} 平台 → {a.output}")
         return
 
