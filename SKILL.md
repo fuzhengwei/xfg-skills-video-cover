@@ -1,55 +1,80 @@
 ---
 name: xfg-skills-video-cover
 description: >
-  B站/小红书/微信视频号/YouTube 视频封面生成器。根据 PPT 内容、课程大纲或文本描述，
+  B站/小红书/微信视频号/手机竖版 视频封面生成器。根据 PPT 内容、课程大纲或文本描述，
   自动生成大字体突出、俏皮、抓眼球的爆款视频封面 HTML 页面。
-  内置多平台尺寸（B站16:9、小红书3:4、视频号9:16）、20+套爆款配色、
-  卡通素材库（Twemoji SVG + 开源插画），一键生成多页封面供截图使用。
+  内置10大B站爆款风格（大字醒目/赛博朋克/二次元/搞笑整活/黑金奢华/清新治愈/游戏电竞/美食暖调/影视悬疑/萌宠可爱）、
+  40+套配色方案、差异化字体排版、4平台尺寸、Twemoji卡通素材库。
   触发词：制作视频封面、生成B站封面、视频封面设计、做封面、
   cover design、bilibili cover、视频缩略图、PPT封面、
-  课程封面、章节封面、封面生成、小红书封面、视频号封面。
+  课程封面、章节封面、封面生成、小红书封面、视频号封面、选主题、选风格。
   适用场景：(1) 从 PPT/HTML 提取章节生成封面
   (2) 根据文本描述直接生成封面
   (3) 批量生成系列课程封面
   (4) 多平台尺寸封面一键生成
-  (5) 自定义封面模板与配色方案。
+  (5) 交互式主题选择预览
 license: Apache-2.0
 metadata:
   author: xfg-studio
-  version: "2.0.0"
+  version: "3.1.0"
   category: creative
   homepage: https://github.com/xfg-skills/xfg-skills-video-cover
-allowed-tools: Read Write Edit Bash(python3:*) Bash(node:*) Bash(curl:*)
+allowed-tools: Read Write Edit Bash(python3:*) Bash(node:*) Bash(curl:*) Bash(open:*)
 ---
 
-# 视频封面生成器 v2.0
+# 视频封面生成器 v3.1
 
 根据 PPT 内容或文本描述，生成大字体突出、俏皮、抓眼球的 B站/小红书/微信视频号 风格爆款视频封面。
 
-## 功能概述
+## ✨ v3.1 新特性
 
-- 从 PPT/HTML 文件中提取章节信息，自动生成每个章节的视频封面
-- 支持纯文本描述直接生成封面
-- 每个封面包含：超大主标题、副标题、标签栏、装饰元素、底部金句
-- **多平台尺寸**：B站（16:9 / 1200×675）、小红书（3:4 / 900×1200）、微信视频号（9:16 / 1080×1920）
-- **20+套爆款配色方案**：按主题分类（科技/热情/清爽/温暖/暗黑/渐变），自动匹配或手动选择
-- **卡通素材库**：内置 Twemoji SVG（3000+表情）+ 开源插画 URL，按主题智能匹配装饰
-- 输出为独立 HTML 文件，多页排列，可在浏览器中逐页截图
+- **10大B站爆款风格**：每种风格有完全不同的字体排版、高亮方式、装饰元素
+- **差异化字体排版**：不再是统一模板，每种风格的视觉表现完全不同
+- **交互式主题选择器**：生成预览页，用户一眼看到所有风格效果再选
+- **40+套配色方案**：每种风格4-5套配色
+- **4平台输出**：B站/小红书/微信视频号/手机竖版
+- **3种字体**：Noto Sans SC + ZCOOL KuaiLe + Ma Shan Zheng
+
+## 10大B站爆款风格
+
+这是本技能的核心。每种风格不是简单换色，而是完全不同的视觉设计语言：
+
+| 代码 | 风格名 | 字体处理 | 高亮方式 | 适合场景 |
+|------|--------|----------|----------|----------|
+| `bold` | 📢 大字醒目 | 900粗体左对齐 | 荧光笔黄底黑字 | 知识区/教程/干货 |
+| `cyber` | 🌃 赛博朋克 | 霓虹发光+扫描线 | 多层text-shadow光晕 | AI/编程/科技 |
+| `anime` | 🌸 二次元动漫 | ZCOOL圆润体 | 白色描边+倾斜 | ACG/番剧/虚拟主播 |
+| `funny` | 😂 搞笑整活 | 大小混排 | 旋转+波浪下划线 | 搞笑/整活/吐槽 |
+| `luxury` | 👑 黑金奢华 | 衬线感+宽字距 | 上下双金线框 | 评测/开箱/高端 |
+| `fresh` | 🍃 清新治愈 | 马善政手写体 | 波浪下划线 | Vlog/生活/旅行 |
+| `gaming` | 🎮 游戏电竞 | 斜切skewX | 双色发光描边 | 游戏/电竞/通关 |
+| `food` | 🍜 美食暖调 | 圆润800 | 圆角气泡背景 | 美食/探店/烹饪 |
+| `cinema` | 🎬 影视悬疑 | 700+宽字距 | 底部粗线 | 电影解说/悬疑 |
+| `cute` | 🐱 萌宠可爱 | ZCOOL手写体 | 气泡背景+旋转 | 宠物/萌系/卡通 |
 
 ## 使用方法
+
+### ⭐ 方式零：交互式主题选择（推荐！）
+
+**当用户说"帮我做封面"但没指定风格时，先生成主题选择器让用户选：**
+
+```bash
+python3 scripts/theme_picker.py \
+  --title "用户的标题" \
+  --subtitle "副标题" \
+  --tags "标签1,标签2,标签3" \
+  --badge "徽章文字" \
+  --highlight "高亮词1,高亮词2" \
+  --output /path/to/theme-picker.html
+```
+
+生成一个包含10种风格预览的HTML页面，用户在浏览器中点击选择喜欢的风格后，再用对应 `--theme` 参数生成正式封面。
 
 ### 方式一：从 PPT/HTML 文件生成
 
 ```bash
-python3 scripts/generate_covers.py --input <ppt.html> --output <covers.html> --platform bilibili
+python3 scripts/generate_covers.py --input <ppt.html> --output <covers.html> --platform all --theme auto
 ```
-
-参数说明：
-- `--input`：PPT/HTML 文件路径（必需）
-- `--output`：输出文件路径（默认：`./video-covers.html`）
-- `--platform`：平台尺寸，可选 `bilibili`（默认）/ `xiaohongshu` / `wechat` / `all`
-- `--theme`：配色主题，可选 `auto`（默认）/ `tech` / `hot` / `cool` / `warm` / `dark` / `gradient`，详见 `references/color-schemes.md`
-- `--extract`：提取模式，可选 `chapters`（按章节，默认）/ `slides`（按页）
 
 ### 方式二：从文本描述生成
 
@@ -62,7 +87,7 @@ python3 scripts/generate_covers.py --output covers.html \
   --quote "从此不再手动复制粘贴Key" \
   --highlight "给爷来个Key,自己找Key吃" \
   --platform all \
-  --theme tech
+  --theme cyber
 ```
 
 ### 方式三：批量生成（JSON 配置）
@@ -71,23 +96,50 @@ python3 scripts/generate_covers.py --output covers.html \
 python3 scripts/generate_covers.py --config covers.json --output covers.html
 ```
 
-JSON 配置格式：
-```json
-{
-  "platform": "all",
-  "theme": "auto",
-  "covers": [
-    {
-      "title": "告别手敲SSH",
-      "highlight_words": ["手敲SSH", "自然语言"],
-      "subtitle": "AI Shell 连接云服务器",
-      "tags": ["AI Shell", "自然语言", "零配置"],
-      "badge": "新手友好",
-      "quote": "告别命令行恐惧症",
-      "theme": "tech"
-    }
-  ]
-}
+## AI 使用流程（重要！）
+
+当用户要求生成视频封面时，按以下流程操作：
+
+### Step 1: 确认内容
+
+从用户输入或 PPT 中提取：标题、副标题、标签、高亮词、底部金句
+
+### Step 2: 展示风格选择
+
+**如果用户没有指定风格**，先运行主题选择器：
+
+```bash
+python3 scripts/theme_picker.py --title "标题" --output /tmp/theme-picker.html
+```
+
+然后用 `open` 命令打开，并告诉用户：
+
+> 已为你生成风格选择预览页，共10种B站爆款风格：
+> 1. 📢 大字醒目 - 适合知识区教程
+> 2. 🌃 赛博朋克 - 适合AI/科技
+> 3. 🌸 二次元动漫 - 适合ACG
+> 4. 😂 搞笑整活 - 适合沙雕整活
+> 5. 👑 黑金奢华 - 适合评测开箱
+> 6. 🍃 清新治愈 - 适合Vlog生活
+> 7. 🎮 游戏电竞 - 适合游戏
+> 8. 🍜 美食暖调 - 适合美食
+> 9. 🎬 影视悬疑 - 适合影视解说
+> 10. 🐱 萌宠可爱 - 适合宠物萌系
+>
+> 浏览器里预览效果，告诉我你选哪个，或者直接说"用赛博朋克风"就行。
+
+### Step 3: 生成正式封面
+
+用户选定后，用对应 `--theme` 参数生成：
+
+```bash
+python3 scripts/generate_covers.py --title "标题" --theme cyber --platform all --output covers.html
+```
+
+### Step 4: 打开预览
+
+```bash
+open covers.html
 ```
 
 ## 多平台尺寸
@@ -97,127 +149,73 @@ JSON 配置格式：
 | bilibili | 16:9 | 1200×675 | B站视频封面标准尺寸 |
 | xiaohongshu | 3:4 | 900×1200 | 小红书笔记封面 |
 | wechat | 9:16 | 1080×1920 | 微信视频号封面 |
+| mobile | 9:19.5 | 1284×2778 | 手机竖版（iPhone Pro Max 原生分辨率） |
 
-使用 `--platform all` 时，生成的 HTML 文件包含3页（每个平台一页），可在浏览器中逐页截图。
+使用 `--platform all` 时，4个平台各生成一页，底部缩略图标注平台名，键盘←→翻页。
 
-## 配色主题
+## 配色方案
 
-内置 20+ 套爆款配色，按主题分类，详见 `references/color-schemes.md`。
+每种风格有4-5套配色，共40+套。详见 `references/color-schemes.md`。
 
-| 主题 | 风格 | 适用场景 |
-|------|------|---------|
-| tech | 科技感（深蓝/青/紫） | 编程、AI、云技术 |
-| hot | 热情活力（红/橙/黄） | 教程、入门、实战 |
-| cool | 清爽冷色（蓝/绿/青） | Docker、运维、工具 |
-| warm | 温暖柔和（粉/紫/玫红） | 设计、生活、对话 |
-| dark | 暗黑酷炫（黑/深灰/金） | 安全、高级、硬核 |
-| gradient | 渐变潮流（多色渐变） | 时尚、创意、爆款 |
-
-选择逻辑：`--theme auto` 时根据标题关键词智能匹配主题。
-
-## 卡通素材库
-
-### Twemoji SVG（内置）
-
-使用 Twitter 开源 Twemoji（CC-BY 4.0 协议，可免费商用）作为主要装饰素材。
-
-CDN 格式：`https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/svg/{codepoint}.svg`
-
-内置常用 emoji 编码映射，详见 `references/emoji-library.md`。
-
-按主题智能匹配装饰 emoji：
-- 科技主题：🚀 ⚡ 💻 🌐 🔧 📡
-- Docker/容器：🐳 📦 🔵 🔧
-- 数据库：🗄️ 🔐 💾 📊
-- AI/大模型：🤖 🧠 ✨ 💡
-- 部署/上线：🚀 🌐 🎉 ✅
-- 压测/性能：🔥 ⚡ 📊 💪
-- 对话/客服：💬 🤗 📱 💬
-
-### 开源插画素材（在线）
-
-以下素材库可免费商用，生成时按需从 URL 加载：
-
-| 素材库 | 地址 | 协议 | 说明 |
-|--------|------|------|------|
-| unDraw | https://undraw.co/ | MIT | 扁平风插画，可自定义颜色 |
-| ManyPixels | https://www.manypixels.co/gallery | MIT | 矢量插画 |
-| Storyset | https://storyset.com/ | Free | 动画插画 |
-| Open Peeps | https://openpeeps.com/ | CC0 | 手绘人物库 |
+- `--theme auto`：根据标题关键词智能匹配风格
+- `--theme cyber`：指定赛博朋克风格
+- `--scheme cyber_2`：指定具体配色ID（查看 color-schemes.md 获取完整列表）
 
 ## 可用脚本
 
-- **`scripts/generate_covers.py`** — 主生成脚本，支持 PPT 提取、单页生成、批量生成、多平台输出
-- **`scripts/extract_chapters.py`** — 从 HTML/PPT 文件提取章节信息
+| 脚本 | 说明 |
+|------|------|
+| `scripts/generate_covers.py` | 主生成脚本，支持PPT提取/单页/批量/多平台 |
+| `scripts/theme_picker.py` | **主题选择器**，生成10种风格预览对比页 |
+| `scripts/extract_chapters.py` | 从 HTML/PPT 提取章节信息 |
 
 ## 可用资源
 
-- **`references/color-schemes.md`** — 20+套爆款配色方案详细定义
-- **`references/design-spec.md`** — 封面设计规范（尺寸、字体、间距、多平台适配）
-- **`references/emoji-library.md`** — Twemoji emoji 编码映射表 + 主题匹配规则
-- **`assets/cover-template.html`** — 单页封面 HTML 模板（含完整 CSS，多平台适配）
-- **`assets/full-page-template.html`** — 完整演示文稿模板（含导航、缩略图、键盘交互）
+- `references/color-schemes.md` — 40+套配色方案（10大风格分类）
+- `references/design-spec.md` — 封面设计规范
+- `references/emoji-library.md` — Twemoji emoji 编码映射 + 主题匹配
+- `assets/cover-template.html` — 单页封面模板
+- `assets/full-page-template.html` — 完整演示文稿模板
 
-## 工作流程
+## 关键参数
 
-### 从文本描述生成封面（最常用）
+```bash
+python3 generate_covers.py [选项]
 
-1. **确定内容**：主标题、副标题、标签、高亮词、底部金句
-2. **选择平台**：`--platform bilibili`（单页）/ `--platform all`（3页多平台）
-3. **选择主题**：`--theme auto`（智能匹配）/ `--theme tech`（指定主题）
-4. **运行生成**：`python3 scripts/generate_covers.py --title "..." --platform all --output covers.html`
-5. **浏览器预览**：打开 HTML 文件，逐页截图保存
+必选（之一）:
+  --title "标题"           直接生成单页
+  --input ppt.html         从PPT提取
+  --config covers.json     批量生成
 
-### 从 PPT 生成封面的完整流程
+常用:
+  --theme auto             风格主题（bold/cyber/anime/funny/luxury/fresh/gaming/food/cinema/cute）
+  --platform bilibili      平台（bilibili/xiaohongshu/wechat/mobile/all）
+  --output covers.html     输出路径
 
-1. **读取 PPT 文件**：使用 `read` 工具读取 HTML/PPT 文件内容
-2. **提取章节信息**：运行 `python3 scripts/generate_covers.py --input <ppt.html> --extract-only`
-3. **确认封面方案**：与用户确认每个封面的标题、配色、标签
-4. **生成封面 HTML**：运行 `python3 scripts/generate_covers.py --input <ppt.html> --output <covers.html>`
-5. **预览效果**：用浏览器打开生成的 HTML 文件
-
-### 自定义封面生成流程
-
-1. **准备内容**：确定每个封面的标题、副标题、标签、配色
-2. **编写 JSON 配置**：按上述 JSON 格式编写配置文件
-3. **运行生成**：`python3 scripts/generate_covers.py --config covers.json --output covers.html`
-4. **预览与调整**：浏览器预览，如需调整修改配置后重新生成
-
-## 封面设计规范
-
-### 视觉要素
-
-1. **主标题**：大字体突出（B站72-82px / 小红书56-64px / 视频号48-56px），关键词高亮+微旋转，俏皮感
-2. **副标题**：补充说明，字号约为主标题的1/3
-3. **标签栏**：3-4个彩色标签，与主题色协调
-4. **装饰元素**：大半透明圆形渐变 + Twemoji SVG 装饰 + 箭头指引
-5. **底部金句**：一句抓眼球的短文案（≤15字）
-6. **Badge**：分类标签（左上角）
-
-### 多平台字体规范
-
-| 平台 | 主标题 | 副标题 | 标签 |
-|------|--------|--------|------|
-| bilibili (16:9) | 82px / 900 | 28px / 600 | 15px / 700 |
-| xiaohongshu (3:4) | 64px / 900 | 24px / 600 | 14px / 700 |
-| wechat (9:16) | 56px / 900 | 22px / 600 | 13px / 700 |
+可选:
+  --subtitle "副标题"
+  --tags "标签1,标签2"
+  --badge "徽章"
+  --quote "底部金句"
+  --highlight "高亮词1,高亮词2"
+  --scheme cyber_2          指定具体配色ID
+  --bg-color "#hex"         自定义背景色
+  --accent-color "#hex"     自定义主色调
+```
 
 ## Gotchas
 
-- PPT 提取依赖正则匹配，不同 PPT 结构可能需要调整 `extract_chapters.py` 中的正则
-- 封面使用 Google Fonts（Noto Sans SC），首次加载需联网；离线场景需替换为本地字体
-- 主标题使用 `transform: rotate(-3deg)` 制造俏皮感，过多高亮词会显得杂乱，建议每页不超过 2 个
-- 底部金句控制在 15 字以内，超过会换行影响美观
-- 输出 HTML 文件包含完整 CSS/JS，无需外部依赖，可直接双击打开
-- 生成 9 页以上封面时，文件体积会超过 80KB，注意 `write` 工具的写入限制
-- 如遇写入截断，使用 `exec` 追加方式（`cat >> file`）补全剩余内容
-- Twemoji SVG 通过 CDN 加载，首次打开需联网；离线场景 emoji 装饰不显示但不影响布局
-- `--platform all` 生成3页不同尺寸的封面，文件体积约为单页的3倍
+- PPT 提取依赖正则匹配，不同 PPT 结构可能需要调整 `extract_chapters.py`
+- 使用 Google Fonts（Noto Sans SC + ZCOOL KuaiLe + Ma Shan Zheng），首次加载需联网
+- 主标题高亮词建议不超过2个，过多会显得杂乱
+- 底部金句控制在15字以内
+- `--platform all` 生成4页，文件较大但可一次截图所有平台
+- Twemoji SVG 通过 CDN 加载，离线场景 emoji 装饰不显示但不影响布局
+- 主题选择器 `theme_picker.py` 也可传入自定义标题/标签，预览效果更贴近实际
 
 ## 错误处理
 
-- **PPT 文件无法解析**：检查 HTML 结构，确认包含章节标识（如"第X节"或"Chapter"）
-- **字体加载失败**：替换为系统字体 `PingFang SC` / `Microsoft YaHei`
-- **颜色不协调**：参考 `references/color-schemes.md` 中的预设配色，避免自行搭配
-- **脚本运行报错**：检查 Python 3 环境，确认无缺少依赖
-- **Twemoji 加载失败**：检查网络连接，或替换为本地 emoji 字符
+- **PPT 无法解析**：检查 HTML 结构，确认包含章节标识
+- **字体加载失败**：替换为系统字体 PingFang SC / Microsoft YaHei
+- **脚本运行报错**：检查 Python 3 环境
+- **Twemoji 加载失败**：检查网络，或替换为本地 emoji 字符
