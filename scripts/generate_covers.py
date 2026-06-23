@@ -64,6 +64,7 @@ THEME_KEYWORDS = {
     "warm": ["对话","客服","设计","生活","沟通","SSE","流式"],
     "dark": ["安全","黑客","高级","硬核","渗透","密码"],
     "gradient": ["时尚","创意","爆款","热门","推荐"],
+    "animal": ["萌","可爱","治愈","动物","宠物","猫","狗","熊猫","狐狸","卡通"],
 }
 
 THEME_EMOJIS = {
@@ -73,6 +74,7 @@ THEME_EMOJIS = {
     "warm": [("1f49b","💛"),("1f4ac","💬"),("1f917","🤗"),("1f4f1","📱"),("2728","✨")],
     "dark": [("1f576","🕶️"),("1f512","🔒"),("1f480","💀"),("1f451","👑"),("1f9e0","🧠")],
     "gradient": [("2728","✨"),("1f308","🌈"),("1f4ab","💫"),("1f31f","🌟"),("1f48e","💎")],
+    "animal": [("1f431","🐱"),("1f436","🐶"),("1f98a","🦊"),("1f43c","🐼"),("1f428","🐨"),("1f42f","🐯"),("1f981","🦁"),("1f438","🐸"),("1f419","🐙"),("1f989","🦉"),("1f984","🦄"),("1f41d","🐝"),("1f98b","🦋")],
 }
 GENERAL_EMOJIS = [("1f680","🚀"),("26a1","⚡"),("1f4bb","💻"),("1f310","🌐"),
                   ("1f525","🔥"),("2b50","⭐"),("2728","✨"),("1f4a1","💡"),
@@ -396,7 +398,7 @@ def main():
     p.add_argument("--output","-o",default="video-covers.html")
     p.add_argument("--config","-c")
     p.add_argument("--platform","-p",default="bilibili",choices=["bilibili","xiaohongshu","wechat","mobile","all"])
-    p.add_argument("--theme",default="auto",choices=["auto","tech","hot","cool","warm","dark","gradient"])
+    p.add_argument("--theme",default="auto",choices=["auto","tech","hot","cool","warm","dark","gradient","animal"])
     p.add_argument("--extract-only",action="store_true")
     p.add_argument("--title","-t")
     p.add_argument("--subtitle")
