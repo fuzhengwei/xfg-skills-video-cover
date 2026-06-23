@@ -45,6 +45,10 @@ def make_mini_card(theme, title, subtitle, tags, badge, quote, highlights):
     deco_assets = get_decoration_assets(theme, 0)
     (da1_url, da1_name), (da2_url, da2_name) = deco_assets[0], deco_assets[1] if len(deco_assets) > 1 else (deco_assets[0][0], deco_assets[0][1])
 
+    # 风格对应的 emoji（用于 badge）
+    theme_emoji_list = THEME_EMOJIS.get(theme, THEME_EMOJIS.get("cyber", []))
+    badge_emoji = theme_emoji_list[0][1] if theme_emoji_list else ""
+
     dt = apply_highlights(title, highlights, theme, a1, a2)
 
     th = ""
@@ -67,7 +71,7 @@ def make_mini_card(theme, title, subtitle, tags, badge, quote, highlights):
       <img class="cv-mascot" src="{da1_url}" alt="{da1_name}" style="right:2%;bottom:8%;width:25%;height:auto;opacity:0.88;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2));" onerror="this.style.display='none'">
     </div>
     <div class="cv-content">
-      <div class="cv-badge" style="background:rgba({hex_to_rgb(a1)},0.2);color:{a1};border:1px solid rgba({hex_to_rgb(a1)},0.4);">{da1_name} {badge}</div>
+      <div class="cv-badge" style="background:rgba({hex_to_rgb(a1)},0.2);color:{a1};border:1px solid rgba({hex_to_rgb(a1)},0.4);">{badge_emoji} {badge}</div>
       <div class="cv-main-title" style="font-size:22px;color:{text_color};">{dt}</div>
       <div class="cv-sub-title" style="font-size:11px;color:{text_color};">{subtitle}</div>
       <div class="cv-tag-row">{th}</div>

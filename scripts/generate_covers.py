@@ -261,9 +261,16 @@ def get_decoration_assets(theme, idx=0):
     for svg_path in iconfont_svgs:
         data_uri = svg_to_data_uri(svg_path)
         if data_uri:
-            # 从文件名提取显示名称
-            name = os.path.basename(svg_path).replace('.svg', '')[:20]
-            assets.append((data_uri, name))
+            # 从文件名提取友好显示名称（去掉数字ID，只保留中文部分）
+            raw = os.path.basename(svg_path).replace('.svg', '')
+            # 去掉下划线后的数字ID部分，如 "键盘_5387387" → "键盘"
+            import re
+            friendly = re.sub(r'[_-]?\d+$', '', raw)  # 去掉末尾数字ID
+            friendly = re.sub(r'[_-]\d+$', '', friendly)  # 再试一次
+            # 如果还是太长或含英文ID，用风格对应的emoji代替
+            if len(friendly) > 6 or re.match(r'^[a-zA-Z]', friendly):
+                friendly = ''  # 标记为不显示文字
+            assets.append((data_uri, friendly))
     
     # 如果 iconfont 不够，补充 Twemoji
     if len(assets) < 2:
@@ -379,26 +386,31 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
     mascot_opacity = 0.18  # 大卡通半透明背景装饰
     mascot_solid_opacity = 0.92  # 实体卡通的不透明度
 
+    # 获取风格对应的友好 emoji（用于 badge 和底部栏，替代文件名）
+    theme_emoji = THEME_EMOJIS.get(theme, THEME_EMOJIS.get("cyber", []))
+    badge_emoji = theme_emoji[index % len(theme_emoji)][1] if theme_emoji else ""
+    bar_emoji = theme_emoji[(index+1) % len(theme_emoji)][1] if theme_emoji else ""
+
     return f'''<div class="cover-card cover-{pf_key} theme-{theme}" data-platform="{pf['name']}" data-index="{index+1}" style="--bg-color:{bg};--accent1:{a1};--accent2:{a2};--text-color:{text_color};">
   <div class="cv-bg-decoration">
     <div class="cv-bg-circle" style="width:{350+index*20}px;height:{350+index*20}px;background:{a1};top:-{80+index*10}px;left:-{80+index*10}px;"></div>
     <div class="cv-bg-circle" style="width:{260+index*15}px;height:{260+index*15}px;background:{a2};bottom:-60px;right:-60px;"></div>
     <!-- 大卡通角色：半透明背景装饰 -->
-    <img class="cv-mascot-bg" src="{mascot_url}" alt="{mascot_name}" style="position:absolute;right:{mascot_right}px;bottom:{mascot_bottom}px;width:{mw}px;height:{mh}px;opacity:{mascot_opacity};z-index:0;filter:blur(1px);" onerror="this.style.display='none'">
+    <img class="cv-mascot-bg" src="{mascot_url}" alt="" style="position:absolute;right:{mascot_right}px;bottom:{mascot_bottom}px;width:{mw}px;height:{mh}px;opacity:{mascot_opacity};z-index:0;filter:blur(1px);" onerror="this.style.display='none'">
     <!-- 小装饰图标：左上角 -->
-    <img class="cv-emoji-deco cv-emoji-1 cv-iconfont-deco" src="{da1_url}" alt="{da1_name}" style="top:{12+index*3}%;left:4%;width:{es1}px;height:{es1}px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
-    <img class="cv-emoji-deco cv-emoji-2 cv-iconfont-deco" src="{da2_url}" alt="{da2_name}" style="bottom:{10+index*3}%;right:5%;width:{es2}px;height:{es2}px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
+    <img class="cv-emoji-deco cv-emoji-1 cv-iconfont-deco" src="{da1_url}" alt="" style="top:{12+index*3}%;left:4%;width:{es1}px;height:{es1}px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
+    <img class="cv-emoji-deco cv-emoji-2 cv-iconfont-deco" src="{da2_url}" alt="" style="bottom:{10+index*3}%;right:5%;width:{es2}px;height:{es2}px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
   </div>
   <!-- 大卡通角色：实体（右侧） -->
-  <img class="cv-mascot" src="{mascot_url}" alt="{mascot_name}" onerror="this.style.display='none'">
+  <img class="cv-mascot" src="{mascot_url}" alt="" onerror="this.style.display='none'">
   <div class="cv-content">
-    <div class="cv-badge" style="background:rgba({hex_to_rgb(a1)},0.2);color:{a1};border:1px solid rgba({hex_to_rgb(a1)},0.4);">{da1_name} {badge}</div>
+    <div class="cv-badge" style="background:rgba({hex_to_rgb(a1)},0.2);color:{a1};border:1px solid rgba({hex_to_rgb(a1)},0.4);">{badge_emoji} {badge}</div>
     <div class="cv-main-title" style="font-size:{ts}px;color:{text_color};">{dt}</div>
     <div class="cv-sub-title" style="font-size:{ss}px;color:{text_color};">{subtitle}</div>
     <div class="cv-tag-row">
 {th}    </div>
   </div>
-  <div class="cv-bottom-bar"><span>{da2_name} {quote}</span><span>{pf['name']} · {index+1}</span></div>
+  <div class="cv-bottom-bar"><span>{bar_emoji} {quote}</span><span>{pf['name']} · {index+1}</span></div>
 </div>'''
 
 
