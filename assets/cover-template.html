@@ -1,6 +1,7 @@
 <!--
-  单页视频封面 HTML 模板
+  单页视频封面 HTML 模板 v2.0
   使用方式：复制此模板，替换 {{占位符}} 内容
+  支持 B站(16:9)、小红书(3:4)、微信视频号(9:16)
 -->
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -15,17 +16,20 @@
 
   body {
     font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #111318;
+    background: #0a0a0f;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
   }
 
-  .slide-bili-cover {
+  /* === 平台尺寸 === */
+  .cover-bilibili { aspect-ratio: 16 / 9; max-width: 1200px; }
+  .cover-xiaohongshu { aspect-ratio: 3 / 4; max-width: 900px; }
+  .cover-wechat { aspect-ratio: 9 / 16; max-width: 1080px; }
+
+  .cover-card {
     width: 94vw;
-    max-width: 1200px;
-    aspect-ratio: 16 / 9;
     border-radius: 8px;
     overflow: hidden;
     position: relative;
@@ -35,161 +39,92 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
   }
 
-  .bili-bg-decoration {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
+  .cv-bg-decoration { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .cv-bg-circle { position: absolute; border-radius: 50%; opacity: 0.06; }
+
+  .cv-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    width: 100%; height: 100%; padding: 40px;
   }
 
-  .bili-bg-circle {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.06;
-  }
-
-  .bili-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    padding: 40px;
-  }
-
-  .bili-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 18px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 16px;
-    background: rgba(255,255,255,0.1);
-    color: {{ACCENT1}};
+  .cv-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 18px; border-radius: 20px;
+    font-size: 14px; font-weight: 700; letter-spacing: 1px; margin-bottom: 16px;
+    background: rgba(255,255,255,0.1); color: {{ACCENT1}};
     border: 1px solid rgba(255,255,255,0.2);
   }
 
-  .bili-main-title {
-    font-size: 82px;
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  .cv-main-title {
+    font-size: {{TITLE_SIZE}}px; font-weight: 900; line-height: 1.08;
+    letter-spacing: 2px; margin-bottom: 10px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.4); max-width: 90%;
+  }
+  .cv-main-title .highlight { display: inline-block; transform: rotate(-3deg); }
+
+  .cv-sub-title {
+    font-size: {{SUBTITLE_SIZE}}px; font-weight: 600;
+    margin-bottom: 16px; letter-spacing: 1px; max-width: 85%;
   }
 
-  .bili-main-title .highlight {
-    display: inline-block;
-    transform: rotate(-3deg);
+  .cv-tag-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
+  .cv-tag {
+    padding: 6px 18px; border-radius: 16px;
+    font-size: 15px; font-weight: 700; letter-spacing: 0.5px;
+    background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);
   }
 
-  .bili-sub-title {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    letter-spacing: 1px;
+  .cv-emoji-deco {
+    position: absolute; opacity: 0.10; z-index: 1; object-fit: contain;
   }
 
-  .bili-tag-row {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 14px;
+  .cv-bottom-bar {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 36px;
+    background: rgba(0,0,0,0.35); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px; font-size: 13px; color: rgba(255,255,255,0.5); z-index: 4;
   }
 
-  .bili-tag {
-    padding: 6px 18px;
-    border-radius: 16px;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    background: rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.8);
-  }
+  /* 小红书 竖版调整 */
+  .cover-xiaohongshu .cv-content { padding: 36px 32px; }
+  .cover-xiaohongshu .cv-main-title { line-height: 1.12; }
 
-  .bili-emoji-deco {
-    position: absolute;
-    opacity: 0.08;
-    z-index: 1;
-  }
-
-  .bili-stamp {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    width: 80px;
-    height: 80px;
-    border: 3px solid {{ACCENT2}};
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 900;
-    text-align: center;
-    line-height: 1.2;
-    transform: rotate(15deg);
-    color: {{ACCENT2}};
-    z-index: 3;
-  }
-
-  .bili-bottom-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 36px;
-    background: rgba(0,0,0,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 28px;
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-    z-index: 4;
-  }
+  /* 微信视频号 全竖屏调整 */
+  .cover-wechat .cv-content { padding: 32px 28px; }
+  .cover-wechat .cv-main-title { line-height: 1.15; }
+  .cover-wechat .cv-badge { margin-bottom: 24px; }
 </style>
 </head>
 <body>
 
-<div class="slide-bili-cover">
+<div class="cover-card {{PLATFORM_CLASS}}">
   <!-- 背景装饰 -->
-  <div class="bili-bg-decoration">
-    <div class="bili-bg-circle" style="width:380px;height:380px;background:{{ACCENT1}};top:-80px;left:-80px;"></div>
-    <div class="bili-bg-circle" style="width:280px;background:{{ACCENT2}};bottom:-60px;right:-60px;"></div>
-    <div class="bili-emoji-deco" style="top:15%;left:8%;font-size:85px;">{{EMOJI1}}</div>
-    <div class="bili-emoji-deco" style="bottom:18%;right:10%;font-size:65px;">{{EMOJI2}}</div>
+  <div class="cv-bg-decoration">
+    <div class="cv-bg-circle" style="width:380px;height:380px;background:{{ACCENT1}};top:-80px;left:-80px;"></div>
+    <div class="cv-bg-circle" style="width:280px;background:{{ACCENT2}};bottom:-60px;right:-60px;"></div>
+    <img class="cv-emoji-deco" src="{{EMOJI1_URL}}" alt="{{EMOJI1_CHAR}}"
+         style="top:15%;left:6%;width:90px;height:90px;" onerror="this.style.display='none'">
+    <img class="cv-emoji-deco" src="{{EMOJI2_URL}}" alt="{{EMOJI2_CHAR}}"
+         style="bottom:12%;right:8%;width:66px;height:66px;" onerror="this.style.display='none'">
   </div>
 
-  <!-- 印章 -->
-  <div class="bili-stamp">{{CHAPTER}}<br>实战</div>
-
   <!-- 主内容 -->
-  <div class="bili-content">
-    <div class="bili-badge">{{EMOJI1}} {{BADGE}}</div>
-    <div class="bili-main-title">
-      {{TITLE_WITH_HIGHLIGHT}}
-    </div>
-    <div class="bili-sub-title">{{SUBTITLE}}</div>
-    <div class="bili-tag-row">
-      {{TAGS_HTML}}
-    </div>
+  <div class="cv-content">
+    <div class="cv-badge">{{EMOJI1_CHAR}} {{BADGE}}</div>
+    <div class="cv-main-title">{{TITLE_WITH_HIGHLIGHT}}</div>
+    <div class="cv-sub-title">{{SUBTITLE}}</div>
+    <div class="cv-tag-row">{{TAGS_HTML}}</div>
   </div>
 
   <!-- 底部栏 -->
-  <div class="bili-bottom-bar">
-    <span>{{EMOJI2}} {{QUOTE}}</span>
-    <span>{{CHAPTER}}</span>
+  <div class="cv-bottom-bar">
+    <span>{{EMOJI2_CHAR}} {{QUOTE}}</span>
+    <span>{{PLATFORM_NAME}}</span>
   </div>
 </div>
 
