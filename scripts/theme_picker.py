@@ -53,6 +53,27 @@ THEME_INFO = {
     "sticker":   {"name": "贴纸风", "desc": "白边/手绘/可爱", "icon": "🎀", "best": "手绘、可爱、装饰、日记", "category": "文艺清新"},
     "retro":     {"name": "复古风", "desc": "胶片/做旧/怀旧", "icon": "📷", "best": "怀旧、老歌、胶片、回忆", "category": "文艺清新"},
     "collage":   {"name": "拼贴风", "desc": "剪报/胶带/混合", "icon": "📌", "best": "文艺、剪报、手做、混搭", "category": "文艺清新"},
+    # ===== 新增20种风格 v6 =====
+    "ink":         {"name": "水墨风", "desc": "国画/书法/写意", "icon": "🎨", "best": "书法、国画、东方美学、文化", "category": "文艺清新"},
+    "stamp":       {"name": "印章风", "desc": "篆刻/朱印/传统", "icon": "📠", "best": "传统文化、篆刻、收藏、鉴定", "category": "文艺清新"},
+    "newspaper":   {"name": "报纸风", "desc": "新闻/头条/社论", "icon": "📰", "best": "新闻、报道、评论、时事", "category": "文艺清新"},
+    "polaroid":    {"name": "拍立得", "desc": "白边/相框/回忆", "icon": "📷", "best": "旅行、回忆、日常、Vlog", "category": "文艺清新"},
+    "risograph":   {"name": "Riso印刷", "desc": "双色/颗粒/独立出版", "icon": "📄", "best": "独立出版、设计、艺术、Zine", "category": "文艺清新"},
+    "film":        {"name": "胶片风", "desc": "胶卷/帧/放映", "icon": "🎞️", "best": "电影、摄影、胶片相机、怀旧", "category": "文艺清新"},
+    "ribbon":      {"name": "缎带风", "desc": "丝带/横幅/颁奖", "icon": "🎀", "best": "颁奖、典礼、表彰、节日", "category": "文艺清新"},
+    "pastel":      {"name": "莫兰迪", "desc": "低饱和/高级灰/柔和", "icon": "💛", "best": "家居、穿搭、高级感、内敛", "category": "文艺清新"},
+    "kraft":       {"name": "牛皮纸", "desc": "纸袋/手工/质朴", "icon": "📄", "best": "手工、包装、质朴、原生态", "category": "文艺清新"},
+    "washi":       {"name": "和纸胶带", "desc": "日式/纸胶带/装饰", "icon": "🎀", "best": "手帐、日式、拼贴、装饰", "category": "文艺清新"},
+    "graffiti":    {"name": "涂鸦街头", "desc": "喷漆/街头/野生", "icon": "💥", "best": "街头文化、嘻哈、滑板、反叛", "category": "视觉冲击"},
+    "gradientmesh": {"name": "网格渐变", "desc": "柔和/多色/梦幻", "icon": "🌈", "best": "梦幻、柔和、品牌、壁纸", "category": "视觉冲击"},
+    "brutalist":   {"name": "粗野主义", "desc": "原始/混凝土/粗犷", "icon": "◼️", "best": "建筑、结构、极简粗野、设计", "category": "视觉冲击"},
+    "popart":      {"name": "波普艺术", "desc": "撞色/网点/大众艺术", "icon": "🎨", "best": "波普、明星、消费、撞色", "category": "生活娱乐"},
+    "holographic": {"name": "全息彩虹", "desc": "镭射/幻彩/偏光", "icon": "✨", "best": "潮流、镭射、炫彩、未来", "category": "视觉冲击"},
+    "carnival":    {"name": "嘉年华", "desc": "马戏团/彩旗/狂欢", "icon": "🎪", "best": "庆典、派对、节日、游乐园", "category": "生活娱乐"},
+    "blueprint":   {"name": "蓝图风", "desc": "工程图/制图/蓝底白线", "icon": "📐", "best": "建筑、工程、技术制图、设计", "category": "科技知识"},
+    "starfield":   {"name": "星空宇宙", "desc": "深空/银河/星海", "icon": "🌌", "best": "天文、科幻、宇宙、探索", "category": "科技知识"},
+    "typewriter":  {"name": "打字机", "desc": "等宽/手稿/复古", "icon": "⌨", "best": "手稿、文稿、复古、文字", "category": "科技知识"},
+    "terrarium":   {"name": "玻璃生态", "desc": "植物/微景观/通透", "icon": "🌱", "best": "植物、自然、微景观、生态", "category": "文艺清新"},
 }
 
 
@@ -113,10 +134,10 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights):
     """生成主题选择首页 + 所有风格详情页（单文件）"""
 
     # 生成19个主题卡片，按分类分组
-    all_themes = ["bold","cyber","minimal","magazine","pixel","glass","aurora",
-                  "funny","food","gaming","variety","cute","clay",
-                  "paper","dopamine","doodle","luxury","vaporwave","acid","memphis","comic","neon",
-                  "fresh","anime","cinema","journal","guochao","sticker","retro","collage"]
+    all_themes = ["bold","cyber","minimal","magazine","pixel","glass","aurora","blueprint","typewriter","starfield",
+                  "funny","food","gaming","variety","cute","clay","carnival","popart",
+                  "paper","dopamine","doodle","luxury","vaporwave","acid","memphis","comic","neon","graffiti","brutalist","holographic","gradientmesh",
+                  "fresh","anime","cinema","journal","guochao","sticker","retro","collage","ink","stamp","newspaper","polaroid","risograph","film","ribbon","pastel","kraft","washi","terrarium"]
     # 按分类分组
     categories = {}
     for theme in all_themes:
