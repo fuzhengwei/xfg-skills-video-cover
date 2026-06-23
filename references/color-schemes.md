@@ -1,6 +1,6 @@
-# 爆款配色方案 v3.0 — B站真实爆款风格分类
+# 爆款配色方案 v3.2 — B站真实爆款风格分类
 
-共 **40+ 套** 配色，按 **10 大 B站爆款风格** 分类。每种风格不只是换颜色，还有独特的布局元素和排版风格。
+共 **50+ 套** 配色，按 **13 大 B站爆款风格** 分类。每种风格不只是换颜色，还有独特的布局元素和排版风格。
 
 ---
 
@@ -161,16 +161,19 @@
 
 | 风格 | 触发关键词 |
 |------|-----------|
-| bold | 干货、教程、知识、必看、入门、指南 |
-| cyber | AI、科技、赛博、未来、霓虹、代码 |
+| bold | 干货、教程、知识、必看、入门、指南、速成、避坑 |
+| cyber | AI、赛博、未来、霓虹、代码、大模型、Agent |
 | anime | 二次元、动漫、番剧、虚拟、萌 |
-| funny | 搞笑、整活、沙雕、表情包、吐槽 |
-| luxury | 评测、高端、旗舰、Pro、Max、豪华 |
+| funny | 搞笑、整活、沙雕、表情包、吐槽、离谱、抽象 |
+| luxury | 评测、高端、旗舰、Pro、Max、测评 |
 | fresh | Vlog、生活、旅行、日常、治愈 |
-| gaming | 游戏、电竞、对战、吃鸡、王者 |
-| food | 美食、探店、烹饪、吃、做饭 |
-| cinema | 电影、影视、悬疑、恐怖、解说 |
+| gaming | 游戏、电竞、对战、吃鸡、王者、攻略 |
+| food | 美食、探店、烹饪、吃、做饭、外卖 |
+| cinema | 电影、影视、悬疑、恐怖、解说、拆解 |
 | cute | 萌、可爱、宠物、猫、狗、动物 |
+| paper | 安利、推荐、攻略、评测、对比、排行、盘点、合集 |
+| variety | 热点、吃瓜、反转、震惊、弹幕、名场面 |
+| doodle | 手帐、手绘、涂鸦、文创、笔记、创意、DIY |
 | tech | (兼容旧) Shell、API、CLI、Key、密钥 |
 | hot | (兼容旧) 实战、安装、部署、上线 |
 | cool | (兼容旧) Docker、MySQL、Redis、Nginx |
@@ -186,6 +189,9 @@
 python3 generate_covers.py --title "标题" --theme bold
 python3 generate_covers.py --title "标题" --theme cyber
 python3 generate_covers.py --title "标题" --theme anime
+python3 generate_covers.py --title "标题" --theme paper
+python3 generate_covers.py --title "标题" --theme variety
+python3 generate_covers.py --title "标题" --theme doodle
 
 # 自动匹配
 python3 generate_covers.py --title "AI教程" --theme auto
@@ -193,3 +199,48 @@ python3 generate_covers.py --title "AI教程" --theme auto
 # 指定具体配色ID
 python3 generate_covers.py --title "标题" --scheme bold_3
 ```
+
+---
+
+## 11. 撕纸拼贴风（paper）— 评测/攻略/安利
+
+撕裂边缘 + 拼贴感 + 不规则裁切，B站评测/攻略类超火风格。
+
+| ID | 名称 | 背景 | 主色 | 副色 | 特点 |
+|----|------|------|------|------|------|
+| paper_1 | 撕纸黄红黑 | `#fef3c7` | `#ef4444` | `#1a1a2e` | 浅黄底+红黑拼贴 |
+| paper_2 | 撕纸蓝橙 | `#e0f2fe` | `#0ea5e9` | `#f97316` | 浅蓝底+橙蓝互补 |
+| paper_3 | 撕纸粉紫 | `#fdf2f8` | `#ec4899` | `#8b5cf6` | 浅粉底+粉紫拼贴 |
+| paper_4 | 撕纸绿黄 | `#f0fdf4` | `#22c55e` | `#fbbf24` | 浅绿底+绿黄拼贴 |
+
+**布局特点：** 不规则clip-path裁切边缘、斜纹背景纹理、阴影投影、标签撕纸形
+
+---
+
+## 12. 综艺弹幕风（variety）— 热点/吐槽/反应
+
+综艺花字 + 弹幕悬浮 + 高饱和度撞色 + 表情堆叠。
+
+| ID | 名称 | 背景 | 主色 | 副色 | 特点 |
+|----|------|------|------|------|------|
+| variety_1 | 综艺金粉 | `#1a1a2e` | `#fbbf24` | `#ff006e` | 深底+金粉花字 |
+| variety_2 | 综艺橙红 | `#0f0e17` | `#ff8906` | `#f25f4c` | 深底+橙红撞色 |
+| variety_3 | 综艺霓虹 | `#2d1b69` | `#00ffff` | `#ff00ff` | 紫底+青粉霓虹 |
+| variety_4 | 综艺红金 | `#1a0505` | `#fbbf24` | `#ef4444` | 深红底+金红 |
+
+**布局特点：** 多层描边花字、右上角“🔥HOT”标记、表情装饰加大、标签带旋转角度
+
+---
+
+## 13. 手绘涂鸦风（doodle）— 文创/手帐/趣味
+
+手写体 + 虚线边框 + 圆点纹理 + 涂鸦感装饰。
+
+| ID | 名称 | 背景 | 主色 | 副色 | 特点 |
+|----|------|------|------|------|------|
+| doodle_1 | 涂鸦黄紫粉 | `#fefce8` | `#7c3aed` | `#ec4899` | 浅黄底+紫粉涂鸦 |
+| doodle_2 | 涂鸦蓝黄 | `#e0f2fe` | `#0284c7` | `#f59e0b` | 浅蓝底+蓝黄涂鸦 |
+| doodle_3 | 涂鸦绿红 | `#f0fdf4` | `#16a34a` | `#dc2626` | 浅绿底+绿红涂鸦 |
+| doodle_4 | 涂鸦橙紫 | `#fff7ed` | `#ea580c` | `#7c3aed` | 浅橙底+橙紫涂鸦 |
+
+**布局特点：** ZCOOL手写字体、虚线dashed边框、圆点波点背景纹理、圆圈标注高亮

@@ -80,9 +80,9 @@ def make_mini_card(theme, title, subtitle, tags, badge, quote, highlights):
 def generate_picker_html(title, subtitle, tags, badge, quote, highlights):
     """生成主题选择首页 + 所有风格详情页（单文件）"""
 
-    # 生成10个主题卡片
+    # 生成13个主题卡片
     cards = []
-    for theme in ["bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute"]:
+    for theme in ["bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute","paper","variety","doodle"]:
         cards.append(make_mini_card(theme, title, subtitle, tags, badge, quote, highlights))
     cards_html = "\n".join(cards)
 
@@ -92,7 +92,7 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights):
 
     # 为每个主题生成4平台详情页的HTML（内嵌为隐藏div）
     detail_pages = []
-    for theme in ["bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute"]:
+    for theme in ["bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute","paper","variety","doodle"]:
         cover_cfg = {
             "title": title, "highlight_words": highlights,
             "subtitle": subtitle, "tags": tags,
@@ -231,13 +231,15 @@ body {{
 .theme-preview[style*="#fff7ed"] .cv-emoji-deco,
 .theme-preview[style*="#fdf2f8"] .cv-emoji-deco,
 .theme-preview[style*="#ecfeff"] .cv-emoji-deco,
-.theme-preview[style*="#fff0f5"] .cv-emoji-deco {{ opacity:0.15; }}
+.theme-preview[style*="#fff0f5"] .cv-emoji-deco,
+.theme-preview[style*="#fef3c7"] .cv-emoji-deco {{ opacity:0.15; }}
 
 {THEME_FONT_CSS}
 
 .theme-cute .cv-main-title {{ font-family:'ZCOOL KuaiLe','Noto Sans SC',sans-serif; }}
 .theme-fresh .cv-main-title {{ font-family:'Ma Shan Zheng','Noto Sans SC',sans-serif; font-weight:400; }}
 .theme-anime .cv-main-title {{ font-family:'ZCOOL KuaiLe','Noto Sans SC',sans-serif; }}
+.theme-doodle .cv-main-title {{ font-family:'ZCOOL KuaiLe','Noto Sans SC',sans-serif; }}
 
 .theme-info {{ padding:14px 16px; }}
 .theme-name {{ font-size:16px; font-weight:700; margin-bottom:4px; }}
@@ -342,7 +344,8 @@ body {{
 .cover-card[style*="#fff7ed"] .cv-bottom-bar,
 .cover-card[style*="#fdf2f8"] .cv-bottom-bar,
 .cover-card[style*="#ecfeff"] .cv-bottom-bar,
-.cover-card[style*="#fff0f5"] .cv-bottom-bar {{
+.cover-card[style*="#fff0f5"] .cv-bottom-bar,
+.cover-card[style*="#fef3c7"] .cv-bottom-bar {{
   background:rgba(0,0,0,.12); color:rgba(0,0,0,.4);
 }}
 
@@ -402,7 +405,7 @@ body {{
 <div id="picker-page">
   <div class="header">
     <h1>🎨 选择封面风格</h1>
-    <p>10大B站爆款风格，点击卡片查看4平台详细效果</p>
+    <p>13大B站爆款风格，点击卡片查看4平台详细效果</p>
     <div class="auto-match">🤖 自动推荐：<strong>{auto_info["icon"]} {auto_info["name"]}</strong>（基于标题关键词检测）</div>
   </div>
 
@@ -415,7 +418,7 @@ body {{
   </div>
 </div>
 
-<!-- ===== 10个详情页（隐藏） ===== -->
+<!-- ===== 13个详情页（隐藏） ===== -->
 {detail_html}
 
 <script>

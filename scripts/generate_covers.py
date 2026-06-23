@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 """
-视频封面生成器 v3.1 - 主脚本
-10大B站爆款风格 × 差异化字体排版 × 4平台 × 40+套配色
+视频封面生成器 v3.2 - 主脚本
+13大B站爆款风格 × 差异化字体排版 × 4平台 × 50+套配色
+
+v3.2 更新：
+- 新增3种风格：撕纸拼贴(paper) / 综艺弹幕(variety) / 手绘涂鸦(doodle)
+- 优化5种现有风格：bold加描边 / cyber加网格线 / funny加混乱表情 / luxury加金线 / cinema加黑边
+- 新增视觉箭头/指示元素
+- 配色扩充至50+套
 """
 
 import argparse
@@ -29,7 +35,7 @@ PLATFORMS = {
              "title_size": 52, "subtitle_size": 20, "tag_size": 12, "badge_size": 11},
 }
 
-# ========== 40+套B站爆款配色 ==========
+# ========== 50+套B站爆款配色 ==========
 COLOR_SCHEMES = {
     "bold_1": {"bg": "#ffffff", "accent1": "#000000", "accent2": "#ff0000", "name": "纯白黑字", "theme": "bold", "text_color": "#000000"},
     "bold_2": {"bg": "#0a0a0a", "accent1": "#ffffff", "accent2": "#fbbf24", "name": "纯黑白字", "theme": "bold"},
@@ -72,6 +78,21 @@ COLOR_SCHEMES = {
     "cute_2": {"bg": "#fefce8", "accent1": "#f59e0b", "accent2": "#ec4899", "name": "奶黄萌系", "theme": "cute", "text_color": "#422006"},
     "cute_3": {"bg": "#ecfeff", "accent1": "#06b6d4", "accent2": "#fbbf24", "name": "薄荷蓝萌", "theme": "cute", "text_color": "#164e63"},
     "cute_4": {"bg": "linear-gradient(135deg,#fbcfe8 0%,#c4b5fd 100%)", "accent1": "#7c3aed", "accent2": "#ec4899", "name": "渐变粉紫", "theme": "cute", "is_gradient": True, "text_color": "#581c87"},
+    # ===== 11. 撕纸拼贴风（paper）— 评测/攻略/安利 =====
+    "paper_1": {"bg": "#fef3c7", "accent1": "#ef4444", "accent2": "#1a1a2e", "name": "撕纸黄红黑", "theme": "paper", "text_color": "#1a1a2e"},
+    "paper_2": {"bg": "#e0f2fe", "accent1": "#0ea5e9", "accent2": "#f97316", "name": "撕纸蓝橙", "theme": "paper", "text_color": "#0c4a6e"},
+    "paper_3": {"bg": "#fdf2f8", "accent1": "#ec4899", "accent2": "#8b5cf6", "name": "撕纸粉紫", "theme": "paper", "text_color": "#831843"},
+    "paper_4": {"bg": "#f0fdf4", "accent1": "#22c55e", "accent2": "#fbbf24", "name": "撕纸绿黄", "theme": "paper", "text_color": "#14532d"},
+    # ===== 12. 综艺弹幕风（variety）— 热点/吐槽/ reactions =====
+    "variety_1": {"bg": "#1a1a2e", "accent1": "#fbbf24", "accent2": "#ff006e", "name": "综艺金粉", "theme": "variety"},
+    "variety_2": {"bg": "#0f0e17", "accent1": "#ff8906", "accent2": "#f25f4c", "name": "综艺橙红", "theme": "variety"},
+    "variety_3": {"bg": "#2d1b69", "accent1": "#00ffff", "accent2": "#ff00ff", "name": "综艺霓虹", "theme": "variety"},
+    "variety_4": {"bg": "#1a0505", "accent1": "#fbbf24", "accent2": "#ef4444", "name": "综艺红金", "theme": "variety"},
+    # ===== 13. 手绘涂鸦风（doodle）— 文创/手帐/趣味 =====
+    "doodle_1": {"bg": "#fefce8", "accent1": "#7c3aed", "accent2": "#ec4899", "name": "涂鸦黄紫粉", "theme": "doodle", "text_color": "#1a1a2e"},
+    "doodle_2": {"bg": "#e0f2fe", "accent1": "#0284c7", "accent2": "#f59e0b", "name": "涂鸦蓝黄", "theme": "doodle", "text_color": "#0c4a6e"},
+    "doodle_3": {"bg": "#f0fdf4", "accent1": "#16a34a", "accent2": "#dc2626", "name": "涂鸦绿红", "theme": "doodle", "text_color": "#14532d"},
+    "doodle_4": {"bg": "#fff7ed", "accent1": "#ea580c", "accent2": "#7c3aed", "name": "涂鸦橙紫", "theme": "doodle", "text_color": "#7c2d12"},
     "tech_1": {"bg": "#0f0e17", "accent1": "#ff8906", "accent2": "#f25f4c", "name": "暗夜火焰", "theme": "tech"},
     "tech_3": {"bg": "#0d1117", "accent1": "#58a6ff", "accent2": "#7ee787", "name": "极客绿", "theme": "tech"},
     "tech_5": {"bg": "#0a0e27", "accent1": "#00d9ff", "accent2": "#9d4edd", "name": "电光紫蓝", "theme": "tech"},
@@ -85,16 +106,19 @@ COLOR_SCHEMES = {
 }
 
 THEME_KEYWORDS = {
-    "bold": ["干货","教程","知识","必看","入门","指南","科普","总结","万字","硬核"],
-    "cyber": ["AI","赛博","未来","霓虹","代码","编程","程序","服务器","Shell","API","CLI","Key","密钥","模型","Ollama","qwen","GPT","IDE","云"],
+    "bold": ["干货","教程","知识","必看","入门","指南","科普","总结","万字","硬核","速成","避坑"],
+    "cyber": ["AI","赛博","未来","霓虹","代码","编程","程序","服务器","Shell","API","CLI","Key","密钥","模型","Ollama","qwen","GPT","IDE","云","大模型","Agent"],
     "anime": ["二次元","动漫","番剧","虚拟","萌","动画","日漫","cosplay"],
-    "funny": ["搞笑","整活","沙雕","表情包","吐槽","鬼畜","名场面","爆笑"],
-    "luxury": ["评测","高端","旗舰","Pro","Max","豪华","奢华","开箱","体验","深度"],
-    "fresh": ["Vlog","生活","旅行","日常","治愈","清新","慢生活","记录"],
-    "gaming": ["游戏","电竞","对战","吃鸡","王者","原神","Steam","FPS","MOBA","通关"],
-    "food": ["美食","探店","烹饪","吃","做饭","料理","烘焙","食谱","吃货"],
-    "cinema": ["电影","影视","悬疑","恐怖","解说","剧情","惊悚","科幻","影评"],
-    "cute": ["可爱","宠物","猫","狗","熊猫","狐狸","卡通","萌宠","治愈系","手帐"],
+    "funny": ["搞笑","整活","沙雕","表情包","吐槽","鬼畜","名场面","爆笑","离谱","抽象"],
+    "luxury": ["评测","高端","旗舰","Pro","Max","豪华","奢华","开箱","体验","深度","测评"],
+    "fresh": ["Vlog","生活","旅行","日常","治愈","清新","慢生活","记录","日常"],
+    "gaming": ["游戏","电竞","对战","吃鸡","王者","原神","Steam","FPS","MOBA","通关","攻略"],
+    "food": ["美食","探店","烹饪","吃","做饭","料理","烘焙","食谱","吃货","外卖"],
+    "cinema": ["电影","影视","悬疑","恐怖","解说","剧情","惊悚","科幻","影评","拆解"],
+    "cute": ["可爱","宠物","猫","狗","熊猫","狐狸","卡通","萌宠","治愈系","手帐","动物"],
+    "paper": ["安利","推荐","攻略","评测","对比","排行","盘点","合集","总结","撕"],
+    "variety": ["热点","事件","吃瓜","反转","震惊","绝了","崩溃","反应","名场面","弹幕"],
+    "doodle": ["手帐","手绘","涂鸦","文创","日记","笔记","创意","DIY","手作","画"],
     "tech": ["AI","Shell","API","代码","编程","程序","服务器","云","IDE","CLI","Key","密钥","模型","Ollama","qwen","GPT"],
     "hot": ["教程","入门","实战","安装","部署","上线","新手","快速"],
     "cool": ["Docker","容器","MySQL","Redis","数据库","缓存","Portainer","Nginx"],
@@ -102,6 +126,9 @@ THEME_KEYWORDS = {
     "dark": ["安全","黑客","高级","硬核","渗透","密码"],
     "gradient": ["时尚","创意","爆款","热门","推荐"],
     "animal": ["萌","可爱","治愈","动物","宠物","猫","狗","熊猫","狐狸","卡通"],
+    "paper": ["安利","推荐","攻略","评测","对比","排行","盘点","合集","撕","拼贴"],
+    "variety": ["热点","吃瓜","反转","震惊","弹幕","名场面","反应","绝了"],
+    "doodle": ["手帐","手绘","涂鸦","文创","笔记","创意","DIY","手作"],
 }
 
 THEME_EMOJIS = {
@@ -115,6 +142,9 @@ THEME_EMOJIS = {
     "food": [("1f371","🍱"),("1f35a","🍚"),("1f35c","🍜"),("1f36a","🍪"),("1f37a","🍺"),("1f36d","🍬")],
     "cinema": [("1f3ac","🎬"),("1f39e","🎞️"),("1f4f7","📷"),("1f3a4","🎤"),("1f4fd","📽️")],
     "cute": [("1f431","🐱"),("1f436","🐶"),("1f98a","🦊"),("1f43c","🐼"),("1f428","🐨"),("1f42f","🐯"),("1f981","🦁"),("1f438","🐸"),("1f419","🐙"),("1f989","🦉"),("1f984","🦄"),("1f41d","🐝"),("1f98b","🦋")],
+    "paper": [("2702","✂️"),("1f4c4","📄"),("1f4dd","📝"),("1f3af","🎯"),("2753","❓"),("2764","❤️"),("1f525","🔥")],
+    "variety": [("1f4ac","💬"),("1f631","😱"),("1f62d","😭"),("1f60d","😍"),("1f633","😳"),("1f44f","👏"),("1f525","🔥"),("1f4a5","💥")],
+    "doodle": [("1f58d","🖍️"),("270f","✏️"),("1f4d0","📐"),("1f3a8","🎨"),("2b50","⭐"),("1f4ab","💫"),("1f388","🎈")],
     "tech": [("1f680","🚀"),("26a1","⚡"),("1f4bb","💻"),("1f310","🌐"),("1f527","🔧"),("1f4e1","📡")],
     "hot": [("1f525","🔥"),("2b50","⭐"),("1f4a5","💥"),("1f3af","🎯"),("1f389","🎉")],
     "cool": [("1f433","🐳"),("1f4e6","📦"),("1f5c3","🗄️"),("1f510","🔐"),("1f4be","💾")],
@@ -139,7 +169,7 @@ def hex_to_rgb(h):
 
 def detect_theme(title, tags=None):
     text = ((title or "") + " " + (tags and " ".join(tags) or "")).lower()
-    for theme in ["bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute"]:
+    for theme in ["bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute","paper","variety","doodle"]:
         kws = THEME_KEYWORDS.get(theme, [])
         if any(kw.lower() in text for kw in kws):
             return theme
@@ -206,6 +236,17 @@ def apply_highlights(title, highlights, theme, a1, a2):
         elif theme == "cute":
             # 萌宠：气泡背景 + 圆角
             dt = dt.replace(w, f'<span class="hl-cute" style="background:{c};color:#fff;padding:2px 12px;border-radius:50px;transform:rotate(-3deg);display:inline-block;">{w}</span>')
+        elif theme == "paper":
+            # 撕纸拼贴：不规则边框 + 阴影 + 旋转
+            rot = -3 if i%2==0 else 3
+            dt = dt.replace(w, f'<span class="hl-paper" style="background:{c};color:#fff;padding:4px 12px;clip-path:polygon(2% 0,98% 0,100% 50%,98% 100%,2% 100%,0 50%);transform:rotate({rot}deg);display:inline-block;box-shadow:3px 3px 0 rgba(0,0,0,0.3);">{w}</span>')
+        elif theme == "variety":
+            # 综艺弹幕：花字效果 + 多层描边 + 旋转
+            rot = -4 if i%2==0 else 4
+            dt = dt.replace(w, f'<span class="hl-variety" style="color:{c};-webkit-text-stroke:3px #000;text-stroke:3px #000;transform:rotate({rot}deg) scale(1.15);display:inline-block;filter:drop-shadow(2px 2px 0 #000);">{w}</span>')
+        elif theme == "doodle":
+            # 手绘涂鸦：手写体 + 波浪下划线 + 圆圈标注
+            dt = dt.replace(w, f'<span class="hl-doodle" style="color:{c};border-bottom:3px dashed {c};text-decoration:none;position:relative;display:inline-block;">{w}<span style="position:absolute;top:-6px;left:-4px;right:-4px;bottom:-6px;border:2px solid {c};border-radius:8px;opacity:0.4;pointer-events:none;"></span></span>')
         else:
             dt = dt.replace(w, f'<span class="highlight" style="color:{c};">{w}</span>')
     return dt
@@ -265,21 +306,25 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
 
 # ========== 差异化字体排版CSS ==========
 THEME_FONT_CSS = """
-/* ===== bold: 大字醒目风 ===== */
-.theme-bold .cv-main-title { font-weight: 900; letter-spacing: 0; line-height: 1.05; text-shadow: none; }
+/* ===== bold: 大字醒目风 v3.2 描边增强 ===== */
+.theme-bold .cv-main-title { font-weight: 900; letter-spacing: 0; line-height: 1.05; text-shadow: none; -webkit-text-stroke: 1px rgba(0,0,0,0.1); }
 .theme-bold .cv-main-title .hl-bold { display: inline; transform: none; }
 .theme-bold .cv-badge { border-radius: 0; border: 2px solid currentColor; background: transparent; }
 .theme-bold .cv-content { align-items: flex-start; text-align: left; }
+.theme-bold .cv-content::after { content: '→'; position: absolute; bottom: 50px; right: 40px; font-size: 48px; color: var(--accent2); opacity: 0.3; font-weight: 900; }
 
-/* ===== cyber: 赛博朋克风 ===== */
+/* ===== cyber: 赛博朋克风 v3.2 网格线增强 ===== */
 .theme-cyber .cv-main-title { font-weight: 900; letter-spacing: 4px; line-height: 1.1; text-shadow: 0 0 15px rgba(0,255,255,0.3); }
 .theme-cyber .cv-main-title .hl-cyber { display: inline-block; }
 .theme-cyber .cv-bg-decoration::before {
   content: ''; position: absolute; inset: 0; z-index: 0;
-  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,255,255,0.03) 3px, rgba(0,255,255,0.03) 4px);
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,255,255,0.04) 3px, rgba(0,255,255,0.04) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,0,255,0.06) 40px, rgba(255,0,255,0.06) 41px);
   pointer-events: none;
 }
 .theme-cyber .cv-badge { border-radius: 0; clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%); }
+.theme-cyber .cv-content::before { content: '>_'; position: absolute; top: 20px; left: 30px; font-family: 'SF Mono',Monaco,monospace; font-size: 20px; color: var(--accent1); opacity: 0.4; }
 
 /* ===== anime: 二次元动漫风 ===== */
 .theme-anime .cv-main-title { font-weight: 800; letter-spacing: 3px; line-height: 1.15; }
@@ -287,11 +332,13 @@ THEME_FONT_CSS = """
 .theme-anime .cv-badge { border-radius: 25px; }
 .theme-anime .cv-tag { border-radius: 25px; }
 
-/* ===== funny: 搞笑整活风 ===== */
+/* ===== funny: 搞笑整活风 v3.2 混乱表情增强 ===== */
 .theme-funny .cv-main-title { font-weight: 900; letter-spacing: 0; line-height: 1.2; }
 .theme-funny .cv-main-title .hl-funny { display: inline-block; }
 .theme-funny .cv-badge { border-radius: 0; transform: rotate(-3deg); }
 .theme-funny .cv-tag { transform: rotate(2deg); }
+.theme-funny .cv-emoji-deco { opacity: 0.18 !important; transform: rotate(15deg); }
+.theme-funny .cv-content::before { content: '？？？'; position: absolute; top: 10px; right: 30px; font-size: 36px; font-weight: 900; color: var(--accent1); opacity: 0.25; transform: rotate(-10deg); }
 
 /* ===== luxury: 黑金奢华风 ===== */
 .theme-luxury .cv-main-title { font-weight: 700; letter-spacing: 6px; line-height: 1.1; text-shadow: 0 2px 8px rgba(212,175,55,0.3); }
@@ -327,18 +374,19 @@ THEME_FONT_CSS = """
 .theme-food .cv-badge { border-radius: 50px; }
 .theme-food .cv-bg-circle { filter: blur(20px); opacity: 0.12; }
 
-/* ===== cinema: 影视悬疑风 ===== */
+/* ===== cinema: 影视悬疑风 v3.2 电影黑边增强 ===== */
 .theme-cinema .cv-main-title { font-weight: 700; letter-spacing: 5px; line-height: 1.1; text-shadow: 0 0 20px rgba(0,0,0,0.8); }
 .theme-cinema .cv-main-title .hl-cinema { display: inline-block; }
 .theme-cinema .cv-content::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 40px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.6), transparent); z-index: 3; pointer-events: none;
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.8), transparent); z-index: 3; pointer-events: none;
 }
 .theme-cinema .cv-content::after {
-  content: ''; position: absolute; bottom: 36px; left: 0; right: 0; height: 40px;
-  background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent); z-index: 3; pointer-events: none;
+  content: ''; position: absolute; bottom: 36px; left: 0; right: 0; height: 50px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.8), transparent); z-index: 3; pointer-events: none;
 }
 .theme-cinema .cv-badge { border-radius: 0; background: transparent; border-left: 3px solid currentColor; padding-left: 12px; }
+.theme-cinema .cv-bottom-bar { letter-spacing: 3px; }
 
 /* ===== cute: 萌宠可爱风 ===== */
 .theme-cute .cv-main-title { font-weight: 800; letter-spacing: 1px; line-height: 1.15; text-shadow: 2px 2px 0 rgba(255,255,255,0.5); }
@@ -355,6 +403,47 @@ THEME_FONT_CSS = """
 .theme-dark .cv-main-title { font-weight: 900; letter-spacing: 3px; line-height: 1.1; }
 .theme-gradient .cv-main-title { font-weight: 900; letter-spacing: 2px; line-height: 1.08; }
 .theme-animal .cv-main-title { font-weight: 800; letter-spacing: 1px; line-height: 1.12; }
+
+/* ===== 11. paper: 撕纸拼贴风 ===== */
+.theme-paper .cv-main-title { font-weight: 900; letter-spacing: 1px; line-height: 1.1; text-shadow: 2px 2px 0 rgba(0,0,0,0.15); }
+.theme-paper .cv-main-title .hl-paper { display: inline-block; }
+.theme-paper .cv-badge { border-radius: 0; clip-path: polygon(2% 0, 98% 0, 100% 50%, 98% 100%, 2% 100%, 0 50%); border: none; }
+.theme-paper .cv-tag { clip-path: polygon(3% 0, 97% 0, 100% 50%, 97% 100%, 3% 100%, 0 50%); border: none; }
+.theme-paper .cv-content { align-items: flex-start; text-align: left; }
+.theme-paper .cv-bg-decoration::after {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,0,0,0.02) 20px, rgba(0,0,0,0.02) 21px);
+  pointer-events: none;
+}
+.theme-paper .cv-bg-circle { filter: blur(8px); opacity: 0.1; }
+
+/* ===== 12. variety: 综艺弹幕风 ===== */
+.theme-variety .cv-main-title { font-weight: 900; letter-spacing: 2px; line-height: 1.15; -webkit-text-stroke: 1px rgba(0,0,0,0.3); }
+.theme-variety .cv-main-title .hl-variety { display: inline-block; }
+.theme-variety .cv-badge { border-radius: 0; border: 3px solid currentColor; background: rgba(0,0,0,0.3); transform: rotate(-2deg); }
+.theme-variety .cv-tag { border-radius: 0; border: 2px solid currentColor; background: rgba(0,0,0,0.2); transform: rotate(1deg); }
+.theme-variety .cv-bg-decoration::before {
+  content: '🔥 HOT'; position: absolute; top: 15px; right: 20px; z-index: 1;
+  font-size: 14px; font-weight: 900; color: var(--accent1); opacity: 0.3;
+  transform: rotate(15deg); letter-spacing: 2px;
+}
+.theme-variety .cv-emoji-deco { opacity: 0.2 !important; }
+
+/* ===== 13. doodle: 手绘涂鸦风 ===== */
+.theme-doodle .cv-main-title { font-weight: 700; letter-spacing: 1px; line-height: 1.2; font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif; text-shadow: none; }
+.theme-doodle .cv-main-title .hl-doodle { display: inline-block; }
+.theme-doodle .cv-badge { border-radius: 20px; border: 2px dashed currentColor; background: transparent; }
+.theme-doodle .cv-tag { border-radius: 16px; border: 2px dashed currentColor; background: transparent; }
+.theme-doodle .cv-bg-decoration::after {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(circle at 15% 20%, var(--accent1) 1.5px, transparent 2px),
+    radial-gradient(circle at 85% 80%, var(--accent2) 1.5px, transparent 2px),
+    radial-gradient(circle at 50% 50%, var(--accent1) 1px, transparent 1.5px);
+  background-size: 60px 60px, 80px 80px, 40px 40px;
+  opacity: 0.08; pointer-events: none;
+}
+.theme-doodle .cv-bg-circle { border-style: dashed; }
 """
 
 
@@ -481,7 +570,8 @@ body{{
 .cover-card[style*="#fff7ed"] .cv-bottom-bar,
 .cover-card[style*="#fdf2f8"] .cv-bottom-bar,
 .cover-card[style*="#ecfeff"] .cv-bottom-bar,
-.cover-card[style*="#fff0f5"] .cv-bottom-bar{{
+.cover-card[style*="#fff0f5"] .cv-bottom-bar,
+.cover-card[style*="#fef3c7"] .cv-bottom-bar{{
   background:rgba(0,0,0,.12);color:rgba(0,0,0,.4);
 }}
 
@@ -492,6 +582,7 @@ body{{
 .theme-cute .cv-main-title {{ font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif; }}
 .theme-fresh .cv-main-title {{ font-family: 'Ma Shan Zheng', 'Noto Sans SC', sans-serif; font-weight: 400; }}
 .theme-anime .cv-main-title {{ font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif; }}
+.theme-doodle .cv-main-title {{ font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif; }}
 
 .navbar{{
   flex-shrink:0;
@@ -589,18 +680,20 @@ def covers_from_chapters(chapters, theme="auto"):
 
 
 def main():
-    all_themes = ["auto","bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute",
+    all_themes = ["auto","bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute","paper","variety","doodle",
                   "tech","hot","cool","warm","dark","gradient","animal"]
     p = argparse.ArgumentParser(
-        description="视频封面生成器 v3.1 - 10大B站爆款风格 × 差异化字体排版",
+        description="视频封面生成器 v3.2 - 13大B站爆款风格 × 差异化字体排版",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="\n示例:\n"
                "  python3 generate_covers.py --title 'Docker一装，运维轻松10倍' --theme cyber\n"
                "  python3 generate_covers.py --title '给爷来个Key' --platform all --theme bold\n"
                "  python3 generate_covers.py --title '猫猫编程日记' --theme cute --platform all\n"
+               "  python3 generate_covers.py --title '5款AI工具安利' --theme paper --platform all\n"
+               "  python3 generate_covers.py --title '这反应绝了' --theme variety --platform all\n"
                "  python3 generate_covers.py --input ppt.html --output covers.html --platform all\n"
                "  python3 generate_covers.py --config covers.json\n\n"
-               "B站爆款风格: bold/cyber/anime/funny/luxury/fresh/gaming/food/cinema/cute")
+               "B站爆款风格: bold/cyber/anime/funny/luxury/fresh/gaming/food/cinema/cute/paper/variety/doodle")
     p.add_argument("--input","-i")
     p.add_argument("--output","-o",default="video-covers.html")
     p.add_argument("--config","-c")
