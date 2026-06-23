@@ -37,9 +37,9 @@ PLATFORMS = {
 
 # ========== 50+套B站爆款配色 ==========
 COLOR_SCHEMES = {
-    "bold_1": {"bg": "#ffffff", "accent1": "#000000", "accent2": "#ff0000", "name": "纯白黑字", "theme": "bold", "text_color": "#000000"},
+    "bold_1": {"bg": "#ffffff", "accent1": "#fbbf24", "accent2": "#ef4444", "name": "纯白黄红", "theme": "bold", "text_color": "#000000"},
     "bold_2": {"bg": "#0a0a0a", "accent1": "#ffffff", "accent2": "#fbbf24", "name": "纯黑白字", "theme": "bold"},
-    "bold_3": {"bg": "#fbbf24", "accent1": "#000000", "accent2": "#ef4444", "name": "亮黄黑字", "theme": "bold", "text_color": "#000000"},
+    "bold_3": {"bg": "#fbbf24", "accent1": "#7c3aed", "accent2": "#ef4444", "name": "亮黄紫红", "theme": "bold", "text_color": "#000000"},
     "bold_4": {"bg": "#dc2626", "accent1": "#ffffff", "accent2": "#fbbf24", "name": "亮红白字", "theme": "bold"},
     "bold_5": {"bg": "#2563eb", "accent1": "#ffffff", "accent2": "#fde047", "name": "亮蓝白字", "theme": "bold"},
     "cyber_1": {"bg": "#1a0a2e", "accent1": "#ff00ff", "accent2": "#00ffff", "name": "霓虹紫粉", "theme": "cyber"},
