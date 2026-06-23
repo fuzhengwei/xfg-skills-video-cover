@@ -3,8 +3,8 @@ name: xfg-skills-video-cover
 description: >
   B站/小红书/微信视频号/手机竖版 视频封面生成器。根据 PPT 内容、课程大纲或文本描述，
   自动生成大字体突出、俏皮、抓眼球的爆款视频封面 HTML 页面。
-  内置10大B站爆款风格（大字醒目/赛博朋克/二次元/搞笑整活/黑金奢华/清新治愈/游戏电竞/美食暖调/影视悬疑/萌宠可爱）、
-  40+套配色方案、差异化字体排版、4平台尺寸、Twemoji卡通素材库。
+  内置13大B站爆款风格（大字醒目/赛博朋克/二次元/搞笑整活/黑金奢华/清新治愈/游戏电竞/美食暖调/影视悬疑/萌宠可爱/撕纸拼贴/综艺弹幕/手绘涂鸦）、
+  50+套配色方案、差异化字体排版、4平台尺寸、Twemoji卡通素材库。
   触发词：制作视频封面、生成B站封面、视频封面设计、做封面、
   cover design、bilibili cover、视频缩略图、PPT封面、
   课程封面、章节封面、封面生成、小红书封面、视频号封面、选主题、选风格。
@@ -28,14 +28,14 @@ allowed-tools: Read Write Edit Bash(python3:*) Bash(node:*) Bash(curl:*) Bash(op
 
 ## ✨ v3.1 新特性
 
-- **10大B站爆款风格**：每种风格有完全不同的字体排版、高亮方式、装饰元素
+- **13大B站爆款风格**：每种风格有完全不同的字体排版、高亮方式、装饰元素
 - **差异化字体排版**：不再是统一模板，每种风格的视觉表现完全不同
 - **交互式主题选择器**：生成预览页，用户一眼看到所有风格效果再选
 - **40+套配色方案**：每种风格4-5套配色
 - **4平台输出**：B站/小红书/微信视频号/手机竖版
 - **3种字体**：Noto Sans SC + ZCOOL KuaiLe + Ma Shan Zheng
 
-## 10大B站爆款风格
+## 13大B站爆款风格
 
 这是本技能的核心。每种风格不是简单换色，而是完全不同的视觉设计语言：
 
@@ -51,6 +51,9 @@ allowed-tools: Read Write Edit Bash(python3:*) Bash(node:*) Bash(curl:*) Bash(op
 | `food` | 🍜 美食暖调 | 圆润800 | 圆角气泡背景 | 美食/探店/烹饪 |
 | `cinema` | 🎬 影视悬疑 | 700+宽字距 | 底部粗线 | 电影解说/悬疑 |
 | `cute` | 🐱 萌宠可爱 | ZCOOL手写体 | 气泡背景+旋转 | 宠物/萌系/卡通 |
+| `paper` | ✂️ 撕纸拼贴 | 900+阴影 | clip-path不规则裁切 | 评测/攻略/安利 |
+| `variety` | 💬 综艺弹幕 | 900+多层描边 | 花字+HOT标记 | 热点/吐槽/反应 |
+| `doodle` | 🖍️ 手绘涂鸦 | ZCOOL手写体 | 虚线边框+波点 | 文创/手帐/趣味 |
 
 ## 使用方法
 
@@ -68,7 +71,7 @@ python3 scripts/theme_picker.py \
   --output /path/to/theme-picker.html
 ```
 
-生成一个包含10种风格预览的HTML页面，用户在浏览器中点击选择喜欢的风格后，再用对应 `--theme` 参数生成正式封面。
+生成一个包含13种风格预览的HTML页面，用户在浏览器中点击选择喜欢的风格后，再用对应 `--theme` 参数生成正式封面。
 
 ### 方式一：从 PPT/HTML 文件生成
 
@@ -114,7 +117,7 @@ python3 scripts/theme_picker.py --title "标题" --output /tmp/theme-picker.html
 
 然后用 `open` 命令打开，并告诉用户：
 
-> 已为你生成风格选择预览页，共10种B站爆款风格：
+> 已为你生成风格选择预览页，共13种B站爆款风格：
 > 1. 📢 大字醒目 - 适合知识区教程
 > 2. 🌃 赛博朋克 - 适合AI/科技
 > 3. 🌸 二次元动漫 - 适合ACG
@@ -125,6 +128,9 @@ python3 scripts/theme_picker.py --title "标题" --output /tmp/theme-picker.html
 > 8. 🍜 美食暖调 - 适合美食
 > 9. 🎬 影视悬疑 - 适合影视解说
 > 10. 🐱 萌宠可爱 - 适合宠物萌系
+> 11. ✂️ 撕纸拼贴 - 适合评测安利
+> 12. 💬 综艺弹幕 - 适合热点吐槽
+> 13. 🖍️ 手绘涂鸦 - 适合文创手帐
 >
 > 浏览器里预览效果，告诉我你选哪个，或者直接说"用赛博朋克风"就行。
 
@@ -166,12 +172,12 @@ open covers.html
 | 脚本 | 说明 |
 |------|------|
 | `scripts/generate_covers.py` | 主生成脚本，支持PPT提取/单页/批量/多平台 |
-| `scripts/theme_picker.py` | **主题选择器**，生成10种风格预览对比页 |
+| `scripts/theme_picker.py` | **主题选择器**，生成13种风格预览对比页 |
 | `scripts/extract_chapters.py` | 从 HTML/PPT 提取章节信息 |
 
 ## 可用资源
 
-- `references/color-schemes.md` — 40+套配色方案（10大风格分类）
+- `references/color-schemes.md` — 50+套配色方案（13大风格分类）
 - `references/design-spec.md` — 封面设计规范
 - `references/emoji-library.md` — Twemoji emoji 编码映射 + 主题匹配
 - `assets/cover-template.html` — 单页封面模板
@@ -188,7 +194,7 @@ python3 generate_covers.py [选项]
   --config covers.json     批量生成
 
 常用:
-  --theme auto             风格主题（bold/cyber/anime/funny/luxury/fresh/gaming/food/cinema/cute）
+  --theme auto             风格主题（bold/cyber/anime/funny/luxury/fresh/gaming/food/cinema/cute/paper/variety/doodle）
   --platform bilibili      平台（bilibili/xiaohongshu/wechat/mobile/all）
   --output covers.html     输出路径
 
