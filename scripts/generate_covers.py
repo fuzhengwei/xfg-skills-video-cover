@@ -160,6 +160,63 @@ GENERAL_EMOJIS = [("1f680","🚀"),("26a1","⚡"),("1f4bb","💻"),("1f310","�
 
 TWEMOJI_CDN = "https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/svg"
 
+# ========== Iconfont 本地卡通素材 ==========
+ICONFONT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "iconfont")
+
+# 风格 → iconfont 分类映射
+THEME_ICONFONT_MAP = {
+    "cute":     "animal",   # 萌宠风格用动物卡通
+    "animal":   "animal",
+    "funny":    "animal",   # 搞笑风格也用动物增加趣味
+    "cyber":    "coder",    # 赛博/科技用程序员图标
+    "tech":     "tech",      # 科技用科技图标
+    "bold":     "coder",     # 大字醒目用程序员图标（知识区）
+    "gaming":   "tech",      # 游戏用科技图标
+    "dark":     "coder",     # 黑暗风用黑客/代码图标
+    "food":     "food",      # 美食用食物图标
+    "fresh":    "animal",    # 清新用动物
+    "doodle":   "emoji",     # 手绘用表情
+    "variety":  "emoji",     # 综艺弹幕用表情
+    "anime":    "animal",    # 二次元用动物
+    "luxury":   "tech",      # 奢华用科技/芯片
+    "cinema":   "tech",      # 影视用科技
+    "paper":    "coder",     # 撕纸用代码
+    "hot":      "tech",      # 热门用火箭等
+    "cool":     "coder",     # 极客用服务器
+    "warm":     "animal",    # 温暖用动物
+    "gradient": "animal",    # 渐变用动物
+}
+
+def get_iconfont_svgs(theme, count=2):
+    """根据风格返回本地 iconfont SVG 文件路径列表"""
+    category = THEME_ICONFONT_MAP.get(theme, "tech")
+    cat_dir = os.path.join(ICONFONT_DIR, category)
+    if not os.path.isdir(cat_dir):
+        return []
+    svgs = [f for f in sorted(os.listdir(cat_dir)) if f.endswith('.svg')]
+    if not svgs:
+        return []
+    # 根据主题名做简单 hash 来选择不同图标，保证同主题每次一致
+    seed = sum(ord(c) for c in theme)
+    start = seed % max(1, len(svgs) - count)
+    result = []
+    for i in range(count):
+        idx = (start + i) % len(svgs)
+        result.append(os.path.join(cat_dir, svgs[idx]))
+    return result
+
+def svg_to_data_uri(filepath):
+    """将 SVG 文件转为 data URI 用于内联嵌入 HTML"""
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            svg_content = f.read().strip()
+        # URL encode the SVG
+        import urllib.parse
+        encoded = urllib.parse.quote(svg_content, safe='')
+        return f"data:image/svg+xml,{encoded}"
+    except Exception:
+        return None
+
 
 def hex_to_rgb(h):
     h = h.lstrip('#')
@@ -195,6 +252,30 @@ def get_emojis(theme, idx=0):
         e1 = GENERAL_EMOJIS[idx % len(GENERAL_EMOJIS)]
         e2 = GENERAL_EMOJIS[(idx+5) % len(GENERAL_EMOJIS)]
     return e1, e2
+
+
+def get_decoration_assets(theme, idx=0):
+    """获取装饰素材：优先使用 iconfont 本地 SVG，fallback 到 Twemoji"""
+    iconfont_svgs = get_iconfont_svgs(theme, count=2)
+    assets = []
+    for svg_path in iconfont_svgs:
+        data_uri = svg_to_data_uri(svg_path)
+        if data_uri:
+            # 从文件名提取显示名称
+            name = os.path.basename(svg_path).replace('.svg', '')[:20]
+            assets.append((data_uri, name))
+    
+    # 如果 iconfont 不够，补充 Twemoji
+    if len(assets) < 2:
+        e1, e2 = get_emojis(theme, idx)
+        tw_cdn = TWEMOJI_CDN
+        while len(assets) < 2:
+            if len(assets) == 0:
+                assets.append((f"{tw_cdn}/{e1[0]}.svg", e1[1]))
+            else:
+                assets.append((f"{tw_cdn}/{e2[0]}.svg", e2[1]))
+    
+    return assets[:2]
 
 
 # ========== 差异化高亮处理 ==========
@@ -271,9 +352,9 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
     a2 = cfg.get("accent2", sc["accent2"])
     text_color = sc.get("text_color", "#ffffff")
 
-    e1, e2 = get_emojis(theme, index)
-    ec1, ec2 = e1[1], e2[1]
-    eu1, eu2 = f"{TWEMOJI_CDN}/{e1[0]}.svg", f"{TWEMOJI_CDN}/{e2[0]}.svg"
+    # 获取装饰素材（优先 iconfont 本地 SVG，fallback Twemoji）
+    deco_assets = get_decoration_assets(theme, index)
+    (da1_url, da1_name), (da2_url, da2_name) = deco_assets[0], deco_assets[1] if len(deco_assets) > 1 else (deco_assets[0][0], deco_assets[0][0])
 
     dt = apply_highlights(title, highlights, theme, a1, a2)
 
@@ -284,28 +365,37 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
         th += f'        <span class="cv-tag" style="background:rgba({hex_to_rgb(tc)},{op});color:{tc};">{t}</span>\n'
 
     ts, ss = pf["title_size"], pf["subtitle_size"]
-    es1, es2 = int(ts*1.1), int(ts*0.8)
+    es1, es2 = int(ts*1.3), int(ts*1.0)  # iconfont 图标可以更大一些
 
     return f'''<div class="cover-card cover-{pf_key} theme-{theme}" data-platform="{pf['name']}" data-index="{index+1}" style="--bg-color:{bg};--accent1:{a1};--accent2:{a2};--text-color:{text_color};">
   <div class="cv-bg-decoration">
     <div class="cv-bg-circle" style="width:{350+index*20}px;height:{350+index*20}px;background:{a1};top:-{80+index*10}px;left:-{80+index*10}px;"></div>
     <div class="cv-bg-circle" style="width:{260+index*15}px;height:{260+index*15}px;background:{a2};bottom:-60px;right:-60px;"></div>
-    <img class="cv-emoji-deco cv-emoji-1" src="{eu1}" alt="{ec1}" style="top:{15+index*3}%;left:6%;width:{es1}px;height:{es1}px;" onerror="this.style.display='none'">
-    <img class="cv-emoji-deco cv-emoji-2" src="{eu2}" alt="{ec2}" style="bottom:{12+index*3}%;right:8%;width:{es2}px;height:{es2}px;" onerror="this.style.display='none'">
+    <img class="cv-emoji-deco cv-emoji-1 cv-iconfont-deco" src="{da1_url}" alt="{da1_name}" style="top:{12+index*3}%;left:4%;width:{es1}px;height:{es1}px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
+    <img class="cv-emoji-deco cv-emoji-2 cv-iconfont-deco" src="{da2_url}" alt="{da2_name}" style="bottom:{10+index*3}%;right:5%;width:{es2}px;height:{es2}px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
   </div>
   <div class="cv-content">
-    <div class="cv-badge" style="background:rgba({hex_to_rgb(a1)},0.2);color:{a1};border:1px solid rgba({hex_to_rgb(a1)},0.4);">{ec1} {badge}</div>
+    <div class="cv-badge" style="background:rgba({hex_to_rgb(a1)},0.2);color:{a1};border:1px solid rgba({hex_to_rgb(a1)},0.4);">{da1_name} {badge}</div>
     <div class="cv-main-title" style="font-size:{ts}px;color:{text_color};">{dt}</div>
     <div class="cv-sub-title" style="font-size:{ss}px;color:{text_color};">{subtitle}</div>
     <div class="cv-tag-row">
 {th}    </div>
   </div>
-  <div class="cv-bottom-bar"><span>{ec2} {quote}</span><span>{pf['name']} · {index+1}</span></div>
+  <div class="cv-bottom-bar"><span>{da2_name} {quote}</span><span>{pf['name']} · {index+1}</span></div>
 </div>'''
 
 
 # ========== 差异化字体排版CSS ==========
 THEME_FONT_CSS = """
+/* ===== iconfont 卡通装饰图标增强 ===== */
+.cv-iconfont-deco { opacity: 0.85; transition: transform 0.3s ease; z-index: 1; }
+.cover-card:hover .cv-iconfont-deco { transform: scale(1.08) rotate(3deg); }
+.theme-cute .cv-iconfont-deco,
+.theme-animal .cv-iconfont-deco,
+.theme-fresh .cv-iconfont-deco { opacity: 0.95; filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.18)) !important; }
+.theme-funny .cv-iconfont-deco { animation: icon-bounce 3s ease-in-out infinite; }
+@keyframes icon-bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px); } }
+
 /* ===== bold: 大字醒目风 v3.2 描边增强 ===== */
 .theme-bold .cv-main-title { font-weight: 900; letter-spacing: 0; line-height: 1.05; text-shadow: none; -webkit-text-stroke: 1px rgba(0,0,0,0.1); }
 .theme-bold .cv-main-title .hl-bold { display: inline; transform: none; }
