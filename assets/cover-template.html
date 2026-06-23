@@ -1,0 +1,197 @@
+<!--
+  单页视频封面 HTML 模板
+  使用方式：复制此模板，替换 {{占位符}} 内容
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} - 视频封面</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #111318;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .slide-bili-cover {
+    width: 94vw;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background: {{BG_COLOR}};
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  }
+
+  .bili-bg-decoration {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bili-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.06;
+  }
+
+  .bili-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+  }
+
+  .bili-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    background: rgba(255,255,255,0.1);
+    color: {{ACCENT1}};
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .bili-main-title {
+    font-size: 82px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .bili-main-title .highlight {
+    display: inline-block;
+    transform: rotate(-3deg);
+  }
+
+  .bili-sub-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .bili-tag-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 14px;
+  }
+
+  .bili-tag {
+    padding: 6px 18px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+  }
+
+  .bili-emoji-deco {
+    position: absolute;
+    opacity: 0.08;
+    z-index: 1;
+  }
+
+  .bili-stamp {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 80px;
+    height: 80px;
+    border: 3px solid {{ACCENT2}};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.2;
+    transform: rotate(15deg);
+    color: {{ACCENT2}};
+    z-index: 3;
+  }
+
+  .bili-bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    z-index: 4;
+  }
+</style>
+</head>
+<body>
+
+<div class="slide-bili-cover">
+  <!-- 背景装饰 -->
+  <div class="bili-bg-decoration">
+    <div class="bili-bg-circle" style="width:380px;height:380px;background:{{ACCENT1}};top:-80px;left:-80px;"></div>
+    <div class="bili-bg-circle" style="width:280px;background:{{ACCENT2}};bottom:-60px;right:-60px;"></div>
+    <div class="bili-emoji-deco" style="top:15%;left:8%;font-size:85px;">{{EMOJI1}}</div>
+    <div class="bili-emoji-deco" style="bottom:18%;right:10%;font-size:65px;">{{EMOJI2}}</div>
+  </div>
+
+  <!-- 印章 -->
+  <div class="bili-stamp">{{CHAPTER}}<br>实战</div>
+
+  <!-- 主内容 -->
+  <div class="bili-content">
+    <div class="bili-badge">{{EMOJI1}} {{BADGE}}</div>
+    <div class="bili-main-title">
+      {{TITLE_WITH_HIGHLIGHT}}
+    </div>
+    <div class="bili-sub-title">{{SUBTITLE}}</div>
+    <div class="bili-tag-row">
+      {{TAGS_HTML}}
+    </div>
+  </div>
+
+  <!-- 底部栏 -->
+  <div class="bili-bottom-bar">
+    <span>{{EMOJI2}} {{QUOTE}}</span>
+    <span>{{CHAPTER}}</span>
+  </div>
+</div>
+
+</body>
+</html>

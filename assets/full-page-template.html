@@ -1,0 +1,194 @@
+<!--
+  完整演示文稿模板（含导航、缩略图、键盘交互）
+  使用方式：复制此模板，在 <!-- SLIDES --> 处插入幻灯片内容
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频封面演示</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #111318;
+    color: #fff;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stage {
+    position: relative;
+    width: 94vw;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .slide-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .slide-card.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  /* === B站封面样式 === */
+  .slide-bili-cover {
+    background: var(--bg-color, #1a1a2e);
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .bili-bg-decoration { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .bili-bg-circle { position: absolute; border-radius: 50%; opacity: 0.06; }
+  .bili-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    width: 100%; height: 100%; padding: 40px;
+  }
+  .bili-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 18px; border-radius: 20px;
+    font-size: 14px; font-weight: 700; letter-spacing: 1px; margin-bottom: 16px;
+  }
+  .bili-main-title {
+    font-size: 82px; font-weight: 900; line-height: 1.05;
+    letter-spacing: 2px; margin-bottom: 10px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .bili-main-title .highlight { display: inline-block; transform: rotate(-3deg); }
+  .bili-sub-title { font-size: 28px; font-weight: 600; margin-bottom: 16px; letter-spacing: 1px; }
+  .bili-tag-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
+  .bili-tag { padding: 6px 18px; border-radius: 16px; font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+  .bili-emoji-deco { position: absolute; opacity: 0.08; z-index: 1; }
+  .bili-stamp {
+    position: absolute; top: 30px; right: 30px;
+    width: 80px; height: 80px; border: 3px solid; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 900; text-align: center; line-height: 1.2;
+    transform: rotate(15deg); z-index: 3;
+  }
+  .bili-bottom-bar {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 36px;
+    background: rgba(0,0,0,0.3);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px; font-size: 13px; color: rgba(255,255,255,0.5); z-index: 4;
+  }
+
+  /* === 导航 === */
+  .nav-arrows {
+    position: fixed; top: 50%; left: 0; right: 0;
+    transform: translateY(-50%); pointer-events: none;
+    z-index: 150; display: flex; justify-content: space-between; padding: 0 20px;
+  }
+  .nav-arrow {
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(17,19,24,0.7); color: rgba(255,255,255,0.6);
+    font-size: 18px; cursor: pointer; pointer-events: auto;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(6px); transition: all 0.15s;
+  }
+  .nav-arrow:hover { background: rgba(26,58,92,0.8); color: #fff; }
+
+  /* === 缩略图 === */
+  .thumb-strip {
+    position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 200;
+    background: rgba(17,19,24,0.85); backdrop-filter: blur(10px);
+    padding: 10px 16px; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    max-width: 95vw; overflow-x: auto;
+  }
+  .thumb {
+    width: 80px; height: 45px; border-radius: 4px;
+    border: 2px solid transparent; cursor: pointer; flex-shrink: 0;
+    overflow: hidden; position: relative; background: #1e2030;
+    transition: border-color 0.2s, transform 0.15s; user-select: none;
+  }
+  .thumb:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.3); }
+  .thumb.active { border-color: #fbbf24; }
+  .thumb .thumb-num {
+    position: absolute; top: 2px; right: 4px;
+    font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.7);
+    background: rgba(0,0,0,0.5); padding: 1px 4px; border-radius: 2px;
+  }
+  .thumb .thumb-preview {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; color: rgba(255,255,255,0.45);
+    padding: 4px; text-align: center; overflow: hidden;
+  }
+  .thumb.bili-thumb { background: linear-gradient(135deg, #e74c3c, #f39c12); }
+  .thumb.bili-thumb .thumb-preview { color: #fff; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="nav-arrows">
+  <button class="nav-arrow" onclick="changeSlide(-1)">◀</button>
+  <button class="nav-arrow" onclick="changeSlide(1)">▶</button>
+</div>
+
+<div class="stage" id="stage">
+  <!-- SLIDES: 在此处插入幻灯片内容 -->
+</div>
+
+<div class="thumb-strip" id="thumbStrip">
+  <!-- THUMBS: 在此处插入缩略图 -->
+</div>
+
+<script>
+  let current = 1;
+  const total = document.querySelectorAll('.slide-card').length;
+
+  function showSlide(n) {
+    if (n < 1 || n > total) return;
+    document.querySelectorAll('.slide-card').forEach((s, i) => {
+      s.classList.toggle('active', i === n - 1);
+    });
+    document.querySelectorAll('.thumb').forEach((t, i) => {
+      t.classList.toggle('active', i === n - 1);
+    });
+    const activeThumb = document.querySelectorAll('.thumb')[n - 1];
+    if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    current = n;
+  }
+
+  function changeSlide(dir) { showSlide(current + dir); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); changeSlide(-1); }
+    else if (e.key === 'Home') showSlide(1);
+    else if (e.key === 'End') showSlide(total);
+  });
+
+  // 初始化
+  showSlide(1);
+</script>
+
+</body>
+</html>
