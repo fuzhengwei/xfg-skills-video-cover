@@ -1879,6 +1879,8 @@ THEME_FONT_CSS = """
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
   box-shadow: 0 8px 32px rgba(0,0,0,0.3); border: 6px solid #fff;
 }
+/* 有真照片时隐藏CSS伪元素头像 */
+.cv-has-photo.theme-portrait .cv-bg-decoration::after { display: none; }
 .theme-portrait .cv-main-title { font-weight: 900; letter-spacing: 0; line-height: 1.08; text-shadow: 3px 3px 0 rgba(0,0,0,0.2); }
 .theme-portrait .cv-main-title .hl-portrait { display: inline-block; }
 .theme-portrait .cv-badge { border-radius: 50px; background: var(--accent1); color: #000; font-weight: 900; border: 3px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
@@ -1998,13 +2000,13 @@ THEME_FONT_CSS = """
 .cover-card:hover .cv-user-photo { transform: scale(1.02); }
 
 /* 照片位置预设 */
-.cv-photo-right { right: 3%; top: 50%; transform: translateY(-50%); width: 38%; height: 80%; }
+.cv-photo-right { right: 4%; top: 50%; transform: translateY(-50%); width: 36%; max-width: 280px; height: auto; aspect-ratio: 1; object-fit: cover; }
 .cv-photo-left { left: 3%; top: 50%; transform: translateY(-50%); width: 38%; height: 80%; }
 .cv-photo-center { left: 50%; top: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; }
 
 /* 有照片时，内容区左移/右移给照片让位 */
-.cv-has-photo .cv-content { max-width: 58%; }
-.cv-has-photo.cv-photo-left .cv-content { margin-left: 40%; }
+.cv-has-photo .cv-content { max-width: 55%; padding-right: 42%; }
+.cv-has-photo.cv-photo-left .cv-content { margin-left: 42%; padding-right: 0; }
 
 /* 有照片时隐藏 mascot */
 .cv-has-photo .cv-mascot { display: none !important; }
@@ -2166,7 +2168,7 @@ THEME_FONT_CSS = """
 .theme-screenshot .cv-user-photo { border-radius: 0; border: 3px solid var(--accent1); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); }
 
 /* portrait: 真人出镜 — 大圆角+投影 */
-.theme-portrait .cv-user-photo { border-radius: 20px; border: 4px solid #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.3); width: 35%; height: 75%; right: 4%; top: 50%; transform: translateY(-50%); }
+.theme-portrait .cv-user-photo { border-radius: 50%; border: 6px solid #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.3); width: 38%; max-width: 260px; height: auto; aspect-ratio: 1; right: 5%; top: 50%; transform: translateY(-50%); object-fit: cover; }
 
 /* product: 实物产品 */
 .theme-product .cv-user-photo { border-radius: 12px; border: 6px solid #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.2); transform: rotate(-2deg); }
