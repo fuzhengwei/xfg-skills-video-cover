@@ -136,7 +136,7 @@ def make_mini_card(theme, title, subtitle, tags, badge, quote, highlights):
 </div>'''
 
 
-def generate_picker_html(title, subtitle, tags, badge, quote, highlights):
+def generate_picker_html(title, subtitle, tags, badge, quote, highlights, photo_url="", photo_position="right"):
     """生成主题选择首页 + 所有风格详情页（单文件）"""
 
     # 生成19个主题卡片，按分类分组
@@ -174,6 +174,7 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights):
             "title": title, "highlight_words": highlights,
             "subtitle": subtitle, "tags": tags,
             "badge": badge, "quote": quote, "theme": theme,
+            "photo_url": photo_url, "photo_position": photo_position,
         }
 
         # 生成4平台的slides
@@ -581,6 +582,8 @@ if __name__ == "__main__":
     p.add_argument("--quote",default="")
     p.add_argument("--highlight",default="拉开技术差距,核心技术项目")
     p.add_argument("--output","-o",default="theme-picker.html")
+    p.add_argument("--photo-url",default="",help="真人出镜照片URL或本地路径")
+    p.add_argument("--photo-position",default="right",choices=["right","left","center"],help="照片位置")
     a = p.parse_args()
 
     html = generate_picker_html(
@@ -589,6 +592,8 @@ if __name__ == "__main__":
         badge=a.badge,
         quote=a.quote,
         highlights=[h.strip() for h in a.highlight.split(",")],
+        photo_url=a.photo_url,
+        photo_position=a.photo_position,
     )
     with open(a.output,"w",encoding="utf-8") as f:
         f.write(html)
