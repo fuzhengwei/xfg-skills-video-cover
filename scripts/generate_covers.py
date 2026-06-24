@@ -1453,7 +1453,7 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0, photo_url=None):
     <div class="cv-tag-row">
 {th}    </div>
   </div>
-  <div class="cv-bottom-bar"><span>{bar_emoji} {quote}</span><span>{pf['name']} · {index+1}</span></div>
+  <div class="cv-bottom-bar"><span>{bar_emoji} {quote}</span></div>
 </div>'''
 
 
