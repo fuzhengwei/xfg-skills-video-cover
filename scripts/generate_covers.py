@@ -593,6 +593,80 @@ def get_iconfont_svgs(theme, count=2):
         result.append(os.path.join(cat_dir, svgs[idx]))
     return result
 
+
+
+def auto_fetch_icons(title, theme, count=3):
+    """根据标题关键词自动从 iconfont.cn 搜索并下载图标"""
+    import subprocess
+    download_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "download_icons.py")
+    if not os.path.exists(download_script):
+        return []
+
+    # 从标题提取关键词
+    keywords = []
+    # 去掉标点和常见停用词
+    import re
+    clean = re.sub(r'[！？。，、；：\u201c\u201d\u2018\u2019【】（）《》\s]+', ' ', title).strip()
+    words = clean.split()
+    for w in words:
+        if len(w) >= 2 and len(w) <= 6:
+            keywords.append(w)
+
+    # 添加主题相关关键词
+    theme_kw_map = {
+        "cyber": ["代码", "编程", "科技"],
+        "gaming": ["游戏", "手柄", "电竞"],
+        "food": ["美食", "食物", "餐厅"],
+        "cute": ["可爱", "动物", "萌"],
+        "anime": ["动漫", "二次元"],
+        "luxury": ["高端", "奢华"],
+        "fresh": ["清新", "自然"],
+    }
+    keywords.extend(theme_kw_map.get(theme, [])[:1])
+
+    if not keywords:
+        return []
+
+    # 检查是否已有足够的本地图标
+    category = THEME_ICONFONT_MAP.get(theme, "tech")
+    cat_dir = os.path.join(ICONFONT_DIR, category)
+    existing = 0
+    if os.path.isdir(cat_dir):
+        existing = len([f for f in os.listdir(cat_dir) if f.endswith('.svg')])
+
+    if existing >= count:
+        return []  # 已有足够图标
+
+    # 调用 download_icons.py 下载
+    query = keywords[0]  # 用第一个关键词搜索
+    try:
+        result = subprocess.run(
+            ["python3", download_script, "-q", query, "-c", category, "-n", str(count)],
+            capture_output=True, text=True, timeout=15
+        )
+        if result.returncode == 0:
+            # 重新扫描目录
+            if os.path.isdir(cat_dir):
+                return [os.path.join(cat_dir, f) for f in sorted(os.listdir(cat_dir)) if f.endswith('.svg')][:count]
+    except (subprocess.TimeoutExpired, Exception):
+        pass  # 静默失败，不影响主流程
+
+    return []
+
+
+def ensure_iconfont_assets(title, theme, min_count=3):
+    """确保有足够的 iconfont 图标，不够则自动下载"""
+    # 先检查本地
+    local_svgs = get_iconfont_svgs(theme, count=min_count)
+    if len(local_svgs) >= min_count:
+        return local_svgs
+
+    # 不够，尝试自动补充
+    auto_fetch_icons(title, theme, count=min_count)
+
+    # 重新获取
+    return get_iconfont_svgs(theme, count=min_count)
+
 def svg_to_data_uri(filepath):
     """将 SVG 文件转为 data URI 用于内联嵌入 HTML"""
     try:
@@ -877,7 +951,7 @@ def apply_highlights(title, highlights, theme, a1, a2):
     return dt
 
 
-def generate_single_cover(cfg, pf_key="bilibili", index=0):
+def generate_single_cover(cfg, pf_key="bilibili", index=0, photo_url=None):
     pf = PLATFORMS[pf_key]
     title = cfg.get("title", "")
     highlights = cfg.get("highlight_words", [])
@@ -897,8 +971,22 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
     text_color = sc.get("text_color", "#ffffff")
 
     # 获取装饰素材（优先 iconfont 本地 SVG，fallback Twemoji）
+    auto_icons = cfg.get("auto_icons", False)
+    if auto_icons:
+        ensure_iconfont_assets(title, theme, min_count=2)
     deco_assets = get_decoration_assets(theme, index)
     (da1_url, da1_name), (da2_url, da2_name) = deco_assets[0], deco_assets[1] if len(deco_assets) > 1 else (deco_assets[0][0], deco_assets[0][0])
+
+    # ===== 真人出镜照片处理 =====
+    user_photo = cfg.get("photo_url") or photo_url
+    has_photo = bool(user_photo)
+    photo_position = cfg.get("photo_position", "right")  # right/left/center
+    photo_class = f"cv-photo-{photo_position}" if photo_position in ("right","left","center") else "cv-photo-right"
+    has_photo_class = "cv-has-photo" if has_photo else ""
+    photo_html = ""
+    if has_photo:
+        photo_html = f'''    <img class="cv-user-photo {photo_class}" src="{user_photo}" alt="用户照片" onerror="this.style.display='none'" />
+'''
 
     dt = apply_highlights(title, highlights, theme, a1, a2)
 
@@ -928,7 +1016,7 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
     badge_emoji = theme_emoji[index % len(theme_emoji)][1] if theme_emoji else ""
     bar_emoji = theme_emoji[(index+1) % len(theme_emoji)][1] if theme_emoji else ""
 
-    return f'''<div class="cover-card cover-{pf_key} theme-{theme}" data-platform="{pf['name']}" data-index="{index+1}" style="--bg-color:{bg};--accent1:{a1};--accent2:{a2};--text-color:{text_color};">
+    return f'''<div class="cover-card cover-{pf_key} theme-{theme} {has_photo_class}" data-platform="{pf['name']}" data-index="{index+1}" style="--bg-color:{bg};--accent1:{a1};--accent2:{a2};--text-color:{text_color};">
   <div class="cv-bg-decoration">
     <div class="cv-bg-circle" style="width:{350+index*20}px;height:{350+index*20}px;background:{a1};top:-{80+index*10}px;left:-{80+index*10}px;"></div>
     <div class="cv-bg-circle" style="width:{260+index*15}px;height:{260+index*15}px;background:{a2};bottom:-60px;right:-60px;"></div>
@@ -938,7 +1026,7 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0):
     <img class="cv-emoji-deco cv-emoji-1 cv-iconfont-deco" src="{da1_url}" alt="" style="top:{12+index*3}%;left:4%;width:{es1}px;height:{es1}px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
     <img class="cv-emoji-deco cv-emoji-2 cv-iconfont-deco" src="{da2_url}" alt="" style="bottom:{10+index*3}%;right:5%;width:{es2}px;height:{es2}px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
   </div>
-  <!-- 大卡通角色：实体（右侧） -->
+{photo_html}  <!-- 大卡通角色：实体（右侧） -->
   <img class="cv-mascot" src="{mascot_url}" alt="" onerror="this.style.display='none'">
   <div class="cv-content">
     <div class="cv-badge" style="background:rgba({hex_to_rgb(a1)},0.2);color:{a1};border:1px solid rgba({hex_to_rgb(a1)},0.4);">{badge_emoji} {badge}</div>
@@ -1899,6 +1987,199 @@ THEME_FONT_CSS = """
   background: #fff; padding: 2px 8px; border-radius: 4px;
   border: 2px solid var(--accent1);
 }
+
+/* ===== 真人出镜照片处理 ===== */
+.cv-user-photo {
+  position: absolute;
+  z-index: 3;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.cover-card:hover .cv-user-photo { transform: scale(1.02); }
+
+/* 照片位置预设 */
+.cv-photo-right { right: 3%; top: 50%; transform: translateY(-50%); width: 38%; height: 80%; }
+.cv-photo-left { left: 3%; top: 50%; transform: translateY(-50%); width: 38%; height: 80%; }
+.cv-photo-center { left: 50%; top: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; }
+
+/* 有照片时，内容区左移/右移给照片让位 */
+.cv-has-photo .cv-content { max-width: 58%; }
+.cv-has-photo.cv-photo-left .cv-content { margin-left: 40%; }
+
+/* 有照片时隐藏 mascot */
+.cv-has-photo .cv-mascot { display: none !important; }
+.cv-has-photo .cv-mascot-bg { display: none !important; }
+
+/* 55种风格的照片差异化处理 */
+
+/* bold: 直角无圆角 + 红描边 */
+.theme-bold .cv-user-photo { border-radius: 0; border: 3px solid var(--accent1); box-shadow: 4px 4px 0 rgba(0,0,0,0.3); }
+
+/* cyber: 12px圆角 + 霓虹发光 */
+.theme-cyber .cv-user-photo { border-radius: 12px; border: 2px solid var(--accent1); box-shadow: 0 0 12px var(--accent1), 0 0 24px var(--accent2); filter: contrast(1.1); }
+
+/* anime: 大圆角 + 白边 */
+.theme-anime .cv-user-photo { border-radius: 20px; border: 4px solid #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+/* funny: 不规则圆角 + 旋转 */
+.theme-funny .cv-user-photo { border-radius: 30% 10% 30% 10%; border: 3px solid var(--accent1); transform: rotate(-3deg); }
+
+/* luxury: 圆形 + 金色描边 */
+.theme-luxury .cv-user-photo { border-radius: 50%; border: 4px solid #d4af37; box-shadow: 0 0 12px rgba(212,175,55,0.4); filter: sepia(0.1); }
+
+/* fresh: 20px大圆角 + 白边 */
+.theme-fresh .cv-user-photo { border-radius: 20px; border: 5px solid #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.1); filter: brightness(1.05); }
+
+/* gaming: 斜切 + 发光 */
+.theme-gaming .cv-user-photo { border-radius: 4px; border: 3px solid var(--accent1); clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%); box-shadow: 0 0 12px var(--accent1); }
+
+/* food: 圆角 + 暖调 */
+.theme-food .cv-user-photo { border-radius: 16px; border: 3px solid var(--accent1); filter: saturate(1.2) brightness(1.05); }
+
+/* cinema: 黑白 + 黑粗边框 */
+.theme-cinema .cv-user-photo { border-radius: 0; border: 6px solid #000; filter: grayscale(0.7) contrast(1.1); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+
+/* cute: 圆形 + 粉色波浪边 */
+.theme-cute .cv-user-photo { border-radius: 50%; border: 4px solid #ff69b4; box-shadow: 0 0 0 4px #fff, 0 0 0 6px #ff69b4; }
+
+/* paper: 撕纸效果 */
+.theme-paper .cv-user-photo { border-radius: 2px; border: 3px solid var(--accent1); clip-path: polygon(2% 0, 98% 0, 100% 50%, 98% 100%, 2% 100%, 0 50%); transform: rotate(-3deg); box-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+
+/* variety: 花边 + 旋转 */
+.theme-variety .cv-user-photo { border-radius: 12px; border: 4px solid var(--accent2); transform: rotate(2deg); box-shadow: 4px 4px 0 rgba(0,0,0,0.3); }
+
+/* doodle: 手绘风边框 */
+.theme-doodle .cv-user-photo { border-radius: 12px; border: 3px dashed var(--accent1); box-shadow: 2px 2px 0 rgba(0,0,0,0.2); }
+
+/* magazine: 矩形 + 上粗线 */
+.theme-magazine .cv-user-photo { border-radius: 0; border-top: 4px solid var(--accent2); border-left: 1px solid rgba(255,255,255,0.2); border-right: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2); }
+
+/* minimal: 干净无边框 */
+.theme-minimal .cv-user-photo { border-radius: 16px; border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+/* dopamine: 渐变边框 */
+.theme-dopamine .cv-user-photo { border-radius: 20px; border: 4px solid transparent; background-clip: padding-box; box-shadow: 0 0 0 4px var(--accent1), 0 0 0 8px var(--accent2); }
+
+/* guochao: 圆角 + 金边 */
+.theme-guochao .cv-user-photo { border-radius: 8px; border: 3px solid #ffd700; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+
+/* pixel: 方形无圆角 */
+.theme-pixel .cv-user-photo { border-radius: 0; border: 3px solid var(--accent1); image-rendering: pixelated; box-shadow: 4px 4px 0 rgba(0,0,0,0.3); }
+
+/* journal: 拍立得风 */
+.theme-journal .cv-user-photo { border-radius: 4px; border: 8px solid #fff; border-bottom: 40px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+
+/* vaporwave: 霓虹边框 */
+.theme-vaporwave .cv-user-photo { border-radius: 12px; border: 3px solid var(--accent1); box-shadow: 0 0 10px var(--accent1), 0 0 20px var(--accent2); filter: contrast(1.1) saturate(1.2); }
+
+/* acid: 荧光边框 */
+.theme-acid .cv-user-photo { border-radius: 8px; border: 3px solid var(--accent1); box-shadow: 0 0 12px var(--accent1); filter: contrast(1.3) saturate(1.3); }
+
+/* memphis: 几何边框 */
+.theme-memphis .cv-user-photo { border-radius: 0; border: 4px solid var(--accent1); box-shadow: 6px 6px 0 var(--accent2); }
+
+/* clay: 大圆角 + 柔和阴影 */
+.theme-clay .cv-user-photo { border-radius: 24px; border: none; box-shadow: 4px 6px 12px rgba(0,0,0,0.15), inset 2px 2px 4px rgba(255,255,255,0.3); }
+
+/* glass: 半透明边框 */
+.theme-glass .cv-user-photo { border-radius: 16px; border: 2px solid rgba(255,255,255,0.3); backdrop-filter: blur(4px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+
+/* sticker: 白边贴纸 */
+.theme-sticker .cv-user-photo { border-radius: 10px; border: 4px solid #fff; box-shadow: 3px 3px 0 rgba(0,0,0,0.2); transform: rotate(-2deg); }
+
+/* comic: 粗黑描边 */
+.theme-comic .cv-user-photo { border-radius: 8px; border: 4px solid #000; box-shadow: 4px 4px 0 #000; }
+
+/* neon: 霓虹发光 */
+.theme-neon .cv-user-photo { border-radius: 12px; border: 2px solid var(--accent1); box-shadow: 0 0 10px var(--accent1), 0 0 20px var(--accent2); }
+
+/* retro: 复古滤镜 */
+.theme-retro .cv-user-photo { border-radius: 8px; border: 3px solid var(--accent1); filter: sepia(0.3) contrast(0.95); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); }
+
+/* collage: 拼贴风 */
+.theme-collage .cv-user-photo { border-radius: 4px; border: 2px dashed var(--accent1); transform: rotate(2deg); box-shadow: 3px 3px 0 rgba(0,0,0,0.15); }
+
+/* aurora: 光晕边框 */
+.theme-aurora .cv-user-photo { border-radius: 16px; border: 2px solid rgba(255,255,255,0.3); box-shadow: 0 0 16px var(--accent1), 0 0 32px var(--accent2); }
+
+/* ink: 水墨风 */
+.theme-ink .cv-user-photo { border-radius: 4px; border: 2px solid #1a1a1a; filter: grayscale(0.3) contrast(1.1); box-shadow: 2px 2px 0 rgba(0,0,0,0.2); }
+
+/* stamp: 印章风 */
+.theme-stamp .cv-user-photo { border-radius: 0; border: 4px solid #8b0000; box-shadow: 4px 4px 0 rgba(0,0,0,0.2); }
+
+/* newspaper: 灰度 */
+.theme-newspaper .cv-user-photo { border-radius: 0; border: 2px solid #1a1a1a; filter: grayscale(0.8) contrast(1.1); }
+
+/* polaroid: 拍立得 */
+.theme-polaroid .cv-user-photo { border-radius: 2px; border: 8px solid #fff; border-bottom: 36px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+/* risograph: 双色错位 */
+.theme-risograph .cv-user-photo { border-radius: 4px; border: 3px solid var(--accent1); filter: contrast(1.2) saturate(0.8); box-shadow: 3px 3px 0 var(--accent2); }
+
+/* film: 胶片感 */
+.theme-film .cv-user-photo { border-radius: 0; border: 4px solid #1a1a1a; filter: sepia(0.2) contrast(0.95); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+
+/* graffiti: 喷漆边框 */
+.theme-graffiti .cv-user-photo { border-radius: 8px; border: 4px solid var(--accent1); transform: rotate(-3deg); box-shadow: 4px 4px 0 rgba(0,0,0,0.4); filter: saturate(1.3); }
+
+/* ribbon: 缎带 */
+.theme-ribbon .cv-user-photo { border-radius: 8px; border: 3px solid var(--accent1); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+/* gradientmesh: 柔和光晕 */
+.theme-gradientmesh .cv-user-photo { border-radius: 20px; border: 2px solid rgba(255,255,255,0.3); box-shadow: 0 0 16px rgba(255,255,255,0.2); }
+
+/* brutalist: 粗野风 */
+.theme-brutalist .cv-user-photo { border-radius: 0; border: 5px solid #000; filter: contrast(1.3) grayscale(0.3); box-shadow: none; }
+
+/* pastel: 莫兰迪 */
+.theme-pastel .cv-user-photo { border-radius: 16px; border: 3px solid rgba(255,255,255,0.4); filter: saturate(0.7) brightness(0.95); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
+/* popart: 波普 */
+.theme-popart .cv-user-photo { border-radius: 8px; border: 4px solid #000; filter: contrast(1.3) saturate(1.5); box-shadow: 4px 4px 0 #000; }
+
+/* terrarium: 生态 */
+.theme-terrarium .cv-user-photo { border-radius: 20px; border: 3px solid rgba(255,255,255,0.4); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+/* holographic: 全息 */
+.theme-holographic .cv-user-photo { border-radius: 16px; border: 3px solid rgba(255,255,255,0.5); box-shadow: 0 0 12px rgba(255,255,255,0.3); filter: saturate(1.3) hue-rotate(5deg); }
+
+/* kraft: 牛皮纸 */
+.theme-kraft .cv-user-photo { border-radius: 4px; border: 3px solid #3c2415; filter: sepia(0.15); box-shadow: 2px 2px 0 rgba(0,0,0,0.15); }
+
+/* blueprint: 蓝图 */
+.theme-blueprint .cv-user-photo { border-radius: 0; border: 2px solid var(--accent1); box-shadow: 0 0 8px var(--accent1); filter: hue-rotate(180deg) brightness(1.1); }
+
+/* starfield: 星空 */
+.theme-starfield .cv-user-photo { border-radius: 16px; border: 2px solid rgba(255,255,255,0.3); box-shadow: 0 0 16px var(--accent1), 0 0 32px var(--accent2); }
+
+/* washi: 和纸 */
+.theme-washi .cv-user-photo { border-radius: 4px; border: 3px solid var(--accent1); transform: rotate(-1deg); box-shadow: 2px 2px 0 rgba(0,0,0,0.1); }
+
+/* typewriter: 打字机 */
+.theme-typewriter .cv-user-photo { border-radius: 0; border: 2px solid #1a1a1a; filter: grayscale(0.3) sepia(0.1); box-shadow: 2px 2px 0 rgba(0,0,0,0.15); }
+
+/* carnival: 嘉年华 */
+.theme-carnival .cv-user-photo { border-radius: 16px; border: 3px solid var(--accent1); box-shadow: 0 0 12px var(--accent1), 0 0 24px var(--accent2); }
+
+/* screenshot: 真实截图 */
+.theme-screenshot .cv-user-photo { border-radius: 0; border: 3px solid var(--accent1); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); }
+
+/* portrait: 真人出镜 — 大圆角+投影 */
+.theme-portrait .cv-user-photo { border-radius: 20px; border: 4px solid #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.3); width: 35%; height: 75%; right: 4%; top: 50%; transform: translateY(-50%); }
+
+/* product: 实物产品 */
+.theme-product .cv-user-photo { border-radius: 12px; border: 6px solid #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.2); transform: rotate(-2deg); }
+
+/* contrast: 对比 */
+.theme-contrast .cv-user-photo { border-radius: 8px; border: 3px solid var(--accent1); clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%); }
+
+/* zoom: 局部放大 */
+.theme-zoom .cv-user-photo { border-radius: 50%; border: 4px solid var(--accent1); box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--accent1), 0 0 20px var(--accent1); width: 40%; height: auto; aspect-ratio: 1; }
+
+/* 默认照片样式 */
+.cv-user-photo-default { border-radius: 16px; border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
 """
 
 
@@ -2135,10 +2416,16 @@ def covers_from_chapters(chapters, theme="auto"):
 
 
 def main():
-    all_themes = ["auto","bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute","paper","variety","doodle",
-                  "tech","hot","cool","warm","dark","gradient","animal"]
+    all_themes = ["auto",
+        "bold","cyber","anime","funny","luxury","fresh","gaming","food","cinema","cute",
+        "paper","variety","doodle","magazine","minimal","dopamine","guochao","pixel","journal",
+        "vaporwave","acid","memphis","clay","glass","sticker","comic","neon","retro","collage","aurora",
+        "ink","stamp","newspaper","polaroid","risograph","film","graffiti","ribbon","gradientmesh","brutalist",
+        "pastel","popart","terrarium","holographic","kraft","blueprint","starfield","washi","typewriter","carnival",
+        "screenshot","portrait","product","contrast","zoom",
+        "tech","hot","cool","warm","dark","gradient","animal"]
     p = argparse.ArgumentParser(
-        description="视频封面生成器 v3.2 - 13大B站爆款风格 × 差异化字体排版",
+        description="视频封面生成器 v8.0 - 55种风格 × 231套配色 × 真人出镜 × 爆款标题",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="\n示例:\n"
                "  python3 generate_covers.py --title 'Docker一装，运维轻松10倍' --theme cyber\n"
@@ -2148,7 +2435,12 @@ def main():
                "  python3 generate_covers.py --title '这反应绝了' --theme variety --platform all\n"
                "  python3 generate_covers.py --input ppt.html --output covers.html --platform all\n"
                "  python3 generate_covers.py --config covers.json\n\n"
-               "B站爆款风格: bold/cyber/anime/funny/luxury/fresh/gaming/food/cinema/cute/paper/variety/doodle")
+               "55种风格: bold/cyber/anime/funny/luxury/fresh/gaming/food/cinema/cute/paper/variety/doodle\n"
+               "  + magazine/minimal/dopamine/guochao/pixel/journal/vaporwave/acid/memphis/clay\n"
+               "  + glass/sticker/comic/neon/retro/collage/aurora/ink/stamp/newspaper/polaroid\n"
+               "  + risograph/film/graffiti/ribbon/gradientmesh/brutalist/pastel/popart/terrarium\n"
+               "  + holographic/kraft/blueprint/starfield/washi/typewriter/carnival\n"
+               "  + screenshot/portrait/product/contrast/zoom (真实派)")
     p.add_argument("--input","-i")
     p.add_argument("--output","-o",default="video-covers.html")
     p.add_argument("--config","-c")
@@ -2164,6 +2456,9 @@ def main():
     p.add_argument("--highlight")
     p.add_argument("--bg-color")
     p.add_argument("--accent-color")
+    p.add_argument("--photo-url", help="真人出镜照片URL或本地路径")
+    p.add_argument("--auto-icons", action="store_true", help="根据标题自动从 iconfont.cn 下载图标")
+    p.add_argument("--photo-position", default="right", choices=["right","left","center"], help="照片位置")
     a = p.parse_args()
 
     if a.input:
@@ -2195,7 +2490,9 @@ def main():
         hw = [w.strip() for w in a.highlight.split(",")] if a.highlight else []
         tg = [t.strip() for t in a.tags.split(",")] if a.tags else []
         cover = {"title":a.title,"highlight_words":hw,"subtitle":a.subtitle or "",
-                 "tags":tg,"badge":a.badge or "","quote":a.quote or "","theme":a.theme}
+                 "tags":tg,"badge":a.badge or "","quote":a.quote or "","theme":a.theme,
+                 "photo_url":a.photo_url,"photo_position":a.photo_position,
+                 "auto_icons":a.auto_icons}
         if a.scheme: cover["scheme"] = a.scheme
         if a.bg_color: cover["bg_color"]=a.bg_color
         if a.accent_color: cover["accent1"]=a.accent_color

@@ -593,4 +593,4 @@ if __name__ == "__main__":
     with open(a.output,"w",encoding="utf-8") as f:
         f.write(html)
     print(f"✅ 主题选择器已生成 → {a.output}")
-    print(f"   30大风格 · 4大分类 · 点击卡片跳转4平台详情页")
+    print(f"   55种风格 · 4大分类 · 点击卡片跳转4平台详情页")
