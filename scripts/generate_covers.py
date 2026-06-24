@@ -1984,215 +1984,214 @@ THEME_FONT_CSS = """
   border: 2px solid var(--accent1);
 }
 
-/* ===== 真人出镜照片处理 v2 — 高冲击力设计 ===== */
+/* ===== 真人出镜照片 v3 — 全屏背景+主题色覆盖 ===== */
 .cv-user-photo {
   position: absolute;
-  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  z-index: 0;
   pointer-events: none;
 }
 
-/* 照片位置预设 */
-.cv-photo-right { right: 0; top: 0; width: 50%; height: 100%; }
-.cv-photo-left { left: 0; top: 0; width: 50%; height: 100%; }
-.cv-photo-center { left: 0; top: 0; width: 100%; height: 100%; }
-
-/* 有照片时：内容区左半，照片右半 */
-.cv-has-photo .cv-content {
-  position: relative;
-  z-index: 5;
-  max-width: 55%;
-  padding-left: 6%;
+/* 照片位置参数在此模式下不生效，照片始终全屏 */
+.cv-photo-right, .cv-photo-left, .cv-photo-center {
+  inset: 0; width: 100%; height: 100%;
 }
 
-/* 照片侧的暗渐变遮罩，让文字可读 */
-.cv-has-photo .cv-bg-decoration::before {
+/* 有照片时：主题色半透明覆盖，让文字可读 + 照片融合 */
+.cv-has-photo::before {
   content: '' !important;
   position: absolute !important;
   inset: 0 !important;
-  z-index: 2 !important;
-  background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 45%, transparent 100%) !important;
+  z-index: 1 !important;
+  background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%) !important;
   pointer-events: none !important;
 }
 
-/* 有照片时隐藏mascot */
+/* 有照片时内容区提升层级 */
+.cv-has-photo .cv-content { position: relative; z-index: 5 !important; }
+.cv-has-photo .cv-bg-decoration { z-index: 0 !important; }
+
+/* 有照片时隐藏mascot和emoji装饰 */
 .cv-has-photo .cv-mascot { display: none !important; }
 .cv-has-photo .cv-mascot-bg { display: none !important; }
-
-/* 有照片时隐藏emoji装饰 */
 .cv-has-photo .cv-emoji-deco { display: none !important; }
 
-/* ===== 各风格照片处理 ===== */
+/* 有照片时隐藏CSS伪元素装饰（如portrait的👤圆圈、screenshot的红条等） */
+.cv-has-photo .cv-bg-decoration::before { display: none !important; }
+.cv-has-photo .cv-bg-decoration::after { display: none !important; }
 
-/* bold: 全幅无圆角 */
-.theme-bold .cv-user-photo { border-radius: 0; }
+/* 有照片时底部栏更透明 */
+.cv-has-photo .cv-bottom-bar { background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); }
 
-/* cyber: 左侧霓虹边线 */
-.theme-cyber .cv-user-photo { border-radius: 0; border-left: 3px solid var(--accent1); box-shadow: -4px 0 20px var(--accent1); }
+/* ===== 各风格照片覆盖色（主题色融入照片） ===== */
 
-/* anime: 大圆角 */
-.theme-anime .cv-user-photo { border-radius: 0 0 0 40px; }
+/* bold: 深红覆盖 */
+.theme-bold.cv-has-photo::before { background: linear-gradient(135deg, rgba(220,38,38,0.7) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* funny: 不规则裁切 */
-.theme-funny .cv-user-photo { border-radius: 0 0 0 30%; }
+/* cyber: 赛博蓝紫覆盖 */
+.theme-cyber.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,255,255,0.15) 0%, rgba(0,0,0,0.7) 30%, rgba(255,0,255,0.1) 100%) !important; }
 
-/* luxury: 左侧金线 */
-.theme-luxury .cv-user-photo { border-radius: 0; border-left: 4px solid #d4af37; }
+/* anime: 粉色覆盖 */
+.theme-anime.cv-has-photo::before { background: linear-gradient(135deg, rgba(255,182,193,0.3) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* fresh: 柔和渐变遮罩 */
-.theme-fresh .cv-user-photo { border-radius: 0; filter: brightness(1.05) saturate(1.1); }
+/* funny: 暗色覆盖 */
+.theme-funny.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* gaming: 斜切 */
-.theme-gaming .cv-user-photo { border-radius: 0; clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); }
+/* luxury: 金色覆盖 */
+.theme-luxury.cv-has-photo::before { background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(0,0,0,0.7) 100%) !important; }
 
-/* food: 暖调 */
-.theme-food .cv-user-photo { border-radius: 0; filter: saturate(1.2) brightness(1.05); }
+/* fresh: 清新绿覆盖 */
+.theme-fresh.cv-has-photo::before { background: linear-gradient(135deg, rgba(16,185,129,0.2) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* cinema: 黑白+电影感 */
-.theme-cinema .cv-user-photo { border-radius: 0; filter: grayscale(0.5) contrast(1.2); }
+/* gaming: 红黑覆盖 */
+.theme-gaming.cv-has-photo::before { background: linear-gradient(135deg, rgba(220,38,38,0.3) 0%, rgba(0,0,0,0.7) 100%) !important; }
 
-/* cute: 圆角 */
-.theme-cute .cv-user-photo { border-radius: 0 0 0 50px; }
+/* food: 暖橙覆盖 */
+.theme-food.cv-has-photo::before { background: linear-gradient(135deg, rgba(245,158,11,0.25) 0%, rgba(0,0,0,0.6) 100%) !important; }
 
-/* paper: 撕纸边缘 */
-.theme-paper .cv-user-photo { border-radius: 0; clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%); }
+/* cinema: 深暗覆盖 */
+.theme-cinema.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* variety: 旋转 */
-.theme-variety .cv-user-photo { border-radius: 0; transform: rotate(0deg); }
+/* cute: 粉色覆盖 */
+.theme-cute.cv-has-photo::before { background: linear-gradient(135deg, rgba(255,105,180,0.2) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* doodle: 手绘风 */
-.theme-doodle .cv-user-photo { border-radius: 0 0 0 20px; border-left: 3px dashed var(--accent1); }
+/* paper: 暗色覆盖 */
+.theme-paper.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%) !important; }
 
-/* magazine: 矩形+左侧粗线 */
-.theme-magazine .cv-user-photo { border-radius: 0; border-left: 5px solid var(--accent2); }
+/* variety: 暗色覆盖 */
+.theme-variety.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%) !important; }
 
-/* minimal: 干净 */
-.theme-minimal .cv-user-photo { border-radius: 0; }
+/* doodle: 暗色覆盖 */
+.theme-doodle.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%) !important; }
 
-/* dopamine: 渐变遮罩 */
-.theme-dopamine .cv-user-photo { border-radius: 0; filter: saturate(1.3); }
+/* magazine: 深色覆盖 */
+.theme-magazine.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* guochao: 金边 */
-.theme-guochao .cv-user-photo { border-radius: 0; border-left: 4px solid #ffd700; }
+/* minimal: 极简暗覆盖 */
+.theme-minimal.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 100%) !important; }
 
-/* pixel: 方形 */
-.theme-pixel .cv-user-photo { border-radius: 0; image-rendering: pixelated; }
+/* dopamine: 多巴胺覆盖 */
+.theme-dopamine.cv-has-photo::before { background: linear-gradient(135deg, rgba(255,107,107,0.3) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* journal: 拍立得风 */
-.theme-journal .cv-user-photo { border-radius: 0; border-left: 8px solid #fff; filter: sepia(0.1); }
+/* guochao: 国潮红覆盖 */
+.theme-guochao.cv-has-photo::before { background: linear-gradient(135deg, rgba(139,0,0,0.5) 0%, rgba(0,0,0,0.6) 100%) !important; }
 
-/* vaporwave: 霓虹 */
-.theme-vaporwave .cv-user-photo { border-radius: 0; filter: contrast(1.1) saturate(1.3); border-left: 3px solid var(--accent1); }
+/* pixel: 暗色覆盖 */
+.theme-pixel.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,255,65,0.05) 100%) !important; }
 
-/* acid: 荧光 */
-.theme-acid .cv-user-photo { border-radius: 0; filter: contrast(1.3) saturate(1.4); }
+/* journal: 暖色覆盖 */
+.theme-journal.cv-has-photo::before { background: linear-gradient(135deg, rgba(146,64,14,0.2) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* memphis: 几何 */
-.theme-memphis .cv-user-photo { border-radius: 0; }
+/* vaporwave: 粉紫覆盖 */
+.theme-vaporwave.cv-has-photo::before { background: linear-gradient(135deg, rgba(255,110,199,0.2) 0%, rgba(0,0,0,0.6) 100%) !important; }
 
-/* clay: 柔和 */
-.theme-clay .cv-user-photo { border-radius: 0; filter: brightness(1.05); }
+/* acid: 荧光覆盖 */
+.theme-acid.cv-has-photo::before { background: linear-gradient(135deg, rgba(170,255,0,0.1) 0%, rgba(0,0,0,0.7) 100%) !important; }
 
-/* glass: 半透明 */
-.theme-glass .cv-user-photo { border-radius: 0; filter: brightness(1.1); }
+/* memphis: 暗色覆盖 */
+.theme-memphis.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%) !important; }
 
-/* sticker: 白边 */
-.theme-sticker .cv-user-photo { border-radius: 0; border-left: 4px solid #fff; }
+/* clay: 暖色覆盖 */
+.theme-clay.cv-has-photo::before { background: linear-gradient(135deg, rgba(255,214,165,0.2) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* comic: 粗黑描边 */
-.theme-comic .cv-user-photo { border-radius: 0; border-left: 4px solid #000; }
+/* glass: 深色覆盖 */
+.theme-glass.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%) !important; }
 
-/* neon: 霓虹发光 */
-.theme-neon .cv-user-photo { border-radius: 0; border-left: 3px solid var(--accent1); box-shadow: -4px 0 16px var(--accent1); }
+/* sticker: 暗色覆盖 */
+.theme-sticker.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%) !important; }
 
-/* retro: 复古滤镜 */
-.theme-retro .cv-user-photo { border-radius: 0; filter: sepia(0.3) contrast(0.95); }
+/* comic: 黑色覆盖 */
+.theme-comic.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%) !important; }
 
-/* collage: 拼贴 */
-.theme-collage .cv-user-photo { border-radius: 0; border-left: 3px dashed var(--accent1); }
+/* neon: 霓虹覆盖 */
+.theme-neon.cv-has-photo::before { background: linear-gradient(135deg, rgba(255,0,110,0.15) 0%, rgba(0,0,0,0.75) 100%) !important; }
 
-/* aurora: 光晕 */
-.theme-aurora .cv-user-photo { border-radius: 0; filter: brightness(1.1); }
+/* retro: 复古覆盖 */
+.theme-retro.cv-has-photo::before { background: linear-gradient(135deg, rgba(212,163,115,0.2) 0%, rgba(0,0,0,0.6) 100%) !important; }
 
-/* ink: 水墨 */
-.theme-ink .cv-user-photo { border-radius: 0; filter: grayscale(0.4) contrast(1.1); }
+/* collage: 暗色覆盖 */
+.theme-collage.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%) !important; }
 
-/* stamp: 印章 */
-.theme-stamp .cv-user-photo { border-radius: 0; border-left: 4px solid #8b0000; }
+/* aurora: 极光覆盖 */
+.theme-aurora.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,255,136,0.1) 0%, rgba(0,0,0,0.65) 100%) !important; }
 
-/* newspaper: 灰度 */
-.theme-newspaper .cv-user-photo { border-radius: 0; filter: grayscale(0.8) contrast(1.1); }
+/* ink: 水墨覆盖 */
+.theme-ink.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(139,69,19,0.1) 100%) !important; }
 
-/* polaroid: 拍立得 */
-.theme-polaroid .cv-user-photo { border-radius: 0; border-left: 8px solid #fff; border-right: 8px solid #fff; }
+/* stamp: 朱红覆盖 */
+.theme-stamp.cv-has-photo::before { background: linear-gradient(135deg, rgba(139,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%) !important; }
 
-/* risograph: 双色 */
-.theme-risograph .cv-user-photo { border-radius: 0; filter: contrast(1.2) saturate(0.8); }
+/* newspaper: 灰度覆盖 */
+.theme-newspaper.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* film: 胶片 */
-.theme-film .cv-user-photo { border-radius: 0; filter: sepia(0.25) contrast(0.9); }
+/* polaroid: 暖色覆盖 */
+.theme-polaroid.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%) !important; }
 
-/* graffiti: 涂鸦 */
-.theme-graffiti .cv-user-photo { border-radius: 0; filter: saturate(1.4) contrast(1.1); }
+/* risograph: 双色覆盖 */
+.theme-risograph.cv-has-photo::before { background: linear-gradient(135deg, rgba(220,38,38,0.15) 0%, rgba(0,0,0,0.6) 100%) !important; }
 
-/* ribbon: 缎带 */
-.theme-ribbon .cv-user-photo { border-radius: 0; }
+/* film: 胶片覆盖 */
+.theme-film.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(212,163,115,0.1) 100%) !important; }
 
-/* gradientmesh: 柔和 */
-.theme-gradientmesh .cv-user-photo { border-radius: 0; filter: brightness(1.1); }
+/* graffiti: 街头覆盖 */
+.theme-graffiti.cv-has-photo::before { background: linear-gradient(135deg, rgba(170,255,0,0.1) 0%, rgba(0,0,0,0.65) 100%) !important; }
 
-/* brutalist: 粗野 */
-.theme-brutalist .cv-user-photo { border-radius: 0; filter: contrast(1.4) grayscale(0.3); border-left: 6px solid #000; }
+/* ribbon: 暗色覆盖 */
+.theme-ribbon.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%) !important; }
 
-/* pastel: 莫兰迪 */
-.theme-pastel .cv-user-photo { border-radius: 0; filter: saturate(0.7) brightness(0.95); }
+/* gradientmesh: 柔和覆盖 */
+.theme-gradientmesh.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%) !important; }
 
-/* popart: 波普 */
-.theme-popart .cv-user-photo { border-radius: 0; filter: contrast(1.3) saturate(1.5); }
+/* brutalist: 粗野覆盖 */
+.theme-brutalist.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* terrarium: 生态 */
-.theme-terrarium .cv-user-photo { border-radius: 0; filter: brightness(1.05); }
+/* pastel: 莫兰迪覆盖 */
+.theme-pastel.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%) !important; }
 
-/* holographic: 全息 */
-.theme-holographic .cv-user-photo { border-radius: 0; filter: saturate(1.3); }
+/* popart: 波普覆盖 */
+.theme-popart.cv-has-photo::before { background: linear-gradient(135deg, rgba(255,20,147,0.2) 0%, rgba(0,0,0,0.6) 100%) !important; }
 
-/* kraft: 牛皮纸 */
-.theme-kraft .cv-user-photo { border-radius: 0; filter: sepia(0.15); }
+/* terrarium: 生态覆盖 */
+.theme-terrarium.cv-has-photo::before { background: linear-gradient(135deg, rgba(6,95,70,0.3) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* blueprint: 蓝图 */
-.theme-blueprint .cv-user-photo { border-radius: 0; filter: hue-rotate(180deg) brightness(1.1); border-left: 2px solid var(--accent1); }
+/* holographic: 全息覆盖 */
+.theme-holographic.cv-has-photo::before { background: linear-gradient(135deg, rgba(131,56,239,0.15) 0%, rgba(0,0,0,0.6) 100%) !important; }
 
-/* starfield: 星空 */
-.theme-starfield .cv-user-photo { border-radius: 0; }
+/* kraft: 牛皮纸覆盖 */
+.theme-kraft.cv-has-photo::before { background: linear-gradient(135deg, rgba(212,165,116,0.2) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* washi: 和纸 */
-.theme-washi .cv-user-photo { border-radius: 0; border-left: 3px solid var(--accent1); }
+/* blueprint: 蓝图覆盖 */
+.theme-blueprint.cv-has-photo::before { background: linear-gradient(135deg, rgba(13,59,102,0.6) 0%, rgba(0,0,0,0.5) 100%) !important; }
 
-/* typewriter: 打字机 */
-.theme-typewriter .cv-user-photo { border-radius: 0; filter: grayscale(0.3) sepia(0.1); }
+/* starfield: 星空覆盖 */
+.theme-starfield.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,8,20,0.7) 0%, rgba(0,0,0,0.4) 100%) !important; }
 
-/* carnival: 嘉年华 */
-.theme-carnival .cv-user-photo { border-radius: 0; border-left: 3px solid var(--accent1); box-shadow: -4px 0 12px var(--accent1); }
+/* washi: 和纸覆盖 */
+.theme-washi.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.35) 100%) !important; }
 
-/* screenshot: 真实截图 */
-.theme-screenshot .cv-user-photo { border-radius: 0; }
+/* typewriter: 打字机覆盖 */
+.theme-typewriter.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%) !important; }
 
-/* portrait: 真人出镜 — 照片占满右半 */
-.theme-portrait .cv-user-photo {
-  border-radius: 0;
-  width: 55%;
-  right: 0;
-  filter: brightness(1.05);
-}
+/* carnival: 嘉年华覆盖 */
+.theme-carnival.cv-has-photo::before { background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(0,0,0,0.7) 100%) !important; }
 
-/* product: 实物 */
-.theme-product .cv-user-photo { border-radius: 0; filter: brightness(1.1); }
+/* screenshot: 截图覆盖 */
+.theme-screenshot.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%) !important; }
 
-/* contrast: 对比 */
-.theme-contrast .cv-user-photo { border-radius: 0; clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); }
+/* portrait: 真人覆盖 */
+.theme-portrait.cv-has-photo::before { background: linear-gradient(135deg, rgba(30,64,175,0.4) 0%, rgba(0,0,0,0.6) 100%) !important; }
 
-/* zoom: 局部放大 */
-.theme-zoom .cv-user-photo { border-radius: 0; filter: brightness(1.1) contrast(1.1); }
+/* product: 产品覆盖 */
+.theme-product.cv-has-photo::before { background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%) !important; }
+
+/* contrast: 对比覆盖 */
+.theme-contrast.cv-has-photo::before { background: linear-gradient(135deg, rgba(220,38,38,0.2) 0%, rgba(0,0,0,0.6) 100%) !important; }
+
+/* zoom: 放大覆盖 */
+.theme-zoom.cv-has-photo::before { background: linear-gradient(135deg, rgba(220,38,38,0.15) 0%, rgba(0,0,0,0.65) 100%) !important; }
 
 """
 
