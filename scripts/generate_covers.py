@@ -1025,8 +1025,8 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0, photo_url=None):
     <!-- 小装饰图标：左上角 -->
     <img class="cv-emoji-deco cv-emoji-1 cv-iconfont-deco" src="{da1_url}" alt="" style="top:{12+index*3}%;left:4%;width:{es1}px;height:{es1}px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
     <img class="cv-emoji-deco cv-emoji-2 cv-iconfont-deco" src="{da2_url}" alt="" style="bottom:{10+index*3}%;right:5%;width:{es2}px;height:{es2}px;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15));" onerror="this.style.display='none'">
-  </div>
-{photo_html}  <!-- 大卡通角色：实体（右侧） -->
+{photo_html}  </div>
+  <!-- 大卡通角色：实体（右侧） -->
   <img class="cv-mascot" src="{mascot_url}" alt="" onerror="this.style.display='none'">
   <div class="cv-content">
     <div class="cv-badge" style="background:rgba({hex_to_rgb(a1)},0.2);color:{a1};border:1px solid rgba({hex_to_rgb(a1)},0.4);">{badge_emoji} {badge}</div>
@@ -1043,7 +1043,7 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0, photo_url=None):
 THEME_FONT_CSS = """
 /* ===== iconfont 卡通装饰图标增强 ===== */
 .cv-iconfont-deco { opacity: 0.85; transition: transform 0.3s ease; z-index: 1; }
-.cover-card:hover .cv-iconfont-deco { transform: scale(1.08) rotate(3deg); }
+
 .theme-cute .cv-iconfont-deco,
 .theme-animal .cv-iconfont-deco,
 .theme-fresh .cv-iconfont-deco { opacity: 0.95; filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.18)) !important; }
@@ -1063,10 +1063,7 @@ THEME_FONT_CSS = """
   transition: transform 0.4s ease, opacity 0.3s ease;
   pointer-events: none;
 }
-.cover-card:hover .cv-mascot {
-  transform: scale(1.05) rotate(-2deg);
-  opacity: 1;
-}
+.cover-card:hover .cv-mascot { /* no animation */ }
 /* 竖版封面：卡通角色放底部居中 */
 .cover-wechat .cv-mascot,
 .cover-mobile .cv-mascot {
@@ -1076,10 +1073,7 @@ THEME_FONT_CSS = """
   bottom: 8%;
   width: 28%;
 }
-.cover-wechat:hover .cv-mascot,
-.cover-mobile:hover .cv-mascot {
-  transform: translateX(-50%) scale(1.05) rotate(-2deg);
-}
+
 /* 小红书：卡通角色右下角稍小 */
 .cover-xiaohongshu .cv-mascot {
   width: 26%;
@@ -1990,197 +1984,215 @@ THEME_FONT_CSS = """
   border: 2px solid var(--accent1);
 }
 
-/* ===== 真人出镜照片处理 ===== */
+/* ===== 真人出镜照片处理 v2 — 高冲击力设计 ===== */
 .cv-user-photo {
   position: absolute;
-  z-index: 3;
+  z-index: 1;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  pointer-events: none;
 }
-.cover-card:hover .cv-user-photo { transform: scale(1.02); }
 
 /* 照片位置预设 */
-.cv-photo-right { right: 4%; top: 50%; transform: translateY(-50%); width: 36%; max-width: 280px; height: auto; aspect-ratio: 1; object-fit: cover; }
-.cv-photo-left { left: 3%; top: 50%; transform: translateY(-50%); width: 38%; height: 80%; }
-.cv-photo-center { left: 50%; top: 50%; transform: translate(-50%, -50%); width: 100%; height: 100%; }
+.cv-photo-right { right: 0; top: 0; width: 50%; height: 100%; }
+.cv-photo-left { left: 0; top: 0; width: 50%; height: 100%; }
+.cv-photo-center { left: 0; top: 0; width: 100%; height: 100%; }
 
-/* 有照片时，内容区左移/右移给照片让位 */
-.cv-has-photo .cv-content { max-width: 55%; padding-right: 42%; }
-.cv-has-photo.cv-photo-left .cv-content { margin-left: 42%; padding-right: 0; }
+/* 有照片时：内容区左半，照片右半 */
+.cv-has-photo .cv-content {
+  position: relative;
+  z-index: 5;
+  max-width: 55%;
+  padding-left: 6%;
+}
 
-/* 有照片时隐藏 mascot */
+/* 照片侧的暗渐变遮罩，让文字可读 */
+.cv-has-photo .cv-bg-decoration::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 45%, transparent 100%) !important;
+  pointer-events: none !important;
+}
+
+/* 有照片时隐藏mascot */
 .cv-has-photo .cv-mascot { display: none !important; }
 .cv-has-photo .cv-mascot-bg { display: none !important; }
 
-/* 55种风格的照片差异化处理 */
+/* 有照片时隐藏emoji装饰 */
+.cv-has-photo .cv-emoji-deco { display: none !important; }
 
-/* bold: 直角无圆角 + 红描边 */
-.theme-bold .cv-user-photo { border-radius: 0; border: 3px solid var(--accent1); box-shadow: 4px 4px 0 rgba(0,0,0,0.3); }
+/* ===== 各风格照片处理 ===== */
 
-/* cyber: 12px圆角 + 霓虹发光 */
-.theme-cyber .cv-user-photo { border-radius: 12px; border: 2px solid var(--accent1); box-shadow: 0 0 12px var(--accent1), 0 0 24px var(--accent2); filter: contrast(1.1); }
+/* bold: 全幅无圆角 */
+.theme-bold .cv-user-photo { border-radius: 0; }
 
-/* anime: 大圆角 + 白边 */
-.theme-anime .cv-user-photo { border-radius: 20px; border: 4px solid #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+/* cyber: 左侧霓虹边线 */
+.theme-cyber .cv-user-photo { border-radius: 0; border-left: 3px solid var(--accent1); box-shadow: -4px 0 20px var(--accent1); }
 
-/* funny: 不规则圆角 + 旋转 */
-.theme-funny .cv-user-photo { border-radius: 30% 10% 30% 10%; border: 3px solid var(--accent1); transform: rotate(-3deg); }
+/* anime: 大圆角 */
+.theme-anime .cv-user-photo { border-radius: 0 0 0 40px; }
 
-/* luxury: 圆形 + 金色描边 */
-.theme-luxury .cv-user-photo { border-radius: 50%; border: 4px solid #d4af37; box-shadow: 0 0 12px rgba(212,175,55,0.4); filter: sepia(0.1); }
+/* funny: 不规则裁切 */
+.theme-funny .cv-user-photo { border-radius: 0 0 0 30%; }
 
-/* fresh: 20px大圆角 + 白边 */
-.theme-fresh .cv-user-photo { border-radius: 20px; border: 5px solid #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.1); filter: brightness(1.05); }
+/* luxury: 左侧金线 */
+.theme-luxury .cv-user-photo { border-radius: 0; border-left: 4px solid #d4af37; }
 
-/* gaming: 斜切 + 发光 */
-.theme-gaming .cv-user-photo { border-radius: 4px; border: 3px solid var(--accent1); clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%); box-shadow: 0 0 12px var(--accent1); }
+/* fresh: 柔和渐变遮罩 */
+.theme-fresh .cv-user-photo { border-radius: 0; filter: brightness(1.05) saturate(1.1); }
 
-/* food: 圆角 + 暖调 */
-.theme-food .cv-user-photo { border-radius: 16px; border: 3px solid var(--accent1); filter: saturate(1.2) brightness(1.05); }
+/* gaming: 斜切 */
+.theme-gaming .cv-user-photo { border-radius: 0; clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); }
 
-/* cinema: 黑白 + 黑粗边框 */
-.theme-cinema .cv-user-photo { border-radius: 0; border: 6px solid #000; filter: grayscale(0.7) contrast(1.1); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+/* food: 暖调 */
+.theme-food .cv-user-photo { border-radius: 0; filter: saturate(1.2) brightness(1.05); }
 
-/* cute: 圆形 + 粉色波浪边 */
-.theme-cute .cv-user-photo { border-radius: 50%; border: 4px solid #ff69b4; box-shadow: 0 0 0 4px #fff, 0 0 0 6px #ff69b4; }
+/* cinema: 黑白+电影感 */
+.theme-cinema .cv-user-photo { border-radius: 0; filter: grayscale(0.5) contrast(1.2); }
 
-/* paper: 撕纸效果 */
-.theme-paper .cv-user-photo { border-radius: 2px; border: 3px solid var(--accent1); clip-path: polygon(2% 0, 98% 0, 100% 50%, 98% 100%, 2% 100%, 0 50%); transform: rotate(-3deg); box-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+/* cute: 圆角 */
+.theme-cute .cv-user-photo { border-radius: 0 0 0 50px; }
 
-/* variety: 花边 + 旋转 */
-.theme-variety .cv-user-photo { border-radius: 12px; border: 4px solid var(--accent2); transform: rotate(2deg); box-shadow: 4px 4px 0 rgba(0,0,0,0.3); }
+/* paper: 撕纸边缘 */
+.theme-paper .cv-user-photo { border-radius: 0; clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%); }
 
-/* doodle: 手绘风边框 */
-.theme-doodle .cv-user-photo { border-radius: 12px; border: 3px dashed var(--accent1); box-shadow: 2px 2px 0 rgba(0,0,0,0.2); }
+/* variety: 旋转 */
+.theme-variety .cv-user-photo { border-radius: 0; transform: rotate(0deg); }
 
-/* magazine: 矩形 + 上粗线 */
-.theme-magazine .cv-user-photo { border-radius: 0; border-top: 4px solid var(--accent2); border-left: 1px solid rgba(255,255,255,0.2); border-right: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2); }
+/* doodle: 手绘风 */
+.theme-doodle .cv-user-photo { border-radius: 0 0 0 20px; border-left: 3px dashed var(--accent1); }
 
-/* minimal: 干净无边框 */
-.theme-minimal .cv-user-photo { border-radius: 16px; border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+/* magazine: 矩形+左侧粗线 */
+.theme-magazine .cv-user-photo { border-radius: 0; border-left: 5px solid var(--accent2); }
 
-/* dopamine: 渐变边框 */
-.theme-dopamine .cv-user-photo { border-radius: 20px; border: 4px solid transparent; background-clip: padding-box; box-shadow: 0 0 0 4px var(--accent1), 0 0 0 8px var(--accent2); }
+/* minimal: 干净 */
+.theme-minimal .cv-user-photo { border-radius: 0; }
 
-/* guochao: 圆角 + 金边 */
-.theme-guochao .cv-user-photo { border-radius: 8px; border: 3px solid #ffd700; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+/* dopamine: 渐变遮罩 */
+.theme-dopamine .cv-user-photo { border-radius: 0; filter: saturate(1.3); }
 
-/* pixel: 方形无圆角 */
-.theme-pixel .cv-user-photo { border-radius: 0; border: 3px solid var(--accent1); image-rendering: pixelated; box-shadow: 4px 4px 0 rgba(0,0,0,0.3); }
+/* guochao: 金边 */
+.theme-guochao .cv-user-photo { border-radius: 0; border-left: 4px solid #ffd700; }
+
+/* pixel: 方形 */
+.theme-pixel .cv-user-photo { border-radius: 0; image-rendering: pixelated; }
 
 /* journal: 拍立得风 */
-.theme-journal .cv-user-photo { border-radius: 4px; border: 8px solid #fff; border-bottom: 40px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.theme-journal .cv-user-photo { border-radius: 0; border-left: 8px solid #fff; filter: sepia(0.1); }
 
-/* vaporwave: 霓虹边框 */
-.theme-vaporwave .cv-user-photo { border-radius: 12px; border: 3px solid var(--accent1); box-shadow: 0 0 10px var(--accent1), 0 0 20px var(--accent2); filter: contrast(1.1) saturate(1.2); }
+/* vaporwave: 霓虹 */
+.theme-vaporwave .cv-user-photo { border-radius: 0; filter: contrast(1.1) saturate(1.3); border-left: 3px solid var(--accent1); }
 
-/* acid: 荧光边框 */
-.theme-acid .cv-user-photo { border-radius: 8px; border: 3px solid var(--accent1); box-shadow: 0 0 12px var(--accent1); filter: contrast(1.3) saturate(1.3); }
+/* acid: 荧光 */
+.theme-acid .cv-user-photo { border-radius: 0; filter: contrast(1.3) saturate(1.4); }
 
-/* memphis: 几何边框 */
-.theme-memphis .cv-user-photo { border-radius: 0; border: 4px solid var(--accent1); box-shadow: 6px 6px 0 var(--accent2); }
+/* memphis: 几何 */
+.theme-memphis .cv-user-photo { border-radius: 0; }
 
-/* clay: 大圆角 + 柔和阴影 */
-.theme-clay .cv-user-photo { border-radius: 24px; border: none; box-shadow: 4px 6px 12px rgba(0,0,0,0.15), inset 2px 2px 4px rgba(255,255,255,0.3); }
+/* clay: 柔和 */
+.theme-clay .cv-user-photo { border-radius: 0; filter: brightness(1.05); }
 
-/* glass: 半透明边框 */
-.theme-glass .cv-user-photo { border-radius: 16px; border: 2px solid rgba(255,255,255,0.3); backdrop-filter: blur(4px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+/* glass: 半透明 */
+.theme-glass .cv-user-photo { border-radius: 0; filter: brightness(1.1); }
 
-/* sticker: 白边贴纸 */
-.theme-sticker .cv-user-photo { border-radius: 10px; border: 4px solid #fff; box-shadow: 3px 3px 0 rgba(0,0,0,0.2); transform: rotate(-2deg); }
+/* sticker: 白边 */
+.theme-sticker .cv-user-photo { border-radius: 0; border-left: 4px solid #fff; }
 
 /* comic: 粗黑描边 */
-.theme-comic .cv-user-photo { border-radius: 8px; border: 4px solid #000; box-shadow: 4px 4px 0 #000; }
+.theme-comic .cv-user-photo { border-radius: 0; border-left: 4px solid #000; }
 
 /* neon: 霓虹发光 */
-.theme-neon .cv-user-photo { border-radius: 12px; border: 2px solid var(--accent1); box-shadow: 0 0 10px var(--accent1), 0 0 20px var(--accent2); }
+.theme-neon .cv-user-photo { border-radius: 0; border-left: 3px solid var(--accent1); box-shadow: -4px 0 16px var(--accent1); }
 
 /* retro: 复古滤镜 */
-.theme-retro .cv-user-photo { border-radius: 8px; border: 3px solid var(--accent1); filter: sepia(0.3) contrast(0.95); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); }
+.theme-retro .cv-user-photo { border-radius: 0; filter: sepia(0.3) contrast(0.95); }
 
-/* collage: 拼贴风 */
-.theme-collage .cv-user-photo { border-radius: 4px; border: 2px dashed var(--accent1); transform: rotate(2deg); box-shadow: 3px 3px 0 rgba(0,0,0,0.15); }
+/* collage: 拼贴 */
+.theme-collage .cv-user-photo { border-radius: 0; border-left: 3px dashed var(--accent1); }
 
-/* aurora: 光晕边框 */
-.theme-aurora .cv-user-photo { border-radius: 16px; border: 2px solid rgba(255,255,255,0.3); box-shadow: 0 0 16px var(--accent1), 0 0 32px var(--accent2); }
+/* aurora: 光晕 */
+.theme-aurora .cv-user-photo { border-radius: 0; filter: brightness(1.1); }
 
-/* ink: 水墨风 */
-.theme-ink .cv-user-photo { border-radius: 4px; border: 2px solid #1a1a1a; filter: grayscale(0.3) contrast(1.1); box-shadow: 2px 2px 0 rgba(0,0,0,0.2); }
+/* ink: 水墨 */
+.theme-ink .cv-user-photo { border-radius: 0; filter: grayscale(0.4) contrast(1.1); }
 
-/* stamp: 印章风 */
-.theme-stamp .cv-user-photo { border-radius: 0; border: 4px solid #8b0000; box-shadow: 4px 4px 0 rgba(0,0,0,0.2); }
+/* stamp: 印章 */
+.theme-stamp .cv-user-photo { border-radius: 0; border-left: 4px solid #8b0000; }
 
 /* newspaper: 灰度 */
-.theme-newspaper .cv-user-photo { border-radius: 0; border: 2px solid #1a1a1a; filter: grayscale(0.8) contrast(1.1); }
+.theme-newspaper .cv-user-photo { border-radius: 0; filter: grayscale(0.8) contrast(1.1); }
 
 /* polaroid: 拍立得 */
-.theme-polaroid .cv-user-photo { border-radius: 2px; border: 8px solid #fff; border-bottom: 36px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.theme-polaroid .cv-user-photo { border-radius: 0; border-left: 8px solid #fff; border-right: 8px solid #fff; }
 
-/* risograph: 双色错位 */
-.theme-risograph .cv-user-photo { border-radius: 4px; border: 3px solid var(--accent1); filter: contrast(1.2) saturate(0.8); box-shadow: 3px 3px 0 var(--accent2); }
+/* risograph: 双色 */
+.theme-risograph .cv-user-photo { border-radius: 0; filter: contrast(1.2) saturate(0.8); }
 
-/* film: 胶片感 */
-.theme-film .cv-user-photo { border-radius: 0; border: 4px solid #1a1a1a; filter: sepia(0.2) contrast(0.95); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+/* film: 胶片 */
+.theme-film .cv-user-photo { border-radius: 0; filter: sepia(0.25) contrast(0.9); }
 
-/* graffiti: 喷漆边框 */
-.theme-graffiti .cv-user-photo { border-radius: 8px; border: 4px solid var(--accent1); transform: rotate(-3deg); box-shadow: 4px 4px 0 rgba(0,0,0,0.4); filter: saturate(1.3); }
+/* graffiti: 涂鸦 */
+.theme-graffiti .cv-user-photo { border-radius: 0; filter: saturate(1.4) contrast(1.1); }
 
 /* ribbon: 缎带 */
-.theme-ribbon .cv-user-photo { border-radius: 8px; border: 3px solid var(--accent1); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.theme-ribbon .cv-user-photo { border-radius: 0; }
 
-/* gradientmesh: 柔和光晕 */
-.theme-gradientmesh .cv-user-photo { border-radius: 20px; border: 2px solid rgba(255,255,255,0.3); box-shadow: 0 0 16px rgba(255,255,255,0.2); }
+/* gradientmesh: 柔和 */
+.theme-gradientmesh .cv-user-photo { border-radius: 0; filter: brightness(1.1); }
 
-/* brutalist: 粗野风 */
-.theme-brutalist .cv-user-photo { border-radius: 0; border: 5px solid #000; filter: contrast(1.3) grayscale(0.3); box-shadow: none; }
+/* brutalist: 粗野 */
+.theme-brutalist .cv-user-photo { border-radius: 0; filter: contrast(1.4) grayscale(0.3); border-left: 6px solid #000; }
 
 /* pastel: 莫兰迪 */
-.theme-pastel .cv-user-photo { border-radius: 16px; border: 3px solid rgba(255,255,255,0.4); filter: saturate(0.7) brightness(0.95); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.theme-pastel .cv-user-photo { border-radius: 0; filter: saturate(0.7) brightness(0.95); }
 
 /* popart: 波普 */
-.theme-popart .cv-user-photo { border-radius: 8px; border: 4px solid #000; filter: contrast(1.3) saturate(1.5); box-shadow: 4px 4px 0 #000; }
+.theme-popart .cv-user-photo { border-radius: 0; filter: contrast(1.3) saturate(1.5); }
 
 /* terrarium: 生态 */
-.theme-terrarium .cv-user-photo { border-radius: 20px; border: 3px solid rgba(255,255,255,0.4); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.theme-terrarium .cv-user-photo { border-radius: 0; filter: brightness(1.05); }
 
 /* holographic: 全息 */
-.theme-holographic .cv-user-photo { border-radius: 16px; border: 3px solid rgba(255,255,255,0.5); box-shadow: 0 0 12px rgba(255,255,255,0.3); filter: saturate(1.3) hue-rotate(5deg); }
+.theme-holographic .cv-user-photo { border-radius: 0; filter: saturate(1.3); }
 
 /* kraft: 牛皮纸 */
-.theme-kraft .cv-user-photo { border-radius: 4px; border: 3px solid #3c2415; filter: sepia(0.15); box-shadow: 2px 2px 0 rgba(0,0,0,0.15); }
+.theme-kraft .cv-user-photo { border-radius: 0; filter: sepia(0.15); }
 
 /* blueprint: 蓝图 */
-.theme-blueprint .cv-user-photo { border-radius: 0; border: 2px solid var(--accent1); box-shadow: 0 0 8px var(--accent1); filter: hue-rotate(180deg) brightness(1.1); }
+.theme-blueprint .cv-user-photo { border-radius: 0; filter: hue-rotate(180deg) brightness(1.1); border-left: 2px solid var(--accent1); }
 
 /* starfield: 星空 */
-.theme-starfield .cv-user-photo { border-radius: 16px; border: 2px solid rgba(255,255,255,0.3); box-shadow: 0 0 16px var(--accent1), 0 0 32px var(--accent2); }
+.theme-starfield .cv-user-photo { border-radius: 0; }
 
 /* washi: 和纸 */
-.theme-washi .cv-user-photo { border-radius: 4px; border: 3px solid var(--accent1); transform: rotate(-1deg); box-shadow: 2px 2px 0 rgba(0,0,0,0.1); }
+.theme-washi .cv-user-photo { border-radius: 0; border-left: 3px solid var(--accent1); }
 
 /* typewriter: 打字机 */
-.theme-typewriter .cv-user-photo { border-radius: 0; border: 2px solid #1a1a1a; filter: grayscale(0.3) sepia(0.1); box-shadow: 2px 2px 0 rgba(0,0,0,0.15); }
+.theme-typewriter .cv-user-photo { border-radius: 0; filter: grayscale(0.3) sepia(0.1); }
 
 /* carnival: 嘉年华 */
-.theme-carnival .cv-user-photo { border-radius: 16px; border: 3px solid var(--accent1); box-shadow: 0 0 12px var(--accent1), 0 0 24px var(--accent2); }
+.theme-carnival .cv-user-photo { border-radius: 0; border-left: 3px solid var(--accent1); box-shadow: -4px 0 12px var(--accent1); }
 
 /* screenshot: 真实截图 */
-.theme-screenshot .cv-user-photo { border-radius: 0; border: 3px solid var(--accent1); box-shadow: 4px 4px 0 rgba(0,0,0,0.2); }
+.theme-screenshot .cv-user-photo { border-radius: 0; }
 
-/* portrait: 真人出镜 — 大圆角+投影 */
-.theme-portrait .cv-user-photo { border-radius: 50%; border: 6px solid #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.3); width: 38%; max-width: 260px; height: auto; aspect-ratio: 1; right: 5%; top: 50%; transform: translateY(-50%); object-fit: cover; }
+/* portrait: 真人出镜 — 照片占满右半 */
+.theme-portrait .cv-user-photo {
+  border-radius: 0;
+  width: 55%;
+  right: 0;
+  filter: brightness(1.05);
+}
 
-/* product: 实物产品 */
-.theme-product .cv-user-photo { border-radius: 12px; border: 6px solid #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.2); transform: rotate(-2deg); }
+/* product: 实物 */
+.theme-product .cv-user-photo { border-radius: 0; filter: brightness(1.1); }
 
 /* contrast: 对比 */
-.theme-contrast .cv-user-photo { border-radius: 8px; border: 3px solid var(--accent1); clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%); }
+.theme-contrast .cv-user-photo { border-radius: 0; clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); }
 
 /* zoom: 局部放大 */
-.theme-zoom .cv-user-photo { border-radius: 50%; border: 4px solid var(--accent1); box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--accent1), 0 0 20px var(--accent1); width: 40%; height: auto; aspect-ratio: 1; }
-
-/* 默认照片样式 */
-.cv-user-photo-default { border-radius: 16px; border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+.theme-zoom .cv-user-photo { border-radius: 0; filter: brightness(1.1) contrast(1.1); }
 
 """
 
