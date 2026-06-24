@@ -574,3 +574,189 @@ python3 generate_covers.py --title "标题" --scheme bold_3
 | retro | 复古、retro、怀旧、胶片、做旧、80年代、90年代、复古风、老照片 |
 | collage | 拼贴、collage、剪报、胶带、混合、材质、手做、文艺、剪贴 |
 | aurora | 极光、弥散光、光晕、梦幻、渐变、模糊、光影、星空、深空、弥散 |
+
+## v6.0 新增20种风格 (50风格×211配色)
+
+### 31. ink 水墨风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| ink_1 | 宣纸水墨 | #f5f5ec | #1a1a1a | #8b4513 | #1a1a1a |
+| ink_2 | 淡墨枯笔 | #e8e4d8 | #2c2c2c | #a0522d | #2c2c2c |
+| ink_3 | 浓墨红印 | #1a1a1a | #f5f5ec | #c41e3a | #ffffff |
+| ink_4 | 青墨朱砂 | #f0ede0 | #36454f | #8b0000 | #36454f |
+
+### 32. stamp 印章风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| stamp_1 | 米黄朱印 | #f5e6d3 | #8b0000 | #1a1a2e | #1a1a2e |
+| stamp_2 | 暗夜金印 | #1a1a2e | #dc143c | #ffd700 | #ffffff |
+| stamp_3 | 白底红章 | #fdf6e3 | #c0392b | #2c3e50 | #2c3e50 |
+| stamp_4 | 红底金印 | #8b0000 | #ffd700 | #f5e6d3 | #ffffff |
+
+### 33. newspaper 报纸风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| newspaper_1 | 黑白报纸 | #f5f5f0 | #1a1a1a | #8b0000 | #1a1a1a |
+| newspaper_2 | 泛黄报纸 | #e8e8e0 | #2c2c2c | #c0392b | #2c2c2c |
+| newspaper_3 | 暗黑报纸 | #1a1a1a | #f5f5f0 | #c0392b | #ffffff |
+| newspaper_4 | 蓝黑报纸 | #faf8f0 | #1a1a1a | #1e3a5f | #1a1a1a |
+
+### 34. polaroid 拍立得
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| polaroid_1 | 经典拍立得 | #fafafa | #2c2c2c | #e74c3c | #2c2c2c |
+| polaroid_2 | 暖调拍立得 | #fff8e7 | #d4a373 | #264653 | #264653 |
+| polaroid_3 | 冷调拍立得 | #f0f0f0 | #1a1a1a | #06b6d4 | #1a1a1a |
+| polaroid_4 | 粉色拍立得 | #fdf2f8 | #831843 | #9370db | #831843 |
+
+### 35. risograph Riso印刷风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| risograph_1 | Riso红蓝 | #fef3c7 | #dc2626 | #1e3a5f | #1a1a1a |
+| risograph_2 | Riso绿紫 | #f0fdf4 | #16a34a | #9333ea | #1a1a1a |
+| risograph_3 | Riso粉蓝 | #fdf2f8 | #ec4899 | #0ea5e9 | #1a1a1a |
+| risograph_4 | Riso夜版 | #1a1a1a | #fbbf24 | #06b6d4 | #ffffff |
+
+### 36. film 电影胶片风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| film_1 | 胶片金红 | #0a0a0a | #fbbf24 | #dc2626 | #ffffff |
+| film_2 | 暖色胶片 | #1c1410 | #d4a373 | #fefae0 | #ffffff |
+| film_3 | 复古胶片 | #0a1008 | #22c55e | #fbbf24 | #ffffff |
+| film_4 | 黑白胶片 | #0d0d0d | #c0c0c0 | #dc2626 | #ffffff |
+
+### 37. graffiti 涂鸦街头风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| graffiti_1 | 街头喷漆 | #1a1a1a | #aaff00 | #ff00aa | #ffffff |
+| graffiti_2 | 地铁涂鸦 | #0d0d0d | #ff6600 | #00ffff | #ffffff |
+| graffiti_3 | 夜墙涂鸦 | #2d1b3d | #ffeb3b | #e91e63 | #ffffff |
+| graffiti_4 | 野生涂鸦 | #1a0a0a | #ff3366 | #33ff33 | #ffffff |
+
+### 38. ribbon 缎带横幅风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| ribbon_1 | 红金缎带 | #fdf6e3 | #8b0000 | #d4af37 | #1a1a1a |
+| ribbon_2 | 蓝金缎带 | #1e3a5f | #ffd700 | #ffffff | #ffffff |
+| ribbon_3 | 米棕缎带 | #fef3c7 | #92400e | #dc2626 | #1a1a1a |
+| ribbon_4 | 玫瑰缎带 | #2d0a1a | #f9a8d4 | #ec4899 | #ffffff |
+
+### 39. gradientmesh 网格渐变风
+| ID | 名称 | 背景 | 主色 | 辅色 |
+|---|---|---|---|---|
+| gradientmesh_1 | 粉紫网格渐变 | linear-gradient(135deg,#ff9a9e,#fecfef,#a18cd1) | #ffffff | #6a3093 |
+| gradientmesh_2 | 青绿网格渐变 | linear-gradient(135deg,#a8edea,#fed6e3,#84fab0) | #ffffff | #0d9488 |
+| gradientmesh_3 | 蓝粉网格渐变 | linear-gradient(135deg,#fbc2eb,#a6c1ee,#c2e9fb) | #ffffff | #4f46e5 |
+| gradientmesh_4 | 柔彩网格渐变 | linear-gradient(135deg,#fdcbf1,#e6dee9,#a8edea) | #ffffff | #7c3aed |
+
+### 40. brutalist 粗野主义风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| brutalist_1 | 白底粗野 | #ffffff | #000000 | #ff3300 | #000000 |
+| brutalist_2 | 黑底粗野 | #000000 | #ffffff | #ff3300 | #ffffff |
+| brutalist_3 | 混凝土粗野 | #c0c0c0 | #1a1a1a | #ff0000 | #1a1a1a |
+| brutalist_4 | 米色粗野 | #f5f5dc | #1a1a1a | #ff6600 | #1a1a1a |
+
+### 41. pastel 莫兰迪柔色风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| pastel_1 | 莫兰迪灰棕 | #e8e0d5 | #a8a29e | #d6ccc2 | #44403c |
+| pastel_2 | 莫兰迪蓝灰 | #d4e4e7 | #7a9e9f | #c8b6a6 | #3a4a4a |
+| pastel_3 | 莫兰迪粉绿 | #f0e6e6 | #b0a0a0 | #a0b0a0 | #5a4a4a |
+| pastel_4 | 莫兰迪暖灰 | #e0dccd | #8b7d6b | #c4b7a6 | #4a4030 |
+
+### 42. popart 波普艺术风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| popart_1 | 黄粉蓝波普 | #ffd700 | #ff1493 | #00bfff | #1a1a1a |
+| popart_2 | 粉黄黑波普 | #ff1493 | #ffd700 | #000000 | #ffffff |
+| popart_3 | 蓝粉黄波普 | #00bfff | #ff1493 | #ffd700 | #ffffff |
+| popart_4 | 暗夜波普 | #1a1a1a | #ff6600 | #00ff99 | #ffffff |
+
+### 43. terrarium 玻璃生态风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| terrarium_1 | 翠绿生态 | linear-gradient(135deg,#d1fae5,#a7f3d0) | #065f46 | #84cc16 | #064e3b |
+| terrarium_2 | 薄荷生态 | linear-gradient(135deg,#ccfbf1,#99f6e4) | #0f766e | #22d3ee | #134e4a |
+| terrarium_3 | 嫩绿生态 | linear-gradient(135deg,#ecfccb,#d9f99d) | #3f6212 | #65a30d | #1a2e05 |
+| terrarium_4 | 森林生态 | linear-gradient(135deg,#f0fdf4,#dcfce7) | #166534 | #16a34a | #14532d |
+
+### 44. holographic 全息彩虹风
+| ID | 名称 | 背景 | 主色 | 辅色 |
+|---|---|---|---|---|
+| holographic_1 | 全息彩虹 | linear-gradient(135deg,#ff006e,#fb5607,#ffbe0b,#8338ec,#3a86ff) | #ffffff | #ff006e |
+| holographic_2 | 镭射全息 | linear-gradient(135deg,#06ffa5,#00d9ff,#8338ec,#ff006e) | #ffffff | #06ffa5 |
+| holographic_3 | 紫光全息 | linear-gradient(135deg,#e0aaff,#c77dff,#9d4edd,#5a189a) | #ffffff | #e0aaff |
+| holographic_4 | 幻彩全息 | linear-gradient(135deg,#ffd60a,#00f5d4,#9b5de5,#f15bb5) | #ffffff | #ffd60a |
+
+### 45. kraft 牛皮纸风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| kraft_1 | 经典牛皮纸 | #d4a574 | #3c2415 | #8b0000 | #3c2415 |
+| kraft_2 | 深色牛皮纸 | #c4a07a | #2c1810 | #654321 | #2c1810 |
+| kraft_3 | 浅色牛皮纸 | #e0c094 | #4a2c1a | #c0392b | #4a2c1a |
+| kraft_4 | 复古牛皮纸 | #b8956a | #1a1a1a | #cd853f | #1a1a1a |
+
+### 46. blueprint 蓝图风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| blueprint_1 | 经典蓝图 | #0d3b66 | #ffffff | #faf0ca | #ffffff |
+| blueprint_2 | 工程蓝图 | #1e3a5f | #ffffff | #ffd700 | #ffffff |
+| blueprint_3 | 技术蓝图 | #0a4d8c | #ffffff | #ff6b35 | #ffffff |
+| blueprint_4 | 暗蓝蓝图 | #1a3050 | #80d8ff | #ffeb3b | #ffffff |
+
+### 47. starfield 星空宇宙风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| starfield_1 | 深空星海 | #000814 | #ffd60a | #00d9ff | #ffffff |
+| starfield_2 | 银河紫蓝 | #0a0e27 | #7209b7 | #4cc9f0 | #ffffff |
+| starfield_3 | 星云粉蓝 | #0d0221 | #ff006e | #3a86ff | #ffffff |
+| starfield_4 | 橙绿星空 | #001233 | #ff7b00 | #00f5d4 | #ffffff |
+
+### 48. washi 和纸胶带风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| washi_1 | 和风红蓝 | #fef3c7 | #dc2626 | #1e3a5f | #1a1a1a |
+| washi_2 | 和风粉绿 | #fdf2f8 | #ec4899 | #16a34a | #1a1a1a |
+| washi_3 | 和风蓝黄 | #f0fdf4 | #0ea5e9 | #f59e0b | #1a1a1a |
+| washi_4 | 和风紫红 | #e0f2fe | #7c3aed | #dc2626 | #1a1a1a |
+
+### 49. typewriter 打字机风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| typewriter_1 | 纸张打字机 | #faf8f0 | #1a1a1a | #8b0000 | #1a1a1a |
+| typewriter_2 | 泛黄打字机 | #f5f0e0 | #2c2c2c | #1e3a5f | #2c2c2c |
+| typewriter_3 | 暗夜打字机 | #1a1a1a | #f5f0e0 | #fbbf24 | #ffffff |
+| typewriter_4 | 手稿打字机 | #e8e4d8 | #36454f | #8b4513 | #36454f |
+
+### 50. carnival 嘉年华风
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| carnival_1 | 马戏团紫金 | #1a0033 | #ffd700 | #ff006e | #ffffff |
+| carnival_2 | 红白金嘉年华 | #8b0000 | #ffd700 | #ffffff | #ffffff |
+| carnival_3 | 橙黄嘉年华 | #2d0a3d | #ff6600 | #ffeb3b | #ffffff |
+| carnival_4 | 霓虹嘉年华 | #0d0d0d | #ff1493 | #00bfff | #ffffff |
+
+### 新增风格关键词映射
+| 风格 | 关键词 |
+|---|---|
+| ink | 水墨、书法、国画、写意、山水、笔墨、丹青、留白、枯笔、东方 |
+| stamp | 印章、篆刻、朱印、盖章、钢印、印记、印鉴、章法、钤印、落款 |
+| newspaper | 报纸、新闻、报道、头条、刊号、日报、周报、头版、专栏、社论 |
+| polaroid | 拍立得、宝丽来、即时成像、白边、相框、照片、冲洗、胶卷、回忆、旅行照 |
+| risograph | riso、孔版印刷、丝网印、双色印刷、复古印刷、颗粒、独立出版、zine、版画、手工印刷 |
+| film | 胶片、电影、帧、胶卷、放映、片场、镜头、35mm、8mm、胶片相机 |
+| graffiti | 涂鸦、街头、喷漆、墙绘、野生、地铁涂鸦、滑板、嘻哈、街头文化、反叛 |
+| ribbon | 缎带、丝带、横幅、奖项、颁奖、礼盒、优雅、典礼、表彰、花环 |
+| gradientmesh | 网格渐变、柔和渐变、梦幻渐变、多色渐变、平滑过渡、mesh、流体渐变、云朵渐变、柔和色彩、梦幻背景 |
+| brutalist | 粗野主义、野兽派、原始、混凝土、粗犷、极简粗野、建筑感、结构、块面、野性 |
+| pastel | 莫兰迪、柔色、低饱和、高级灰、柔和、温和、内敛、雅致、灰调、燕麦色 |
+| popart | 波普、波普艺术、安迪沃霍尔、利希滕斯坦、撞色波普、大众艺术、消费主义、明星、撞色、网点 |
+| terrarium | 生态缸、植物、玻璃缸、微景观、多肉、苔藓、绿植、自然、森林、花园 |
+| holographic | 全息、镭射、彩虹、幻彩、偏光、炫彩、激光、hips、珠光、变色龙 |
+| kraft | 牛皮纸、纸袋、手工纸、包装纸、原色纸、复古纸、粗糙、手工、质朴、原生态 |
+| blueprint | 蓝图、工程图、制图、建筑图、技术图、设计图、施工图、图纸、测绘、规划 |
+| starfield | 星空、宇宙、银河、深空、星海、星云、天文、行星、太阳系、星座 |
+| washi | 和纸、胶带、纸胶带、和风、日式、手帐胶带、拼贴胶带、装饰胶带、纸胶带、日本纸 |
+| typewriter | 打字机、机械、复古打字、手稿、文稿、手写、旧体、文字稿、打印、字稿 |
+| carnival | 嘉年华、马戏团、狂欢、庆典、游乐园、派对、热闹、庆祝、节日、表演 |
