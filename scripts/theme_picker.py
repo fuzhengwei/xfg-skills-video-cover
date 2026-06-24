@@ -74,6 +74,12 @@ THEME_INFO = {
     "starfield":   {"name": "星空宇宙", "desc": "深空/银河/星海", "icon": "🌌", "best": "天文、科幻、宇宙、探索", "category": "科技知识"},
     "typewriter":  {"name": "打字机", "desc": "等宽/手稿/复古", "icon": "⌨", "best": "手稿、文稿、复古、文字", "category": "科技知识"},
     "terrarium":   {"name": "玻璃生态", "desc": "植物/微景观/通透", "icon": "🌱", "best": "植物、自然、微景观、生态", "category": "文艺清新"},
+    # ===== v7 新增5种「真实派」风格 — 点击率最高 =====
+    "screenshot": {"name": "真实截图", "desc": "PPT/代码/演示", "icon": "💻", "best": "教程、源码、实操、案例", "category": "视觉冲击"},
+    "portrait":   {"name": "真人出镜", "desc": "经验/职业/分享", "icon": "👤", "best": "经验、职业、面试、转型分享", "category": "视觉冲击"},
+    "product":    {"name": "实物产品", "desc": "测评/开箱/工具", "icon": "📱", "best": "开箱、测评、工具、硬件", "category": "视觉冲击"},
+    "contrast":   {"name": "对比冲击", "desc": "对比/vs/盘点", "icon": "🆚", "best": "对比、区别、选择、TOP排行", "category": "视觉冲击"},
+    "zoom":       {"name": "局部放大", "desc": "细节/重点/特写", "icon": "🔍", "best": "细节、重点、特写、深入", "category": "视觉冲击"},
 }
 
 
@@ -137,6 +143,7 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights):
     all_themes = ["bold","cyber","minimal","magazine","pixel","glass","aurora","blueprint","typewriter","starfield",
                   "funny","food","gaming","variety","cute","clay","carnival","popart",
                   "paper","dopamine","doodle","luxury","vaporwave","acid","memphis","comic","neon","graffiti","brutalist","holographic","gradientmesh",
+                  "screenshot","portrait","product","contrast","zoom",
                   "fresh","anime","cinema","journal","guochao","sticker","retro","collage","ink","stamp","newspaper","polaroid","risograph","film","ribbon","pastel","kraft","washi","terrarium"]
     # 按分类分组
     categories = {}

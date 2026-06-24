@@ -760,3 +760,64 @@ python3 generate_covers.py --title "标题" --scheme bold_3
 | washi | 和纸、胶带、纸胶带、和风、日式、手帐胶带、拼贴胶带、装饰胶带、纸胶带、日本纸 |
 | typewriter | 打字机、机械、复古打字、手稿、文稿、手写、旧体、文字稿、打印、字稿 |
 | carnival | 嘉年华、马戏团、狂欢、庆典、游乐园、派对、热闹、庆祝、节日、表演 |
+
+---
+
+## v7.0 新增「真实派」5种风格（20套配色）
+
+> 点击率最高的「真实内容截图+大粗字」风格，覆盖教程/职业/测评/对比/细节5大场景。
+
+### screenshot 真实截图风
+
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| screenshot_1 | 红条白底 | #ffffff | #dc2626 | #fbbf24 | #1a1a1a |
+| screenshot_2 | 暗色代码 | #f5f5f5 | #0f172a | #dc2626 | #1a1a1a |
+| screenshot_3 | 黄底红字 | #fef3c7 | #dc2626 | #1a1a1a | #1a1a1a |
+| screenshot_4 | 深色终端 | #1e293b | #fbbf24 | #22d3ee | #ffffff |
+
+### portrait 真人出镜风
+
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| portrait_1 | 蓝底黄字 | #1e40af | #fbbf24 | #ffffff | #ffffff |
+| portrait_2 | 深夜分享 | #0f172a | #22d3ee | #fbbf24 | #ffffff |
+| portrait_3 | 黄色高亮 | #fbbf24 | #dc2626 | #1a1a1a | #1a1a1a |
+| portrait_4 | 红底白字 | #dc2626 | #ffffff | #fbbf24 | #ffffff |
+
+### product 实物产品风
+
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| product_1 | 浅灰开箱 | #f8fafc | #0ea5e9 | #f97316 | #0c4a6e |
+| product_2 | 黑底金蓝 | #0a0a0a | #fbbf24 | #22d3ee | #ffffff |
+| product_3 | 黄紫撞色 | #fef3c7 | #7c3aed | #ec4899 | #1a1a1a |
+| product_4 | 深蓝高亮 | #1a1a2e | #06b6d4 | #fbbf24 | #ffffff |
+
+### contrast 对比冲击风
+
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| contrast_1 | 红蓝对决 | #ffffff | #dc2626 | #0ea5e9 | #1a1a1a |
+| contrast_2 | 黑金对比 | #0a0a0a | #fbbf24 | #ffffff | #ffffff |
+| contrast_3 | 黄绿红 | #fef3c7 | #16a34a | #dc2626 | #1a1a1a |
+| contrast_4 | 紫橙对比 | #f3e8ff | #7c3aed | #f97316 | #1a1a1a |
+
+### zoom 局部放大风
+
+| ID | 名称 | 背景 | 主色 | 辅色 | 文字色 |
+|---|---|---|---|---|---|
+| zoom_1 | 红圈放大 | #fef2f2 | #dc2626 | #1a1a1a | #1a1a1a |
+| zoom_2 | 暗色放大 | #0f172a | #fbbf24 | #dc2626 | #ffffff |
+| zoom_3 | 黄底红圈 | #fffbeb | #f59e0b | #dc2626 | #1a1a1a |
+| zoom_4 | 绿紫放大 | #ecfdf5 | #059669 | #7c3aed | #064e3b |
+
+### 关键词映射
+
+| 风格 | 关键词 |
+|---|---|
+| screenshot | 截图、实操、演示、实战、案例、看代码、读源码、源码、跑一遍、现场 |
+| portrait | 经验、职业、分享、我、个人、出镜、老码农、转行、面试、程序员、开发、工作 |
+| product | 开箱、测评、评测、产品、体验、工具、神器、效率、APP、硬件、键盘、MacBook、iPad |
+| contrast | 对比、vs、区别、选择、哪个好、比较、较量、盘点、TOP、排行榜 |
+| zoom | 细节、重点、局部、放大、特写、深入、看这个、注意、记住、这几点 |

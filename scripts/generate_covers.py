@@ -314,6 +314,36 @@ COLOR_SCHEMES = {
     "carnival_2": {"bg": "#8b0000", "accent1": "#ffd700", "accent2": "#ffffff", "name": "红白金嘉年华", "theme": "carnival"},
     "carnival_3": {"bg": "#2d0a3d", "accent1": "#ff6600", "accent2": "#ffeb3b", "name": "橙黄嘉年华", "theme": "carnival"},
     "carnival_4": {"bg": "#0d0d0d", "accent1": "#ff1493", "accent2": "#00bfff", "name": "霓虹嘉年华", "theme": "carnival"},
+
+    # ===== 51. screenshot 真实截图风 — 教程/源码/PPT =====
+    "screenshot_1": {"bg": "#ffffff", "accent1": "#dc2626", "accent2": "#fbbf24", "name": "红条白底", "theme": "screenshot", "text_color": "#1a1a1a"},
+    "screenshot_2": {"bg": "#f5f5f5", "accent1": "#0f172a", "accent2": "#dc2626", "name": "暗色代码", "theme": "screenshot", "text_color": "#1a1a1a"},
+    "screenshot_3": {"bg": "#fef3c7", "accent1": "#dc2626", "accent2": "#1a1a1a", "name": "黄底红字", "theme": "screenshot", "text_color": "#1a1a1a"},
+    "screenshot_4": {"bg": "#1e293b", "accent1": "#fbbf24", "accent2": "#22d3ee", "name": "深色终端", "theme": "screenshot"},
+
+    # ===== 52. portrait 真人出镜风 — 经验/职业/分享 =====
+    "portrait_1": {"bg": "#1e40af", "accent1": "#fbbf24", "accent2": "#ffffff", "name": "蓝底黄字", "theme": "portrait"},
+    "portrait_2": {"bg": "#0f172a", "accent1": "#22d3ee", "accent2": "#fbbf24", "name": "深夜分享", "theme": "portrait"},
+    "portrait_3": {"bg": "#fbbf24", "accent1": "#dc2626", "accent2": "#1a1a1a", "name": "黄色高亮", "theme": "portrait", "text_color": "#1a1a1a"},
+    "portrait_4": {"bg": "#dc2626", "accent1": "#ffffff", "accent2": "#fbbf24", "name": "红底白字", "theme": "portrait"},
+
+    # ===== 53. product 实物产品风 — 测评/开箱/工具 =====
+    "product_1": {"bg": "#f8fafc", "accent1": "#0ea5e9", "accent2": "#f97316", "name": "浅灰开箱", "theme": "product", "text_color": "#0c4a6e"},
+    "product_2": {"bg": "#0a0a0a", "accent1": "#fbbf24", "accent2": "#22d3ee", "name": "黑底金蓝", "theme": "product"},
+    "product_3": {"bg": "#fef3c7", "accent1": "#7c3aed", "accent2": "#ec4899", "name": "黄紫撞色", "theme": "product", "text_color": "#1a1a1a"},
+    "product_4": {"bg": "#1a1a2e", "accent1": "#06b6d4", "accent2": "#fbbf24", "name": "深蓝高亮", "theme": "product"},
+
+    # ===== 54. contrast 对比冲击风 — 对比/vs/盘点 =====
+    "contrast_1": {"bg": "#ffffff", "accent1": "#dc2626", "accent2": "#0ea5e9", "name": "红蓝对决", "theme": "contrast", "text_color": "#1a1a1a"},
+    "contrast_2": {"bg": "#0a0a0a", "accent1": "#fbbf24", "accent2": "#ffffff", "name": "黑金对比", "theme": "contrast"},
+    "contrast_3": {"bg": "#fef3c7", "accent1": "#16a34a", "accent2": "#dc2626", "name": "黄绿红", "theme": "contrast", "text_color": "#1a1a1a"},
+    "contrast_4": {"bg": "#f3e8ff", "accent1": "#7c3aed", "accent2": "#f97316", "name": "紫橙对比", "theme": "contrast", "text_color": "#1a1a1a"},
+
+    # ===== 55. zoom 局部放大风 — 细节/重点/特写 =====
+    "zoom_1": {"bg": "#fef2f2", "accent1": "#dc2626", "accent2": "#1a1a1a", "name": "红圈放大", "theme": "zoom", "text_color": "#1a1a1a"},
+    "zoom_2": {"bg": "#0f172a", "accent1": "#fbbf24", "accent2": "#dc2626", "name": "暗色放大", "theme": "zoom"},
+    "zoom_3": {"bg": "#fffbeb", "accent1": "#f59e0b", "accent2": "#dc2626", "name": "黄底红圈", "theme": "zoom", "text_color": "#1a1a1a"},
+    "zoom_4": {"bg": "#ecfdf5", "accent1": "#059669", "accent2": "#7c3aed", "name": "绿紫放大", "theme": "zoom", "text_color": "#064e3b"},
 }
 
 # ===== 风格结构分类 =====
@@ -331,7 +361,7 @@ THEME_CATEGORIES = {
     "视觉冲击": {
         "icon": "💥",
         "desc": "适合热点、评测、开箱、撕纸拼贴、潮流、街头",
-        "themes": ["paper", "dopamine", "doodle", "luxury", "vaporwave", "acid", "memphis", "comic", "neon", "graffiti", "brutalist", "holographic", "gradientmesh"],
+        "themes": ["paper", "dopamine", "doodle", "luxury", "vaporwave", "acid", "memphis", "comic", "neon", "graffiti", "brutalist", "holographic", "gradientmesh", "screenshot", "portrait", "product", "contrast", "zoom"],
     },
     "文艺清新": {
         "icon": "🍃",
@@ -398,6 +428,11 @@ THEME_KEYWORDS = {
     "washi": ["和纸","胶带","纸胶带","和风","日式","手帐胶带","拼贴胶带","装饰胶带","纸胶带","日本纸"],
     "typewriter": ["打字机","机械","复古打字","手稿","文稿","手写","旧体","文字稿","打印","字稿"],
     "carnival": ["嘉年华","马戏团","狂欢","庆典","游乐园","派对","热闹","庆祝","节日","表演"],
+    "screenshot": ["截图","实操","演示","实战","案例","看代码","读源码","源码","跑一遍","现场"],
+    "portrait": ["经验","职业","分享","我","个人","出镜","老码农","转行","面试","程序员","开发","工作"],
+    "product": ["开箱","测评","评测","产品","体验","工具","神器","效率","APP","硬件","键盘","MacBook","iPad"],
+    "contrast": ["对比","vs","区别","选择","哪个好","比较","较量","盘点","TOP","排行榜"],
+    "zoom": ["细节","重点","局部","放大","特写","深入","看这个","注意","记住","这几点"],
 }
 
 THEME_EMOJIS = {
@@ -458,6 +493,11 @@ THEME_EMOJIS = {
     "washi":     [("1f380","🎀"),("1f3a8","🎨"),("1f4cc","📌"),("2702","✂️"),("1f4dd","📝")],
     "typewriter": [("2328","⌨"),("1f4dd","📝"),("1f4c4","📄"),("1f4d6","📖"),("270f","✏️")],
     "carnival":  [("1f38a","🎊"),("1f381","🎁"),("1f3aa","🎪"),("1f389","🎉"),("1f380","🎀"),("1f3b2","🎲")],
+    "screenshot": [("1f4bb","💻"),("1f4c4","📄"),("1f4ca","📊"),("1f3a8","🎨"),("1f50d","🔍"),("1f4dd","📝")],
+    "portrait":   [("1f464","👤"),("1f466","👦"),("1f467","👧"),("1f468","👨"),("1f469","👩"),("1f476","👶")],
+    "product":    [("1f4f1","📱"),("1f4bb","💻"),("1f3a8","🎨"),("2b50","⭐"),("1f680","🚀"),("1f389","🎉")],
+    "contrast":   [("1f4a5","💥"),("1f19a","🆚"),("1f525","🔥"),("26a1","⚡"),("1f3af","🎯"),("1f4ca","📊")],
+    "zoom":       [("1f50d","🔍"),("1f3af","🎯"),("1f4cc","📌"),("1f525","🔥"),("26a1","⚡"),("2b50","⭐")],
 }
 
 GENERAL_EMOJIS = [("1f680","🚀"),("26a1","⚡"),("1f4bb","💻"),("1f310","🌐"),
@@ -528,6 +568,11 @@ THEME_ICONFONT_MAP = {
     "washi":     "emoji",
     "typewriter": "coder",
     "carnival":  "emoji",
+    "screenshot": "tech",
+    "portrait":   "animal",
+    "product":    "tech",
+    "contrast":   "emoji",
+    "zoom":       "tech",
 }
 
 def get_iconfont_svgs(theme, count=2):
@@ -569,7 +614,12 @@ def hex_to_rgb(h):
 
 def detect_theme(title, tags=None):
     text = ((title or "") + " " + (tags and " ".join(tags) or "")).lower()
-    # 先匹配新20种风格（最具体）
+    # 先匹配5种新加的「真实派」风格（最具体）
+    for theme in ["screenshot","portrait","product","contrast","zoom"]:
+        kws = THEME_KEYWORDS.get(theme, [])
+        if any(kw.lower() in text for kw in kws):
+            return theme
+    # 再匹配新20种风格（v6）
     for theme in ["ink","stamp","newspaper","polaroid","risograph","film","graffiti","ribbon","gradientmesh","brutalist","pastel","popart","terrarium","holographic","kraft","blueprint","starfield","washi","typewriter","carnival"]:
         kws = THEME_KEYWORDS.get(theme, [])
         if any(kw.lower() in text for kw in kws):
@@ -806,6 +856,22 @@ def apply_highlights(title, highlights, theme, a1, a2):
             # 嘉年华：彩旗感 + 旋转
             rot = -3 if i%2==0 else 3
             dt = dt.replace(w, f'<span class="hl-carnival" style="color:{c};font-weight:900;transform:rotate({rot}deg) scale(1.15);display:inline-block;text-shadow:2px 2px 0 {a2};">{w}</span>')
+        elif theme == "screenshot":
+            # 真实截图：荧光笔黄底 + 黑色文字 + 醒目描边
+            dt = dt.replace(w, f'<span class="hl-screenshot" style="background:{c};color:#000;padding:2px 8px;box-decoration-break:clone;-webkit-box-decoration-break:clone;font-weight:900;box-shadow:inset 0 -2px 0 {a2};">{w}</span>')
+        elif theme == "portrait":
+            # 真人出镜：人名标签感 + 加粗白字
+            dt = dt.replace(w, f'<span class="hl-portrait" style="color:{c};font-weight:900;text-shadow:2px 2px 0 rgba(0,0,0,0.4),-1px -1px 0 rgba(0,0,0,0.4);">{w}</span>')
+        elif theme == "product":
+            # 实物开箱：徽章感 + 金属描边
+            dt = dt.replace(w, f'<span class="hl-product" style="background:linear-gradient(135deg,{c},{a2});color:#fff;padding:2px 12px;border-radius:4px;font-weight:800;display:inline-block;box-shadow:0 2px 8px rgba(0,0,0,0.2);">{w}</span>')
+        elif theme == "contrast":
+            # 对比：左红右蓝或上下反差
+            dt = dt.replace(w, f'<span class="hl-contrast" style="background:{c};color:#fff;padding:2px 10px;font-weight:900;display:inline-block;clip-path:polygon(0 0,100% 0,90% 100%,0 100%);">{w}</span>')
+        elif theme == "zoom":
+            # 局部放大：红色圆圈 + 放大字体
+            sz = 1.3 if i%2==0 else 1.15
+            dt = dt.replace(w, f'<span class="hl-zoom" style="color:{c};font-weight:900;font-size:{sz}em;text-shadow:3px 3px 0 {a2},-1px -1px 0 {a2},1px -1px 0 {a2},-1px 1px 0 {a2};display:inline-block;">{w}</span>')
         else:
             dt = dt.replace(w, f'<span class="highlight" style="color:{c};">{w}</span>')
     return dt
@@ -1671,6 +1737,168 @@ THEME_FONT_CSS = """
   font-size: 40px; opacity: 0.12; z-index: 0; pointer-events: none;
 }
 .theme-carnival .cv-mascot { filter: drop-shadow(0 0 6px var(--accent1)) drop-shadow(0 0 12px var(--accent2)) saturate(1.3); opacity: 0.9; }
+
+/* ===== 51. screenshot: 真实截图风 — 顶部红条 + 大粗字 + 代码/PPT背景 ===== */
+.theme-screenshot .cv-bg-decoration::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 12%;
+  background: var(--accent1); z-index: 1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.theme-screenshot .cv-bg-decoration::after {
+  content: ''; position: absolute; inset: 12% 0 0 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  z-index: 0; pointer-events: none;
+}
+.theme-screenshot .cv-main-title { font-weight: 900; letter-spacing: -1px; line-height: 1.05; text-shadow: 4px 4px 0 rgba(0,0,0,0.15); position: relative; z-index: 3; }
+.theme-screenshot .cv-main-title .hl-screenshot { display: inline-block; }
+.theme-screenshot .cv-badge {
+  position: absolute; top: 4%; left: 4%; z-index: 5;
+  background: #fff; color: var(--accent1);
+  border-radius: 0; border: 3px solid var(--accent1);
+  font-weight: 900; letter-spacing: 1px; padding: 4px 12px;
+  transform: rotate(-2deg); box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+}
+.theme-screenshot .cv-tag { border-radius: 0; border: 2px solid currentColor; background: #fff; font-weight: 800; }
+.theme-screenshot .cv-mascot { display: none; }  /* 不用插画角色 */
+.theme-screenshot .cv-emoji-deco { display: none; }
+.theme-screenshot .cv-content { position: relative; z-index: 3; }
+.theme-screenshot .cv-content::before {
+  content: '截屏自视频 00:42'; position: absolute; bottom: -8%; right: 3%;
+  font-family: 'SF Mono', 'Courier New', monospace; font-size: 12px;
+  color: rgba(0,0,0,0.4); z-index: 4;
+}
+.theme-screenshot .cv-content::after {
+  content: '▶'; position: absolute; top: -6%; right: 4%;
+  font-size: 24px; color: var(--accent1); z-index: 4;
+  width: 36px; height: 36px; background: #fff; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* ===== 52. portrait: 真人出镜风 — 大头像圈 + 顶部色条 + 粗字 ===== */
+.theme-portrait .cv-bg-decoration::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 8%;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  z-index: 1;
+}
+.theme-portrait .cv-bg-decoration::after {
+  content: '👤'; position: absolute; right: 4%; top: 14%;
+  font-size: 180px; opacity: 0.9; z-index: 0; pointer-events: none;
+  background: var(--accent1); width: 200px; height: 200px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3); border: 6px solid #fff;
+}
+.theme-portrait .cv-main-title { font-weight: 900; letter-spacing: 0; line-height: 1.08; text-shadow: 3px 3px 0 rgba(0,0,0,0.2); }
+.theme-portrait .cv-main-title .hl-portrait { display: inline-block; }
+.theme-portrait .cv-badge { border-radius: 50px; background: var(--accent1); color: #000; font-weight: 900; border: 3px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.theme-portrait .cv-tag { border-radius: 50px; background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(6px); }
+.theme-portrait .cv-mascot { display: none; }  /* 不用插画，用纯CSS人物圈 */
+.theme-portrait .cv-emoji-deco { display: none; }
+.theme-portrait .cv-content { position: relative; z-index: 3; max-width: 65%; }
+.theme-portrait .cv-content::before {
+  content: '@本期嘉宾'; position: absolute; top: -8%; left: 0;
+  font-size: 14px; color: var(--accent1); font-weight: 700; letter-spacing: 2px;
+  background: rgba(0,0,0,0.6); padding: 2px 10px; border-radius: 4px;
+}
+
+/* ===== 53. product: 实物产品风 — 渐变背景 + 产品框 + 问号 ===== */
+.theme-product .cv-bg-decoration::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 70% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+  z-index: 0; pointer-events: none;
+}
+.theme-product .cv-bg-decoration::after {
+  content: '?'; position: absolute; top: 8%; right: 4%;
+  font-size: 200px; font-weight: 900; color: var(--accent1); opacity: 0.15;
+  z-index: 0; pointer-events: none; line-height: 1;
+}
+.theme-product .cv-main-title { font-weight: 900; letter-spacing: 1px; line-height: 1.1; text-shadow: 2px 2px 0 rgba(0,0,0,0.3); position: relative; z-index: 3; }
+.theme-product .cv-main-title .hl-product { display: inline-block; }
+.theme-product .cv-badge { border-radius: 8px; background: var(--accent1); color: #000; font-weight: 900; box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
+.theme-product .cv-tag { border-radius: 8px; background: rgba(255,255,255,0.2); color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,0.3); }
+.theme-product .cv-mascot { display: none; }
+.theme-product .cv-emoji-deco { display: none; }
+.theme-product .cv-content { position: relative; z-index: 3; }
+.theme-product .cv-content::before {
+  content: '开箱'; position: absolute; top: -10%; left: 0;
+  background: var(--accent2); color: #000; font-weight: 900; font-size: 24px;
+  padding: 4px 16px; transform: rotate(-3deg);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+}
+.theme-product .cv-content::after {
+  content: 'REVIEW'; position: absolute; bottom: -8%; right: 3%;
+  font-family: 'Courier New', monospace; font-size: 11px;
+  color: var(--accent1); letter-spacing: 4px; font-weight: 700;
+  border: 1px solid var(--accent1); padding: 2px 8px;
+}
+
+/* ===== 54. contrast: 对比冲击风 — 左右/上下分割 + 反差色 ===== */
+.theme-contrast .cv-bg-decoration::before {
+  content: 'VS'; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 120px; font-weight: 900; color: var(--accent2); opacity: 0.2;
+  z-index: 1; pointer-events: none; font-family: 'Impact', sans-serif;
+  letter-spacing: -8px;
+}
+.theme-contrast .cv-bg-decoration::after {
+  content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 50%;
+  background: linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 100%);
+  opacity: 0.15; z-index: 0; pointer-events: none;
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+}
+.theme-contrast .cv-main-title { font-weight: 900; letter-spacing: -1px; line-height: 1.05; position: relative; z-index: 3; }
+.theme-contrast .cv-main-title .hl-contrast { display: inline-block; }
+.theme-contrast .cv-badge { border-radius: 0; background: #000; color: var(--accent1); font-weight: 900; border: 3px solid var(--accent1); letter-spacing: 2px; }
+.theme-contrast .cv-tag { border-radius: 0; background: var(--accent1); color: #000; font-weight: 800; border: 2px solid #000; }
+.theme-contrast .cv-mascot { display: none; }
+.theme-contrast .cv-emoji-deco { display: none; }
+.theme-contrast .cv-content { position: relative; z-index: 3; }
+.theme-contrast .cv-content::before {
+  content: 'A'; position: absolute; top: 4%; left: 4%;
+  font-size: 60px; font-weight: 900; color: var(--accent1); font-family: Impact, sans-serif;
+  z-index: 4; line-height: 1;
+}
+.theme-contrast .cv-content::after {
+  content: 'B'; position: absolute; top: 4%; right: 4%;
+  font-size: 60px; font-weight: 900; color: var(--accent2); font-family: Impact, sans-serif;
+  z-index: 4; line-height: 1;
+}
+
+/* ===== 55. zoom: 局部放大风 — 红色圆圈 + 放大镜 + 重点标注 ===== */
+.theme-zoom .cv-bg-decoration::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(220,38,38,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220,38,38,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  z-index: 0; pointer-events: none;
+}
+.theme-zoom .cv-bg-decoration::after {
+  content: '🔍'; position: absolute; bottom: 12%; right: 6%;
+  font-size: 100px; opacity: 0.25; z-index: 1; pointer-events: none;
+  filter: drop-shadow(0 0 8px var(--accent1));
+}
+.theme-zoom .cv-main-title { font-weight: 900; letter-spacing: 0; line-height: 1.08; text-shadow: 2px 2px 0 rgba(0,0,0,0.2); position: relative; z-index: 3; }
+.theme-zoom .cv-main-title .hl-zoom { display: inline-block; }
+.theme-zoom .cv-badge { border-radius: 50px; background: var(--accent1); color: #fff; font-weight: 900; border: 3px solid #fff; box-shadow: 0 4px 16px rgba(220,38,38,0.4); }
+.theme-zoom .cv-tag { border-radius: 50px; background: var(--accent2); color: #fff; font-weight: 800; border: 2px solid #fff; }
+.theme-zoom .cv-mascot { display: none; }
+.theme-zoom .cv-emoji-deco { display: none; }
+.theme-zoom .cv-content { position: relative; z-index: 3; }
+.theme-zoom .cv-content::before {
+  content: '⭕ 看这里'; position: absolute; top: -6%; left: 0;
+  font-size: 14px; color: var(--accent1); font-weight: 900; letter-spacing: 1px;
+  z-index: 4;
+}
+.theme-zoom .cv-content::after {
+  content: '↑ 重点'; position: absolute; bottom: 8%; right: 4%;
+  font-size: 14px; color: var(--accent1); font-weight: 900; z-index: 4;
+  background: #fff; padding: 2px 8px; border-radius: 4px;
+  border: 2px solid var(--accent1);
+}
 """
 
 
