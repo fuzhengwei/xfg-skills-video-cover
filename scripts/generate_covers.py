@@ -344,6 +344,188 @@ COLOR_SCHEMES = {
     "zoom_2": {"bg": "#0f172a", "accent1": "#fbbf24", "accent2": "#dc2626", "name": "暗色放大", "theme": "zoom"},
     "zoom_3": {"bg": "#fffbeb", "accent1": "#f59e0b", "accent2": "#dc2626", "name": "黄底红圈", "theme": "zoom", "text_color": "#1a1a1a"},
     "zoom_4": {"bg": "#ecfdf5", "accent1": "#059669", "accent2": "#7c3aed", "name": "绿紫放大", "theme": "zoom", "text_color": "#064e3b"},
+
+    "glitch_1": {"bg": '#0a0a0a', "accent1": '#00ff41', "accent2": '#ff0040', "name": '绿红故障', "theme": 'glitch'},
+    "glitch_2": {"bg": '#1a0a2e', "accent1": '#00ffff', "accent2": '#ff00ff', "name": '青紫故障', "theme": 'glitch'},
+    "glitch_3": {"bg": '#0d0d0d', "accent1": '#ff6600', "accent2": '#00ccff', "name": '橙蓝故障', "theme": 'glitch'},
+    "glitch_4": {"bg": '#000814', "accent1": '#fbbf24', "accent2": '#ef4444', "name": '金红故障', "theme": 'glitch'},
+    "synthwave_1": {"bg": 'linear-gradient(180deg,#2d1b69,#ff6ec7,#feca57)', "accent1": '#00ffff', "accent2": '#ff00ff', "name": '落日合成波', "is_gradient": True, "theme": 'synthwave'},
+    "synthwave_2": {"bg": '#1a0a2e', "accent1": '#ff6ec7', "accent2": '#feca57', "name": '暗紫合成波', "theme": 'synthwave'},
+    "synthwave_3": {"bg": '#0d0221', "accent1": '#ff71ce', "accent2": '#01cdfe', "name": '粉青合成波', "theme": 'synthwave'},
+    "synthwave_4": {"bg": '#2b1055', "accent1": '#d53a9d', "accent2": '#7209b7', "name": '深紫合成波', "theme": 'synthwave'},
+    "matrix_1": {"bg": '#000000', "accent1": '#00ff41', "accent2": '#008f11', "name": '经典矩阵', "theme": 'matrix'},
+    "matrix_2": {"bg": '#0a0a0a', "accent1": '#00ff41', "accent2": '#39ff14', "name": '亮绿矩阵', "theme": 'matrix'},
+    "matrix_3": {"bg": '#000d00', "accent1": '#00ff41', "accent2": '#fbbf24', "name": '绿金矩阵', "theme": 'matrix'},
+    "matrix_4": {"bg": '#0d1117', "accent1": '#58a6ff', "accent2": '#00ff41', "name": '蓝绿矩阵', "theme": 'matrix'},
+    "quantum_1": {"bg": '#0a0a1a', "accent1": '#7c3aed', "accent2": '#06b6d4', "name": '紫蓝量子', "theme": 'quantum'},
+    "quantum_2": {"bg": '#0d0221', "accent1": '#a855f7', "accent2": '#22d3ee', "name": '亮紫量子', "theme": 'quantum'},
+    "quantum_3": {"bg": '#000814', "accent1": '#3b82f6', "accent2": '#8b5cf6', "name": '蓝紫量子', "theme": 'quantum'},
+    "quantum_4": {"bg": '#1a0a2e', "accent1": '#c084fc', "accent2": '#67e8f9', "name": '柔紫量子', "theme": 'quantum'},
+    "ocean_1": {"bg": '#0a1628', "accent1": '#00b4d8', "accent2": '#0077b6', "name": '深海蓝', "theme": 'ocean'},
+    "ocean_2": {"bg": '#001220', "accent1": '#48cae4', "accent2": '#023e8a', "name": '深蓝海洋', "theme": 'ocean'},
+    "ocean_3": {"bg": '#0d2137', "accent1": '#00b4d8', "accent2": '#90e0ef', "name": '蓝青海洋', "theme": 'ocean'},
+    "ocean_4": {"bg": '#0a192f', "accent1": '#64ffda', "accent2": '#0077b6', "name": '蓝绿海洋', "theme": 'ocean'},
+    "ice_1": {"bg": '#0a1628', "accent1": '#7dd3fc', "accent2": '#bae6fd', "name": '冰蓝', "theme": 'ice'},
+    "ice_2": {"bg": '#0d1b2a', "accent1": '#38bdf8', "accent2": '#e0f2fe', "name": '亮蓝冰', "theme": 'ice'},
+    "ice_3": {"bg": '#1e293b', "accent1": '#7dd3fc', "accent2": '#0ea5e9', "name": '蓝灰冰', "theme": 'ice'},
+    "ice_4": {"bg": '#0c1929', "accent1": '#a5f3fc', "accent2": '#0284c7', "name": '青蓝冰', "theme": 'ice'},
+    "glassmorph_1": {"bg": 'linear-gradient(135deg,#667eea 0%,#764ba2 100%)', "accent1": '#ffffff', "accent2": 'rgba(255,255,255,0.5)', "name": '紫蓝毛玻璃', "is_gradient": True, "theme": 'glassmorph'},
+    "glassmorph_2": {"bg": 'linear-gradient(135deg,#0ea5e9 0%,#6366f1 100%)', "accent1": '#ffffff', "accent2": 'rgba(255,255,255,0.5)', "name": '蓝紫毛玻璃', "is_gradient": True, "theme": 'glassmorph'},
+    "glassmorph_3": {"bg": 'linear-gradient(135deg,#f97316 0%,#ec4899 100%)', "accent1": '#ffffff', "accent2": 'rgba(255,255,255,0.5)', "name": '橙粉毛玻璃', "is_gradient": True, "theme": 'glassmorph'},
+    "glassmorph_4": {"bg": 'linear-gradient(135deg,#10b981 0%,#3b82f6 100%)', "accent1": '#ffffff', "accent2": 'rgba(255,255,255,0.5)', "name": '绿蓝毛玻璃', "is_gradient": True, "theme": 'glassmorph'},
+    "retrofuturism_1": {"bg": '#1a0a2e', "accent1": '#ff6ec7', "accent2": '#00ffff', "name": '粉青复古未来', "theme": 'retrofuturism'},
+    "retrofuturism_2": {"bg": '#0d0221', "accent1": '#feca57', "accent2": '#ff6ec7', "name": '金粉复古未来', "theme": 'retrofuturism'},
+    "retrofuturism_3": {"bg": '#2d1b69', "accent1": '#00ffff', "accent2": '#ff00ff', "name": '青紫复古未来', "theme": 'retrofuturism'},
+    "retrofuturism_4": {"bg": '#0a0a1a', "accent1": '#ff6600', "accent2": '#00bfff', "name": '橙蓝复古未来', "theme": 'retrofuturism'},
+    "galaxy_1": {"bg": 'linear-gradient(135deg,#0f0c29,#302b63,#24243e)', "accent1": '#a855f7', "accent2": '#06b6d4', "name": '紫蓝银河', "is_gradient": True, "theme": 'galaxy'},
+    "galaxy_2": {"bg": 'linear-gradient(135deg,#1a0033,#0d1b2a,#000814)', "accent1": '#f472b6', "accent2": '#818cf8', "name": '粉紫银河', "is_gradient": True, "theme": 'galaxy'},
+    "galaxy_3": {"bg": '#000814', "accent1": '#fbbf24', "accent2": '#a855f7', "name": '金紫银河', "theme": 'galaxy'},
+    "galaxy_4": {"bg": '#0a0014', "accent1": '#22d3ee', "accent2": '#e879f9', "name": '青粉银河', "theme": 'galaxy'},
+    "candy_1": {"bg": '#fdf2f8', "accent1": '#ec4899', "accent2": '#f472b6', "name": '粉红糖果', "text_color": '#831843', "theme": 'candy'},
+    "candy_2": {"bg": '#fef3c7', "accent1": '#f59e0b', "accent2": '#ec4899', "name": '黄粉糖果', "text_color": '#92400e', "theme": 'candy'},
+    "candy_3": {"bg": '#f0fdf4', "accent1": '#22c55e', "accent2": '#ec4899', "name": '绿粉糖果', "text_color": '#14532d', "theme": 'candy'},
+    "candy_4": {"bg": '#e0f2fe', "accent1": '#0ea5e9', "accent2": '#f472b6', "name": '蓝粉糖果', "text_color": '#0c4a6e', "theme": 'candy'},
+    "steampunk_1": {"bg": '#2a1810', "accent1": '#d4a373', "accent2": '#cd853f', "name": '铜棕蒸汽', "theme": 'steampunk'},
+    "steampunk_2": {"bg": '#1a0f0a', "accent1": '#b8860b', "accent2": '#daa520', "name": '金棕蒸汽', "theme": 'steampunk'},
+    "steampunk_3": {"bg": '#3c2415', "accent1": '#f4a460', "accent2": '#8b4513', "name": '暖棕蒸汽', "theme": 'steampunk'},
+    "steampunk_4": {"bg": '#0d0a08', "accent1": '#cd853f', "accent2": '#d2691e', "name": '深棕蒸汽', "theme": 'steampunk'},
+    "noir_1": {"bg": '#0a0a0a', "accent1": '#ffffff', "accent2": '#888888', "name": '经典黑白', "theme": 'noir'},
+    "noir_2": {"bg": '#111111', "accent1": '#e5e5e5', "accent2": '#dc2626', "name": '黑白红', "theme": 'noir'},
+    "noir_3": {"bg": '#0d0d0d', "accent1": '#fbbf24', "accent2": '#666666', "name": '黑金noir', "theme": 'noir'},
+    "noir_4": {"bg": '#1a1a1a', "accent1": '#cccccc', "accent2": '#444444', "name": '灰调noir', "theme": 'noir'},
+    "gothic_1": {"bg": '#0a0000', "accent1": '#8b0000', "accent2": '#4a0020', "name": '暗红哥特', "theme": 'gothic'},
+    "gothic_2": {"bg": '#0d0d1a', "accent1": '#7c3aed', "accent2": '#1e1b4b', "name": '紫黑哥特', "theme": 'gothic'},
+    "gothic_3": {"bg": '#0a0a0a', "accent1": '#dc2626', "accent2": '#1a1a2e', "name": '红黑哥特', "theme": 'gothic'},
+    "gothic_4": {"bg": '#1a0011', "accent1": '#ec4899', "accent2": '#4a0028', "name": '粉紫哥特', "theme": 'gothic'},
+    "baroque_1": {"bg": '#1a0a00', "accent1": '#d4af37', "accent2": '#8b0000', "name": '金红巴洛克', "theme": 'baroque'},
+    "baroque_2": {"bg": '#0d0a1a', "accent1": '#c9a96e', "accent2": '#4a0080', "name": '金紫巴洛克', "theme": 'baroque'},
+    "baroque_3": {"bg": '#2a1810', "accent1": '#ffd700', "accent2": '#1a1a2e', "name": '金棕巴洛克', "theme": 'baroque'},
+    "baroque_4": {"bg": '#0a0000', "accent1": '#d4af37', "accent2": '#2d0a0a', "name": '深红金巴洛克', "theme": 'baroque'},
+    "tribal_1": {"bg": '#1a0f00', "accent1": '#d4a373', "accent2": '#8b4513', "name": '棕土部落', "theme": 'tribal'},
+    "tribal_2": {"bg": '#0a0a00', "accent1": '#fbbf24', "accent2": '#dc2626', "name": '金红部落', "theme": 'tribal'},
+    "tribal_3": {"bg": '#2a1810', "accent1": '#16a34a', "accent2": '#d4a373', "name": '绿棕部落', "theme": 'tribal'},
+    "tribal_4": {"bg": '#0d0800', "accent1": '#f97316', "accent2": '#7c3aed', "name": '橙紫部落', "theme": 'tribal'},
+    "artdeco_1": {"bg": '#0a0a1a', "accent1": '#d4af37', "accent2": '#1a1a3a', "name": '金蓝装饰', "theme": 'artdeco'},
+    "artdeco_2": {"bg": '#1a0a00', "accent1": '#ffd700', "accent2": '#2a1810', "name": '金棕装饰', "theme": 'artdeco'},
+    "artdeco_3": {"bg": '#0d0d1a', "accent1": '#c9a96e', "accent2": '#1e1b4b', "name": '金紫装饰', "theme": 'artdeco'},
+    "artdeco_4": {"bg": '#0a0a0a', "accent1": '#d4af37', "accent2": '#333333', "name": '金灰装饰', "theme": 'artdeco'},
+    "fire_1": {"bg": '#1a0000', "accent1": '#ff4500', "accent2": '#ffd700', "name": '红金烈焰', "theme": 'fire'},
+    "fire_2": {"bg": '#0a0000', "accent1": '#ff6600', "accent2": '#ff0000', "name": '橙红烈焰', "theme": 'fire'},
+    "fire_3": {"bg": '#1a0500', "accent1": '#ff4500', "accent2": '#ff8c00', "name": '深橙烈焰', "theme": 'fire'},
+    "fire_4": {"bg": '#0d0000', "accent1": '#dc2626', "accent2": '#fbbf24', "name": '红金暗焰', "theme": 'fire'},
+    "streetwear_1": {"bg": '#0a0a0a', "accent1": '#ff0000', "accent2": '#ffffff', "name": '红黑街头', "theme": 'streetwear'},
+    "streetwear_2": {"bg": '#111111', "accent1": '#fbbf24', "accent2": '#000000', "name": '金黑街头', "theme": 'streetwear'},
+    "streetwear_3": {"bg": '#0d0d0d', "accent1": '#00ff00', "accent2": '#ffffff', "name": '绿黑街头', "theme": 'streetwear'},
+    "streetwear_4": {"bg": '#1a1a1a', "accent1": '#ff6600', "accent2": '#000000', "name": '橙黑街头', "theme": 'streetwear'},
+    "psychadelic_1": {"bg": 'linear-gradient(135deg,#ff006e,#fb5607,#ffbe0b,#8338ec,#3a86ff)', "accent1": '#ffffff', "accent2": '#ff006e', "name": '彩虹迷幻', "is_gradient": True, "theme": 'psychadelic'},
+    "psychadelic_2": {"bg": '#0a0a0a', "accent1": '#ff00ff', "accent2": '#00ffff', "name": '霓虹迷幻', "theme": 'psychadelic'},
+    "psychadelic_3": {"bg": 'linear-gradient(135deg,#ff006e,#8338ec,#3a86ff,#06ffa5)', "accent1": '#ffffff', "accent2": '#ffbe0b', "name": '四色迷幻', "is_gradient": True, "theme": 'psychadelic'},
+    "psychadelic_4": {"bg": '#1a0033', "accent1": '#ff6600', "accent2": '#00ff88', "name": '橙绿迷幻', "theme": 'psychadelic'},
+    "mosaic_1": {"bg": '#1a1a2e', "accent1": '#e94560', "accent2": '#0f3460', "name": '红蓝马赛克', "theme": 'mosaic'},
+    "mosaic_2": {"bg": '#0a0a1a', "accent1": '#fbbf24', "accent2": '#7c3aed', "name": '金紫马赛克', "theme": 'mosaic'},
+    "mosaic_3": {"bg": '#1a0a2e', "accent1": '#22c55e', "accent2": '#ec4899', "name": '绿粉马赛克', "theme": 'mosaic'},
+    "mosaic_4": {"bg": '#0d1117', "accent1": '#58a6ff', "accent2": '#f97316', "name": '蓝橙马赛克', "theme": 'mosaic'},
+    "newspaper2_1": {"bg": '#f5f5f0', "accent1": '#dc2626', "accent2": '#1a1a1a', "name": '红黑头条', "text_color": '#1a1a1a', "theme": 'newspaper2'},
+    "newspaper2_2": {"bg": '#ffffff', "accent1": '#dc2626', "accent2": '#1e3a5f', "name": '红蓝头条', "text_color": '#1a1a1a', "theme": 'newspaper2'},
+    "newspaper2_3": {"bg": '#fef3c7', "accent1": '#dc2626', "accent2": '#92400e', "name": '黄红头条', "text_color": '#1a1a1a', "theme": 'newspaper2'},
+    "newspaper2_4": {"bg": '#1a1a1a', "accent1": '#dc2626', "accent2": '#ffffff', "name": '暗黑头条', "theme": 'newspaper2'},
+    "techwear_1": {"bg": '#0a0a0a', "accent1": '#fbbf24', "accent2": '#000000', "name": '黑金机能', "theme": 'techwear'},
+    "techwear_2": {"bg": '#111111', "accent1": '#22c55e', "accent2": '#000000', "name": '黑绿机能', "theme": 'techwear'},
+    "techwear_3": {"bg": '#0d0d0d', "accent1": '#ef4444', "accent2": '#000000', "name": '黑红机能', "theme": 'techwear'},
+    "techwear_4": {"bg": '#0a0a0a', "accent1": '#06b6d4', "accent2": '#000000', "name": '黑青机能', "theme": 'techwear'},
+    "cyberpunk2_1": {"bg": '#1a0a00', "accent1": '#ff6600', "accent2": '#ffd700', "name": '橙金废土', "theme": 'cyberpunk2'},
+    "cyberpunk2_2": {"bg": '#0a0a00', "accent1": '#fbbf24', "accent2": '#dc2626', "name": '金红废土', "theme": 'cyberpunk2'},
+    "cyberpunk2_3": {"bg": '#1a1000', "accent1": '#ff8c00', "accent2": '#8b4513', "name": '深棕废土', "theme": 'cyberpunk2'},
+    "cyberpunk2_4": {"bg": '#0d0800', "accent1": '#ff4500', "accent2": '#2d1b00', "name": '暗橙废土', "theme": 'cyberpunk2'},
+    "neoncity_1": {"bg": '#0a0a1a', "accent1": '#ff006e', "accent2": '#00ffff', "name": '粉青霓虹城', "theme": 'neoncity'},
+    "neoncity_2": {"bg": '#0d0221', "accent1": '#ff6ec7', "accent2": '#feca57', "name": '粉金霓虹城', "theme": 'neoncity'},
+    "neoncity_3": {"bg": '#000814', "accent1": '#00ff88', "accent2": '#ff006e', "name": '绿粉霓虹城', "theme": 'neoncity'},
+    "neoncity_4": {"bg": '#1a0a2e', "accent1": '#ff6600', "accent2": '#00bfff', "name": '橙蓝霓虹城', "theme": 'neoncity'},
+    "medieval_1": {"bg": '#1a0f00', "accent1": '#d4af37', "accent2": '#8b0000', "name": '金红中世纪', "theme": 'medieval'},
+    "medieval_2": {"bg": '#0d0a00', "accent1": '#c0c0c0', "accent2": '#4a0020', "name": '银暗中世纪', "theme": 'medieval'},
+    "medieval_3": {"bg": '#2a1810', "accent1": '#ffd700', "accent2": '#1a1a2e', "name": '金棕中世纪', "theme": 'medieval'},
+    "medieval_4": {"bg": '#0a0a1a', "accent1": '#b8860b', "accent2": '#4a0028', "name": '暗金中世纪', "theme": 'medieval'},
+    "watercolor_1": {"bg": 'linear-gradient(135deg,#a8edea 0%,#fed6e3 50%,#d4fc79 100%)', "accent1": '#667eea', "accent2": '#f093fb', "name": '彩虹水彩', "is_gradient": True, "theme": 'watercolor'},
+    "watercolor_2": {"bg": 'linear-gradient(135deg,#ffecd2 0%,#fcb69f 100%)', "accent1": '#667eea', "accent2": '#764ba2', "name": '暖粉水彩', "is_gradient": True, "theme": 'watercolor'},
+    "watercolor_3": {"bg": 'linear-gradient(135deg,#a1c4fd 0%,#c2e9fb 100%)', "accent1": '#667eea', "accent2": '#f093fb', "name": '蓝清水彩', "is_gradient": True, "theme": 'watercolor'},
+    "watercolor_4": {"bg": 'linear-gradient(135deg,#d4fc79 0%,#96e6a1 100%)', "accent1": '#667eea', "accent2": '#764ba2', "name": '绿意水彩', "is_gradient": True, "theme": 'watercolor'},
+    "zen_1": {"bg": '#f5f0e8', "accent1": '#5c4033', "accent2": '#8b7355', "name": '枯棕禅意', "text_color": '#3c2f2f', "theme": 'zen'},
+    "zen_2": {"bg": '#e8e0d0', "accent1": '#4a6741', "accent2": '#8b7355', "name": '绿棕禅意', "text_color": '#2d3a2d', "theme": 'zen'},
+    "zen_3": {"bg": '#f0ebe3', "accent1": '#2c3e50', "accent2": '#95a5a6', "name": '灰蓝禅意', "text_color": '#2c3e50', "theme": 'zen'},
+    "zen_4": {"bg": '#eae4d9', "accent1": '#8b4513', "accent2": '#d2b48c', "name": '暖棕禅意', "text_color": '#3c2415', "theme": 'zen'},
+    "scandinavian_1": {"bg": '#f5f0eb', "accent1": '#2c3e50', "accent2": '#e74c3c', "name": '灰白红北欧', "text_color": '#2c3e50', "theme": 'scandinavian'},
+    "scandinavian_2": {"bg": '#e8e0d5', "accent1": '#5d4e37', "accent2": '#8b7355', "name": '棕木北欧', "text_color": '#3c2f2f', "theme": 'scandinavian'},
+    "scandinavian_3": {"bg": '#f0ebe3', "accent1": '#1a5276', "accent2": '#2e86c1', "name": '蓝白北欧', "text_color": '#1a3c5e', "theme": 'scandinavian'},
+    "scandinavian_4": {"bg": '#eae4d9', "accent1": '#4a6741', "accent2": '#7dcea0', "name": '绿白北欧', "text_color": '#2d3a2d', "theme": 'scandinavian'},
+    "boho_1": {"bg": '#f5e6d3', "accent1": '#c0392b', "accent2": '#d4a373', "name": '暖棕波西', "text_color": '#5c3a21', "theme": 'boho'},
+    "boho_2": {"bg": '#e8d5b7', "accent1": '#8b4513', "accent2": '#cd853f', "name": '棕金波西', "text_color": '#3c2415', "theme": 'boho'},
+    "boho_3": {"bg": '#f0e0c0', "accent1": '#16a34a', "accent2": '#d4a373', "name": '绿棕波西', "text_color": '#2d4a2d', "theme": 'boho'},
+    "boho_4": {"bg": '#e0d0b0', "accent1": '#7c3aed', "accent2": '#d4a373', "name": '紫棕波西', "text_color": '#3c2415', "theme": 'boho'},
+    "rain_1": {"bg": '#2c3e50', "accent1": '#3498db', "accent2": '#95a5a6', "name": '蓝灰雨天', "theme": 'rain'},
+    "rain_2": {"bg": '#1a2a3a', "accent1": '#5dade2', "accent2": '#aab7b8', "name": '深蓝雨天', "theme": 'rain'},
+    "rain_3": {"bg": '#34495e', "accent1": '#85c1e9', "accent2": '#d5dbdb', "name": '浅蓝雨天', "theme": 'rain'},
+    "rain_4": {"bg": '#1c2833', "accent1": '#7fb3d8', "accent2": '#566573', "name": '暗灰雨天', "theme": 'rain'},
+    "sunset_1": {"bg": 'linear-gradient(180deg,#ff6b35 0%,#f7931e 30%,#c0392b 70%,#4a0028 100%)', "accent1": '#ffd700', "accent2": '#ffffff', "name": '橙红日落', "is_gradient": True, "theme": 'sunset'},
+    "sunset_2": {"bg": 'linear-gradient(180deg,#ff9a56 0%,#e74c3c 50%,#8b0000 100%)', "accent1": '#ffd700', "accent2": '#fff', "name": '暖红日落', "is_gradient": True, "theme": 'sunset'},
+    "sunset_3": {"bg": 'linear-gradient(180deg,#feca57 0%,#ff6b6b 50%,#5f27cd 100%)', "accent1": '#ffffff', "accent2": '#ffd700', "name": '紫橙日落', "is_gradient": True, "theme": 'sunset'},
+    "sunset_4": {"bg": '#2d0a1a', "accent1": '#ff6b35', "accent2": '#feca57', "name": '暗调日落', "theme": 'sunset'},
+    "forest_1": {"bg": '#0a1a0a', "accent1": '#22c55e', "accent2": '#15803d', "name": '深绿森林', "theme": 'forest'},
+    "forest_2": {"bg": '#0d2818', "accent1": '#4ade80', "accent2": '#166534', "name": '亮绿森林', "theme": 'forest'},
+    "forest_3": {"bg": '#1a2e1a', "accent1": '#86efac', "accent2": '#14532d', "name": '浅绿森林', "theme": 'forest'},
+    "forest_4": {"bg": '#0a1a0f', "accent1": '#10b981', "accent2": '#065f46', "name": '翠绿森林', "theme": 'forest'},
+    "desert_1": {"bg": '#f5e6d3', "accent1": '#d4a373', "accent2": '#c0392b', "name": '暖棕沙漠', "text_color": '#5c3a21', "theme": 'desert'},
+    "desert_2": {"bg": '#e8d5b7', "accent1": '#e76f51', "accent2": '#f4a261', "name": '橙棕沙漠', "text_color": '#3c2415', "theme": 'desert'},
+    "desert_3": {"bg": '#f0e0c0', "accent1": '#d4a373', "accent2": '#8b4513', "name": '金沙沙漠', "text_color": '#3c2415', "theme": 'desert'},
+    "desert_4": {"bg": '#e0c8a0', "accent1": '#c0392b', "accent2": '#daa520', "name": '红金沙漠', "text_color": '#3c2415', "theme": 'desert'},
+    "vintage_1": {"bg": '#f5e6d3', "accent1": '#8b4513', "accent2": '#d4a373', "name": '暖棕复古', "text_color": '#3c2415', "theme": 'vintage'},
+    "vintage_2": {"bg": '#e8d5b7', "accent1": '#b8860b', "accent2": '#cd853f', "name": '金棕复古', "text_color": '#3c2415', "theme": 'vintage'},
+    "vintage_3": {"bg": '#d4c5a9', "accent1": '#556b2f', "accent2": '#8b7355', "name": '绿棕复古', "text_color": '#2d3a2d', "theme": 'vintage'},
+    "vintage_4": {"bg": '#e0d0b0', "accent1": '#a0522d', "accent2": '#daa520', "name": '红棕复古', "text_color": '#3c2415', "theme": 'vintage'},
+    "cherry_1": {"bg": '#fdf2f8', "accent1": '#ec4899', "accent2": '#f9a8d4', "name": '粉嫩樱花', "text_color": '#831843', "theme": 'cherry'},
+    "cherry_2": {"bg": '#fce7f3', "accent1": '#db2777', "accent2": '#f472b6', "name": '深粉樱花', "text_color": '#831843', "theme": 'cherry'},
+    "cherry_3": {"bg": '#fff1f2', "accent1": '#e11d48', "accent2": '#fda4af', "name": '红粉樱花', "text_color": '#881337', "theme": 'cherry'},
+    "cherry_4": {"bg": '#f5f0ff', "accent1": '#a855f7', "accent2": '#e879f9', "name": '紫粉樱花', "text_color": '#581c87', "theme": 'cherry'},
+    "woodcut_1": {"bg": '#f5f0e0', "accent1": '#1a1a1a', "accent2": '#8b4513', "name": '黑白木刻', "text_color": '#1a1a1a', "theme": 'woodcut'},
+    "woodcut_2": {"bg": '#e8e0c8', "accent1": '#2c2c2c', "accent2": '#a0522d', "name": '棕黑木刻', "text_color": '#2c2c2c', "theme": 'woodcut'},
+    "woodcut_3": {"bg": '#1a1a1a', "accent1": '#f5f0e0', "accent2": '#c0392b', "name": '反转木刻', "theme": 'woodcut'},
+    "woodcut_4": {"bg": '#f0e8d0', "accent1": '#333333', "accent2": '#8b0000', "name": '深色木刻', "text_color": '#333333', "theme": 'woodcut'},
+    "plaid_1": {"bg": '#1e3a5f', "accent1": '#dc2626', "accent2": '#fbbf24', "name": '红蓝格纹', "theme": 'plaid'},
+    "plaid_2": {"bg": '#2d4a2d', "accent1": '#daa520', "accent2": '#8b0000', "name": '绿金格纹', "theme": 'plaid'},
+    "plaid_3": {"bg": '#3c1515', "accent1": '#fbbf24', "accent2": '#1e3a5f', "name": '红金格纹', "theme": 'plaid'},
+    "plaid_4": {"bg": '#1a1a2e', "accent1": '#e94560', "accent2": '#ffd700', "name": '紫红格纹', "theme": 'plaid'},
+    "origami_1": {"bg": '#f5f0e8', "accent1": '#e74c3c', "accent2": '#3498db', "name": '红蓝折纸', "text_color": '#2c3e50', "theme": 'origami'},
+    "origami_2": {"bg": '#e8e0d0', "accent1": '#2ecc71', "accent2": '#f39c12', "name": '绿黄折纸', "text_color": '#2c3e50', "theme": 'origami'},
+    "origami_3": {"bg": '#f0ebe3', "accent1": '#9b59b6', "accent2": '#1abc9c', "name": '紫绿折纸', "text_color": '#2c3e50', "theme": 'origami'},
+    "origami_4": {"bg": '#eae4d9', "accent1": '#e67e22', "accent2": '#2980b9', "name": '橙蓝折纸', "text_color": '#2c3e50', "theme": 'origami'},
+    "paperplane_1": {"bg": '#87ceeb', "accent1": '#ffffff', "accent2": '#2563eb', "name": '蓝天纸飞机', "text_color": '#1e3a5f', "theme": 'paperplane'},
+    "paperplane_2": {"bg": '#e0f2fe', "accent1": '#0ea5e9', "accent2": '#ffffff', "name": '浅蓝纸飞机', "text_color": '#0c4a6e', "theme": 'paperplane'},
+    "paperplane_3": {"bg": '#f0f9ff', "accent1": '#3b82f6', "accent2": '#93c5fd', "name": '亮蓝纸飞机', "text_color": '#1e40af', "theme": 'paperplane'},
+    "paperplane_4": {"bg": '#0ea5e9', "accent1": '#ffffff', "accent2": '#fbbf24', "name": '蓝白纸飞机', "theme": 'paperplane'},
+    "lofi_1": {"bg": '#2d1b4e', "accent1": '#e9a0ff', "accent2": '#feca57', "name": '紫金lofi', "theme": 'lofi'},
+    "lofi_2": {"bg": '#1a1a2e', "accent1": '#ff9a9e', "accent2": '#fad0c4', "name": '粉暖lofi', "theme": 'lofi'},
+    "lofi_3": {"bg": '#2d2d44', "accent1": '#a0c4ff', "accent2": '#bdb2ff', "name": '蓝紫lofi', "theme": 'lofi'},
+    "lofi_4": {"bg": '#1e1e30', "accent1": '#caffbf', "accent2": '#fdffb6', "name": '绿黄lofi', "theme": 'lofi'},
+
+    "wave_1": {"bg": "#0a1628", "accent1": "#38bdf8", "accent2": "#0ea5e9", "name": "蓝波", "theme": "wave"},
+    "wave_2": {"bg": "#0d2137", "accent1": "#67e8f9", "accent2": "#0284c7", "name": "青波", "theme": "wave"},
+    "wave_3": {"bg": "#1a2a3a", "accent1": "#7dd3fc", "accent2": "#0369a1", "name": "深蓝波", "theme": "wave"},
+    "wave_4": {"bg": "#0a192f", "accent1": "#22d3ee", "accent2": "#0ea5e9", "name": "亮蓝波", "theme": "wave"},
+    "fairy_1": {"bg": "linear-gradient(135deg,#a78bfa 0%,#f0abfc 50%,#fde68a 100%)", "accent1": "#ffffff", "accent2": "#7c3aed", "name": "紫粉童话", "is_gradient": True, "theme": "fairy"},
+    "fairy_2": {"bg": "#f5f0ff", "accent1": "#8b5cf6", "accent2": "#ec4899", "name": "粉紫童话", "text_color": "#581c87", "theme": "fairy"},
+    "fairy_3": {"bg": "#fdf2f8", "accent1": "#a855f7", "accent2": "#f472b6", "name": "亮粉童话", "text_color": "#831843", "theme": "fairy"},
+    "fairy_4": {"bg": "linear-gradient(135deg,#c084fc 0%,#f9a8d4 100%)", "accent1": "#ffffff", "accent2": "#7c3aed", "name": "渐变童话", "is_gradient": True, "theme": "fairy"},
+    "military_1": {"bg": "#1a1a0a", "accent1": "#4a5d23", "accent2": "#8b7355", "name": "军绿", "theme": "military"},
+    "military_2": {"bg": "#0d0d00", "accent1": "#6b8e23", "accent2": "#556b2f", "name": "深绿军事", "theme": "military"},
+    "military_3": {"bg": "#2a2a10", "accent1": "#bdb76b", "accent2": "#556b2f", "name": "黄绿军事", "theme": "military"},
+    "military_4": {"bg": "#0a0a00", "accent1": "#808000", "accent2": "#2f4f2f", "name": "暗绿军事", "theme": "military"},
+    "cloud_1": {"bg": "#e0f2fe", "accent1": "#0ea5e9", "accent2": "#38bdf8", "name": "蓝白云", "text_color": "#0c4a6e", "theme": "cloud"},
+    "cloud_2": {"bg": "#f0f9ff", "accent1": "#0284c7", "accent2": "#7dd3fc", "name": "浅蓝云", "text_color": "#075985", "theme": "cloud"},
+    "cloud_3": {"bg": "#f8fafc", "accent1": "#3b82f6", "accent2": "#93c5fd", "name": "灰白云", "text_color": "#1e3a5f", "theme": "cloud"},
+    "cloud_4": {"bg": "#e0e7ff", "accent1": "#6366f1", "accent2": "#a5b4fc", "name": "紫蓝云", "text_color": "#3730a3", "theme": "cloud"},
+    "earth_1": {"bg": "#0a1a0a", "accent1": "#22c55e", "accent2": "#0ea5e9", "name": "绿蓝地球", "theme": "earth"},
+    "earth_2": {"bg": "#0d1b2a", "accent1": "#10b981", "accent2": "#3b82f6", "name": "蓝绿地球", "theme": "earth"},
+    "earth_3": {"bg": "#1a2e1a", "accent1": "#4ade80", "accent2": "#38bdf8", "name": "亮绿地球", "theme": "earth"},
+    "earth_4": {"bg": "#0a1628", "accent1": "#22d3ee", "accent2": "#22c55e", "name": "青绿地球", "theme": "earth"},
 }
 
 # ===== 风格结构分类 =====
@@ -351,22 +533,22 @@ THEME_CATEGORIES = {
     "科技知识": {
         "icon": "🚀",
         "desc": "适合编程、AI、技术教程、知识科普、工程",
-        "themes": ["bold", "cyber", "minimal", "magazine", "pixel", "glass", "aurora", "blueprint", "typewriter", "starfield"],
+        "themes": ["bold", "cyber", "minimal", "magazine", "pixel", "glass", "aurora", "blueprint", "typewriter", "starfield", "glitch", "synthwave", "matrix", "quantum", "ocean", "ice", "glassmorph", "retrofuturism", "galaxy", "cloud"],
     },
     "生活娱乐": {
         "icon": "🎉",
         "desc": "适合搞笑、美食、游戏、综艺、宠物、儿童",
-        "themes": ["funny", "food", "gaming", "variety", "cute", "clay", "carnival", "popart"],
+        "themes": ["funny", "food", "gaming", "variety", "cute", "clay", "carnival", "popart", "candy"],
     },
     "视觉冲击": {
         "icon": "💥",
         "desc": "适合热点、评测、开箱、撕纸拼贴、潮流、街头",
-        "themes": ["paper", "dopamine", "doodle", "luxury", "vaporwave", "acid", "memphis", "comic", "neon", "graffiti", "brutalist", "holographic", "gradientmesh", "screenshot", "portrait", "product", "contrast", "zoom"],
+        "themes": ["paper", "dopamine", "doodle", "luxury", "vaporwave", "acid", "memphis", "comic", "neon", "graffiti", "brutalist", "holographic", "gradientmesh", "screenshot", "portrait", "product", "contrast", "zoom", "steampunk", "noir", "gothic", "baroque", "tribal", "artdeco", "fire", "streetwear", "psychadelic", "mosaic", "newspaper2", "techwear", "cyberpunk2", "neoncity", "medieval", "military"],
     },
     "文艺清新": {
         "icon": "🍃",
         "desc": "适合Vlog、旅行、动漫、手账、国风、复古、自然",
-        "themes": ["fresh", "anime", "cinema", "journal", "guochao", "sticker", "retro", "collage", "ink", "stamp", "newspaper", "polaroid", "risograph", "film", "ribbon", "pastel", "terrarium", "kraft", "washi"],
+        "themes": ["fresh", "anime", "cinema", "journal", "guochao", "sticker", "retro", "collage", "ink", "stamp", "newspaper", "polaroid", "risograph", "film", "ribbon", "pastel", "terrarium", "kraft", "washi", "watercolor", "zen", "scandinavian", "boho", "rain", "sunset", "forest", "desert", "vintage", "cherry", "woodcut", "plaid", "origami", "paperplane", "lofi", "wave", "fairy", "earth"],
     },
 }
 
@@ -433,6 +615,53 @@ THEME_KEYWORDS = {
     "product": ["开箱","测评","评测","产品","体验","工具","神器","效率","APP","硬件","键盘","MacBook","iPad"],
     "contrast": ["对比","vs","区别","选择","哪个好","比较","较量","盘点","TOP","排行榜"],
     "zoom": ["细节","重点","局部","放大","特写","深入","看这个","注意","记住","这几点"],
+
+    "glitch": ["故障","glitch","错误","bug","崩溃","异常","干扰","信号","失真","花屏"],
+    "synthwave": ["synthwave","合成波","retrowave","80年代","霓虹","落日","棕榈","网格","复古未来"],
+    "matrix": ["matrix","矩阵","代码雨","黑客","绿色","终端","命令行","01","二进制"],
+    "quantum": ["量子","quantum","纠缠","叠加","计算","物理","粒子","波函数"],
+    "ocean": ["海洋","ocean","深海","蓝色","水下","珊瑚","鱼群","波浪"],
+    "ice": ["冰","ice","冰晶","寒冷","蓝色","透明","霜","雪","冻"],
+    "glassmorph": ["毛玻璃","frosted","模糊","透明","质感","高级","UI","设计"],
+    "retrofuturism": ["复古未来","retrofuturism","未来主义","飞车","太空","原子","60年代","科幻"],
+    "galaxy": ["银河","galaxy","星系","宇宙","太空","行星","黑洞","星云"],
+    "candy": ["糖果","candy","甜蜜","粉色","可爱","棒棒糖","蛋糕","奶茶"],
+    "steampunk": ["蒸汽朋克","steampunk","齿轮","机械","铜","维多利亚","蒸汽","发条"],
+    "noir": ["黑色","noir","侦探","犯罪","暗影","黑白","悬疑","电影","硬汉"],
+    "gothic": ["哥特","gothic","暗黑","黑暗","中世纪","城堡","尖塔","玫瑰","十字架"],
+    "baroque": ["巴洛克","baroque","华丽","繁复","金饰","宫廷","古典","欧洲","皇室"],
+    "tribal": ["部落","tribal","图腾","原始","非洲","面具","纹样","狩猎","自然"],
+    "artdeco": ["装饰艺术","art deco","几何","对称","金色","20年代","纽约","帝国大厦"],
+    "fire": ["火","fire","烈焰","燃烧","热","爆炸","能量","火山"],
+    "streetwear": ["街头","street","潮牌","滑板","嘻哈","涂鸦","限量","sneaker"],
+    "psychadelic": ["迷幻","psychedelic","万花筒","彩虹","旋涡","荧光","60年代","嬉皮"],
+    "mosaic": ["马赛克","mosaic","像素","拼图","方块","瓷砖","拼接","几何"],
+    "newspaper2": ["头版","头条","breaking","新闻","紧急","突发","报道","号外"],
+    "techwear": ["机能","techwear","工装","战术","户外","防水","反光","黑色","装备"],
+    "cyberpunk2": ["废土","wasteland","末日","废墟","残破","荒芜","辐射","核爆"],
+    "neoncity": ["霓虹","neon","城市","city","夜景","灯光","繁华","都市"],
+    "medieval": ["中世纪","medieval","骑士","城堡","剑","盾","王国","龙"],
+    "watercolor": ["水彩","watercolor","晕染","透明","渐变","画笔","颜料","湿画","流动"],
+    "zen": ["禅","zen","侘寂","wabi-sabi","枯山水","茶道","空寂","留白","自然"],
+    "scandinavian": ["北欧","scandinavian","极简","木质","自然","温暖","hygge","斯堪的纳维亚"],
+    "boho": ["波西米亚","boho","bohemian","自由","流苏","民族","旅行","嬉皮","花卉"],
+    "rain": ["雨","rain","雨天","水滴","窗户","灰蒙","潮湿","忧郁","安静"],
+    "sunset": ["日落","sunset","黄昏","晚霞","橙色","紫色","天空","暮色"],
+    "forest": ["森林","forest","树木","绿色","自然","深林","苔藓","蘑菇"],
+    "desert": ["沙漠","desert","沙丘","骆驼","仙人掌","干燥","暖色","黄沙"],
+    "vintage": ["vintage","复古","怀旧","老照片","旧时光","80后","90后","经典"],
+    "cherry": ["樱花","cherry","粉色","春天","浪漫","花瓣","少女","粉色系"],
+    "woodcut": ["版画","woodcut","木刻","黑白","线条","雕刻","印刷","木版"],
+    "plaid": ["格纹","plaid","学院","英伦","苏格兰","校服","preppy","经典"],
+    "origami": ["折纸","origami","纸艺","手工","折叠","千纸鹤","纸飞机","立体"],
+    "paperplane": ["纸飞机","paper plane","飞翔","蓝天","梦想","童年","白纸","天空"],
+    "lofi": ["lofi","lo-fi","慵懒","放松","音乐","咖啡","深夜","学习","白噪音"],
+    "wave": ["波浪","wave","涟漪","水纹","流动","海浪","波纹","起伏"],
+    "fairy": ["童话","fairy","梦幻","魔法","精灵","公主","城堡","魔法棒"],
+    "military": ["军事","military","军队","战术","作战","迷彩","军用","硬核","武器"],
+    "cloud": ["云","cloud","云端","轻盈","飘浮","天空","棉花","柔软"],
+    "earth": ["地球","earth","生态","环保","绿色","可持续","碳中和","自然","蓝色星球"],
+
 }
 
 THEME_EMOJIS = {
@@ -498,6 +727,53 @@ THEME_EMOJIS = {
     "product":    [("1f4f1","📱"),("1f4bb","💻"),("1f3a8","🎨"),("2b50","⭐"),("1f680","🚀"),("1f389","🎉")],
     "contrast":   [("1f4a5","💥"),("1f19a","🆚"),("1f525","🔥"),("26a1","⚡"),("1f3af","🎯"),("1f4ca","📊")],
     "zoom":       [("1f50d","🔍"),("1f3af","🎯"),("1f4cc","📌"),("1f525","🔥"),("26a1","⚡"),("2b50","⭐")],
+
+    "glitch": [("1f4a5","💥"),("1f4f0","📰"),("26a1","⚡"),("1f527","🔧")],
+    "synthwave": [("1f305","🌅"),("1f308","🌈"),("1f4a5","💥"),("1f525","🔥")],
+    "matrix": [("1f4bb","💻"),("1f4a1","💡"),("26a1","⚡"),("1f527","🔧")],
+    "quantum": [("269b","⚛"),("1f30c","🌌"),("2728","✨"),("1f9ec","🧬")],
+    "ocean": [("1f30a","🌊"),("1f41f","🐟"),("1f42c","🐬"),("1f3dd","🏝")],
+    "ice": [("2744","❄"),("2603","⛄"),("1f4a7","💧"),("1f328","🌨")],
+    "glassmorph": [("1f539","🔹"),("2728","✨"),("1f4ab","💫"),("26aa","⚪")],
+    "retrofuturism": [("1f680","🚀"),("1f30c","🌌"),("2728","✨"),("1f47e","👾")],
+    "galaxy": [("1f30c","🌌"),("2b50","⭐"),("1f4ab","💫"),("1f31f","🌟")],
+    "candy": [("1f36c","🍬"),("1f36d","🍭"),("1f370","🍰"),("1f9c1","🧁")],
+    "steampunk": [("2699","⚙"),("1f527","🔧"),("1f4a1","💡"),("26a1","⚡")],
+    "noir": [("1f3ac","🎬"),("1f576","🕶"),("1f480","💀"),("1f50d","🔍")],
+    "gothic": [("1f987","🦇"),("1f480","💀"),("2620","☠"),("1f56f","🕯")],
+    "baroque": [("1f451","👑"),("1f48e","💎"),("2728","✨"),("1f3a9","🎩")],
+    "tribal": [("1f5ff","🗿"),("1f3dd","🏝"),("1f3b2","🎲"),("1f525","🔥")],
+    "artdeco": [("1f48e","💎"),("2728","✨"),("1f451","👑"),("2b50","⭐")],
+    "fire": [("1f525","🔥"),("1f4a5","💥"),("26a1","⚡"),("1f30b","🌋")],
+    "streetwear": [("1f6f9","🛹"),("1f45f","👟"),("1f3a8","🎨"),("1f525","🔥")],
+    "psychadelic": [("1f300","🌀"),("1f308","🌈"),("2728","✨"),("1f4ab","💫")],
+    "mosaic": [("1f9e9","🧩"),("1f4a0","💠"),("25fb","◻"),("25fc","◼")],
+    "newspaper2": [("1f4f0","📰"),("1f4ca","📊"),("1f4dd","📝"),("2757","❗")],
+    "techwear": [("1f9e5","🧥"),("1f451","👑"),("26a1","⚡"),("1f6e1","🛡")],
+    "cyberpunk2": [("1f3da","🏚"),("2622","☢"),("1f480","💀"),("1f525","🔥")],
+    "neoncity": [("1f307","🌇"),("1f3d9","🏙"),("2728","✨"),("1f4a1","💡")],
+    "medieval": [("2694","⚔"),("1f6e1","🛡"),("1f3f0","🏰"),("1f409","🐉")],
+    "watercolor": [("1f3a8","🎨"),("1f58c","🖌"),("2728","✨"),("1f4ab","💫")],
+    "zen": [("1fab6","🪴"),("2618","☘"),("1f343","🍃"),("1f371","🍱")],
+    "scandinavian": [("1f332","🌲"),("2744","❄"),("2618","☕"),("1f36a","🍪")],
+    "boho": [("1f33b","🌻"),("1f33a","🌺"),("1f3dd","🏝"),("2728","✨")],
+    "rain": [("1f327","🌧"),("2614","☂"),("1f4a7","💧"),("1f32c","🌬")],
+    "sunset": [("1f307","🌇"),("1f305","🌅"),("2728","✨"),("1f31f","🌟")],
+    "forest": [("1f332","🌲"),("1f33f","🌿"),("1f344","🍄"),("1f43a","🐺")],
+    "desert": [("1f3dc","🏜"),("1f42a","🐫"),("1f335","🌵"),("2600","☀")],
+    "vintage": [("1f4fb","📻"),("1f4f7","📷"),("1f3a8","🎨"),("1f451","👑")],
+    "cherry": [("1f338","🌸"),("1f49d","💝"),("2728","✨"),("1f33a","🌺")],
+    "woodcut": [("1fab5","🪵"),("2702","✂"),("1f4dd","📝"),("1f3a8","🎨")],
+    "plaid": [("1f393","🎓"),("1f4da","📚"),("2328","⌨"),("1f3a8","🎨")],
+    "origami": [("1faba","🦢"),("2702","✂"),("1f4dd","📝"),("1f3a8","🎨")],
+    "paperplane": [("2708","✈"),("2601","☁"),("1f308","🌈"),("2728","✨")],
+    "lofi": [("1f3a7","🎧"),("2615","☕"),("1f4d6","📖"),("1f319","🌙")],
+    "wave": [("1f30a","🌊"),("1f4a7","💧"),("2728","✨"),("1f300","🌀")],
+    "fairy": [("1f9da","🧚"),("2728","✨"),("1f31f","🌟"),("1f4ab","💫")],
+    "military": [("1f396","🎖"),("2708","✈"),("1f6e1","🛡"),("1f527","🔧")],
+    "cloud": [("2601","☁"),("26a1","⚡"),("1f4bb","💻"),("1f680","🚀")],
+    "earth": [("1f30d","🌍"),("1f331","🌱"),("1f33f","🌿"),("2728","✨")],
+
 }
 
 GENERAL_EMOJIS = [("1f680","🚀"),("26a1","⚡"),("1f4bb","💻"),("1f310","🌐"),
@@ -573,6 +849,53 @@ THEME_ICONFONT_MAP = {
     "product":    "tech",
     "contrast":   "emoji",
     "zoom":       "tech",
+
+    "glitch":     "tech",
+    "synthwave":     "tech",
+    "matrix":     "coder",
+    "quantum":     "tech",
+    "ocean":     "animal",
+    "ice":     "tech",
+    "glassmorph":     "tech",
+    "retrofuturism":     "tech",
+    "galaxy":     "tech",
+    "candy":     "food",
+    "steampunk":     "tech",
+    "noir":     "coder",
+    "gothic":     "coder",
+    "baroque":     "emoji",
+    "tribal":     "animal",
+    "artdeco":     "tech",
+    "fire":     "tech",
+    "streetwear":     "emoji",
+    "psychadelic":     "emoji",
+    "mosaic":     "emoji",
+    "newspaper2":     "coder",
+    "techwear":     "tech",
+    "cyberpunk2":     "tech",
+    "neoncity":     "tech",
+    "medieval":     "coder",
+    "watercolor":     "emoji",
+    "zen":     "animal",
+    "scandinavian":     "animal",
+    "boho":     "animal",
+    "rain":     "animal",
+    "sunset":     "animal",
+    "forest":     "animal",
+    "desert":     "animal",
+    "vintage":     "animal",
+    "cherry":     "animal",
+    "woodcut":     "coder",
+    "plaid":     "coder",
+    "origami":     "emoji",
+    "paperplane":     "emoji",
+    "lofi":     "animal",
+    "wave":     "animal",
+    "fairy":     "animal",
+    "military":     "tech",
+    "cloud":     "tech",
+    "earth":     "animal",
+
 }
 
 def get_iconfont_svgs(theme, count=2):
@@ -700,6 +1023,11 @@ def detect_theme(title, tags=None):
             return theme
     # 再匹配v5的11种风格
     for theme in ["vaporwave","acid","memphis","clay","glass","sticker","comic","neon","retro","collage","aurora"]:
+        kws = THEME_KEYWORDS.get(theme, [])
+        if any(kw.lower() in text for kw in kws):
+            return theme
+    # 再匹配v9新增的40种风格
+    for theme in ["glitch","synthwave","matrix","quantum","ocean","ice","glassmorph","retrofuturism","galaxy","candy","steampunk","noir","gothic","baroque","tribal","artdeco","fire","streetwear","psychadelic","mosaic","newspaper2","techwear","cyberpunk2","neoncity","medieval","watercolor","zen","scandinavian","boho","rain","sunset","forest","desert","vintage","cherry","woodcut","plaid","origami","paperplane","lofi","wave","fairy","military","cloud","earth"]:
         kws = THEME_KEYWORDS.get(theme, [])
         if any(kw.lower() in text for kw in kws):
             return theme
@@ -946,6 +1274,96 @@ def apply_highlights(title, highlights, theme, a1, a2):
             # 局部放大：红色圆圈 + 放大字体
             sz = 1.3 if i%2==0 else 1.15
             dt = dt.replace(w, f'<span class="hl-zoom" style="color:{c};font-weight:900;font-size:{sz}em;text-shadow:3px 3px 0 {a2},-1px -1px 0 {a2},1px -1px 0 {a2},-1px 1px 0 {a2};display:inline-block;">{w}</span>')
+        elif theme == "glitch":
+            dt = dt.replace(w, f'<span class="hl-glitch" style="color:{c};">{w}</span>')
+        elif theme == "synthwave":
+            dt = dt.replace(w, f'<span class="hl-synthwave" style="color:{c};">{w}</span>')
+        elif theme == "matrix":
+            dt = dt.replace(w, f'<span class="hl-matrix" style="color:{c};">{w}</span>')
+        elif theme == "quantum":
+            dt = dt.replace(w, f'<span class="hl-quantum" style="color:{c};">{w}</span>')
+        elif theme == "ocean":
+            dt = dt.replace(w, f'<span class="hl-ocean" style="color:{c};">{w}</span>')
+        elif theme == "ice":
+            dt = dt.replace(w, f'<span class="hl-ice" style="color:{c};">{w}</span>')
+        elif theme == "glassmorph":
+            dt = dt.replace(w, f'<span class="hl-glassmorph" style="color:{c};">{w}</span>')
+        elif theme == "retrofuturism":
+            dt = dt.replace(w, f'<span class="hl-retrofuturism" style="color:{c};">{w}</span>')
+        elif theme == "galaxy":
+            dt = dt.replace(w, f'<span class="hl-galaxy" style="color:{c};">{w}</span>')
+        elif theme == "candy":
+            dt = dt.replace(w, f'<span class="hl-candy" style="color:{c};">{w}</span>')
+        elif theme == "steampunk":
+            dt = dt.replace(w, f'<span class="hl-steampunk" style="color:{c};">{w}</span>')
+        elif theme == "noir":
+            dt = dt.replace(w, f'<span class="hl-noir" style="color:{c};">{w}</span>')
+        elif theme == "gothic":
+            dt = dt.replace(w, f'<span class="hl-gothic" style="color:{c};">{w}</span>')
+        elif theme == "baroque":
+            dt = dt.replace(w, f'<span class="hl-baroque" style="color:{c};">{w}</span>')
+        elif theme == "tribal":
+            dt = dt.replace(w, f'<span class="hl-tribal" style="color:{c};">{w}</span>')
+        elif theme == "artdeco":
+            dt = dt.replace(w, f'<span class="hl-artdeco" style="color:{c};">{w}</span>')
+        elif theme == "fire":
+            dt = dt.replace(w, f'<span class="hl-fire" style="color:{c};">{w}</span>')
+        elif theme == "streetwear":
+            dt = dt.replace(w, f'<span class="hl-streetwear" style="color:{c};">{w}</span>')
+        elif theme == "psychadelic":
+            dt = dt.replace(w, f'<span class="hl-psychadelic" style="color:{c};">{w}</span>')
+        elif theme == "mosaic":
+            dt = dt.replace(w, f'<span class="hl-mosaic" style="color:{c};">{w}</span>')
+        elif theme == "newspaper2":
+            dt = dt.replace(w, f'<span class="hl-newspaper2" style="color:{c};">{w}</span>')
+        elif theme == "techwear":
+            dt = dt.replace(w, f'<span class="hl-techwear" style="color:{c};">{w}</span>')
+        elif theme == "cyberpunk2":
+            dt = dt.replace(w, f'<span class="hl-cyberpunk2" style="color:{c};">{w}</span>')
+        elif theme == "neoncity":
+            dt = dt.replace(w, f'<span class="hl-neoncity" style="color:{c};">{w}</span>')
+        elif theme == "medieval":
+            dt = dt.replace(w, f'<span class="hl-medieval" style="color:{c};">{w}</span>')
+        elif theme == "watercolor":
+            dt = dt.replace(w, f'<span class="hl-watercolor" style="color:{c};">{w}</span>')
+        elif theme == "zen":
+            dt = dt.replace(w, f'<span class="hl-zen" style="color:{c};">{w}</span>')
+        elif theme == "scandinavian":
+            dt = dt.replace(w, f'<span class="hl-scandinavian" style="color:{c};">{w}</span>')
+        elif theme == "boho":
+            dt = dt.replace(w, f'<span class="hl-boho" style="color:{c};">{w}</span>')
+        elif theme == "rain":
+            dt = dt.replace(w, f'<span class="hl-rain" style="color:{c};">{w}</span>')
+        elif theme == "sunset":
+            dt = dt.replace(w, f'<span class="hl-sunset" style="color:{c};">{w}</span>')
+        elif theme == "forest":
+            dt = dt.replace(w, f'<span class="hl-forest" style="color:{c};">{w}</span>')
+        elif theme == "desert":
+            dt = dt.replace(w, f'<span class="hl-desert" style="color:{c};">{w}</span>')
+        elif theme == "vintage":
+            dt = dt.replace(w, f'<span class="hl-vintage" style="color:{c};">{w}</span>')
+        elif theme == "cherry":
+            dt = dt.replace(w, f'<span class="hl-cherry" style="color:{c};">{w}</span>')
+        elif theme == "woodcut":
+            dt = dt.replace(w, f'<span class="hl-woodcut" style="color:{c};">{w}</span>')
+        elif theme == "plaid":
+            dt = dt.replace(w, f'<span class="hl-plaid" style="color:{c};">{w}</span>')
+        elif theme == "origami":
+            dt = dt.replace(w, f'<span class="hl-origami" style="color:{c};">{w}</span>')
+        elif theme == "paperplane":
+            dt = dt.replace(w, f'<span class="hl-paperplane" style="color:{c};">{w}</span>')
+        elif theme == "lofi":
+            dt = dt.replace(w, f'<span class="hl-lofi" style="color:{c};">{w}</span>')
+        elif theme == "wave":
+            dt = dt.replace(w, f'<span class="hl-wave" style="color:{c};">{w}</span>')
+        elif theme == "fairy":
+            dt = dt.replace(w, f'<span class="hl-fairy" style="color:{c};">{w}</span>')
+        elif theme == "military":
+            dt = dt.replace(w, f'<span class="hl-military" style="color:{c};">{w}</span>')
+        elif theme == "cloud":
+            dt = dt.replace(w, f'<span class="hl-cloud" style="color:{c};">{w}</span>')
+        elif theme == "earth":
+            dt = dt.replace(w, f'<span class="hl-earth" style="color:{c};">{w}</span>')
         else:
             dt = dt.replace(w, f'<span class="highlight" style="color:{c};">{w}</span>')
     return dt
@@ -2058,6 +2476,276 @@ THEME_FONT_CSS = """
   backdrop-filter: blur(8px) !important;
 }
 
+/* ===== 故障风（glitch） ===== */
+.theme-glitch .cv-main-title { font-weight:900;letter-spacing:2px;line-height:1.05;text-shadow:3px 0 #ff0040,-3px 0 #00ff41,0 0 10px rgba(0,255,65,0.3); }
+.theme-glitch .cv-main-title .hl-glitch { display: inline-block; }
+.theme-glitch .cv-badge { border-radius:0;border:2px solid currentColor;background:transparent;clip-path:polygon(0 0,100% 0,95% 100%,5% 100%); }
+.theme-glitch .cv-mascot { filter:drop-shadow(2px 0 #ff0040) drop-shadow(-2px 0 #00ff41);opacity:0.85; }
+
+/* ===== 合成波（synthwave） ===== */
+.theme-synthwave .cv-main-title { font-weight:900;letter-spacing:3px;line-height:1.1;text-shadow:0 0 20px rgba(255,110,199,0.5); }
+.theme-synthwave .cv-main-title .hl-synthwave { display: inline-block; }
+.theme-synthwave .cv-badge { border-radius:0;border:2px solid var(--accent1);background:rgba(0,0,0,0.3);letter-spacing:2px; }
+.theme-synthwave .cv-mascot { filter:drop-shadow(0 0 10px var(--accent1)) drop-shadow(0 0 20px var(--accent2));opacity:0.85; }
+
+/* ===== 矩阵代码（matrix） ===== */
+.theme-matrix .cv-main-title { font-weight:900;letter-spacing:2px;line-height:1.08;font-family:'Courier New',monospace;text-shadow:0 0 15px rgba(0,255,65,0.4); }
+.theme-matrix .cv-main-title .hl-matrix { display: inline-block; }
+.theme-matrix .cv-badge { border-radius:0;border:1px solid var(--accent1);background:transparent;font-family:monospace;letter-spacing:2px; }
+.theme-matrix .cv-mascot { filter:brightness(1.2) hue-rotate(80deg);opacity:0.75; }
+
+/* ===== 量子科技（quantum） ===== */
+.theme-quantum .cv-main-title { font-weight:700;letter-spacing:3px;line-height:1.2;text-shadow:0 0 15px rgba(124,58,237,0.4); }
+.theme-quantum .cv-main-title .hl-quantum { display: inline-block; }
+.theme-quantum .cv-badge { border-radius:50px;border:1px solid var(--accent1);background:rgba(124,58,237,0.1);backdrop-filter:blur(6px); }
+.theme-quantum .cv-mascot { filter:drop-shadow(0 0 8px var(--accent1));opacity:0.85; }
+
+/* ===== 深海蓝调（ocean） ===== */
+.theme-ocean .cv-main-title { font-weight:700;letter-spacing:2px;line-height:1.15;text-shadow:0 2px 10px rgba(0,180,216,0.3); }
+.theme-ocean .cv-main-title .hl-ocean { display: inline-block; }
+.theme-ocean .cv-badge { border-radius:50px;border:1px solid var(--accent1);background:rgba(0,180,216,0.1);backdrop-filter:blur(6px); }
+.theme-ocean .cv-mascot { filter:drop-shadow(0 0 8px var(--accent1));opacity:0.85; }
+
+/* ===== 冰晶透蓝（ice） ===== */
+.theme-ice .cv-main-title { font-weight:600;letter-spacing:3px;line-height:1.2;text-shadow:0 0 15px rgba(125,211,252,0.3); }
+.theme-ice .cv-main-title .hl-ice { display: inline-block; }
+.theme-ice .cv-badge { border-radius:12px;border:1px solid rgba(125,211,252,0.4);background:rgba(125,211,252,0.1);backdrop-filter:blur(6px); }
+.theme-ice .cv-mascot { filter:drop-shadow(0 0 8px rgba(125,211,252,0.3)) brightness(1.1);opacity:0.85; }
+
+/* ===== 毛玻璃质感（glassmorph） ===== */
+.theme-glassmorph .cv-main-title { font-weight:700;letter-spacing:2px;line-height:1.2;text-shadow:0 2px 10px rgba(0,0,0,0.2); }
+.theme-glassmorph .cv-main-title .hl-glassmorph { display: inline-block; }
+.theme-glassmorph .cv-badge { border-radius:12px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);backdrop-filter:blur(10px); }
+.theme-glassmorph .cv-mascot { filter:drop-shadow(0 0 8px rgba(255,255,255,0.3));opacity:0.85; }
+
+/* ===== 复古未来（retrofuturism） ===== */
+.theme-retrofuturism .cv-main-title { font-weight:900;letter-spacing:3px;line-height:1.1;text-shadow:2px 2px 0 rgba(0,0,0,0.3),0 0 15px rgba(255,110,199,0.3); }
+.theme-retrofuturism .cv-main-title .hl-retrofuturism { display: inline-block; }
+.theme-retrofuturism .cv-badge { border-radius:0;border:2px solid var(--accent1);background:rgba(0,0,0,0.3);letter-spacing:2px; }
+.theme-retrofuturism .cv-mascot { filter:drop-shadow(0 0 8px var(--accent1)) saturate(1.3);opacity:0.85; }
+
+/* ===== 银河星系（galaxy） ===== */
+.theme-galaxy .cv-main-title { font-weight:700;letter-spacing:3px;line-height:1.2;text-shadow:0 0 20px rgba(168,85,247,0.4); }
+.theme-galaxy .cv-main-title .hl-galaxy { display: inline-block; }
+.theme-galaxy .cv-badge { border-radius:50px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.08);backdrop-filter:blur(6px); }
+.theme-galaxy .cv-mascot { filter:drop-shadow(0 0 10px var(--accent1)) brightness(1.1);opacity:0.85; }
+
+/* ===== 糖果甜蜜（candy） ===== */
+.theme-candy .cv-main-title { font-weight:800;letter-spacing:1px;line-height:1.15;font-family:'ZCOOL KuaiLe',sans-serif; }
+.theme-candy .cv-main-title .hl-candy { display: inline-block; }
+.theme-candy .cv-badge { border-radius:50px;border:2px solid var(--accent1);background:rgba(255,255,255,0.5); }
+.theme-candy .cv-mascot { filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.1));opacity:0.95; }
+
+/* ===== 蒸汽朋克（steampunk） ===== */
+.theme-steampunk .cv-main-title { font-weight:800;letter-spacing:2px;line-height:1.1;font-family:'Noto Serif SC',serif; }
+.theme-steampunk .cv-main-title .hl-steampunk { display: inline-block; }
+.theme-steampunk .cv-badge { border-radius:0;border:2px solid var(--accent1);background:transparent;letter-spacing:2px; }
+.theme-steampunk .cv-mascot { filter:sepia(0.4) contrast(1.1);opacity:0.85; }
+
+/* ===== 黑色电影（noir） ===== */
+.theme-noir .cv-main-title { font-weight:700;letter-spacing:4px;line-height:1.15;font-family:'Noto Serif SC',serif; }
+.theme-noir .cv-main-title .hl-noir { display: inline-block; }
+.theme-noir .cv-badge { border-radius:0;border:1px solid currentColor;background:transparent;letter-spacing:3px;font-size:11px; }
+.theme-noir .cv-mascot { filter:grayscale(0.8) contrast(1.2);opacity:0.7; }
+
+/* ===== 哥特暗黑（gothic） ===== */
+.theme-gothic .cv-main-title { font-weight:900;letter-spacing:3px;line-height:1.1;font-family:'Noto Serif SC',serif; }
+.theme-gothic .cv-main-title .hl-gothic { display: inline-block; }
+.theme-gothic .cv-badge { border-radius:0;border:2px solid currentColor;background:transparent;letter-spacing:3px; }
+.theme-gothic .cv-mascot { filter:brightness(0.8) contrast(1.2);opacity:0.8; }
+
+/* ===== 巴洛克华丽（baroque） ===== */
+.theme-baroque .cv-main-title { font-weight:700;letter-spacing:4px;line-height:1.15;font-family:'Noto Serif SC',serif; }
+.theme-baroque .cv-main-title .hl-baroque { display: inline-block; }
+.theme-baroque .cv-badge { border-radius:0;border:2px solid var(--accent1);background:transparent;letter-spacing:3px; }
+.theme-baroque .cv-mascot { filter:sepia(0.2) drop-shadow(0 0 6px rgba(212,175,55,0.3));opacity:0.85; }
+
+/* ===== 部落图腾（tribal） ===== */
+.theme-tribal .cv-main-title { font-weight:900;letter-spacing:1px;line-height:1.1; }
+.theme-tribal .cv-main-title .hl-tribal { display: inline-block; }
+.theme-tribal .cv-badge { border-radius:0;border:2px solid currentColor;background:transparent; }
+.theme-tribal .cv-mascot { filter:sepia(0.3) contrast(1.1);opacity:0.9; }
+
+/* ===== 装饰艺术（artdeco） ===== */
+.theme-artdeco .cv-main-title { font-weight:700;letter-spacing:4px;line-height:1.15; }
+.theme-artdeco .cv-main-title .hl-artdeco { display: inline-block; }
+.theme-artdeco .cv-badge { border-radius:0;border:1px solid var(--accent1);background:transparent;letter-spacing:3px;clip-path:polygon(5% 0,100% 0,95% 100%,0 100%); }
+.theme-artdeco .cv-mascot { filter:drop-shadow(0 0 6px rgba(212,175,55,0.3));opacity:0.85; }
+
+/* ===== 烈焰燃烧（fire） ===== */
+.theme-fire .cv-main-title { font-weight:900;letter-spacing:1px;line-height:1.05;text-shadow:2px 2px 0 rgba(0,0,0,0.5),0 0 20px rgba(255,69,0,0.3); }
+.theme-fire .cv-main-title .hl-fire { display: inline-block; }
+.theme-fire .cv-badge { border-radius:0;border:2px solid var(--accent1);background:rgba(255,69,0,0.15); }
+.theme-fire .cv-mascot { filter:drop-shadow(0 0 10px rgba(255,69,0,0.5)) brightness(1.1);opacity:0.85; }
+
+/* ===== 街头潮牌（streetwear） ===== */
+.theme-streetwear .cv-main-title { font-weight:900;letter-spacing:0;line-height:1.05;text-shadow:3px 3px 0 rgba(0,0,0,0.5); }
+.theme-streetwear .cv-main-title .hl-streetwear { display: inline-block; }
+.theme-streetwear .cv-badge { border-radius:0;border:3px solid currentColor;background:transparent;font-weight:900;letter-spacing:2px; }
+.theme-streetwear .cv-mascot { filter:drop-shadow(3px 3px 0 rgba(0,0,0,0.5));opacity:0.9; }
+
+/* ===== 迷幻色彩（psychadelic） ===== */
+.theme-psychadelic .cv-main-title { font-weight:900;letter-spacing:1px;line-height:1.1;text-shadow:3px 3px 0 rgba(0,0,0,0.3); }
+.theme-psychadelic .cv-main-title .hl-psychadelic { display: inline-block; }
+.theme-psychadelic .cv-badge { border-radius:50px;border:2px solid var(--accent1);background:rgba(0,0,0,0.3); }
+.theme-psychadelic .cv-mascot { filter:saturate(1.5) hue-rotate(10deg);opacity:0.9; }
+
+/* ===== 马赛克拼图（mosaic） ===== */
+.theme-mosaic .cv-main-title { font-weight:900;letter-spacing:1px;line-height:1.1; }
+.theme-mosaic .cv-main-title .hl-mosaic { display: inline-block; }
+.theme-mosaic .cv-badge { border-radius:0;border:2px solid currentColor;background:transparent; }
+.theme-mosaic .cv-mascot { filter:contrast(1.1);opacity:0.85; }
+
+/* ===== 头版头条（newspaper2） ===== */
+.theme-newspaper2 .cv-main-title { font-weight:900;letter-spacing:-0.5px;line-height:1.0;font-family:'Noto Serif SC',serif; }
+.theme-newspaper2 .cv-main-title .hl-newspaper2 { display: inline-block; }
+.theme-newspaper2 .cv-badge { border-radius:0;border:3px solid var(--accent1);background:var(--accent1);color:#fff;font-weight:900;letter-spacing:2px; }
+.theme-newspaper2 .cv-mascot { display:none; }
+
+/* ===== 机能工装（techwear） ===== */
+.theme-techwear .cv-main-title { font-weight:900;letter-spacing:2px;line-height:1.05;text-transform:uppercase; }
+.theme-techwear .cv-main-title .hl-techwear { display: inline-block; }
+.theme-techwear .cv-badge { border-radius:0;border:2px solid var(--accent1);background:transparent;font-weight:900;letter-spacing:3px;font-size:11px;clip-path:polygon(0 0,100% 0,95% 100%,5% 100%); }
+.theme-techwear .cv-mascot { filter:brightness(0.9) contrast(1.2);opacity:0.85; }
+
+/* ===== 赛博废土（cyberpunk2） ===== */
+.theme-cyberpunk2 .cv-main-title { font-weight:900;letter-spacing:1px;line-height:1.05;text-shadow:3px 3px 0 rgba(0,0,0,0.5); }
+.theme-cyberpunk2 .cv-main-title .hl-cyberpunk2 { display: inline-block; }
+.theme-cyberpunk2 .cv-badge { border-radius:0;border:2px solid var(--accent1);background:rgba(0,0,0,0.4); }
+.theme-cyberpunk2 .cv-mascot { filter:sepia(0.3) contrast(1.2) brightness(0.9);opacity:0.85; }
+
+/* ===== 霓虹都市（neoncity） ===== */
+.theme-neoncity .cv-main-title { font-weight:900;letter-spacing:2px;line-height:1.1;text-shadow:0 0 15px rgba(255,0,110,0.4); }
+.theme-neoncity .cv-main-title .hl-neoncity { display: inline-block; }
+.theme-neoncity .cv-badge { border-radius:50px;border:2px solid var(--accent1);background:transparent;box-shadow:0 0 8px var(--accent1); }
+.theme-neoncity .cv-mascot { filter:drop-shadow(0 0 8px var(--accent1)) drop-shadow(0 0 16px var(--accent2));opacity:0.85; }
+
+/* ===== 中世纪（medieval） ===== */
+.theme-medieval .cv-main-title { font-weight:900;letter-spacing:2px;line-height:1.1;font-family:'Noto Serif SC',serif; }
+.theme-medieval .cv-main-title .hl-medieval { display: inline-block; }
+.theme-medieval .cv-badge { border-radius:0;border:3px solid var(--accent1);background:transparent;letter-spacing:3px; }
+.theme-medieval .cv-mascot { filter:sepia(0.3) contrast(1.1);opacity:0.85; }
+
+/* ===== 水彩晕染（watercolor） ===== */
+.theme-watercolor .cv-main-title { font-weight:600;letter-spacing:2px;line-height:1.2; }
+.theme-watercolor .cv-main-title .hl-watercolor { display: inline-block; }
+.theme-watercolor .cv-badge { border-radius:20px;border:1px solid var(--accent1);background:rgba(255,255,255,0.3);backdrop-filter:blur(4px); }
+.theme-watercolor .cv-mascot { filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.1));opacity:0.85; }
+
+/* ===== 禅意侘寂（zen） ===== */
+.theme-zen .cv-main-title { font-weight:400;letter-spacing:6px;line-height:1.3;font-family:'Noto Serif SC',serif; }
+.theme-zen .cv-main-title .hl-zen { display: inline-block; }
+.theme-zen .cv-badge { border-radius:0;border:1px solid currentColor;background:transparent;letter-spacing:3px;font-weight:400; }
+.theme-zen .cv-mascot { filter:grayscale(0.3) opacity(0.7);opacity:0.7; }
+
+/* ===== 北欧极简（scandinavian） ===== */
+.theme-scandinavian .cv-main-title { font-weight:300;letter-spacing:4px;line-height:1.3; }
+.theme-scandinavian .cv-main-title .hl-scandinavian { display: inline-block; }
+.theme-scandinavian .cv-badge { border-radius:0;border:1px solid currentColor;background:transparent;letter-spacing:2px;font-weight:400;font-size:11px; }
+.theme-scandinavian .cv-mascot { filter:brightness(0.95) saturate(0.8);opacity:0.75; }
+
+/* ===== 波西米亚（boho） ===== */
+.theme-boho .cv-main-title { font-weight:600;letter-spacing:2px;line-height:1.2; }
+.theme-boho .cv-main-title .hl-boho { display: inline-block; }
+.theme-boho .cv-badge { border-radius:20px;border:2px solid currentColor;background:transparent;letter-spacing:1px; }
+.theme-boho .cv-mascot { filter:sepia(0.2) saturate(1.2);opacity:0.85; }
+
+/* ===== 雨天氛围（rain） ===== */
+.theme-rain .cv-main-title { font-weight:600;letter-spacing:3px;line-height:1.2; }
+.theme-rain .cv-main-title .hl-rain { display: inline-block; }
+.theme-rain .cv-badge { border-radius:20px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);backdrop-filter:blur(4px); }
+.theme-rain .cv-mascot { filter:brightness(0.9) contrast(1.05);opacity:0.8; }
+
+/* ===== 日落黄昏（sunset） ===== */
+.theme-sunset .cv-main-title { font-weight:800;letter-spacing:2px;line-height:1.1; }
+.theme-sunset .cv-main-title .hl-sunset { display: inline-block; }
+.theme-sunset .cv-badge { border-radius:50px;border:2px solid rgba(255,255,255,0.4);background:rgba(0,0,0,0.2); }
+.theme-sunset .cv-mascot { filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.3));opacity:0.85; }
+
+/* ===== 森林秘境（forest） ===== */
+.theme-forest .cv-main-title { font-weight:700;letter-spacing:2px;line-height:1.15; }
+.theme-forest .cv-main-title .hl-forest { display: inline-block; }
+.theme-forest .cv-badge { border-radius:20px;border:1px solid var(--accent1);background:rgba(34,197,94,0.1); }
+.theme-forest .cv-mascot { filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2)) brightness(1.05);opacity:0.9; }
+
+/* ===== 沙漠暖阳（desert） ===== */
+.theme-desert .cv-main-title { font-weight:700;letter-spacing:2px;line-height:1.15; }
+.theme-desert .cv-main-title .hl-desert { display: inline-block; }
+.theme-desert .cv-badge { border-radius:0;border:2px solid currentColor;background:transparent; }
+.theme-desert .cv-mascot { filter:sepia(0.2) brightness(1.05);opacity:0.85; }
+
+/* ===== 复古怀旧（vintage） ===== */
+.theme-vintage .cv-main-title { font-weight:700;letter-spacing:2px;line-height:1.15;font-family:'Noto Serif SC',serif; }
+.theme-vintage .cv-main-title .hl-vintage { display: inline-block; }
+.theme-vintage .cv-badge { border-radius:0;border:2px solid currentColor;background:transparent;letter-spacing:2px; }
+.theme-vintage .cv-mascot { filter:sepia(0.4) contrast(0.9) brightness(0.95);opacity:0.8; }
+
+/* ===== 樱花粉嫩（cherry） ===== */
+.theme-cherry .cv-main-title { font-weight:700;letter-spacing:2px;line-height:1.2;font-family:'ZCOOL KuaiLe',sans-serif; }
+.theme-cherry .cv-main-title .hl-cherry { display: inline-block; }
+.theme-cherry .cv-badge { border-radius:50px;border:2px solid var(--accent1);background:rgba(255,255,255,0.5); }
+.theme-cherry .cv-mascot { filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.08));opacity:0.9; }
+
+/* ===== 版画木刻（woodcut） ===== */
+.theme-woodcut .cv-main-title { font-weight:900;letter-spacing:1px;line-height:1.1;font-family:'Noto Serif SC',serif; }
+.theme-woodcut .cv-main-title .hl-woodcut { display: inline-block; }
+.theme-woodcut .cv-badge { border-radius:0;border:2px solid currentColor;background:transparent; }
+.theme-woodcut .cv-mascot { filter:grayscale(0.5) contrast(1.3);opacity:0.8; }
+
+/* ===== 格纹学院（plaid） ===== */
+.theme-plaid .cv-main-title { font-weight:700;letter-spacing:2px;line-height:1.15;font-family:'Noto Serif SC',serif; }
+.theme-plaid .cv-main-title .hl-plaid { display: inline-block; }
+.theme-plaid .cv-badge { border-radius:0;border:2px solid currentColor;background:transparent;letter-spacing:2px; }
+.theme-plaid .cv-mascot { filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2));opacity:0.85; }
+
+/* ===== 折纸手工（origami） ===== */
+.theme-origami .cv-main-title { font-weight:600;letter-spacing:2px;line-height:1.2; }
+.theme-origami .cv-main-title .hl-origami { display: inline-block; }
+.theme-origami .cv-badge { border-radius:8px;border:2px solid currentColor;background:transparent; }
+.theme-origami .cv-mascot { filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.1));opacity:0.9; }
+
+/* ===== 纸飞机（paperplane） ===== */
+.theme-paperplane .cv-main-title { font-weight:600;letter-spacing:3px;line-height:1.2; }
+.theme-paperplane .cv-main-title .hl-paperplane { display: inline-block; }
+.theme-paperplane .cv-badge { border-radius:20px;border:2px solid currentColor;background:rgba(255,255,255,0.3); }
+.theme-paperplane .cv-mascot { filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.1));opacity:0.9; }
+
+/* ===== Lo-Fi慵懒（lofi） ===== */
+.theme-lofi .cv-main-title { font-weight:500;letter-spacing:2px;line-height:1.25; }
+.theme-lofi .cv-main-title .hl-lofi { display: inline-block; }
+.theme-lofi .cv-badge { border-radius:20px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);backdrop-filter:blur(6px); }
+.theme-lofi .cv-mascot { filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.2));opacity:0.85; }
+
+/* ===== 海浪波纹（wave） ===== */
+.theme-wave .cv-main-title { font-weight:600;letter-spacing:3px;line-height:1.2; }
+.theme-wave .cv-main-title .hl-wave { display: inline-block; }
+.theme-wave .cv-badge { border-radius:20px;border:1px solid var(--accent1);background:rgba(14,165,233,0.1); }
+.theme-wave .cv-mascot { filter:drop-shadow(0 0 6px var(--accent1));opacity:0.85; }
+
+/* ===== 童话梦幻（fairy） ===== */
+.theme-fairy .cv-main-title { font-weight:700;letter-spacing:2px;line-height:1.2;font-family:'ZCOOL KuaiLe',sans-serif; }
+.theme-fairy .cv-main-title .hl-fairy { display: inline-block; }
+.theme-fairy .cv-badge { border-radius:50px;border:2px solid var(--accent1);background:rgba(255,255,255,0.5); }
+.theme-fairy .cv-mascot { filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.1));opacity:0.9; }
+
+/* ===== 军事硬核（military） ===== */
+.theme-military .cv-main-title { font-weight:900;letter-spacing:2px;line-height:1.05;text-transform:uppercase; }
+.theme-military .cv-main-title .hl-military { display: inline-block; }
+.theme-military .cv-badge { border-radius:0;border:2px solid var(--accent1);background:transparent;font-weight:900;letter-spacing:2px; }
+.theme-military .cv-mascot { filter:brightness(0.9) contrast(1.2);opacity:0.85; }
+
+/* ===== 云端轻盈（cloud） ===== */
+.theme-cloud .cv-main-title { font-weight:300;letter-spacing:4px;line-height:1.3; }
+.theme-cloud .cv-main-title .hl-cloud { display: inline-block; }
+.theme-cloud .cv-badge { border-radius:20px;border:1px solid var(--accent1);background:rgba(255,255,255,0.5);backdrop-filter:blur(6px); }
+.theme-cloud .cv-mascot { filter:drop-shadow(2px 2px 6px rgba(0,0,0,0.08));opacity:0.8; }
+
+/* ===== 地球生态（earth） ===== */
+.theme-earth .cv-main-title { font-weight:600;letter-spacing:3px;line-height:1.2; }
+.theme-earth .cv-main-title .hl-earth { display: inline-block; }
+.theme-earth .cv-badge { border-radius:50px;border:1px solid var(--accent1);background:rgba(34,197,94,0.1); }
+.theme-earth .cv-mascot { filter:drop-shadow(0 0 6px var(--accent1));opacity:0.85; }
+
 """
 
 
@@ -2301,9 +2989,10 @@ def main():
         "ink","stamp","newspaper","polaroid","risograph","film","graffiti","ribbon","gradientmesh","brutalist",
         "pastel","popart","terrarium","holographic","kraft","blueprint","starfield","washi","typewriter","carnival",
         "screenshot","portrait","product","contrast","zoom",
+        "glitch","synthwave","matrix","quantum","ocean","ice","glassmorph","retrofuturism","galaxy","candy","steampunk","noir","gothic","baroque","tribal","artdeco","fire","streetwear","psychadelic","mosaic","newspaper2","techwear","cyberpunk2","neoncity","medieval","watercolor","zen","scandinavian","boho","rain","sunset","forest","desert","vintage","cherry","woodcut","plaid","origami","paperplane","lofi",
         "tech","hot","cool","warm","dark","gradient","animal"]
     p = argparse.ArgumentParser(
-        description="视频封面生成器 v8.0 - 55种风格 × 231套配色 × 真人出镜 × 爆款标题",
+        description="视频封面生成器 v9.0 - 100种风格 × 411套配色 × 真人出镜 × 爆款标题",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="\n示例:\n"
                "  python3 generate_covers.py --title 'Docker一装，运维轻松10倍' --theme cyber\n"

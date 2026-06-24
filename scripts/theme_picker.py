@@ -80,6 +80,52 @@ THEME_INFO = {
     "product":    {"name": "实物产品", "desc": "测评/开箱/工具", "icon": "📱", "best": "开箱、测评、工具、硬件", "category": "视觉冲击"},
     "contrast":   {"name": "对比冲击", "desc": "对比/vs/盘点", "icon": "🆚", "best": "对比、区别、选择、TOP排行", "category": "视觉冲击"},
     "zoom":       {"name": "局部放大", "desc": "细节/重点/特写", "icon": "🔍", "best": "细节、重点、特写、深入", "category": "视觉冲击"},
+
+    "glitch": {"name": "故障风", "icon": "📺", "category": "科技知识"},
+    "synthwave": {"name": "合成波", "icon": "🌅", "category": "科技知识"},
+    "matrix": {"name": "矩阵代码", "icon": "🔢", "category": "科技知识"},
+    "quantum": {"name": "量子科技", "icon": "⚛️", "category": "科技知识"},
+    "ocean": {"name": "深海蓝调", "icon": "🌊", "category": "科技知识"},
+    "ice": {"name": "冰晶透蓝", "icon": "❄", "category": "科技知识"},
+    "glassmorph": {"name": "毛玻璃质感", "icon": "🪟", "category": "科技知识"},
+    "retrofuturism": {"name": "复古未来", "icon": "🚀", "category": "科技知识"},
+    "galaxy": {"name": "银河星系", "icon": "🌌", "category": "科技知识"},
+    "candy": {"name": "糖果甜蜜", "icon": "🍬", "category": "生活娱乐"},
+    "steampunk": {"name": "蒸汽朋克", "icon": "⚙️", "category": "视觉冲击"},
+    "noir": {"name": "黑色电影", "icon": "🎬", "category": "视觉冲击"},
+    "gothic": {"name": "哥特暗黑", "icon": "🦇", "category": "视觉冲击"},
+    "baroque": {"name": "巴洛克华丽", "icon": "👑", "category": "视觉冲击"},
+    "tribal": {"name": "部落图腾", "icon": "🗿", "category": "视觉冲击"},
+    "artdeco": {"name": "装饰艺术", "icon": "💎", "category": "视觉冲击"},
+    "fire": {"name": "烈焰燃烧", "icon": "🔥", "category": "视觉冲击"},
+    "streetwear": {"name": "街头潮牌", "icon": "🛹", "category": "视觉冲击"},
+    "psychadelic": {"name": "迷幻色彩", "icon": "🌀", "category": "视觉冲击"},
+    "mosaic": {"name": "马赛克拼图", "icon": "🧩", "category": "视觉冲击"},
+    "newspaper2": {"name": "头版头条", "icon": "📰", "category": "视觉冲击"},
+    "techwear": {"name": "机能工装", "icon": "🦺", "category": "视觉冲击"},
+    "cyberpunk2": {"name": "赛博废土", "icon": "🏚", "category": "视觉冲击"},
+    "neoncity": {"name": "霓虹都市", "icon": "🌃", "category": "视觉冲击"},
+    "medieval": {"name": "中世纪", "icon": "⚔", "category": "视觉冲击"},
+    "watercolor": {"name": "水彩晕染", "icon": "🎨", "category": "文艺清新"},
+    "zen": {"name": "禅意侘寂", "icon": "🪨", "category": "文艺清新"},
+    "scandinavian": {"name": "北欧极简", "icon": "🌲", "category": "文艺清新"},
+    "boho": {"name": "波西米亚", "icon": "🌻", "category": "文艺清新"},
+    "rain": {"name": "雨天氛围", "icon": "🌧", "category": "文艺清新"},
+    "sunset": {"name": "日落黄昏", "icon": "🌇", "category": "文艺清新"},
+    "forest": {"name": "森林秘境", "icon": "🌲", "category": "文艺清新"},
+    "desert": {"name": "沙漠暖阳", "icon": "🏜", "category": "文艺清新"},
+    "vintage": {"name": "复古怀旧", "icon": "📻", "category": "文艺清新"},
+    "cherry": {"name": "樱花粉嫩", "icon": "🌸", "category": "文艺清新"},
+    "woodcut": {"name": "版画木刻", "icon": "🪵", "category": "文艺清新"},
+    "plaid": {"name": "格纹学院", "icon": "🏫", "category": "文艺清新"},
+    "origami": {"name": "折纸手工", "icon": "🦢", "category": "文艺清新"},
+    "paperplane": {"name": "纸飞机", "icon": "✈", "category": "文艺清新"},
+    "lofi": {"name": "Lo-Fi慵懒", "icon": "🎧", "category": "文艺清新"},
+    "wave": {"name": "海浪波纹", "icon": "🌊", "category": "文艺清新"},
+    "fairy": {"name": "童话梦幻", "icon": "🧚", "category": "文艺清新"},
+    "military": {"name": "军事硬核", "icon": "🎖", "category": "视觉冲击"},
+    "cloud": {"name": "云端轻盈", "icon": "☁️", "category": "科技知识"},
+    "earth": {"name": "地球生态", "icon": "🌍", "category": "文艺清新"},
 }
 
 
@@ -130,8 +176,8 @@ def make_mini_card(theme, title, subtitle, tags, badge, quote, highlights):
     </div>
   </div>
   <div class="theme-info">
-    <div class="theme-name">{info["icon"]} {info["name"]} <span class="theme-tag">点击查看4平台效果 →</span></div>
-    <div class="theme-desc">{info["desc"]} · 适合：{info["best"]}</div>
+    <div class="theme-name">{info.get("icon","📄")} {info.get("name",theme)} <span class="theme-tag">点击查看4平台效果 →</span></div>
+    <div class="theme-desc">{info.get("desc","")} · 适合：{info.get("best","")}</div>
   </div>
 </div>'''
 
@@ -144,7 +190,8 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights, photo_
                   "funny","food","gaming","variety","cute","clay","carnival","popart",
                   "paper","dopamine","doodle","luxury","vaporwave","acid","memphis","comic","neon","graffiti","brutalist","holographic","gradientmesh",
                   "screenshot","portrait","product","contrast","zoom",
-                  "fresh","anime","cinema","journal","guochao","sticker","retro","collage","ink","stamp","newspaper","polaroid","risograph","film","ribbon","pastel","kraft","washi","terrarium"]
+                  "fresh","anime","cinema","journal","guochao","sticker","retro","collage","ink","stamp","newspaper","polaroid","risograph","film","ribbon","pastel","kraft","washi","terrarium",
+                  "glitch","synthwave","matrix","quantum","ocean","ice","glassmorph","retrofuturism","galaxy","candy","steampunk","noir","gothic","baroque","tribal","artdeco","fire","streetwear","psychadelic","mosaic","newspaper2","techwear","cyberpunk2","neoncity","medieval","watercolor","zen","scandinavian","boho","rain","sunset","forest","desert","vintage","cherry","woodcut","plaid","origami","paperplane","lofi","wave","fairy","military","cloud","earth",]
     # 按分类分组
     categories = {}
     for theme in all_themes:
@@ -498,7 +545,7 @@ body {{
   <div class="header">
     <h1>🎨 选择封面风格</h1>
     <p>30大B站爆款风格 · 4大分类 · 点击卡片查看4平台详细效果</p>
-    <div class="auto-match">🤖 自动推荐：<strong>{auto_info["icon"]} {auto_info["name"]}</strong>（基于标题关键词检测）</div>
+    <div class="auto-match">🤖 自动推荐：<strong>{auto_info.get("icon","📄")} {auto_info.get("name",theme)}</strong>（基于标题关键词检测）</div>
   </div>
 
   <div class="grid-container">
@@ -598,4 +645,4 @@ if __name__ == "__main__":
     with open(a.output,"w",encoding="utf-8") as f:
         f.write(html)
     print(f"✅ 主题选择器已生成 → {a.output}")
-    print(f"   55种风格 · 4大分类 · 点击卡片跳转4平台详情页")
+    print(f"   100种风格 · 4大分类 · 点击卡片跳转4平台详情页")
