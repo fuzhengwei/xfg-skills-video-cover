@@ -3989,6 +3989,628 @@ def generate_single_cover(cfg, pf_key="bilibili", index=0, photo_url=None):
 
 # ========== 差异化字体排版CSS ==========
 THEME_FONT_CSS = """
+
+
+# ========== 文艺清新类 全面差异化重设计 ==========
+
+# ===== fresh 清新治愈 — 整图加柔和渐变 + 透明叶片叠加 =====
+.theme-fresh::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(74,222,128,0.15) 0%, transparent 50%);
+}
+.theme-fresh .cv-bg-decoration::before {
+  content:''; position:absolute; top:-20px; right:-20px; width:200px; height:200px; pointer-events:none;
+  background:radial-gradient(circle, rgba(134,239,172,0.4) 0%, transparent 70%); border-radius:50%;
+}
+.theme-fresh .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:60%;
+  background:linear-gradient(to top, rgba(74,222,128,0.08) 0%, transparent 100%);
+}
+.theme-fresh .cv-content { background:linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.05) 100%); }
+
+# ===== anime 二次元 — 巨大渐变放射圆 + 半透明装饰带 =====
+.theme-anime::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(circle at 70% 30%, var(--accent2) 0%, transparent 35%);
+  opacity:0.4;
+}
+.theme-anime .cv-bg-decoration::before {
+  content:'★'; position:absolute; top:10%; left:8%; font-size:80px; color:var(--accent2);
+  opacity:0.2; text-shadow:0 0 20px var(--accent2);
+  animation: animeStar 4s ease-in-out infinite;
+}
+@keyframes animeStar { 0%,100%{transform:scale(1) rotate(0);} 50%{transform:scale(1.2) rotate(20deg);} }
+.theme-anime .cv-bg-decoration::after {
+  content:'✦'; position:absolute; bottom:15%; right:10%; font-size:60px; color:var(--accent1);
+  opacity:0.3;
+}
+.theme-anime .cv-content::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:6px;
+  background:linear-gradient(90deg, var(--accent1) 0%, var(--accent2) 50%, var(--accent1) 100%);
+}
+
+# ===== cinema 影视悬疑 — 顶部胶片孔 + 底部黑边 + 大模糊 =====
+.theme-cinema .cv-bg-decoration::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:20px;
+  background:repeating-linear-gradient(90deg, #000 0px, #000 30px, #1a1a1a 30px, #1a1a1a 40px);
+  border-bottom:2px solid #000;
+}
+.theme-cinema .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:20px;
+  background:repeating-linear-gradient(90deg, #000 0px, #000 30px, #1a1a1a 30px, #1a1a1a 40px);
+  border-top:2px solid #000;
+}
+.theme-cinema::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.6) 100%);
+}
+.theme-cinema .cv-content { padding-top:60px !important; padding-bottom:60px !important; }
+
+# ===== journal 手账 — 胶带斜贴 + 虚线缝纫线 + 圆点矩阵 =====
+.theme-journal::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background-image:radial-gradient(circle, rgba(0,0,0,0.06) 1.5px, transparent 1.5px);
+  background-size:24px 24px;
+}
+.theme-journal .cv-bg-decoration::before {
+  content:''; position:absolute; top:8px; right:20px; width:80px; height:24px;
+  background:rgba(251,191,36,0.5); transform:rotate(-8deg);
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+.theme-journal .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:8px; left:20px; width:80px; height:24px;
+  background:rgba(236,72,153,0.5); transform:rotate(5deg);
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+.theme-journal .cv-content::before {
+  content:''; position:absolute; top:50%; left:0; right:0; height:0;
+  border-top:2px dashed rgba(0,0,0,0.15);
+}
+
+# ===== guochao 国潮 — 红色印章 + 祥云 + 山水画 =====
+.theme-guochao::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(circle at 15% 85%, rgba(220,38,38,0.15) 0%, transparent 30%),
+    radial-gradient(circle at 85% 15%, rgba(220,38,38,0.1) 0%, transparent 30%);
+}
+.theme-guochao .cv-bg-decoration::after {
+  content:'印'; position:absolute; top:15px; right:15px; width:60px; height:60px;
+  background:#dc2626; color:#fef3c7; font-size:32px; font-weight:900;
+  display:flex; align-items:center; justify-content:center;
+  border:3px solid #fef3c7; border-radius:6px;
+  transform:rotate(-8deg); box-shadow:0 2px 8px rgba(0,0,0,0.3);
+  font-family:'Ma Shan Zheng', 'Noto Serif SC', serif;
+}
+.theme-guochao .cv-content::before {
+  content:'祥云'; position:absolute; top:50%; left:20px; transform:translateY(-50%);
+  font-size:24px; opacity:0.2; color:#dc2626; font-family:serif;
+}
+.theme-guochao .cv-content::after {
+  content:'山'; position:absolute; bottom:80px; right:30px; font-size:60px;
+  opacity:0.15; color:#1e3a5f; font-family:'Ma Shan Zheng', serif;
+}
+
+# ===== sticker 贴纸 — 倾斜白边贴纸 + 阴影叠加 =====
+.theme-sticker::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:repeating-linear-gradient(45deg, transparent 0px, transparent 20px, rgba(0,0,0,0.02) 20px, rgba(0,0,0,0.02) 22px);
+}
+.theme-sticker .cv-bg-decoration::before {
+  content:''; position:absolute; top:30%; left:5%; width:40px; height:40px;
+  background:var(--accent1); border:3px solid #fff; border-radius:50%;
+  box-shadow:3px 3px 0 rgba(0,0,0,0.2); transform:rotate(-15deg);
+}
+.theme-sticker .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:25%; right:8%; width:50px; height:50px;
+  background:var(--accent2); border:3px solid #fff; transform:rotate(20deg);
+  box-shadow:3px 3px 0 rgba(0,0,0,0.2);
+}
+.theme-sticker .cv-mascot { transform:rotate(-8deg) !important; }
+
+# ===== retro 复古胶片 — 整体米黄 + 颗粒 + 暗角 =====
+.theme-retro::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%),
+    repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 3px);
+  mix-blend-mode:multiply;
+}
+.theme-retro .cv-bg-decoration::before {
+  content:''; position:absolute; inset:12px; border:2px solid rgba(0,0,0,0.2); border-radius:4px;
+  pointer-events:none;
+}
+.theme-retro .cv-content { filter:sepia(0.15) contrast(1.05); }
+
+# ===== collage 拼贴 — 多张倾斜的色块纸张叠放 =====
+.theme-collage::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    linear-gradient(135deg, transparent 40%, rgba(251,191,36,0.15) 40%, rgba(251,191,36,0.15) 45%, transparent 45%),
+    linear-gradient(225deg, transparent 60%, rgba(236,72,153,0.15) 60%, rgba(236,72,153,0.15) 65%, transparent 65%);
+}
+.theme-collage .cv-bg-decoration::before {
+  content:''; position:absolute; top:20px; right:30px; width:90px; height:120px;
+  background:var(--accent1); transform:rotate(8deg); box-shadow:3px 3px 8px rgba(0,0,0,0.2);
+  border:2px solid #fff;
+}
+.theme-collage .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:30px; left:20px; width:80px; height:100px;
+  background:var(--accent2); transform:rotate(-6deg); box-shadow:3px 3px 8px rgba(0,0,0,0.2);
+  border:2px solid #fff;
+}
+.theme-collage .cv-mascot { transform:rotate(4deg) !important; }
+
+# ===== ink 水墨 — 黑色墨迹晕染 + 留白 =====
+.theme-ink::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(0,0,0,0.4) 0%, transparent 25%),
+    radial-gradient(ellipse at 90% 80%, rgba(0,0,0,0.3) 0%, transparent 20%),
+    radial-gradient(circle at 50% 50%, transparent 30%, rgba(255,255,255,0.1) 100%);
+}
+.theme-ink .cv-bg-decoration::before {
+  content:'墨'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  font-size:200px; color:rgba(0,0,0,0.06); font-family:'Ma Shan Zheng', serif;
+}
+.theme-ink .cv-content::after {
+  content:'山高水长'; position:absolute; bottom:30px; right:40px;
+  font-family:'Ma Shan Zheng', 'Noto Serif SC', serif; font-size:18px;
+  color:rgba(0,0,0,0.4); letter-spacing:8px; writing-mode:vertical-rl;
+}
+.theme-ink .cv-main-title { font-family:'Ma Shan Zheng', 'Noto Serif SC', serif !important; font-weight:400 !important; }
+
+# ===== stamp 印章 — 整图压红印 + 暗纹 + 边框 =====
+.theme-stamp::before {
+  content:''; position:absolute; inset:8px; border:3px solid #dc2626; pointer-events:none;
+  box-shadow:inset 0 0 0 1px #dc2626;
+}
+.theme-stamp .cv-bg-decoration::before {
+  content:'篆'; position:absolute; top:20%; right:10%; font-size:160px; color:rgba(220,38,38,0.15);
+  font-family:'Ma Shan Zheng', serif; font-weight:900; transform:rotate(-5deg);
+}
+.theme-stamp .cv-bg-decoration::after {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:repeating-linear-gradient(45deg, transparent 0, transparent 12px, rgba(220,38,38,0.04) 12px, rgba(220,38,38,0.04) 13px);
+}
+.theme-stamp .cv-content { border:2px dashed rgba(220,38,38,0.3); }
+
+# ===== newspaper 报纸 — 整图报纸纹理 + 报纸栏分割线 =====
+.theme-newspaper::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:repeating-linear-gradient(90deg, transparent 0px, transparent 80px, rgba(0,0,0,0.08) 80px, rgba(0,0,0,0.08) 81px);
+}
+.theme-newspaper .cv-bg-decoration::before {
+  content:'今日头条'; position:absolute; top:30px; left:30px; right:30px;
+  font-family:'Noto Serif SC', serif; font-size:14px; font-weight:900; letter-spacing:8px;
+  text-align:center; color:var(--accent1); border-bottom:3px double var(--accent1); padding-bottom:8px;
+}
+.theme-newspaper .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:60px; left:30px; right:30px; height:2px;
+  background:var(--accent1);
+}
+.theme-newspaper .cv-content { background:repeating-linear-gradient(0deg, transparent 0px, transparent 30px, rgba(0,0,0,0.04) 30px, rgba(0,0,0,0.04) 31px); }
+
+# ===== polaroid 拍立得 — 大白边 + 日期戳 + 倾斜 =====
+.theme-polaroid::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:#f5f5f0;
+}
+.theme-polaroid .cv-bg-decoration::before {
+  content:''; position:absolute; top:20px; right:20px; width:50%; height:75%;
+  background:#fff; box-shadow:0 8px 24px rgba(0,0,0,0.3); transform:rotate(2deg);
+  padding:12px 12px 50px;
+}
+.theme-polaroid .cv-bg-decoration::after {
+  content:'2024 📷'; position:absolute; bottom:35px; right:40px;
+  font-family:'Courier New', monospace; font-size:14px; color:#666; font-weight:700;
+  z-index:2;
+}
+.theme-polaroid .cv-content { padding-left:10px !important; }
+
+# ===== risograph Riso印刷 — 错位双色 + 颗粒 =====
+.theme-risograph::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    linear-gradient(180deg, var(--accent1) 0%, transparent 40%),
+    linear-gradient(0deg, var(--accent2) 0%, transparent 40%);
+  opacity:0.2;
+  mix-blend-mode:multiply;
+}
+.theme-risograph .cv-bg-decoration::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:radial-gradient(circle, rgba(0,0,0,0.3) 0.5px, transparent 0.5px);
+  background-size:3px 3px;
+  mix-blend-mode:multiply;
+}
+.theme-risograph .cv-main-title { text-shadow:2px 0 0 var(--accent1), -2px 0 0 var(--accent2); }
+
+# ===== film 胶片 — 顶部底部胶片孔 + 帧感 =====
+.theme-film::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.2) 0%, transparent 30%),
+    radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.2) 0%, transparent 30%);
+}
+.theme-film .cv-bg-decoration::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:18px;
+  background:repeating-linear-gradient(90deg, #1a1a1a 0px, #1a1a1a 18px, transparent 18px, transparent 36px);
+}
+.theme-film .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:18px;
+  background:repeating-linear-gradient(90deg, #1a1a1a 0px, #1a1a1a 18px, transparent 18px, transparent 36px);
+}
+.theme-film .cv-content { padding-top:30px !important; padding-bottom:30px !important; }
+.theme-film .cv-bottom-bar { background:#1a1a1a !important; }
+
+# ===== ribbon 缎带 — 大对角缎带 + 蝴蝶结 =====
+.theme-ribbon::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 100%);
+  opacity:0.15;
+}
+.theme-ribbon .cv-bg-decoration::before {
+  content:''; position:absolute; top:0; left:20%; right:20%; height:60px;
+  background:linear-gradient(to bottom, transparent 0%, var(--accent1) 50%, transparent 100%);
+  transform:rotate(-3deg); transform-origin:left center;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+.theme-ribbon .cv-bg-decoration::after {
+  content:'🎀'; position:absolute; top:15px; right:30px; font-size:50px;
+  filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+# ===== pastel 莫兰迪 — 整体低饱和柔光 + 圆角柔化 =====
+.theme-pastel::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(circle at 30% 40%, rgba(255,255,255,0.5) 0%, transparent 50%),
+             radial-gradient(circle at 70% 60%, rgba(255,255,255,0.3) 0%, transparent 50%);
+  filter:blur(20px);
+}
+.theme-pastel .cv-bg-decoration::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:rgba(255,255,255,0.15);
+  mix-blend-mode:soft-light;
+}
+.theme-pastel .cv-bg-circle { opacity:0.1 !important; }
+.theme-pastel .cover-card, .theme-pastel .theme-preview { border-radius:20px !important; }
+
+# ===== kraft 牛皮纸 — 纸质纹理 + 麻绳边框 + 印章 =====
+.theme-kraft::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    linear-gradient(45deg, transparent 48%, rgba(139,90,43,0.05) 48%, rgba(139,90,43,0.05) 52%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(139,90,43,0.05) 48%, rgba(139,90,43,0.05) 52%, transparent 52%);
+  background-size:8px 8px;
+}
+.theme-kraft .cv-bg-decoration::before {
+  content:''; position:absolute; inset:8px; border:2px dashed rgba(139,90,43,0.4);
+  border-radius:4px; pointer-events:none;
+}
+.theme-kraft .cv-bg-decoration::after {
+  content:'✦ HANDMADE ✦'; position:absolute; top:10px; left:50%; transform:translateX(-50%);
+  font-family:'Courier New', monospace; font-size:12px; color:rgba(139,90,43,0.6);
+  letter-spacing:4px; font-weight:700;
+}
+
+# ===== washi 和纸胶带 — 多条斜贴胶带 + 樱花点缀 =====
+.theme-washi::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background-image:radial-gradient(circle, rgba(236,72,153,0.1) 1px, transparent 1px);
+  background-size:20px 20px;
+}
+.theme-washi .cv-bg-decoration::before {
+  content:''; position:absolute; top:15%; left:-5%; width:110%; height:20px;
+  background:repeating-linear-gradient(90deg, #ec4899 0px, #ec4899 20px, #fff 20px, #fff 25px);
+  transform:rotate(-5deg); opacity:0.7;
+}
+.theme-washi .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:20%; left:-5%; width:110%; height:20px;
+  background:repeating-linear-gradient(90deg, #10b981 0px, #10b981 20px, #fff 20px, #fff 25px);
+  transform:rotate(3deg); opacity:0.7;
+}
+
+# ===== terrarium 玻璃生态 — 圆形玻璃罩 + 植物剪影 =====
+.theme-terrarium::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(ellipse at center, rgba(255,255,255,0.3) 0%, transparent 60%);
+}
+.theme-terrarium .cv-bg-decoration::before {
+  content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:240px; height:240px; border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6) 0%, transparent 40%),
+             radial-gradient(circle at 50% 100%, rgba(34,197,94,0.4) 0%, transparent 50%);
+  border:3px solid rgba(255,255,255,0.4);
+  box-shadow:inset 0 0 30px rgba(34,197,94,0.2);
+}
+
+# ===== watercolor 水彩晕染 — 多色水彩斑点 + 边缘晕开 =====
+.theme-watercolor::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(236,72,153,0.4) 0%, transparent 25%),
+    radial-gradient(circle at 80% 30%, rgba(59,130,246,0.4) 0%, transparent 25%),
+    radial-gradient(circle at 30% 80%, rgba(251,191,36,0.4) 0%, transparent 25%),
+    radial-gradient(circle at 70% 70%, rgba(34,197,94,0.4) 0%, transparent 25%);
+  filter:blur(30px);
+  opacity:0.7;
+}
+.theme-watercolor .cv-bg-decoration::before {
+  content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:280px; height:280px; border-radius:50%;
+  background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+}
+.theme-watercolor .cv-main-title { text-shadow:1px 1px 0 rgba(255,255,255,0.5); }
+
+# ===== zen 禅意侘寂 — 圆形禅意圆 + 灰调 + 大量留白 =====
+.theme-zen::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(circle at 50% 50%, transparent 35%, rgba(0,0,0,0.05) 100%);
+}
+.theme-zen .cv-bg-decoration::before {
+  content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:300px; height:300px; border-radius:50%;
+  border:2px solid currentColor; opacity:0.15;
+}
+.theme-zen .cv-bg-decoration::after {
+  content:'禅'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  font-size:200px; opacity:0.08; color:currentColor; font-family:'Ma Shan Zheng', serif;
+}
+.theme-zen .cv-main-title { font-family:'Ma Shan Zheng', 'Noto Serif SC', serif !important; font-weight:300 !important; }
+
+# ===== scandinavian 北欧极简 — 大白底 + 极简线条 + 几何元素 =====
+.theme-scandinavian::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.03) 100%);
+}
+.theme-scandinavian .cv-bg-decoration::before {
+  content:''; position:absolute; top:20px; right:20px; width:80px; height:80px;
+  background:linear-gradient(135deg, var(--accent1) 0%, transparent 70%);
+  border-radius:50% 0 50% 0;
+}
+.theme-scandinavian .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:20px; left:20px; width:60px; height:60px;
+  border:3px solid var(--accent2); border-radius:50%;
+  opacity:0.3;
+}
+.theme-scandinavian .cv-content { padding-left:60px !important; }
+
+# ===== boho 波西米亚 — 多彩流苏 + 曼陀罗 + 几何 =====
+.theme-boho::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(251,191,36,0.2) 0%, transparent 15%),
+    radial-gradient(circle at 75% 75%, rgba(236,72,153,0.2) 0%, transparent 15%),
+    radial-gradient(circle at 75% 25%, rgba(34,197,94,0.2) 0%, transparent 15%),
+    radial-gradient(circle at 25% 75%, rgba(59,130,246,0.2) 0%, transparent 15%);
+}
+.theme-boho .cv-bg-decoration::before {
+  content:'✦ ☽ ✦ ☾ ✦'; position:absolute; top:30%; left:0; right:0; text-align:center;
+  font-size:24px; opacity:0.2; letter-spacing:30px; color:var(--accent1);
+}
+.theme-boho .cv-bg-decoration::after {
+  content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:200px; height:200px; border:2px solid var(--accent2); border-radius:50%;
+  opacity:0.3; box-shadow:0 0 0 8px transparent, 0 0 0 10px var(--accent2);
+}
+
+# ===== forest 森林秘境 — 树叶剪影 + 顶部树梢 =====
+.theme-forest::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    linear-gradient(180deg, rgba(34,197,94,0.1) 0%, transparent 30%, transparent 70%, rgba(34,197,94,0.2) 100%);
+}
+.theme-forest .cv-bg-decoration::before {
+  content:'🌲🌲🌲'; position:absolute; top:0; left:0; right:0;
+  text-align:center; font-size:30px; letter-spacing:5px;
+  opacity:0.4; filter:brightness(0.7);
+}
+.theme-forest .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:40%;
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(20,83,45,0.4) 100%);
+}
+
+# ===== desert 沙漠暖阳 — 沙丘剪影 + 太阳圆盘 =====
+.theme-desert::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(180deg, var(--accent2) 0%, var(--accent1) 100%);
+  opacity:0.2;
+}
+.theme-desert .cv-bg-decoration::before {
+  content:'☀'; position:absolute; top:15%; right:15%; font-size:120px;
+  color:var(--accent1); opacity:0.4;
+  filter:drop-shadow(0 0 30px var(--accent1));
+}
+.theme-desert .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:50%;
+  background:linear-gradient(180deg, transparent 0%, var(--accent1) 100%);
+  clip-path:polygon(0 60%, 20% 50%, 40% 65%, 60% 45%, 80% 60%, 100% 50%, 100% 100%, 0 100%);
+}
+
+# ===== vintage 复古怀旧 — 米黄底 + 暗角 + 颗粒 =====
+.theme-vintage::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.3) 100%),
+    repeating-linear-gradient(0deg, transparent 0px, transparent 1px, rgba(0,0,0,0.04) 1px, rgba(0,0,0,0.04) 2px);
+}
+.theme-vintage .cv-content { filter:sepia(0.3) contrast(1.1) brightness(0.95); }
+
+# ===== cherry 樱花粉嫩 — 飘落樱花瓣 =====
+.theme-cherry::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(circle at 30% 30%, rgba(252,165,165,0.4) 0%, transparent 40%),
+             radial-gradient(circle at 70% 70%, rgba(251,113,133,0.3) 0%, transparent 40%);
+}
+.theme-cherry .cv-bg-decoration::before {
+  content:'🌸'; position:absolute; top:8%; left:8%; font-size:60px; opacity:0.5;
+}
+.theme-cherry .cv-bg-decoration::after {
+  content:'🌸'; position:absolute; top:60%; right:12%; font-size:50px; opacity:0.4;
+  transform:rotate(30deg);
+}
+
+# ===== woodcut 版画木刻 — 黑白对比 + 木刻线条 =====
+.theme-woodcut::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    repeating-linear-gradient(90deg, transparent 0px, transparent 4px, rgba(0,0,0,0.08) 4px, rgba(0,0,0,0.08) 5px),
+    repeating-linear-gradient(0deg, transparent 0px, transparent 4px, rgba(0,0,0,0.08) 4px, rgba(0,0,0,0.08) 5px);
+}
+.theme-woodcut .cv-bg-decoration::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.4) 100%);
+}
+.theme-woodcut .cv-main-title { font-family:'Noto Serif SC', serif; text-shadow:1px 1px 0 #000; }
+
+# ===== plaid 格纹学院 — 完整格纹底 =====
+.theme-plaid::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    repeating-linear-gradient(0deg, transparent 0px, transparent 30px, var(--accent1) 30px, var(--accent1) 32px),
+    repeating-linear-gradient(90deg, transparent 0px, transparent 30px, var(--accent2) 30px, var(--accent2) 32px);
+  opacity:0.3;
+}
+.theme-plaid .cv-bg-decoration::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:repeating-linear-gradient(45deg, transparent 0, transparent 20px, var(--accent1) 20px, var(--accent1) 22px);
+  opacity:0.1;
+}
+
+# ===== origami 折纸手工 — 几何折纸元素 =====
+.theme-origami::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(0,0,0,0.05) 100%);
+}
+.theme-origami .cv-bg-decoration::before {
+  content:''; position:absolute; top:20px; right:20px;
+  width:0; height:0;
+  border-left:30px solid transparent; border-right:30px solid transparent;
+  border-bottom:52px solid var(--accent1);
+  filter:drop-shadow(3px 3px 5px rgba(0,0,0,0.2));
+}
+.theme-origami .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:20px; left:30px;
+  width:0; height:0;
+  border-left:25px solid transparent; border-right:25px solid transparent;
+  border-bottom:43px solid var(--accent2);
+  filter:drop-shadow(3px 3px 5px rgba(0,0,0,0.2));
+  transform:rotate(45deg);
+}
+
+# ===== paperplane 纸飞机 — 飞行轨迹 =====
+.theme-paperplane::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(135deg, transparent 60%, rgba(0,0,0,0.05) 100%);
+}
+.theme-paperplane .cv-bg-decoration::before {
+  content:'✈️'; position:absolute; top:30%; right:20%; font-size:80px; opacity:0.3;
+  transform:rotate(-45deg);
+}
+.theme-paperplane .cv-bg-decoration::after {
+  content:''; position:absolute; top:30%; right:20%;
+  width:200px; height:2px; background:linear-gradient(to right, transparent 0%, var(--accent1) 100%);
+  transform:rotate(-45deg); transform-origin:right center;
+  opacity:0.4;
+}
+
+# ===== lofi Lo-Fi慵懒 — 噪点 + 暖黄滤镜 =====
+.theme-lofi::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background-image:radial-gradient(circle, rgba(0,0,0,0.15) 0.5px, transparent 0.5px);
+  background-size:2px 2px; mix-blend-mode:overlay;
+}
+.theme-lofi .cv-bg-decoration::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(251,191,36,0.1) 0%, rgba(236,72,153,0.1) 100%);
+}
+.theme-lofi .cv-content { filter:sepia(0.1) saturate(0.9); }
+
+# ===== wave 海浪波纹 — 多层波浪 =====
+.theme-wave::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    linear-gradient(180deg, transparent 0%, var(--accent1) 100%);
+  opacity:0.2;
+}
+.theme-wave .cv-bg-decoration::before {
+  content:''; position:absolute; bottom:0; left:-10%; right:-10%; height:60%;
+  background:
+    radial-gradient(ellipse at 50% 100%, var(--accent2) 0%, transparent 70%);
+  border-radius:50% 50% 0 0;
+}
+.theme-wave .cv-bg-decoration::after {
+  content:''; position:absolute; bottom:0; left:-10%; right:-10%; height:40%;
+  background:radial-gradient(ellipse at 50% 100%, var(--accent1) 0%, transparent 70%);
+  border-radius:50% 50% 0 0;
+}
+
+# ===== fairy 童话梦幻 — 闪光星星 + 飘浮云朵 =====
+.theme-fairy::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.8) 0%, transparent 8%),
+    radial-gradient(circle at 70% 40%, rgba(255,255,255,0.6) 0%, transparent 6%),
+    radial-gradient(circle at 20% 70%, rgba(255,255,255,0.7) 0%, transparent 7%),
+    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.5) 0%, transparent 5%);
+}
+.theme-fairy .cv-bg-decoration::before {
+  content:'✨ 🧚 ✨'; position:absolute; top:25%; left:0; right:0; text-align:center;
+  font-size:30px; letter-spacing:20px; opacity:0.5;
+}
+.theme-fairy .cv-bg-decoration::after {
+  content:'☁️'; position:absolute; top:10%; right:15%; font-size:50px; opacity:0.4;
+}
+
+# ===== earth 地球生态 — 蓝色星球 + 经纬线 =====
+.theme-earth::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(circle at 70% 50%, var(--accent1) 0%, var(--accent2) 50%, transparent 70%);
+  opacity:0.3;
+}
+.theme-earth .cv-bg-decoration::before {
+  content:''; position:absolute; top:50%; right:15%; transform:translateY(-50%);
+  width:180px; height:180px; border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, #4ade80 0%, #16a34a 30%, #0ea5e9 60%, #1e3a5f 100%);
+  box-shadow:0 0 40px rgba(59,130,246,0.4), inset -20px -20px 40px rgba(0,0,0,0.3);
+}
+.theme-earth .cv-bg-decoration::after {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:
+    repeating-linear-gradient(0deg, transparent 0px, transparent 30px, rgba(255,255,255,0.05) 30px, rgba(255,255,255,0.05) 31px),
+    repeating-linear-gradient(90deg, transparent 0px, transparent 30px, rgba(255,255,255,0.05) 30px, rgba(255,255,255,0.05) 31px);
+}
+
+# ===== rain 雨天氛围 — 雨滴元素 + 灰调 =====
+.theme-rain::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+}
+.theme-rain .cv-bg-decoration::before {
+  content:'💧💧💧'; position:absolute; top:0; left:0; right:0;
+  text-align:center; font-size:20px; letter-spacing:8px; opacity:0.3;
+}
+.theme-rain .cv-content { filter:brightness(0.95); }
+
+# ===== sunset 日落黄昏 — 落日 + 晚霞渐变 =====
+.theme-sunset::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(180deg, var(--accent1) 0%, var(--accent2) 50%, var(--accent1) 100%);
+  opacity:0.3;
+}
+.theme-sunset .cv-bg-decoration::before {
+  content:'🌅'; position:absolute; top:30%; left:50%; transform:translateX(-50%);
+  font-size:100px; opacity:0.5;
+  filter:drop-shadow(0 0 30px var(--accent1));
+}
+
+# ===== cardstock 笔记本 — 笔记本横线 + 边距红竖线 =====
+# (待添加)
+
 /* ===== iconfont 卡通装饰图标增强 ===== */
 .cv-iconfont-deco { opacity: 0.85; transition: transform 0.3s ease; z-index: 1; }
 

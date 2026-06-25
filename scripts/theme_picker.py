@@ -535,16 +535,71 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights, photo_
     
     cards_html = ""
     cat_icons = {"科技知识":"🚀","生活娱乐":"🎉","视觉冲击":"💥","文艺清新":"🍃"}
+    cat_descs = {"科技知识":"编程、AI、开发工具、架构模式","生活娱乐":"运动、美食、游戏、音乐、宠物","视觉冲击":"艺术、摄影、影视、时尚、潮流","文艺清新":"文化、自然、手工艺、生活美学"}
+    
+    # 左侧分类导航
+    sidebar_html = '<div class="sidebar">\n'
+    sidebar_html += '  <div class="sidebar-header">\n'
+    sidebar_html += '    <div class="sidebar-title">📁 风格分类</div>\n'
+    sidebar_html += '  </div>\n'
+    sidebar_html += '  <nav class="sidebar-nav">\n'
+    
+    # "全部"选项
+    total_count = len(all_themes)
+    sidebar_html += f'    <a class="sidebar-item active" data-cat="all" onclick="filterCategory(\'all\')">\n'
+    sidebar_html += f'      <span class="sidebar-icon">📋</span>\n'
+    sidebar_html += f'      <span class="sidebar-label">全部风格</span>\n'
+    sidebar_html += f'      <span class="sidebar-count">{total_count}</span>\n'
+    sidebar_html += '    </a>\n'
+    
     for cat, themes in categories.items():
         icon = cat_icons.get(cat, "📄")
-        cards_html += f'    <div class="category-section">\n      <div class="category-title">{icon} {cat}</div>\n      <div class="category-grid">\n'
-        for theme in themes:
-            cards_html += make_mini_card(theme, title, subtitle, tags, badge, quote, highlights) + "\n"
-        cards_html += '      </div>\n    </div>\n'
-
+        desc = cat_descs.get(cat, "")
+        sidebar_html += f'    <a class="sidebar-item" data-cat="{cat}" onclick="filterCategory(\'{cat}\')">\n'
+        sidebar_html += f'      <span class="sidebar-icon">{icon}</span>\n'
+        sidebar_html += f'      <span class="sidebar-label">{cat}</span>\n'
+        sidebar_html += f'      <span class="sidebar-count">{len(themes)}</span>\n'
+        sidebar_html += '    </a>\n'
+    
+    sidebar_html += '  </nav>\n'
+    sidebar_html += '</div>\n'
+    
+    # 中间内容区 — 按分类生成section
+    cards_html = '<div class="content-area">\n'
+    cards_html += '  <div class="content-header">\n'
+    cards_html += f'    <h1 class="content-title">🎨 选择封面风格</h1>\n'
+    cards_html += f'    <p class="content-subtitle">{len(all_themes)}种风格 · 4大分类 · 点击卡片查看4平台详细效果</p>\n'
+    
     # 自动匹配
     auto_theme = detect_theme(title, tags)
     auto_info = THEME_INFO.get(auto_theme, {"name":auto_theme,"icon":"🤖"})
+    cards_html += f'    <div class="auto-match">🤖 自动推荐：<strong>{auto_info.get("icon","📄")} {auto_info.get("name",theme)}</strong>（基于标题关键词检测）</div>\n'
+    cards_html += '  </div>\n'
+    
+    # "全部"分类区 — 展示所有风格
+    cards_html += '  <div class="category-section active" data-cat="all">\n'
+    cards_html += f'    <div class="category-title">📋 全部风格（{total_count}）</div>\n'
+    cards_html += '    <div class="category-grid">\n'
+    for theme in all_themes:
+        cards_html += make_mini_card(theme, title, subtitle, tags, badge, quote, highlights) + "\n"
+    cards_html += '    </div>\n'
+    cards_html += '  </div>\n'
+    
+    # 各分类区
+    for cat, themes in categories.items():
+        icon = cat_icons.get(cat, "📄")
+        desc = cat_descs.get(cat, "")
+        cards_html += f'  <div class="category-section" data-cat="{cat}" style="display:none;">\n'
+        cards_html += f'    <div class="category-title">{icon} {cat}（{len(themes)}）</div>\n'
+        cards_html += f'    <div class="category-desc">{desc}</div>\n'
+        cards_html += '    <div class="category-grid">\n'
+        for theme in themes:
+            cards_html += make_mini_card(theme, title, subtitle, tags, badge, quote, highlights) + "\n"
+        cards_html += '    </div>\n'
+        cards_html += '  </div>\n'
+    
+    cards_html += '  <div class="footer">点击任意风格卡片 → 查看 B站 / 小红书 / 微信视频号 / 手机竖版 4种尺寸效果 · 键盘 ← → 翻页 · ESC 返回选择</div>\n'
+    cards_html += '</div>\n'
 
     # 为每个主题生成4平台详情页的HTML（内嵌为隐藏div）
     detail_pages = []
@@ -613,21 +668,67 @@ body {{
   min-height:100vh;
 }}
 
-/* ===== 主题选择页 ===== */
+/* ===== 主题选择页 — 左侧目录+中间内容 ===== */
 #picker-page {{
-  display:flex; flex-direction:column; min-height:100vh;
-  padding:24px;
+  display:flex; min-height:100vh;
 }}
 #picker-page.hidden {{ display:none; }}
 
-.header {{
-  text-align:center; margin-bottom:28px; padding:20px;
+/* 左侧分类目录 */
+.sidebar {{
+  flex-shrink:0; width:240px; min-height:100vh;
+  background:#0a0e14; border-right:1px solid rgba(255,255,255,0.06);
+  display:flex; flex-direction:column;
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+}}
+.sidebar-header {{
+  padding:20px 20px 16px; border-bottom:1px solid rgba(255,255,255,0.06);
+}}
+.sidebar-title {{
+  font-size:16px; font-weight:800; color:rgba(255,255,255,0.9);
+  letter-spacing:0.5px;
+}}
+.sidebar-nav {{
+  flex:1; padding:12px 10px; display:flex; flex-direction:column; gap:4px;
+}}
+.sidebar-item {{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 14px; border-radius:8px;
+  color:rgba(255,255,255,0.55); font-size:14px; font-weight:600;
+  cursor:pointer; transition:all 0.2s ease;
+  text-decoration:none; user-select:none;
+}}
+.sidebar-item:hover {{
+  background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.8);
+}}
+.sidebar-item.active {{
+  background:rgba(245,158,11,0.12); color:#f59e0b;
+  border:1px solid rgba(245,158,11,0.25);
+}}
+.sidebar-icon {{ font-size:18px; flex-shrink:0; }}
+.sidebar-label {{ flex:1; }}
+.sidebar-count {{
+  font-size:12px; font-weight:700; color:rgba(255,255,255,0.3);
+  background:rgba(255,255,255,0.06); padding:2px 8px; border-radius:10px;
+  min-width:28px; text-align:center;
+}}
+.sidebar-item.active .sidebar-count {{
+  background:rgba(245,158,11,0.2); color:#f59e0b;
+}}
+
+/* 中间内容区 */
+.content-area {{
+  flex:1; padding:24px 32px; min-width:0;
+  max-height:100vh; overflow-y:auto;
+}}
+.content-header {{
+  text-align:center; margin-bottom:28px; padding:24px;
   background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(236,72,153,0.1));
   border-radius:16px; border:1px solid rgba(255,255,255,0.08);
 }}
-.header h1 {{ font-size:28px; font-weight:800; margin-bottom:8px; }}
-.header p {{ color:rgba(255,255,255,0.5); font-size:14px; }}
-.header .auto-match {{
+.content-title {{ font-size:28px; font-weight:800; margin-bottom:8px; }}
+.content-subtitle {{ color:rgba(255,255,255,0.5); font-size:14px; }}
+.auto-match {{
   margin-top:12px; padding:8px 20px; display:inline-block;
   background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.3);
   border-radius:8px; font-size:14px; color:#4ade80;
@@ -641,7 +742,10 @@ body {{
 
 /* ===== 分类区块 ===== */
 .category-section {{
-  max-width:1400px; margin:0 auto 36px; width:100%;
+  margin:0 auto 36px; width:100%;
+}}
+.category-desc {{
+  font-size:13px; color:rgba(255,255,255,0.35); margin-bottom:16px; padding-left:12px;
 }}
 .category-title {{
   font-size:18px; font-weight:800; color:#f59e0b; margin-bottom:16px; padding-left:4px;
@@ -649,8 +753,8 @@ body {{
 }}
 .category-grid {{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:16px;
 }}
 
 .theme-card {{
@@ -872,27 +976,40 @@ body {{
 </head>
 <body>
 
-<!-- ===== 主题选择页 ===== -->
+<!-- ===== 主题选择页（左侧目录 + 中间内容） ===== -->
 <div id="picker-page">
-  <div class="header">
-    <h1>🎨 选择封面风格</h1>
-    <p>30大B站爆款风格 · 4大分类 · 点击卡片查看4平台详细效果</p>
-    <div class="auto-match">🤖 自动推荐：<strong>{auto_info.get("icon","📄")} {auto_info.get("name",theme)}</strong>（基于标题关键词检测）</div>
-  </div>
-
-  <div class="grid-container">
+{sidebar_html}
 {cards_html}
-  </div>
-
-  <div class="footer">
-    点击任意风格卡片 → 查看 B站 / 小红书 / 微信视频号 / 手机竖版 4种尺寸效果\n    · 键盘 ← → 翻页 · ESC 返回选择
-  </div>
 </div>
 
 <!-- ===== 13个详情页（隐藏） ===== -->
 {detail_html}
 
 <script>
+// 分类筛选
+function filterCategory(cat) {{
+  // 更新左侧导航高亮
+  document.querySelectorAll('.sidebar-item').forEach(item => {{
+    item.classList.remove('active');
+  }});
+  const activeItem = document.querySelector('.sidebar-item[data-cat="' + cat + '"]');
+  if (activeItem) activeItem.classList.add('active');
+  
+  // 显示/隐藏中间内容区的分类section
+  document.querySelectorAll('.category-section').forEach(section => {{
+    if (cat === 'all' || section.dataset.cat === cat) {{
+      section.style.display = '';
+      section.classList.add('active');
+    }} else {{
+      section.style.display = 'none';
+      section.classList.remove('active');
+    }}
+  }});
+  
+  // 滚动到顶部
+  document.querySelector('.content-area').scrollTo(0, 0);
+}}
+
 // 主题选择 → 详情页
 function goDetail(theme) {{
   document.getElementById('picker-page').classList.add('hidden');
