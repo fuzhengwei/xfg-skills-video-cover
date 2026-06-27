@@ -534,18 +534,8 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights, photo_
         categories[cat].append(theme)
     
     cards_html = ""
-    # 8个一级分类
-    CATEGORIES_8 = [
-        ("编程开发", "⌨️", ["python","java","golang","rust","typescript","react","vue","angular","svelte","nodejs","webpack","vite","tailwind","figma","graphql","grpc","regex","restapi","json2","yaml","linux","terminal","vim","vscode","ssh","cron","github","gitlab","vscode"]),
-        ("数据库/运维", "🔧", ["mysql","postgres","redis","mongo","sqlite","elastic","docker","k8s","terraform","jenkins","prometheus","grafana","nginx","cicd","gitops","observ","kafka","rabbit","spring","ddd","microsvc","serverless","blockchain","web3","saas","paas","lowcode"]),
-        ("AI/科技", "🧠", ["tensorflow","pytorch","huggingface","openai","langchain","ollama","stable","agent","rag","neural","copilot","embedding","prompt","vibe","bold","cyber","minimal","magazine","pixel","glass","aurora","blueprint","starfield","typewriter","glitch","synthwave","matrix","quantum","ocean","ice","glassmorph","retrofuturism","galaxy","dataviz","algo","binary","quantum2","edge","mesh2","chaos","security"]),
-        ("游戏/娱乐", "🎮", ["rpg","fps","moba","racing","puzzle","sandbox","gaming","basketball","football","tennis","baseball","swimming","running","cycling","yoga","climbing","skiing","boxing","golf","hiking","kayaking","fishing","stargazing","funny","variety","cute","clay","popart","carnival","party","christmas","halloween","newyear","midautumn","springfestival","valentine"]),
-        ("美食/生活", "🍜", ["bbq","sushi2","ramen","dessert","coffee2","tea","cocktail","wine","beer","milktea","juice","cooking","baking","food","cozy","slow","eco","diy","reading","painting","photo2","gardening","picnic","camping","roadtrip","cat","dog","rabbit","hamster","parrot","fish","concert","karaoke"]),
-        ("音乐/影视", "🎵", ["classical","country","folk","funk","disco","techno","house","jazz","edm","rock","hiphop","punk","metal","blues","reggae","anime2","drama","comedy","romance","action","fantasy","mystery","cinema","anime"]),
-        ("艺术/设计", "🎨", ["cubism","surreal","impression","expression","fauvism","dada","construct","destijl","bauhaus","artnouveau","popart","macro","longexp","tiltshift","doubleexp","infrared","cyberfilm","polaroid","film","screenshot","portrait","product","zoom","contrast","deco","brutal2","gothic2","modernist","parametric","glam","grunge","preppy","maximal","brutalist","artdeco","vaporwave","acid","memphis","holographic","graffiti","skate","surf","bike","tattoo","doodle","sticker","comic","neon","fifties","sixties","seventies","eighties","nineties","y2k2","retro","solarpunk","biopunk","nanopunk","posthuman","glitch2","datamosh","scifi","steampunk","noir","gothic","baroque","fire","ascii","generative","fractal","voronoi","particles","fluid","abstract","geometric","opart","kinetic","colorfield","monochrome","duotone","pattern","ornate","rococo","chrome","gold","silver","iridescent","pearlescent","matte","glossy","mirror","shadow","laser","prism","crystal","diamond","lightning","storm","volcano","tsunami","paper","dopamine","luxury","tribal"]),
-        ("文化/自然", "🍃", ["ukiyoe","sumi_e","mingqing","dunhuang","shuimo","gongbi","ink","stamp","guochao","persian","arabesque","moroccan","african","aztec","maya","inca","viking","celtic","egyptian","greek","roman","byzantine","russian","tokyo","kyoto","paris","london","nyc","shanghai","chengdu","yunnan","tibet","mongolia","bamboo","lotus","plum","orchid","pine","maple","willow","ginkgo","cactus","bonsai","moss","dandelion","lavender","sunflower","rose","tulip","spring","summer","autumn","winter","snow2","fog","drizzle","dawn","dusk","moonlight","starlight","mountain","valley","island","harbor","lighthouse","bridge","windmill","cabin","temple","castle","poetry","novel","fairytale","myth","haiku","ceramic","pottery","porcelain","lacquer","weaving","dyeing","calligraphy","seal2","kraft","washi","ribbon","journal","stone","marble","linen","silk","leather","newspaper","risograph","collage","fresh","anime","cinema","sticker","retro","pastel","washi","terrarium","wabi","ikigai","hygge","feathers","scales","gradientmesh","aurora"]),
-    ]
     cat_icons = {"科技知识":"🚀","生活娱乐":"🎉","视觉冲击":"💥","文艺清新":"🍃"}
+    cat_descs = {"科技知识":"编程、AI、开发工具、架构模式","生活娱乐":"运动、美食、游戏、音乐、宠物","视觉冲击":"艺术、摄影、影视、时尚、潮流","文艺清新":"文化、自然、手工艺、生活美学"}
     cat_descs = {"科技知识":"编程、AI、开发工具、架构模式","生活娱乐":"运动、美食、游戏、音乐、宠物","视觉冲击":"艺术、摄影、影视、时尚、潮流","文艺清新":"文化、自然、手工艺、生活美学"}
     
     # 左侧分类导航
@@ -557,18 +547,18 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights, photo_
     
     # "全部"选项
     total_count = len(all_themes)
-    sidebar_html += "    <a class=\"sidebar-item active\" data-cat=\"all\" onclick=\"filterCategory8('all')\">\n"
+    sidebar_html += f"    <a class=\"sidebar-item active\" data-cat=\"all\" onclick=\"filterCategory('all')\">\n"
     sidebar_html += "      <span class=\"sidebar-icon\">📋</span>\n"
-    sidebar_html += f"      <span class=\"sidebar-label\">全部风格</span>\n"
+    sidebar_html += "      <span class=\"sidebar-label\">全部风格</span>\n"
     sidebar_html += f"      <span class=\"sidebar-count\">{total_count}</span>\n"
     sidebar_html += "    </a>\n"
     
-    for cat_name, cat_icon, cat_themes in CATEGORIES_8:
-        count = sum(1 for t in cat_themes if t in all_themes)
-        sidebar_html += f"    <a class=\"sidebar-item\" data-cat8=\"{cat_name}\" onclick=\"filterCategory8('{cat_name}')\">\n"
-        sidebar_html += f"      <span class=\"sidebar-icon\">{cat_icon}</span>\n"
-        sidebar_html += f"      <span class=\"sidebar-label\">{cat_name}</span>\n"
-        sidebar_html += f"      <span class=\"sidebar-count\">{count}</span>\n"
+    for cat, themes in categories.items():
+        icon = cat_icons.get(cat, "📄")
+        sidebar_html += f"    <a class=\"sidebar-item\" data-cat=\"{cat}\" onclick=\"filterCategory('{cat}')\">\n"
+        sidebar_html += f"      <span class=\"sidebar-icon\">{icon}</span>\n"
+        sidebar_html += f"      <span class=\"sidebar-label\">{cat}</span>\n"
+        sidebar_html += f"      <span class=\"sidebar-count\">{len(themes)}</span>\n"
         sidebar_html += "    </a>\n"
     
     sidebar_html += "  </nav>\n"
@@ -662,12 +652,6 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights, photo_
     pf_css = "\n".join(f"  .cover-{pk} {{ aspect-ratio: {v['ratio']}; max-width: {v['width']}px; }}"
                        for pk, v in PLATFORMS.items())
 
-    import json as _json
-    _subcat_map = {}
-    for _name, _icon, _themes_list in CATEGORIES_8:
-        _subcat_map[_name] = _themes_list
-    subcat_map_json = _json.dumps(_subcat_map, ensure_ascii=False)
-    
     return f'''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -1002,53 +986,28 @@ body {{
 {detail_html}
 
 <script>
-// 8分类映射
-const CAT8_MAP = {subcat_map_json};
-
-// 分类筛选
-function filterCategory8(cat) {{
-  // 更新左侧导航高亮
+// 分类筛选// 分类筛选
+function filterCategory(cat) {{
   document.querySelectorAll('.sidebar-item').forEach(item => {{
     item.classList.remove('active');
   }});
-  if (cat === 'all') {{
-    const activeItem = document.querySelector('.sidebar-item[data-cat="all"]');
-    if (activeItem) activeItem.classList.add('active');
-  }} else {{
-    const activeItem = document.querySelector('.sidebar-item[data-cat8="' + cat + '"]');
-    if (activeItem) activeItem.classList.add('active');
-  }}
+  const activeItem = document.querySelector('.sidebar-item[data-cat="' + cat + '"]');
+  if (activeItem) activeItem.classList.add('active');
   
-  if (cat === 'all') {{
-    document.querySelectorAll('.theme-card').forEach(card => {{
-      card.style.display = '';
-    }});
-    document.querySelectorAll('.category-section').forEach(section => {{
+  document.querySelectorAll('.category-section').forEach(section => {{
+    if (cat === 'all' || section.dataset.cat === cat) {{
       section.style.display = '';
       section.classList.add('active');
-    }});
-    const titleEl = document.querySelector('.content-title');
-    if (titleEl) titleEl.textContent = '全部风格';
-  }} else {{
-    const catThemes = CAT8_MAP[cat] || [];
-    document.querySelectorAll('.theme-card').forEach(card => {{
-      if (catThemes.includes(card.dataset.theme)) {{
-        card.style.display = '';
-      }} else {{
-        card.style.display = 'none';
-      }}
-    }});
-    document.querySelectorAll('.category-section').forEach(section => {{
-      section.style.display = '';
-      section.classList.add('active');
-    }});
-    const titleEl = document.querySelector('.content-title');
-    if (titleEl) titleEl.textContent = cat + ' 风格';
-  }}
+    }} else {{
+      section.style.display = 'none';
+      section.classList.remove('active');
+    }}
+  }});
   
   document.querySelector('.content-area').scrollTo(0, 0);
 }}
 
+// 主题选择 → 详情页
 function goDetail(theme) {{
   document.getElementById('picker-page').classList.add('hidden');
   document.querySelectorAll('.detail-page').forEach(d => d.style.display = 'none');
