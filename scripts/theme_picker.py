@@ -1006,68 +1006,49 @@ body {{
 const CAT8_MAP = {subcat_map_json};
 
 // 分类筛选
-function filterCategory(cat) {{
+function filterCategory8(cat) {{
   // 更新左侧导航高亮
   document.querySelectorAll('.sidebar-item').forEach(item => {{
     item.classList.remove('active');
   }});
-  const activeItem = document.querySelector('.sidebar-item[data-cat="' + cat + '"]');
-  if (activeItem) activeItem.classList.add('active');
+  if (cat === 'all') {{
+    const activeItem = document.querySelector('.sidebar-item[data-cat="all"]');
+    if (activeItem) activeItem.classList.add('active');
+  }} else {{
+    const activeItem = document.querySelector('.sidebar-item[data-cat8="' + cat + '"]');
+    if (activeItem) activeItem.classList.add('active');
+  }}
   
-  // 显示/隐藏中间内容区的分类section
-  document.querySelectorAll('.category-section').forEach(section => {{
-    if (cat === 'all' || section.dataset.cat === cat) {{
+  if (cat === 'all') {{
+    document.querySelectorAll('.theme-card').forEach(card => {{
+      card.style.display = '';
+    }});
+    document.querySelectorAll('.category-section').forEach(section => {{
       section.style.display = '';
       section.classList.add('active');
-    }} else {{
-      section.style.display = 'none';
-      section.classList.remove('active');
-    }}
-  }});
-  
-  // 滚动到顶部
-  document.querySelector('.content-area').scrollTo(0, 0);
-}}
-
-// 子分类筛选
-function filterSubCategory(cat, subcat) {{
-  // 更新左侧导航高亮
-  document.querySelectorAll('.sidebar-item').forEach(item => {{
-    item.classList.remove('active');
-  }});
-  const activeItem = document.querySelector('.sidebar-item[data-subcat="' + subcat + '"]');
-  if (activeItem) activeItem.classList.add('active');
-  
-  // 显示对应分类区域
-  document.querySelectorAll('.category-section').forEach(section => {{
-    if (section.dataset.cat === cat) {{
+    }});
+    const titleEl = document.querySelector('.content-title');
+    if (titleEl) titleEl.textContent = '全部风格';
+  }} else {{
+    const catThemes = CAT8_MAP[cat] || [];
+    document.querySelectorAll('.theme-card').forEach(card => {{
+      if (catThemes.includes(card.dataset.theme)) {{
+        card.style.display = '';
+      }} else {{
+        card.style.display = 'none';
+      }}
+    }});
+    document.querySelectorAll('.category-section').forEach(section => {{
       section.style.display = '';
       section.classList.add('active');
-      // 在section内只显示匹配子分类的卡片
-      const subThemes = section.querySelectorAll('.mini-card');
-      subThemes.forEach(card => {{
-        const themeName = card.dataset.theme;
-        const subcatData = SUBCAT_MAP[subcat];
-        if (subcatData && subcatData.includes(themeName)) {{
-          card.style.display = '';
-        }} else {{
-          card.style.display = 'none';
-        }}
-      }});
-    }} else {{
-      section.style.display = 'none';
-      section.classList.remove('active');
-    }}
-  }});
-  
-  // 更新标题
-  const titleEl = document.querySelector('.content-title');
-  if (titleEl) titleEl.textContent = subcat + ' 风格';
+    }});
+    const titleEl = document.querySelector('.content-title');
+    if (titleEl) titleEl.textContent = cat + ' 风格';
+  }}
   
   document.querySelector('.content-area').scrollTo(0, 0);
 }}
 
-// 主题选择 → 详情页
 function goDetail(theme) {{
   document.getElementById('picker-page').classList.add('hidden');
   document.querySelectorAll('.detail-page').forEach(d => d.style.display = 'none');
