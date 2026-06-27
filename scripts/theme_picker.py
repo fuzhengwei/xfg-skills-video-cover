@@ -534,6 +534,55 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights, photo_
         categories[cat].append(theme)
     
     cards_html = ""
+    # 子分类定义：主分类 → 子分类列表
+    SUBCATEGORIES = {
+        "科技知识": [
+            ("编程语言", "⌨️", ["python","java","golang","rust","typescript","react","vue","angular","svelte","nodejs"]),
+            ("数据库", "🗄️", ["mysql","postgres","redis","mongo","sqlite","elastic"]),
+            ("DevOps运维", "🔧", ["docker","k8s","terraform","jenkins","github","gitlab","prometheus","grafana","nginx","cicd","gitops","observ"]),
+            ("AI/机器学习", "🧠", ["tensorflow","pytorch","huggingface","openai","langchain","ollama","stable","agent","rag","neural","copilot","embedding","prompt","vibe"]),
+            ("前端工具", "🎨", ["webpack","vite","tailwind","figma","graphql","grpc"]),
+            ("架构/云", "☁️", ["kafka","rabbit","spring","ddd","microsvc","serverless","blockchain","web3","saas","paas","lowcode"]),
+            ("系统/工具", "💻", ["linux","terminal","vim","vscode","ssh","cron","regex","restapi","json2","yaml"]),
+            ("算法/数据", "📊", ["dataviz","algo","binary","quantum2","edge","mesh2","chaos"]),
+            ("科技经典", "🚀", ["bold","cyber","minimal","magazine","pixel","glass","aurora","blueprint","starfield","typewriter","glitch","synthwave","matrix","quantum","ocean","ice","glassmorph","retrofuturism","galaxy"]),
+        ],
+        "生活娱乐": [
+            ("运动健身", "⚽", ["basketball","football","tennis","baseball","swimming","running","cycling","yoga","climbing","skiing","boxing","golf","hiking","kayaking"]),
+            ("美食饮品", "🍜", ["bbq","sushi2","ramen","dessert","coffee2","tea","cocktail","wine","beer","milktea","juice","cooking","baking","food"]),
+            ("节日庆典", "🎉", ["christmas","halloween","newyear","midautumn","springfestival","valentine","carnival","party"]),
+            ("游戏电竞", "🎮", ["rpg","fps","moba","racing","puzzle","sandbox","gaming"]),
+            ("音乐", "🎵", ["classical","country","folk","funk","disco","techno","house","concert","karaoke","jazz","edm","rock","hiphop","punk","metal","blues","reggae"]),
+            ("影视娱乐", "🎬", ["anime2","drama","comedy","romance","action","fantasy","mystery","cinema","variety","anime"]),
+            ("萌宠动物", "🐱", ["cat","dog","rabbit","hamster","parrot","fish","cute"]),
+            ("日常爱好", "📚", ["cozy","slow","eco","diy","reading","painting","photo2","gardening","picnic","camping","roadtrip","stargazing","fishing","funny"]),
+            ("娱乐经典", "🥳", ["clay","popart"]),
+        ],
+        "视觉冲击": [
+            ("艺术流派", "🎨", ["cubism","surreal","impression","expression","fauvism","dada","construct","destijl","bauhaus","artnouveau","popart"]),
+            ("摄影风格", "📷", ["macro","longexp","tiltshift","doubleexp","infrared","cyberfilm","polaroid","film","photo2","screenshot","portrait","product","zoom","contrast"]),
+            ("街头潮流", "💥", ["graffiti","skate","surf","bike","tattoo","doodle","sticker","comic","neon","vaporwave","acid","memphis","holographic","graffiti"]),
+            ("设计风格", "📐", ["deco","brutal2","gothic2","modernist","parametric","glam","grunge","preppy","maximal","brutalist","artdeco"]),
+            ("年代复古", "📅", ["fifties","sixties","seventies","eighties","nineties","y2k2","retro","vaporwave"]),
+            ("科幻赛博", "🔬", ["solarpunk","biopunk","nanopunk","posthuman","glitch2","datamosh","scifi","steampunk","noir","gothic","baroque","fire"]),
+            ("数字生成", "🔢", ["ascii","generative","fractal","voronoi","particles","fluid"]),
+            ("抽象几何", "🔷", ["abstract","geometric","opart","kinetic","colorfield","monochrome","duotone","pattern","ornate","rococo"]),
+            ("材质质感", "✨", ["chrome","gold","silver","iridescent","pearlescent","matte","glossy","mirror","shadow","laser","prism","crystal","diamond"]),
+            ("自然力量", "⛈️", ["lightning","storm","volcano","tsunami"]),
+            ("冲击经典", "💥", ["paper","dopamine","luxury","tribal"]),
+        ],
+        "文艺清新": [
+            ("东方艺术", "🎨", ["ukiyoe","sumi_e","mingqing","dunhuang","shuimo","gongbi","ink","stamp","guochao"]),
+            ("世界文化", "🌍", ["persian","arabesque","moroccan","african","aztec","maya","inca","viking","celtic","egyptian","greek","roman","byzantine","russian","tribal"]),
+            ("城市风情", "🏙️", ["tokyo","kyoto","paris","london","nyc","shanghai","chengdu","yunnan","tibet","mongolia"]),
+            ("植物花卉", "🌿", ["bamboo","lotus","plum","orchid","pine","maple","willow","ginkgo","cactus","bonsai","moss","dandelion","lavender","sunflower","rose","tulip","spring","summer","autumn","winter"]),
+            ("自然风景", "🏔️", ["snow2","fog","drizzle","dawn","dusk","moonlight","starlight","mountain","valley","island","harbor","lighthouse","bridge","windmill","cabin","temple","castle"]),
+            ("文学故事", "📖", ["poetry","novel","fairytale","myth","haiku"]),
+            ("手工艺", "👐", ["ceramic","pottery","porcelain","lacquer","weaving","dyeing","calligraphy","seal2","kraft","washi","ribbon","journal"]),
+            ("材质纹理", "-paper", ["stone","marble","linen","silk","leather","newspaper","risograph","collage","polaroid","film"]),
+            ("生活美学", "🌸", ["fresh","anime","cinema","sticker","retro","pastel","washi","terrarium","wabi","ikigai","hygge","feathers","scales","gradientmesh","aurora"]),
+        ],
+    }
     cat_icons = {"科技知识":"🚀","生活娱乐":"🎉","视觉冲击":"💥","文艺清新":"🍃"}
     cat_descs = {"科技知识":"编程、AI、开发工具、架构模式","生活娱乐":"运动、美食、游戏、音乐、宠物","视觉冲击":"艺术、摄影、影视、时尚、潮流","文艺清新":"文化、自然、手工艺、生活美学"}
     
@@ -546,23 +595,33 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights, photo_
     
     # "全部"选项
     total_count = len(all_themes)
-    sidebar_html += f'    <a class="sidebar-item active" data-cat="all" onclick="filterCategory(\'all\')">\n'
-    sidebar_html += f'      <span class="sidebar-icon">📋</span>\n'
-    sidebar_html += f'      <span class="sidebar-label">全部风格</span>\n'
-    sidebar_html += f'      <span class="sidebar-count">{total_count}</span>\n'
-    sidebar_html += '    </a>\n'
+    sidebar_html += "    <a class=\"sidebar-item active\" data-cat=\"all\" onclick=\"filterCategory('all')\">\n"
+    sidebar_html += "      <span class=\"sidebar-icon\">📋</span>\n"
+    sidebar_html += f"      <span class=\"sidebar-label\">全部风格</span>\n"
+    sidebar_html += f"      <span class=\"sidebar-count\">{total_count}</span>\n"
+    sidebar_html += "    </a>\n"
     
+    # 主分类 + 子分类
     for cat, themes in categories.items():
         icon = cat_icons.get(cat, "📄")
-        desc = cat_descs.get(cat, "")
-        sidebar_html += f'    <a class="sidebar-item" data-cat="{cat}" onclick="filterCategory(\'{cat}\')">\n'
-        sidebar_html += f'      <span class="sidebar-icon">{icon}</span>\n'
-        sidebar_html += f'      <span class="sidebar-label">{cat}</span>\n'
-        sidebar_html += f'      <span class="sidebar-count">{len(themes)}</span>\n'
-        sidebar_html += '    </a>\n'
+        sidebar_html += "    <div class=\"sidebar-group-header\">\n"
+        sidebar_html += f"      <span class=\"sidebar-icon\">{icon}</span>\n"
+        sidebar_html += f"      <span class=\"sidebar-label\">{cat}</span>\n"
+        sidebar_html += f"      <span class=\"sidebar-count\">{len(themes)}</span>\n"
+        sidebar_html += "    </div>\n"
+        subcats = SUBCATEGORIES.get(cat, [])
+        for sub_name, sub_icon, sub_themes_list in subcats:
+            count = sum(1 for t in sub_themes_list if t in themes)
+            if count > 0:
+                safe_name = sub_name.replace("'", "\\'")
+                sidebar_html += f"    <a class=\"sidebar-item sidebar-sub\" data-cat=\"{cat}\" data-subcat=\"{sub_name}\" onclick=\"filterSubCategory('{cat}','{safe_name}')\">\n"
+                sidebar_html += f"      <span class=\"sidebar-icon\">{sub_icon}</span>\n"
+                sidebar_html += f"      <span class=\"sidebar-label\">{sub_name}</span>\n"
+                sidebar_html += f"      <span class=\"sidebar-count\">{count}</span>\n"
+                sidebar_html += "    </a>\n"
     
-    sidebar_html += '  </nav>\n'
-    sidebar_html += '</div>\n'
+    sidebar_html += "  </nav>\n"
+    sidebar_html += "</div>\n"
     
     # 中间内容区 — 按分类生成section
     cards_html = '<div class="content-area">\n'
@@ -652,6 +711,13 @@ def generate_picker_html(title, subtitle, tags, badge, quote, highlights, photo_
     pf_css = "\n".join(f"  .cover-{pk} {{ aspect-ratio: {v['ratio']}; max-width: {v['width']}px; }}"
                        for pk, v in PLATFORMS.items())
 
+    import json as _json
+    _subcat_map = {}
+    for _cat, _subs in SUBCATEGORIES.items():
+        for _name, _icon, _themes_list in _subs:
+            _subcat_map[_name] = _themes_list
+    subcat_map_json = _json.dumps(_subcat_map, ensure_ascii=False)
+    
     return f'''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -711,6 +777,22 @@ body {{
   font-size:12px; font-weight:700; color:rgba(255,255,255,0.3);
   background:rgba(255,255,255,0.06); padding:2px 8px; border-radius:10px;
   min-width:28px; text-align:center;
+}}
+.sidebar-group-header {{
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 16px 4px 16px;
+  font-size: 13px; font-weight: 700;
+  color: #888; text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  cursor: default;
+}}
+.sidebar-group-header:first-child {{ border-top: none; margin-top: 0; }}
+.sidebar-group-header .sidebar-icon {{ font-size: 16px; }}
+.sidebar-sub {{
+  padding-left: 36px !important;
+  font-size: 13px !important;
 }}
 .sidebar-item.active .sidebar-count {{
   background:rgba(245,158,11,0.2); color:#f59e0b;
@@ -986,6 +1068,9 @@ body {{
 {detail_html}
 
 <script>
+// 子分类映射
+const SUBCAT_MAP = {subcat_map_json};
+
 // 分类筛选
 function filterCategory(cat) {{
   // 更新左侧导航高亮
@@ -1007,6 +1092,44 @@ function filterCategory(cat) {{
   }});
   
   // 滚动到顶部
+  document.querySelector('.content-area').scrollTo(0, 0);
+}}
+
+// 子分类筛选
+function filterSubCategory(cat, subcat) {{
+  // 更新左侧导航高亮
+  document.querySelectorAll('.sidebar-item').forEach(item => {{
+    item.classList.remove('active');
+  }});
+  const activeItem = document.querySelector('.sidebar-item[data-subcat="' + subcat + '"]');
+  if (activeItem) activeItem.classList.add('active');
+  
+  // 显示对应分类区域
+  document.querySelectorAll('.category-section').forEach(section => {{
+    if (section.dataset.cat === cat) {{
+      section.style.display = '';
+      section.classList.add('active');
+      // 在section内只显示匹配子分类的卡片
+      const subThemes = section.querySelectorAll('.mini-card');
+      subThemes.forEach(card => {{
+        const themeName = card.dataset.theme;
+        const subcatData = SUBCAT_MAP[subcat];
+        if (subcatData && subcatData.includes(themeName)) {{
+          card.style.display = '';
+        }} else {{
+          card.style.display = 'none';
+        }}
+      }});
+    }} else {{
+      section.style.display = 'none';
+      section.classList.remove('active');
+    }}
+  }});
+  
+  // 更新标题
+  const titleEl = document.querySelector('.content-title');
+  if (titleEl) titleEl.textContent = subcat + ' 风格';
+  
   document.querySelector('.content-area').scrollTo(0, 0);
 }}
 
